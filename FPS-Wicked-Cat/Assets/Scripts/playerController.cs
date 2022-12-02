@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
 
-    
+    [Header("----- Player Stats-----")]
     [SerializeField] CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
