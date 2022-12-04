@@ -6,25 +6,20 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [Header("----- Player Stuff ----")]
+    [Header("------Player Components------")]
     public GameObject player;
     public playerController playerScript;
 
-    [Header("----- UI Stuff ----")]
-    public GameObject pauseMenu;
+    [Header("------UI Components------")]
     public GameObject activeMenu;
+    public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject playerFlashDmg;
+    public GameObject damageFlash;
 
-    [Header("----- Collectables ----")]
-    public int jumpCost;
-    public int coins;
-    public int enemyCount;
+    public bool isPuased;
+    float timeScaleBase;
 
-    public bool isPaused;
-    float timeScaleOrig;
-    public GameObject playerSpawnPos;
 
     void Awake()
     {
@@ -54,6 +49,13 @@ public class gameManager : MonoBehaviour
                 unPause();
             }
         }
+        else if (Input.GetButtonDown("Cancel") && activeMenu == pauseMenu)
+        {
+            isPuased = !isPuased;
+            unPause();
+        }
+
+
     }
 
     public void pause()
@@ -65,29 +67,10 @@ public class gameManager : MonoBehaviour
 
     public void unPause()
     {
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = timeScaleBase;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(false);
         activeMenu = null;
-    }
-
-    public void AddCoins(int amount)
-    {
-        coins += amount;
-    }
-
-    public void UpdateEnemyCount(int amount)
-    {
-        enemyCount += amount;
-        if (enemyCount <= 0)
-        {
-            // end game
-            // bring up end game screen
-            winMenu.SetActive(true);
-            pause();
-            activeMenu = winMenu;
-
-        }
     }
 }
