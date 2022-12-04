@@ -11,6 +11,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
 
     [Header("------UI Components------")]
+    public GameObject objectives;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
@@ -25,9 +26,11 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
-    public GameObject flyerSpawn1;
-    public GameObject flyerSpawn2;
-    public bool isSpawningFly;
+    GameObject flyerSpawn1;
+    GameObject flyerSpawn2;
+    bool isSpawningFly;
+    public int componentsCurrent;
+    public int componentsTotal;
 
 
     void Awake()
@@ -64,7 +67,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        
+        StartCoroutine(spawnFly());
 
 
     }
@@ -90,7 +93,8 @@ public class gameManager : MonoBehaviour
         if(!isSpawningFly)
         {
             isSpawningFly = true;
-            if(Random.Range(0, 99) < 50)
+            float num = Random.Range(0, 99);
+            if(num < 50)
             {
                 Instantiate(flyer, flyerSpawn1.transform.position, flyerSpawn1.transform.rotation);
             }
