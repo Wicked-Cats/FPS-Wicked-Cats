@@ -24,8 +24,8 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerScript = player.GetComponent<playerController>();
         timeScaleBase = Time.timeScale;
     }
 
@@ -33,6 +33,29 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         
+
+        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        {
+            isPuased = !isPuased;
+            activeMenu = pauseMenu;
+            activeMenu.SetActive(isPuased);
+
+            if(isPuased)
+            {
+                pause();
+            }
+            else
+            {
+                unPause();
+            }
+        }
+        else if (Input.GetButtonDown("Cancel") && activeMenu == pauseMenu)
+        {
+            isPuased = !isPuased;
+            unPause();
+        }
+
+
     }
 
     public void pause()
