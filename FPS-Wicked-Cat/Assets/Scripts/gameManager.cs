@@ -17,9 +17,17 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject damageFlash;
 
+    [Header("------Enemies------")]
+    [SerializeField] GameObject flyer;
+    [SerializeField] GameObject tank;
+    [SerializeField] GameObject speedy;
+
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
+    public GameObject flyerSpawn1;
+    public GameObject flyerSpawn2;
+    public bool isSpawningFly;
 
 
     void Awake()
@@ -56,6 +64,8 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
+        
+
 
     }
 
@@ -73,5 +83,23 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(false);
         activeMenu = null;
+    }
+
+    IEnumerator spawnFly()
+    {
+        if(!isSpawningFly)
+        {
+            isSpawningFly = true;
+            if(Random.Range(0, 99) < 50)
+            {
+                Instantiate(flyer, flyerSpawn1.transform.position, flyerSpawn1.transform.rotation);
+            }
+            else
+            {
+                Instantiate(flyer, flyerSpawn2.transform.position, flyerSpawn2.transform.rotation);
+            }
+        }
+        yield return new WaitForSeconds(15f);
+        isSpawningFly = false;
     }
 }
