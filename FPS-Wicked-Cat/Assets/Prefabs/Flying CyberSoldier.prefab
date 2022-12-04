@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 3635242929573721900}
   - component: {fileID: 3635242929573721901}
   - component: {fileID: 3635242929573721902}
+  - component: {fileID: 7685791584475347394}
   m_Layer: 0
   m_Name: Flying CyberSoldier
   m_TagString: Untagged
@@ -481,10 +482,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a3798013f6f5f4cb2c1a4ae42b4ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
   model: {fileID: 3635242929560348201}
   agent: {fileID: 3635242929573721901}
-  player: {fileID: 0}
+  HP: 3
+  lineOfSight: 45
+  shootDmg: 5
+  shootRate: 2.5
+  bullet: {fileID: 0}
+  shootPos: {fileID: 3635242929621610910}
+  isShooting: 0
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!195 &3635242929573721901
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -517,9 +526,22 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
+  m_Radius: 0.25
   m_Height: 1.6
   m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!135 &7685791584475347394
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635242929573721903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3635242929621610911
 GameObject:

@@ -11,7 +11,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
 
     [Header("------UI Components------")]
-    public GameObject objectives;
+    //public GameObject objectives;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
@@ -67,7 +67,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        StartCoroutine(spawnFly());
+       // StartCoroutine(spawnFly());
 
 
     }
