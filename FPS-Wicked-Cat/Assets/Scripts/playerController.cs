@@ -56,7 +56,6 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
-            gameManager.instance.componentsTotal += 10;
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -120,8 +119,8 @@ public class playerController : MonoBehaviour
     //    controller.enabled = true;
     //}
 
-    //public void ResetPlayerHP()
-    //{
-    //    HP = HPOrig;
-    //}
+    public void ResetPlayerHP()
+    {
+        HP = HPOrig;
+    }
 }
