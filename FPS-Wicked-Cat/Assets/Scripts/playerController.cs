@@ -21,7 +21,6 @@ public class playerController : MonoBehaviour
 
     bool isShooting;
     int jumpedTimes;
-
     private Vector3 playerVelocity;
     Vector3 move;
     int HPOrig;
@@ -37,7 +36,7 @@ public class playerController : MonoBehaviour
         //if (!gameManager.instance.isPaused)
         //{
             movement();
-            StartCoroutine(shoot());
+            //StartCoroutine(shoot());
         //}
     }
 
@@ -64,7 +63,7 @@ public class playerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    IEnumerator shoot()
+    /*IEnumerator shoot()
     {
         if (!isShooting && Input.GetButton("Shoot"))
         {
@@ -84,7 +83,7 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
     }
-
+    */
     public void takeDamage(int dmg)
     {
         HP -= dmg;
@@ -100,17 +99,17 @@ public class playerController : MonoBehaviour
 
     IEnumerator playerDmgFlash()
     {
-        //gameManager.instance.playerFlashDmg.SetActive(true);
+        gameManager.instance.damageFlash.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        //gameManager.instance.playerFlashDmg.SetActive(false);
+        gameManager.instance.damageFlash.SetActive(false);
 
     }
 
-    public void AddJump(int amount)
+    /*public void AddJump(int amount)
     {
         jumpsMax += amount;
-        //gameManager.instance.coins -= gameManager.instance.jumpCost;
-    }
+        gameManager.instance.coins -= gameManager.instance.jumpCost;
+    }*/
 
     public void SetPlayerPos()
     {
