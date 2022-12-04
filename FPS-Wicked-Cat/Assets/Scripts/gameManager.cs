@@ -11,7 +11,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
 
     [Header("------UI Components------")]
-    //public GameObject objectives;
+    public GameObject objectives;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
@@ -31,6 +31,7 @@ public class gameManager : MonoBehaviour
     bool isSpawningFly;
     public int componentsCurrent;
     public int componentsTotal;
+    private bool objectivesSeen;
 
 
     void Awake()
@@ -46,6 +47,14 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!objectivesSeen)
+        {
+            isPaused = !isPaused;
+            activeMenu = objectives;
+            activeMenu.SetActive(isPaused);
+            pause();
+            objectivesSeen = true;
+        }
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
@@ -67,7 +76,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-       // StartCoroutine(spawnFly());
+        //StartCoroutine(spawnFly());
 
 
     }

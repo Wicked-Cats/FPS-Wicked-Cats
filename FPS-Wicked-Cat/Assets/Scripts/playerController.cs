@@ -33,11 +33,12 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-        //if (!gameManager.instance.isPaused)
-        //{
+        if (!gameManager.instance.isPaused)
+        {
             movement();
-            //StartCoroutine(shoot());
-        //}
+            StartCoroutine(shoot());
+        }
+       
     }
 
     void movement()
@@ -63,7 +64,7 @@ public class playerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    /*IEnumerator shoot()
+    IEnumerator shoot()
     {
         if (!isShooting && Input.GetButton("Shoot"))
         {
@@ -83,7 +84,7 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
     }
-    */
+   
     public void takeDamage(int dmg)
     {
         HP -= dmg;
@@ -105,21 +106,21 @@ public class playerController : MonoBehaviour
 
     }
 
-    /*public void AddJump(int amount)
-    {
-        jumpsMax += amount;
-        gameManager.instance.coins -= gameManager.instance.jumpCost;
-    }*/
+    //public void AddJump(int amount)
+    //{
+    //    jumpsMax += amount;
+    //    gameManager.instance.coins -= gameManager.instance.jumpCost;
+    //}
 
-    public void SetPlayerPos()
-    {
-        controller.enabled = false;
-        //transform.position = gameManager.instance.playerSpawnPos.transform.position;
-        controller.enabled = true;
-    }
+    //public void SetPlayerPos()
+    //{
+    //    controller.enabled = false;
+    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
+    //    controller.enabled = true;
+    //}
 
-    public void ResetPlayerHP()
-    {
-        HP = HPOrig;
-    }
+    //public void ResetPlayerHP()
+    //{
+    //    HP = HPOrig;
+    //}
 }
