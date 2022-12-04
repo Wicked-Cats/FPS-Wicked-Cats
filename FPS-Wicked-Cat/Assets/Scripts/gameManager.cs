@@ -36,8 +36,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         timeScaleBase = Time.timeScale;
-        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        player.transform.position = playerSpawnPos.transform.position;
+        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        //player.transform.position = playerSpawnPos.transform.position;
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        
+        StartCoroutine(spawnFly());
 
 
     }
@@ -90,7 +90,8 @@ public class gameManager : MonoBehaviour
         if(!isSpawningFly)
         {
             isSpawningFly = true;
-            if(Random.Range(0, 99) < 50)
+            float num = Random.Range(0, 99);
+            if(num < 50)
             {
                 Instantiate(flyer, flyerSpawn1.transform.position, flyerSpawn1.transform.rotation);
             }
@@ -99,7 +100,7 @@ public class gameManager : MonoBehaviour
                 Instantiate(flyer, flyerSpawn2.transform.position, flyerSpawn2.transform.rotation);
             }
         }
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(30f);
         isSpawningFly = false;
     }
 }

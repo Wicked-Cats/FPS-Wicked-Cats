@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour
+public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("-- Components --")]
     [SerializeField] int HP;
@@ -11,7 +11,9 @@ public class enemyAI : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
 
 
-    public Transform player;
+
+    [SerializeField] bool isPatrolling;
+    int HPOrig;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,8 @@ public class enemyAI : MonoBehaviour
         AiMovement();
     }
 
+    
+
     IEnumerator dmgFlash()
     {
         model.material.color = Color.red;
@@ -34,6 +38,16 @@ public class enemyAI : MonoBehaviour
 
     void AiMovement()
     {
-        agent.SetDestination(player.position);
+        if (isPatrolling)
+        {
+
+        }
+        agent.SetDestination(gameManager.instance.player.transform.position);
+    }
+
+    public void takeDamage(int damage)
+    {
+        HP -= damage;
+        
     }
 }

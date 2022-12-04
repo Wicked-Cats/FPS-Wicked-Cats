@@ -293,10 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a3798013f6f5f4cb2c1a4ae42b4ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  model: {fileID: 0}
-  agent: {fileID: 0}
-  player: {fileID: 0}
+  HP: 1
+  model: {fileID: 1666686775617709491}
+  agent: {fileID: 1666686774951453365}
 --- !u!136 &1666686774951453366
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -321,11 +320,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 10
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
