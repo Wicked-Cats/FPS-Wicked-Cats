@@ -78,7 +78,13 @@ public class gameManager : MonoBehaviour
 
         //StartCoroutine(spawnFly());
 
-
+        if(componentsTotal == 10 && activeMenu == null)
+        {
+            isPaused = !isPaused;
+            activeMenu = winMenu;
+            activeMenu.SetActive(isPaused);
+            pause();
+        }
     }
 
     public void pause()
