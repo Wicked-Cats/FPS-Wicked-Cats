@@ -44,7 +44,6 @@ public class gameManager : MonoBehaviour
         //player.transform.position = playerSpawnPos.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(!objectivesSeen)
@@ -84,6 +83,9 @@ public class gameManager : MonoBehaviour
             activeMenu = winMenu;
             activeMenu.SetActive(isPaused);
             pause();
+            objectivesSeen = false;
+            componentsTotal = 0;
+            componentsCurrent = 0;
         }
     }
 
