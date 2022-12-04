@@ -24,23 +24,23 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        //player = GameObject.FindGameObjectWithTag("Player");
-        //playerScript = player.GetComponent<playerController>();
-        timeScaleBase = Time.timeScale;
+        player = GameObject.FindGameObjectWithTag("pLayer");
+        playerScript = player.GetComponent<playerController>();
+        timeScaleOrig = Time.timeScale;
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        player.transform.position = playerSpawnPos.transform.position;
     }
 
-    
+    // Update is called once per frame
     void Update()
     {
-        
-
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
-            isPuased = !isPuased;
+            isPaused = !isPaused;
             activeMenu = pauseMenu;
-            activeMenu.SetActive(isPuased);
+            activeMenu.SetActive(isPaused);
 
-            if(isPuased)
+            if (isPaused)
             {
                 pause();
             }
