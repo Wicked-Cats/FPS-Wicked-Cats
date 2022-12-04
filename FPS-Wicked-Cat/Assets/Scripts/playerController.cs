@@ -5,12 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     [Header("----- Components ----")]
-
-<<<<<<< Updated upstream
-    
     [SerializeField] CharacterController controller;
-=======
-    [SerializeField] CharacterController controller; 
 
     [Header("----- Player Stats ----")]
     [Range(1, 10)] [SerializeField] int HP;
@@ -26,7 +21,7 @@ public class playerController : MonoBehaviour
 
     bool isShooting;
     int jumpedTimes;
->>>>>>> Stashed changes
+
     private Vector3 playerVelocity;
     Vector3 move;
     int HPOrig;
@@ -105,22 +100,22 @@ public class playerController : MonoBehaviour
 
     IEnumerator playerDmgFlash()
     {
-        gameManager.instance.playerFlashDmg.SetActive(true);
+        //gameManager.instance.playerFlashDmg.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        gameManager.instance.playerFlashDmg.SetActive(false);
+        //gameManager.instance.playerFlashDmg.SetActive(false);
 
     }
 
     public void AddJump(int amount)
     {
         jumpsMax += amount;
-        gameManager.instance.coins -= gameManager.instance.jumpCost;
+        //gameManager.instance.coins -= gameManager.instance.jumpCost;
     }
 
     public void SetPlayerPos()
     {
         controller.enabled = false;
-        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        //transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
 

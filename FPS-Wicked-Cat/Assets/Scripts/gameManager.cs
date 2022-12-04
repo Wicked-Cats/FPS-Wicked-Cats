@@ -17,18 +17,18 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject damageFlash;
 
-    public bool isPuased;
+    public bool isPaused;
     float timeScaleBase;
 
 
     void Awake()
     {
         instance = this;
-        player = GameObject.FindGameObjectWithTag("pLayer");
+        player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        timeScaleOrig = Time.timeScale;
-        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        player.transform.position = playerSpawnPos.transform.position;
+        timeScaleBase = Time.timeScale;
+        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+       // player.transform.position = playerSpawnPos.transform.position;
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class gameManager : MonoBehaviour
         }
         else if (Input.GetButtonDown("Cancel") && activeMenu == pauseMenu)
         {
-            isPuased = !isPuased;
+            isPaused = !isPaused;
             unPause();
         }
 
