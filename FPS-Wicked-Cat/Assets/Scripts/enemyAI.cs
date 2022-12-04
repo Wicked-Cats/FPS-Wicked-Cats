@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    public Color colorOrig;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
@@ -36,6 +37,7 @@ public class enemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        colorOrig = model.material.color;
         HPOrig = HP;
         stopDistOrig = agent.stoppingDistance;
     }
@@ -46,6 +48,7 @@ public class enemyAI : MonoBehaviour, IDamage
         AiMovement();
         if (inSight)
         {
+            agent.stoppingDistance= stopDistOrig;
             LineOfSight();
         }
     }
@@ -84,7 +87,6 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.stoppingDistance = stopDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (!isShooting) // so if he sees us he starts to shoot
@@ -149,7 +151,6 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.stoppingDistance = 0;
         agent.SetDestination(point.transform.position);
         yield return new WaitForSeconds(10f);
-        agent.stoppingDistance = stopDistOrig;
         isWaiting = false;
     }
 
@@ -157,7 +158,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        model.material.color = Color.white;
+        model.material.color = colorOrig;
     }
 
 }
