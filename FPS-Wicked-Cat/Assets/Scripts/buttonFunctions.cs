@@ -7,7 +7,7 @@ public class buttonFunctions : MonoBehaviour
 {
     public void resume()
     {
-        gameManager.instance.isPuased = !gameManager.instance.isPuased;
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.unPause();
     }
 
