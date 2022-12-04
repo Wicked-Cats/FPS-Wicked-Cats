@@ -31,6 +31,7 @@ public class gameManager : MonoBehaviour
     bool isSpawningFly;
     public int componentsCurrent;
     public int componentsTotal;
+    private bool objectivesSeen;
 
 
     void Awake()
@@ -39,13 +40,21 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         timeScaleBase = Time.timeScale;
-        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        player.transform.position = playerSpawnPos.transform.position;
+        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        //player.transform.position = playerSpawnPos.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!objectivesSeen)
+        {
+            isPaused = !isPaused;
+            activeMenu = objectives;
+            activeMenu.SetActive(isPaused);
+            pause();
+            objectivesSeen = true;
+        }
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
@@ -67,7 +76,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        StartCoroutine(spawnFly());
+        //StartCoroutine(spawnFly());
 
 
     }
