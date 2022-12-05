@@ -19,22 +19,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Player Bullet"))
+        if (other.CompareTag("Enemy"))
         {
-            if (other.CompareTag("Enemy"))
+            if (other.GetComponent<IDamage>() != null)
             {
-                if (rb.GetComponent<IDamage>() != null)
-                {
-                    rb.GetComponent<IDamage>().takeDamage(damage);
-                }
+                other.GetComponent<IDamage>().takeDamage(damage);
             }
         }
-        else if (CompareTag("Enemy Bullet"))
+        else if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                gameManager.instance.playerScript.takeDamage(damage);
-            }
+            gameManager.instance.playerScript.takeDamage(damage);
         }
         Destroy(gameObject);
     }
