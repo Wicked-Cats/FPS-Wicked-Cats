@@ -348,10 +348,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 973852860215549029, guid: 5c4e47291cea1634fb4f968750ee5020, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 973852860215549031, guid: 5c4e47291cea1634fb4f968750ee5020, type: 3}
       propertyPath: bullet
       value: 
       objectReference: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
+    - target: {fileID: 7952344256509479743, guid: 5c4e47291cea1634fb4f968750ee5020, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c4e47291cea1634fb4f968750ee5020, type: 3}
 --- !u!1001 &1011313344

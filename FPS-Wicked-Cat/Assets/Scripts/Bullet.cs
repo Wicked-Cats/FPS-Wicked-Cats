@@ -19,17 +19,21 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other is CapsuleCollider)
         {
-            if (other.GetComponent<IDamage>() != null)
+            if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<IDamage>().takeDamage(damage);
+                if (other.GetComponent<IDamage>() != null)
+                {
+                    other.GetComponent<IDamage>().takeDamage(damage);
+                }
             }
+            else if (other.CompareTag("Player"))
+            {
+                gameManager.instance.playerScript.takeDamage(damage);
+            }
+
+            Destroy(gameObject);
         }
-        else if (other.CompareTag("Player"))
-        {
-            gameManager.instance.playerScript.takeDamage(damage);
-        }
-        Destroy(gameObject);
     }
 }
