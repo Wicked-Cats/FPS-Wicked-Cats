@@ -364,14 +364,14 @@ PrefabInstance:
     - target: {fileID: 309960587872178438, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
       propertyPath: shootPos
       value: 
-      objectReference: {fileID: 1967298557}
+      objectReference: {fileID: 1708650986}
     - target: {fileID: 309960587872178438, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
       propertyPath: shootDist
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 309960587872178438, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
       propertyPath: shootRate
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1774517431106390672, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
       propertyPath: m_RootOrder
@@ -431,9 +431,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
---- !u!4 &1967298557 stripped
+--- !u!4 &1708650986 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1783161643460552710, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2746828922665607737, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
   m_PrefabInstance: {fileID: 1011313344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1984523747
@@ -584,10 +584,6 @@ PrefabInstance:
     - target: {fileID: 4203415293032977398, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}
       propertyPath: m_Name
       value: Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 6951614556497224348, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}
-      propertyPath: despawnTimer
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}

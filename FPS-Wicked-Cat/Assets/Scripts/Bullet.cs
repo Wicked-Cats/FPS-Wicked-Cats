@@ -13,19 +13,29 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.forward * speed;
+        rb.velocity = Camera.main.transform.forward * speed;
         Destroy(gameObject, despawnTimer);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+        if (CompareTag("Player Bullet"))
         {
-            if (rb.GetComponent<IDamage>() != null)
+            if (other.CompareTag("Enemy"))
             {
-                rb.GetComponent<IDamage>().takeDamage(damage);
+                if (rb.GetComponent<IDamage>() != null)
+                {
+                    rb.GetComponent<IDamage>().takeDamage(damage);
+                }
             }
         }
-        Destroy(gameObject, despawnTimer);
+        else if (CompareTag("Enemy Bullet"))
+        {
+            if (other.CompareTag("Player"))
+            {
+                gameManager.instance.playerScript.takeDamage(damage);
+            }
+        }
+        Destroy(gameObject);
     }
 }
