@@ -3,65 +3,161 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour
+public class enemyAI : MonoBehaviour, IDamage
 {
-    [Header("-- Enemy Components --")]
+    [Header("-- Components --")]
+    [SerializeField] Renderer model;
+    [SerializeField] NavMeshAgent agent;
+
+    [Header("-- Enemy Stats")]
     [SerializeField] int HP;
-    [SerializeField] int enemySpeed;
-    [SerializeField] Renderer model;        // enemy model
-    [SerializeField] NavMeshAgent agent;    // can walk on surface
+    private int HPOrig;
 
-    [Header("Move Points")]
-    public Transform[] movePoints; // this will be empty objects 
-                                   // just like the respawn object
-    public int HPOrig;
-    public Transform player;
-    bool isShooting, playerInRange;
+    [Header("-- Enemy Vision --")]
+    private bool isPatrolling = true;
+    [SerializeField] int lineOfSight;
+    private float angleToPlayer;
+    bool inSight;
 
+    [Header("-- Enemy Gun Stats --")]
+    [SerializeField] int shootDmg;
+    [SerializeField] float shootRate;
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform shootPos;
+    [SerializeField] bool isShooting;
+
+    [Header("-- Patrol Points --")]
+    [SerializeField] GameObject[] patrolPoints;
+    private float stopDistOrig;
+    private int pointMovement;
+    bool isWaiting;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
+        stopDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        AiMovement();
+        if (inSight)
+        {
+            LineOfSight();
+        }
+    }
+
+    void AiMovement()
+    {
+       
+        if (isPatrolling)
+        {
+            if (!isWaiting)
+            {
+                StartCoroutine(changePoint(patrolPoints[pointMovement]));
+
+                if (pointMovement != patrolPoints.Length - 1)
+                {
+                    pointMovement++;
+                }
+                else
+                {
+                    pointMovement = 0;
+                }
+            }
+        }
+        else
+        {
+            agent.SetDestination(gameManager.instance.player.transform.position);
+        }
+    }
+
+    void LineOfSight()
+    {
+        angleToPlayer = Vector3.Angle(gameManager.instance.player.transform.position - shootPos.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(shootPos.position, gameManager.instance.player.transform.position, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
+            {
+                agent.stoppingDistance = stopDistOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (!isShooting) // so if he sees us he starts to shoot
+                {
+                    StartCoroutine(shoot());
+                }
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    transform.LookAt(gameManager.instance.player.transform.position);
+                }
+            }
+        }
+       
+    }
+
+    public void takeDamage(int damage)
+    {
+        HP -= damage;
+        StartCoroutine(dmgFlash());
+        transform.LookAt(gameManager.instance.player.transform.position);
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
+        if (HP <= 0)
+        {
+            gameManager.instance.componentsCurrent += HPOrig;
+            gameManager.instance.componentsTotal += HPOrig;
+            Destroy(gameObject);
+        }
+
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            inSight = true;
+            isPatrolling= false;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            inSight = false;
+            isPatrolling= true;
+        }
+    }
+
+    IEnumerator shoot()
+    {
+        isShooting = true;
+        Instantiate(bullet, shootPos.position, transform.rotation);
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+    }
+
+    IEnumerator changePoint(GameObject point)
+    {
+        isWaiting = true;
+        agent.stoppingDistance = 0;
+        agent.SetDestination(point.transform.position);
+        yield return new WaitForSeconds(10f);
+        agent.stoppingDistance = stopDistOrig;
+        isWaiting = false;
     }
 
     IEnumerator dmgFlash()
     {
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         model.material.color = Color.white;
     }
 
-
-
-    void AiMovement()
-    {
-        agent.SetDestination(player.position);
-
-    }
-
-    public void Patrol()
-    {
-            
-    }
-
-    public void takeDamage(int dmg)
-    {
-        HP -= dmg;
-
-        AiMovement(); // after enemy takes damage being to move 
-        
-        StartCoroutine(dmgFlash());
-
-        if (HP <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
 }
