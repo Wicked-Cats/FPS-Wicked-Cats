@@ -484,8 +484,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3635242929560348201}
   agent: {fileID: 3635242929573721901}
+  colorOrig: {r: 0, g: 0, b: 0, a: 0}
   HP: 3
-  lineOfSight: 45
+  headPos: {fileID: 3635242930613062539}
+  lineOfSight: 75
+  playerFaceSpeed: 0
   shootDmg: 5
   shootRate: 2.5
   bullet: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
@@ -541,7 +544,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 100
+  m_Radius: 50
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3635242929621610911
 GameObject:

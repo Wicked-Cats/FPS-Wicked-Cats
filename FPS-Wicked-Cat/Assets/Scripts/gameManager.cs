@@ -24,12 +24,13 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject tank;
     [SerializeField] GameObject speedy;
 
-
+    [Header("-- Spwaners --")]
+    [SerializeField]GameObject flyerSpawn1;
+    [SerializeField]GameObject flyerSpawn2;
+    
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
-    GameObject flyerSpawn1;
-    GameObject flyerSpawn2;
     bool isSpawningFly;
     public int componentsCurrent;
     public int componentsTotal;
@@ -122,7 +123,7 @@ public class gameManager : MonoBehaviour
                 Instantiate(flyer, flyerSpawn2.transform.position, flyerSpawn2.transform.rotation);
             }
         }
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(10f);
         isSpawningFly = false;
     }
 }
