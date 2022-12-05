@@ -51,6 +51,17 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
+        if (componentsTotal == 30 && activeMenu == null)
+        {
+            isPaused = !isPaused;
+            activeMenu = winMenu;
+            activeMenu.SetActive(isPaused);
+            pause();
+            objectivesSeen = false;
+            componentsTotal = 0;
+            componentsCurrent = 0;
+        }
+
         if (!objectivesSeen)
         {
             isPaused = !isPaused;
@@ -82,16 +93,6 @@ public class gameManager : MonoBehaviour
 
         StartCoroutine(spawnFly());
 
-        if (componentsTotal == 30 && activeMenu == null)
-        {
-            isPaused = !isPaused;
-            activeMenu = winMenu;
-            activeMenu.SetActive(isPaused);
-            pause();
-            objectivesSeen = false;
-            componentsTotal = 0;
-            componentsCurrent = 0;
-        }
     }
 
     public void pause()

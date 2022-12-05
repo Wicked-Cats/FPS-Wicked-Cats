@@ -89,6 +89,7 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
+            gameManager.instance.componentsTotal += 10;
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -140,12 +141,12 @@ public class playerController : MonoBehaviour
         if (HP <= 0)
         {
             gameManager.instance.pause();
-            gameManager.instance.loseMenu.SetActive(true);
+            gameManager.instance.activeMenu = gameManager.instance.loseMenu;
+            gameManager.instance.activeMenu.SetActive(true);
             if(gameManager.instance.componentsCurrent < 5)
             {
                 gameManager.instance.respawnButt.interactable = false;
             }
-            gameManager.instance.activeMenu = gameManager.instance.loseMenu;
         }
     }
 
