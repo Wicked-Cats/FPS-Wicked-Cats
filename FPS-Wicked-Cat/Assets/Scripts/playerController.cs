@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Player Stats ----")]
     [Range(1, 10)] [SerializeField] int HP;
-    [Range(3, 8)] [SerializeField] int playerSpeed;
+    [Range(3, 20)] [SerializeField] int playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
@@ -24,11 +24,14 @@ public class playerController : MonoBehaviour
     private Vector3 playerVelocity;
     Vector3 move;
     int HPOrig;
+    int pS;
+
 
     private void Start()
     {
         //SetPlayerPos();
         HPOrig = HP;
+        pS = playerSpeed;
     }
 
     void Update()
@@ -43,6 +46,24 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
+        if(Input.GetButton("Sprint"))
+        {
+            playerSpeed = pS * 2;
+
+            if(playerSpeed > 25)
+            {
+                playerSpeed = 25;
+            }
+        }
+        else
+        {
+            playerSpeed = pS;
+        }
+            
+
+        
+
+
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
@@ -56,10 +77,12 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
-            gameManager.instance.componentsTotal += 10;
+            //gameManager.instance.componentsTotal += 10;
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
+
+        
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
