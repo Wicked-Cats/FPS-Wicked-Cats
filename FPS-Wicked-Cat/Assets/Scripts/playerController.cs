@@ -33,7 +33,7 @@ public class playerController : MonoBehaviour
 
     private void Start()
     {
-        //SetPlayerPos();
+        SetPlayerPos();
         HPOrig = HP;
         pS = playerSpeed;
     }
@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour
         {
             movement();
             StartCoroutine(projectileShoot());
-            //StartCoroutine(shoot());
+            //StartCoroutine(shoot());   us for later 
             if(!turning)
             {
                 StartCoroutine(turnModel());
@@ -158,12 +158,12 @@ public class playerController : MonoBehaviour
     //    gameManager.instance.coins -= gameManager.instance.jumpCost;
     //}
 
-    //public void SetPlayerPos()
-    //{
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
-    //    controller.enabled = true;
-    //}
+    public void SetPlayerPos()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
 
     public void ResetPlayerHP()
     {

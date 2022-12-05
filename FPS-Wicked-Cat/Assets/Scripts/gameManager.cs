@@ -43,8 +43,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         timeScaleBase = Time.timeScale;
-        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        //player.transform.position = playerSpawnPos.transform.position;
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        player.transform.position = playerSpawnPos.transform.position;
     }
 
     void Update()
