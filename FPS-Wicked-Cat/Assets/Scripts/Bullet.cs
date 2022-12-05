@@ -13,7 +13,14 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = Camera.main.transform.forward * speed;
+        if (CompareTag("Enemy Bullet"))
+        {
+            rb.velocity = transform.forward * speed;
+        }
+        else if (CompareTag("Player Bullet"))
+        {
+            rb.velocity = Camera.main.transform.forward * speed;
+        }
         Destroy(gameObject, despawnTimer);
     }
 

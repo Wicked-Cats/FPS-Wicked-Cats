@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1763832815635720, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_Name
-      value: pLayer
+      value: pLayer Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763832815635720, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_RootOrder
@@ -25,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.86
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -37,11 +41,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -68,16 +72,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1780353316503460676}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4203415293032977398, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}
+    - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: jumpsMax
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: shootPos
+      value: 
+      objectReference: {fileID: 2746828922665607737}
+    - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: shootDist
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: shootRate
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: jumpHeight
@@ -128,5 +140,10 @@ PrefabInstance:
 --- !u!1 &1780353316503460676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1551184278812530, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+  m_PrefabInstance: {fileID: 1779088032193571894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2746828922665607737 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4516588680962067983, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
   m_PrefabInstance: {fileID: 1779088032193571894}
   m_PrefabAsset: {fileID: 0}

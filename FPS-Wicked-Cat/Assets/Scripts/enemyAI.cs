@@ -43,10 +43,14 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        AiMovement();
         if (inSight)
         {
+            agent.stoppingDistance = stopDistOrig;
             LineOfSight();
+        }
+        else
+        {
+            AiMovement();
         }
     }
 
@@ -84,18 +88,17 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.stoppingDistance = stopDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (!isShooting) // so if he sees us he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
+            }
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    transform.LookAt(gameManager.instance.player.transform.position);
-                }
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                transform.LookAt(gameManager.instance.player.transform.position);
             }
         }
        
