@@ -96,7 +96,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
-
+                transform.LookAt(gameManager.instance.player.transform.position);
                 if (!isShooting) // so if he sees us he starts to shoot
                 {
                     StartCoroutine(shoot());
