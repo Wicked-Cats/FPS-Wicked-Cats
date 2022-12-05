@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
 
@@ -19,10 +19,13 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
         {
-            gameManager.instance.;
+            if (rb.GetComponent<IDamage>() != null)
+            {
+                rb.GetComponent<IDamage>().takeDamage(damage);
+            }
         }
-        Destroy(gameObject);
+        Destroy(gameObject, despawnTimer);
     }
 }

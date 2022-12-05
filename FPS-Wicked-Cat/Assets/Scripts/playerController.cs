@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour
         {
             movement();
             StartCoroutine(projectileShoot());
-            StartCoroutine(shoot());
+            //StartCoroutine(shoot());
             if(!turning)
             {
                 StartCoroutine(turnModel());
@@ -99,37 +99,34 @@ public class playerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    IEnumerator shoot()
-    {
-        if (!isShooting && Input.GetButton("Shoot"))
-        {
-            isShooting = true;
+    //IEnumerator shoot()
+    //{
+    //    if (!isShooting && Input.GetButton("Shoot"))
+    //    {
+    //        isShooting = true;
 
-            RaycastHit hit;
+    //        RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-            {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                }
-            }
+    //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+    //        {
+    //            if (hit.collider.GetComponent<IDamage>() != null)
+    //            {
+    //                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+    //            }
+    //        }
 
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
-    }
+    //        yield return new WaitForSeconds(shootRate);
+    //        isShooting = false;
+    //    }
+    //}
 
     IEnumerator projectileShoot()
     {
         if (!isShooting && Input.GetButton("Shoot"))
         {
             isShooting = true;
-
             Instantiate(bullet, shootPos.position, transform.rotation);
-            
             yield return new WaitForSeconds(shootRate);
-
             isShooting = false;
         }
     }

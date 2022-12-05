@@ -114,7 +114,6 @@ public class enemyAI : MonoBehaviour, IDamage
             gameManager.instance.componentsTotal += HPOrig;
             Destroy(gameObject);
         }
-
     }
 
     public void OnTriggerEnter(Collider other)

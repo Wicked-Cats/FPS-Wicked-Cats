@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
+
     [Header("------UI Components------")]
     public GameObject objectives;
     public GameObject activeMenu;
@@ -22,6 +23,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject flyer;
     [SerializeField] GameObject tank;
     [SerializeField] GameObject speedy;
+
 
     public bool isPaused;
     float timeScaleBase;
