@@ -78,7 +78,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        StartCoroutine(spawnFly());
+        //StartCoroutine(spawnFly());
 
         if(componentsTotal == 10 && activeMenu == null)
         {
