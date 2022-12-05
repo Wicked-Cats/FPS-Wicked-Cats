@@ -262,8 +262,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 973852860219695778}
   agent: {fileID: 973852860215549028}
+  colorOrig: {r: 0, g: 0, b: 0, a: 0}
   HP: 5
+  headPos: {fileID: 973852860208100254}
   lineOfSight: 45
+  playerFaceSpeed: 0
   shootDmg: 2
   shootRate: 0.75
   bullet: {fileID: 0}

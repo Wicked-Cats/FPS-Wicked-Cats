@@ -8,14 +8,17 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    public Color colorOrig;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
     private int HPOrig;
+    [SerializeField] Transform headPos;
 
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;
     [SerializeField] int lineOfSight;
+    [SerializeField] float playerFaceSpeed;
     private float angleToPlayer;
     bool inSight;
 
@@ -31,23 +34,30 @@ public class enemyAI : MonoBehaviour, IDamage
     private float stopDistOrig;
     private int pointMovement;
     bool isWaiting;
-    
 
-    // Start is called before the first frame update
+    Vector3 playerDir;
+
+     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
+        colorOrig = model.material.color;
         stopDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        AiMovement();
         if (inSight)
         {
+            agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
+        else
+        {
+            AiMovement();
+        }
+     
     }
 
     void AiMovement()
@@ -69,22 +79,19 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
             }
         }
-        else
-        {
-            agent.SetDestination(gameManager.instance.player.transform.position);
-        }
+        
     }
 
     void LineOfSight()
     {
-        angleToPlayer = Vector3.Angle(gameManager.instance.player.transform.position - shootPos.position, transform.forward);
-        RaycastHit hit;
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+        RaycastHit see;
 
-        if (Physics.Raycast(shootPos.position, gameManager.instance.player.transform.position, out hit))
+        if (Physics.Raycast(headPos.position, playerDir, out see))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
+            if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.stoppingDistance = stopDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (!isShooting) // so if he sees us he starts to shoot
@@ -101,12 +108,14 @@ public class enemyAI : MonoBehaviour, IDamage
        
     }
 
+
     public void takeDamage(int damage)
     {
         HP -= damage;
-        StartCoroutine(dmgFlash());
-        transform.LookAt(gameManager.instance.player.transform.position);
         agent.SetDestination(gameManager.instance.player.transform.position);
+        transform.LookAt(gameManager.instance.player.transform.position);
+        
+        StartCoroutine(dmgFlash());
 
         if (HP <= 0)
         {
@@ -149,7 +158,6 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.stoppingDistance = 0;
         agent.SetDestination(point.transform.position);
         yield return new WaitForSeconds(10f);
-        agent.stoppingDistance = stopDistOrig;
         isWaiting = false;
     }
 
@@ -157,7 +165,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        model.material.color = Color.white;
+        model.material.color = colorOrig;
     }
 
 }
