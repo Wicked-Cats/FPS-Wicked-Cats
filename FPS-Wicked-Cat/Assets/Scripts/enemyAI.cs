@@ -87,10 +87,12 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
         RaycastHit see;
 
         if (Physics.Raycast(headPos.position, playerDir, out see))
         {
+            Debug.DrawRay(headPos.position, playerDir);
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
@@ -106,7 +108,6 @@ public class enemyAI : MonoBehaviour, IDamage
                 transform.LookAt(gameManager.instance.player.transform.position);
             }
         }
-       
     }
 
 

@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1409683328506955697, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: HP
       value: 10
@@ -85,11 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 2746828922665607737}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: shootDist
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: shootRate
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: jumpHeight
@@ -101,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: shootDamage
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: gravityValue
