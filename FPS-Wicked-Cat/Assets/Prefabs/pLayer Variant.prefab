@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64,6 +64,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1780353316503460676}
+    - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: jumpsMax
       value: 2
       objectReference: {fileID: 0}
@@ -81,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: playerSpeed
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: shootDamage
@@ -97,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4516588680962067983, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 4516588680962067983, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -113,7 +117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5149999277800016133, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: lockVerMax
-      value: 75
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5149999277800016133, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: lockVerMin
@@ -121,3 +125,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+--- !u!1 &1780353316503460676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1551184278812530, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+  m_PrefabInstance: {fileID: 1779088032193571894}
+  m_PrefabAsset: {fileID: 0}

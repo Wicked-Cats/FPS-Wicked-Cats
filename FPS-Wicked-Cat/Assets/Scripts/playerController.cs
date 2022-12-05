@@ -6,6 +6,7 @@ public class playerController : MonoBehaviour
 {
     [Header("----- Components ----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] GameObject model;
 
     [Header("----- Player Stats ----")]
     [Range(1, 10)] [SerializeField] int HP;
@@ -25,7 +26,8 @@ public class playerController : MonoBehaviour
     Vector3 move;
     int HPOrig;
     int pS;
-
+    bool turning;
+    
 
     private void Start()
     {
@@ -40,6 +42,12 @@ public class playerController : MonoBehaviour
         {
             movement();
             StartCoroutine(shoot());
+            if(!turning)
+            {
+                StartCoroutine(turnModel());
+            }
+            
+
         }
        
     }
@@ -146,5 +154,18 @@ public class playerController : MonoBehaviour
     public void ResetPlayerHP()
     {
         HP = HPOrig;
+    }
+
+    IEnumerator turnModel()
+    {
+        //model.transform.LookAt(Camera.main.transform.position);
+        Quaternion cameraMain = Camera.main.transform.rotation;
+
+        cameraMain.x = 0;
+        cameraMain.z = 0;
+        model.transform.rotation = cameraMain;
+        turning = true;
+        yield return new WaitForSeconds(0.1f);
+        turning = false;
     }
 }
