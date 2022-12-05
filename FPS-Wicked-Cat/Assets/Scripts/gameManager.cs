@@ -80,7 +80,7 @@ public class gameManager : MonoBehaviour
 
         //StartCoroutine(spawnFly());
 
-        if(componentsTotal == 10 && activeMenu == null)
+        if(componentsTotal == 30 && activeMenu == null)
         {
             isPaused = !isPaused;
             activeMenu = winMenu;
