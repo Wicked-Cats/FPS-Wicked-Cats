@@ -25,9 +25,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject speedy;
 
     [Header("-- Spwaners --")]
-    [SerializeField]GameObject flyerSpawn1;
-    [SerializeField]GameObject flyerSpawn2;
-    
+    [SerializeField] GameObject flyerSpawn1;
+    [SerializeField] GameObject flyerSpawn2;
+
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
@@ -49,7 +49,7 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        if(!objectivesSeen)
+        if (!objectivesSeen)
         {
             isPaused = !isPaused;
             activeMenu = objectives;
@@ -78,9 +78,9 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        //StartCoroutine(spawnFly());
+        StartCoroutine(spawnFly());
 
-        if(componentsTotal == 30 && activeMenu == null)
+        if (componentsTotal == 30 && activeMenu == null)
         {
             isPaused = !isPaused;
             activeMenu = winMenu;
@@ -110,11 +110,11 @@ public class gameManager : MonoBehaviour
 
     IEnumerator spawnFly()
     {
-        if(!isSpawningFly)
+        if (!isSpawningFly)
         {
             isSpawningFly = true;
             float num = Random.Range(0, 99);
-            if(num < 50)
+            if (num < 50)
             {
                 Instantiate(flyer, flyerSpawn1.transform.position, flyerSpawn1.transform.rotation);
             }
@@ -122,8 +122,8 @@ public class gameManager : MonoBehaviour
             {
                 Instantiate(flyer, flyerSpawn2.transform.position, flyerSpawn2.transform.rotation);
             }
+            yield return new WaitForSeconds(10f);
+            isSpawningFly = false;
         }
-        yield return new WaitForSeconds(10f);
-        isSpawningFly = false;
     }
 }
