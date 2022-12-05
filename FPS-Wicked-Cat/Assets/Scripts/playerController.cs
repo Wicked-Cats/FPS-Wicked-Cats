@@ -19,6 +19,8 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform shootPos;
 
     bool isShooting;
     int jumpedTimes;
@@ -41,6 +43,7 @@ public class playerController : MonoBehaviour
         if (!gameManager.instance.isPaused)
         {
             movement();
+            StartCoroutine(projectileShoot());
             StartCoroutine(shoot());
             if(!turning)
             {
@@ -49,7 +52,7 @@ public class playerController : MonoBehaviour
             
 
         }
-       
+
     }
 
     void movement()
@@ -113,6 +116,20 @@ public class playerController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
+    }
+
+    IEnumerator projectileShoot()
+    {
+        if (!isShooting && Input.GetButton("Shoot"))
+        {
+            isShooting = true;
+
+            Instantiate(bullet, shootPos.position, transform.rotation);
+            
+            yield return new WaitForSeconds(shootRate);
+
             isShooting = false;
         }
     }

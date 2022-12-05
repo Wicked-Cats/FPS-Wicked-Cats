@@ -16,4 +16,13 @@ public class bullet : MonoBehaviour
         rb.velocity = transform.forward * speed;
         Destroy(gameObject, despawnTimer);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            gameManager.instance.;
+        }
+        Destroy(gameObject);
+    }
 }
