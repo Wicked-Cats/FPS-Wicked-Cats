@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -88,7 +89,6 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
-            //gameManager.instance.componentsTotal += 10;
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -99,6 +99,7 @@ public class playerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    //for later development
     //IEnumerator shoot()
     //{
     //    if (!isShooting && Input.GetButton("Shoot"))
@@ -140,6 +141,10 @@ public class playerController : MonoBehaviour
         {
             gameManager.instance.pause();
             gameManager.instance.loseMenu.SetActive(true);
+            if(gameManager.instance.componentsCurrent < 5)
+            {
+                gameManager.instance.respawnButt.interactable = false;
+            }
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
         }
     }

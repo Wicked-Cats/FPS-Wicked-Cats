@@ -24,9 +24,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
-        gameManager.instance.playerScript.ResetPlayerHP();
-        gameManager.instance.unPause();
-        gameManager.instance.playerScript.SetPlayerPos();
+        if (gameManager.instance.componentsCurrent >= 5)
+        {
+            gameManager.instance.playerScript.ResetPlayerHP();
+            gameManager.instance.unPause();
+            gameManager.instance.playerScript.SetPlayerPos();
+            gameManager.instance.componentsCurrent -= 5;
+            gameManager.instance.componentsTotal -= 5;
+        }
     }
 
 }
