@@ -51,7 +51,7 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        if (componentsTotal == 30 && activeMenu == null)
+        if (componentsTotal >= 30 && activeMenu == null)
         {
             isPaused = !isPaused;
             activeMenu = winMenu;
