@@ -10,14 +10,16 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject model;
 
     [Header("----- Player Stats ----")]
-    [Range(1, 10)] [SerializeField] int HP;
-    [Range(3, 20)] [SerializeField] int playerSpeed;
+    public int damage;
+    [Range(1, 10)] public int HPMax;
+    [Range(1, 10)] public int HP;
+    [Range(3, 20)] public int playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
-    [Range(1, 3)] [SerializeField] int jumpsMax;
+    [Range(1, 3)] public int jumpsMax;
 
     [Header("----- Gun Stats ----")]
-    [SerializeField] int shootDamage;
+    public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
     [SerializeField] GameObject bullet;
@@ -35,6 +37,10 @@ public class playerController : MonoBehaviour
     private void Start()
     {
         SetPlayerPos();
+        if(HPMax < HP)
+        {
+            HP = HPMax;
+        }
         HPOrig = HP;
         pS = playerSpeed;
     }
@@ -90,7 +96,9 @@ public class playerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
             //for testing purposes
-            //gameManager.instance.componentsTotal += 10;
+            gameManager.instance.componentsTotal += 10;
+            gameManager.instance.componentsCurrent += 10;
+
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }

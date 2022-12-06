@@ -11,6 +11,12 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
+    [Header("------ Player Upgrades------")]
+    public int jumpsLimit;
+    public int HPLimit;
+    public int damageLimit;
+    public int speedLimit;
+
 
     [Header("------UI Components------")]
     public GameObject objectives;
@@ -18,8 +24,13 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    public GameObject upgradesMenu;
     public GameObject damageFlash;
     public Button respawnButt;
+    public Button jumpButton;
+    public Button dmgButton;
+    public Button HPButton;
+    public Button speedButton;
 
     [Header("------Enemies------")]
     [SerializeField] GameObject flyer;

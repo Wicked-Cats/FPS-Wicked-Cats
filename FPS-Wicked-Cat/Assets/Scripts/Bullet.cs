@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int damage;
+    public int damage;
     [SerializeField] int speed;
     [SerializeField] int despawnTimer;
 
@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
         else if (CompareTag("Player Bullet"))
         {
             rb.velocity = Camera.main.transform.forward * speed;
+            damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
         }
         Destroy(gameObject, despawnTimer);
     }
