@@ -69,8 +69,8 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= 5;
                 gameManager.instance.playerScript.HPMax += 5;
                 gameManager.instance.playerScript.HP += 5;
+                gameManager.instance.playerScript.updateHPBar();
                 upgradesButttonsCheck();
-
             }
         }
     }
@@ -127,6 +127,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.HPButton.interactable = true;
             gameManager.instance.jumpButton.interactable = true;
         }
+        gameManager.instance.upgradesComponentCurrent.text = gameManager.instance.componentsCurrent.ToString("F0");
     }
 
 }

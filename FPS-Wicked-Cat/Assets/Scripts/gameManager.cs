@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -26,6 +27,12 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject upgradesMenu;
     public GameObject damageFlash;
+    public Image playerHPBar;
+    public TextMeshProUGUI playerHPCurrent;
+    public TextMeshProUGUI playerHPMax;
+
+    [Header("------ Upgrades Stuff ------")]
+    public TextMeshProUGUI upgradesComponentCurrent;
     public Button respawnButt;
     public Button jumpButton;
     public Button dmgButton;
@@ -47,32 +54,37 @@ public class gameManager : MonoBehaviour
     bool isSpawningFly;
     public int componentsCurrent;
     public int componentsTotal;
-    private bool objectivesSeen;
+    public bool objectivesSeen;
 
 
     void Awake()
     {
         instance = this;
+        // set player character info
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+
         timeScaleBase = Time.timeScale;
+        //set and move player to spawn
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
     }
 
     void Update()
     {
-        if (componentsTotal >= 30 && activeMenu == null)
-        {
-            isPaused = !isPaused;
-            activeMenu = winMenu;
-            activeMenu.SetActive(isPaused);
-            pause();
-            objectivesSeen = false;
-            componentsTotal = 0;
-            componentsCurrent = 0;
-        }
+        //moved to a different location left for testing purposes.
+        //if (componentsTotal >= 30 && activeMenu == null)
+        //{
+        //    isPaused = !isPaused;
+        //    activeMenu = winMenu;
+        //    activeMenu.SetActive(isPaused);
+        //    pause();
+        //    objectivesSeen = false;
+        //    componentsTotal = 0;
+        //    componentsCurrent = 0;
+        //}
 
+        // displays the objectives only at start.
         if (!objectivesSeen)
         {
             isPaused = !isPaused;

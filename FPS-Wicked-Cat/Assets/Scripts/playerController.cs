@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class playerController : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class playerController : MonoBehaviour
         }
         HPOrig = HP;
         pS = playerSpeed;
+        updateHPBar();
     }
 
     void Update()
@@ -145,6 +147,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        updateHPBar();
         StartCoroutine(playerDmgFlash());
 
         if (HP <= 0)
@@ -183,6 +186,7 @@ public class playerController : MonoBehaviour
     public void ResetPlayerHP()
     {
         HP = HPOrig;
+        updateHPBar();
     }
 
     IEnumerator turnModel()
@@ -196,5 +200,12 @@ public class playerController : MonoBehaviour
         turning = true;
         yield return new WaitForSeconds(0.1f);
         turning = false;
+    }
+
+    public void updateHPBar()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPMax;
+        gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
+        gameManager.instance.playerHPMax.text = HPMax.ToString("F0");
     }
 }
