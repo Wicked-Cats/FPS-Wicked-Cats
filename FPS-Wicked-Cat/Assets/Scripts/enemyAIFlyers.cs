@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAIFlyers : MonoBehaviour, IDamage
 {
     [Header("-- Components --")]
     [SerializeField] Renderer model;
@@ -18,7 +18,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;
     [SerializeField] int lineOfSight;
-    [SerializeField] float playerFaceSpeed;
     private float angleToPlayer;
     bool inSight;
 
@@ -36,7 +35,6 @@ public class enemyAI : MonoBehaviour, IDamage
     bool isWaiting;
 
     Vector3 playerDir;
-    bool playerInRange;
 
 
     // Start is called before the first frame update
@@ -98,25 +96,18 @@ public class enemyAI : MonoBehaviour, IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
-
+                transform.LookAt(gameManager.instance.player.transform.position);
                 if (!isShooting) // so if he sees us he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FacePlayer();
-                }
             }
 
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                transform.LookAt(gameManager.instance.player.transform.position);
+            }
         }
-    }
-
-    void FacePlayer()
-    {
-        playerDir.y = 0;
-        Quaternion rot = Quaternion.LookRotation(playerDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
     public void takeDamage(int damage)

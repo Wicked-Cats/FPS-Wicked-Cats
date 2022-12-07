@@ -452,8 +452,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3635242929573721898}
+  - component: {fileID: 8924780674399509712}
   - component: {fileID: 3635242929573721899}
-  - component: {fileID: 3635242929573721900}
   - component: {fileID: 3635242929573721901}
   - component: {fileID: 3635242929573721902}
   - component: {fileID: 7685791584475347394}
@@ -482,6 +482,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8924780674399509712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635242929573721903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4927a4d430f91943be02cf6f5d36831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 3635242929560348201}
+  agent: {fileID: 3635242929573721901}
+  colorOrig: {r: 0, g: 0.180017, b: 1, a: 0}
+  HP: 0
+  headPos: {fileID: 676664735842514989}
+  lineOfSight: 0
+  shootDmg: 0
+  shootRate: 0
+  bullet: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
+  shootPos: {fileID: 3635242929621610910}
+  isShooting: 0
+  patrolPoints:
+  - {fileID: 0}
 --- !u!95 &3635242929573721899
 Animator:
   serializedVersion: 4
@@ -502,35 +527,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3635242929573721900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635242929573721903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a3798013f6f5f4cb2c1a4ae42b4ea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 3635242929560348201}
-  agent: {fileID: 3635242929573721901}
-  colorOrig: {r: 0, g: 0, b: 0, a: 0}
-  HP: 3
-  headPos: {fileID: 676664735842514989}
-  lineOfSight: 120
-  playerFaceSpeed: 0
-  shootDmg: 5
-  shootRate: 2.5
-  bullet: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
-  shootPos: {fileID: 3635242929621610910}
-  isShooting: 0
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!195 &3635242929573721901
 NavMeshAgent:
   m_ObjectHideFlags: 0
