@@ -60,11 +60,13 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
         // set player character info
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
+
         //set and move player to spawn
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
@@ -93,6 +95,8 @@ public class gameManager : MonoBehaviour
             pause();
             objectivesSeen = true;
         }
+
+        //opens pause menu
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
@@ -108,13 +112,15 @@ public class gameManager : MonoBehaviour
                 unPause();
             }
         }
+        //closes pause menu only when it is open
         else if (Input.GetButtonDown("Cancel") && activeMenu == pauseMenu)
         {
             isPaused = !isPaused;
             unPause();
         }
 
-        StartCoroutine(spawnFly());
+        //Work in progress or will be completely overhauled in future
+        //StartCoroutine(spawnFly());
 
     }
 
@@ -134,6 +140,8 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
+    //creates flying enemies at a designated spawner
+    //may be changed later or completely phased out
     IEnumerator spawnFly()
     {
         if (!isSpawningFly)

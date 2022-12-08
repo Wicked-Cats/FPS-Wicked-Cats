@@ -66,7 +66,8 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        if(Input.GetButton("Sprint"))
+        //Sprint functionality
+        if(Input.GetButtonDown("Sprint"))
         {
             playerSpeed = pS * 2;
 
@@ -75,26 +76,26 @@ public class playerController : MonoBehaviour
                 playerSpeed = 25;
             }
         }
-        else
+        if(Input.GetButtonUp("Sprint"))
         {
             playerSpeed = pS;
         }
-            
 
-        
-
-
+        //reset player gravity movement and jumps while on ground
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
             playerVelocity.y = 0f;
         }
 
+        //set move variable with key movements
         move = transform.right * Input.GetAxis("Horizontal") +  
                transform.forward * Input.GetAxis("Vertical");  
 
+        //applies movement to controller independent of framerate
         controller.Move(move * Time.deltaTime * playerSpeed);
 
+        //jump functionality
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
             //for testing purposes
@@ -106,7 +107,7 @@ public class playerController : MonoBehaviour
         }
 
         
-
+        //applies gravity to player
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -146,15 +147,19 @@ public class playerController : MonoBehaviour
    
     public void takeDamage(int dmg)
     {
+        //damage player and start feedback to player
         HP -= dmg;
         updateHPBar();
         StartCoroutine(playerDmgFlash());
 
+        //check for player death
         if (HP <= 0)
         {
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
             gameManager.instance.activeMenu.SetActive(true);
+
+            //checks if player can afford a respawn
             if(gameManager.instance.componentsCurrent < 5)
             {
                 gameManager.instance.respawnButt.interactable = false;
@@ -191,7 +196,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator turnModel()
     {
-        //model.transform.LookAt(Camera.main.transform.position);
+        // keeps player model looking in same direction as camera so it can't be seen when turning
         Quaternion cameraMain = Camera.main.transform.rotation;
 
         cameraMain.x = 0;

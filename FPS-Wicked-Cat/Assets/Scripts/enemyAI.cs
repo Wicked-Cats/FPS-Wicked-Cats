@@ -39,7 +39,6 @@ public class enemyAI : MonoBehaviour, IDamage
     bool playerInRange;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
@@ -47,7 +46,6 @@ public class enemyAI : MonoBehaviour, IDamage
         stopDistOrig = agent.stoppingDistance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (inSight)
@@ -62,6 +60,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     }
 
+    //make enemies patrol to designated points but may be changed or phased out for future plans
     void AiMovement()
     {
 
@@ -85,6 +84,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     }
 
+    //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
@@ -100,10 +100,12 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting) // so if he sees us he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight/3) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
+
+                //turns enemy towards player if he gets to close
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     FacePlayer();
@@ -122,11 +124,15 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        //damages enemy and gives feedback to player
         HP -= damage;
-        FacePlayer();
-        agent.SetDestination(gameManager.instance.player.transform.position);
         StartCoroutine(dmgFlash());
 
+        //makes enemy go to players last position in response to the damage
+        FacePlayer();
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
+        //check if enemy has died
         if (HP <= 0)
         {
             //add components
@@ -147,6 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    //code for player entering enemies sense range
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -156,6 +163,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    //code for player leaving enemy sense range
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
