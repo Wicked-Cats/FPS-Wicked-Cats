@@ -14,6 +14,8 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
+    // vvv in TESTING phase vvv
+    //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;
@@ -101,12 +103,13 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
                 {
                     StartCoroutine(shoot());
                 }
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    transform.LookAt(gameManager.instance.player.transform.position);
+                }
             }
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                transform.LookAt(gameManager.instance.player.transform.position);
-            }
         }
     }
 
@@ -114,7 +117,6 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     {
         HP -= damage;
         agent.SetDestination(gameManager.instance.player.transform.position);
-        transform.LookAt(gameManager.instance.player.transform.position);
 
         StartCoroutine(dmgFlash());
 
@@ -124,6 +126,7 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
             gameManager.instance.componentsCurrent += HPOrig;
             gameManager.instance.componentsTotal += HPOrig;
 
+            Destroy(gameObject);
             //game win condition
             if (gameManager.instance.componentsTotal >= 30)
             {
@@ -134,7 +137,6 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
                 gameManager.instance.componentsTotal = 0;
                 gameManager.instance.componentsCurrent = 0;
             }
-            Destroy(gameObject);
         }
     }
 
@@ -180,4 +182,11 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
         model.material.color = colorOrig;
     }
 
+    // vvv in TESTING phase vvv
+    //private void ItemDrop()
+    //{
+    //    Instantiate(components, transform.parent);
+    //    gameManager.instance.componentsCurrent += HPOrig;
+    //    gameManager.instance.componentsTotal += HPOrig;
+    //}
 }

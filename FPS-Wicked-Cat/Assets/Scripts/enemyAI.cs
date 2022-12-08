@@ -92,9 +92,10 @@ public class enemyAI : MonoBehaviour, IDamage
 
         RaycastHit see;
 
+        Debug.DrawRay(headPos.position, playerDir);
+
         if (Physics.Raycast(headPos.position, playerDir, out see))
         {
-            Debug.DrawRay(headPos.position, playerDir);
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
@@ -122,9 +123,8 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int damage)
     {
         HP -= damage;
+        FacePlayer();
         agent.SetDestination(gameManager.instance.player.transform.position);
-        transform.LookAt(gameManager.instance.player.transform.position);
-
         StartCoroutine(dmgFlash());
 
         if (HP <= 0)
@@ -185,7 +185,7 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator dmgFlash()
     {
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         model.material.color = colorOrig;
     }
 

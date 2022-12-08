@@ -496,12 +496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3635242929560348201}
   agent: {fileID: 3635242929573721901}
-  colorOrig: {r: 0, g: 0.180017, b: 1, a: 0}
-  HP: 0
+  colorOrig: {r: 0, g: 1, b: 0.91142464, a: 0}
+  HP: 3
   headPos: {fileID: 676664735842514989}
-  lineOfSight: 0
-  shootDmg: 0
-  shootRate: 0
+  lineOfSight: 75
+  shootDmg: 1
+  shootRate: 1
   bullet: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
   shootPos: {fileID: 3635242929621610910}
   isShooting: 0
@@ -560,9 +560,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.35
-  m_Height: 1.6
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0.4, y: 1, z: 0}
 --- !u!135 &7685791584475347394
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -859,7 +859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3635242929842364634}
   m_LocalRotation: {x: 0.7630824, y: 0.000000061289, z: 0.00000007236339, w: 0.6463012}
-  m_LocalPosition: {x: -1.5072819e-19, y: 0.030546874, z: 0.8301309}
+  m_LocalPosition: {x: 0.38, y: 0.031, z: 0.83}
   m_LocalScale: {x: 1, y: 0.9999998, z: 0.9999998}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1274,7 +1274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3635242930613062540}
   m_LocalRotation: {x: -0.16384462, y: 0.0000003331108, z: -0.00000006526445, w: 0.9864862}
-  m_LocalPosition: {x: -2.1285057e-15, y: 0.08122706, z: -0.000000009313226}
+  m_LocalPosition: {x: 0.025, y: 0.081, z: -0}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []

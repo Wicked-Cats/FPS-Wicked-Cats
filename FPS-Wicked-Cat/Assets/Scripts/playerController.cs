@@ -37,7 +37,7 @@ public class playerController : MonoBehaviour
 
     private void Start()
     {
-        SetPlayerPos();
+        //SetPlayerPos();
         if(HPMax < HP)
         {
             HP = HPMax;
@@ -98,8 +98,8 @@ public class playerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
             //for testing purposes
-            gameManager.instance.componentsTotal += 10;
-            gameManager.instance.componentsCurrent += 10;
+            //gameManager.instance.componentsTotal += 10;
+            //gameManager.instance.componentsCurrent += 10;
 
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
