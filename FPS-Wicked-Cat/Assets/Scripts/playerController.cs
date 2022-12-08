@@ -34,7 +34,7 @@ public class playerController : MonoBehaviour
 
     private void Start()
     {
-        SetPlayerPos();
+        //SetPlayerPos(); //Comment out if you don't have a spawn set in your scene
         HPOrig = HP;
         pS = playerSpeed;
     }
@@ -51,9 +51,7 @@ public class playerController : MonoBehaviour
                 StartCoroutine(turnModel());
             }
             
-
         }
-
     }
 
     void movement()
@@ -72,10 +70,6 @@ public class playerController : MonoBehaviour
             playerSpeed = pS;
         }
             
-
-        
-
-
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
