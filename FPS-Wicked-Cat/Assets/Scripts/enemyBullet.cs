@@ -13,10 +13,7 @@ public class enemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (CompareTag("Enemy Bullet"))
-        {
-            rb.velocity = transform.forward * speed;
-        }
+        rb.velocity = transform.forward * speed;
 
         Destroy(gameObject, despawnTimer);
     }
@@ -29,8 +26,8 @@ public class enemyBullet : MonoBehaviour
             {
                 gameManager.instance.playerScript.takeDamage(damage);
             }
-
-            Destroy(gameObject);
         }
+
+        Destroy(gameObject);
     }
 }

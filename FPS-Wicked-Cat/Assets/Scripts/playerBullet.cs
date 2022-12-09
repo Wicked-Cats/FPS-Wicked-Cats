@@ -13,11 +13,10 @@ public class playerBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (CompareTag("Player Bullet"))
-        {
-            rb.velocity = Camera.main.transform.forward * speed;
-            damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
-        }
+        rb.velocity = Camera.main.transform.forward * speed;
+        damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
+
+        Destroy(gameObject, despawnTimer);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +30,8 @@ public class playerBullet : MonoBehaviour
                     other.GetComponent<IDamage>().takeDamage(damage);
                 }
             }
-        }    
+        }
+
+        Destroy(gameObject);
     }
 }
