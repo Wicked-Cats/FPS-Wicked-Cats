@@ -18,6 +18,8 @@ public class playerBullet : MonoBehaviour
             rb.velocity = Camera.main.transform.forward * speed;
             damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
         }
+        Destroy(gameObject, despawnTimer);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +33,8 @@ public class playerBullet : MonoBehaviour
                     other.GetComponent<IDamage>().takeDamage(damage);
                 }
             }
-        }    
+
+            Destroy(gameObject, despawnTimer);
+        }
     }
 }
