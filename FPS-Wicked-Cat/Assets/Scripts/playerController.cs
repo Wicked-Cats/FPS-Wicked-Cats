@@ -34,11 +34,8 @@ public class playerController : MonoBehaviour
 
     private void Start()
     {
-<<<<<<< Updated upstream
-        //SetPlayerPos(); //Comment out if you don't have a spawn set in your scene
-=======
         //SetPlayerPos();
->>>>>>> Stashed changes
+
         HPOrig = HP;
         pS = playerSpeed;
     }
@@ -189,4 +186,48 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         turning = false;
     }
+
+    //public void ComponentsPickUp()
+    //{
+    //    shootDamage = gunStat.shootDamage;
+    //    shootRate = gunStat.shootRate;
+    //    shootDist = gunStat.shootDist;
+
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;             // transfers over the FILTER which is the MODEL
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial; // transfers over the MATERIAL which is the RENDERER
+
+    //    gunList.Add(gunStat);
+
+    //    selectedGun = gunList.Count - 1;
+    //}
+    //void gunSelect()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+    //    {
+    //        selectedGun++;
+    //        ChangeGun();
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+    //    {
+    //        selectedGun--;
+    //        ChangeGun();
+    //    }
+    //}
+
+    //IEnumerator playSteps()
+    //{
+    //    stepIsPlaying = true;
+    //    aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length)], playerStepsVol);
+    //    if (isSprinting)
+    //    {
+    //        yield return new WaitForSeconds(0.3f);
+    //    }
+    //    else
+    //    {
+    //        yield return new WaitForSeconds(0.5f);
+
+    //    }
+    //    stepIsPlaying = false;
+    //}
+
 }
