@@ -11,18 +11,21 @@ public class playerController : MonoBehaviour
     [SerializeField] Animator anim;
 
     [Header("----- Player Stats ----")]
-    [Range(1, 10)] [SerializeField] int HP;
-    [Range(3, 20)] [SerializeField] int playerSpeed;
+    [Range(1, 10)] [SerializeField] public int HP;
+    [Range(3, 20)] [SerializeField] public int playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
-    [Range(1, 3)] [SerializeField] int jumpsMax;
+    [Range(1, 3)] [SerializeField] public int jumpsMax;
+    [Range(1, 3)][SerializeField] public int HPMax;
+
 
     [Header("----- Gun Stats ----")]
-    [SerializeField] int shootDamage;
+    [SerializeField] public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
+    [SerializeField] public int damage;
 
     bool isShooting;
     int jumpedTimes;
@@ -92,8 +95,6 @@ public class playerController : MonoBehaviour
             playerVelocity.y = jumpHeight;
         }
 
-        
-
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -156,12 +157,6 @@ public class playerController : MonoBehaviour
 
     }
 
-    //public void AddJump(int amount)
-    //{
-    //    jumpsMax += amount;
-    //    gameManager.instance.coins -= gameManager.instance.jumpCost;
-    //}
-
     public void SetPlayerPos()
     {
         controller.enabled = false;
@@ -172,6 +167,11 @@ public class playerController : MonoBehaviour
     public void ResetPlayerHP()
     {
         HP = HPOrig;
+    }
+
+    public void updateHPBar()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
     }
 
     IEnumerator turnModel()
