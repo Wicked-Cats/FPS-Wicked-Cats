@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     public Color colorOrig;
 
     [Header("-- Enemy Stats")]
@@ -50,36 +51,11 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (inSight)
         {
+            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
-        else
-        {
-            AiMovement();
-        }
 
-    }
-
-    //make enemies patrol to designated points but may be changed or phased out for future plans
-    void AiMovement()
-    {
-
-        if (isPatrolling)
-        {
-            if (!isWaiting)
-            {
-                StartCoroutine(changePoint(patrolPoints[pointMovement]));
-
-                if (pointMovement != patrolPoints.Length - 1)
-                {
-                    pointMovement++;
-                }
-                else
-                {
-                    pointMovement = 0;
-                }
-            }
-        }
 
 
     }
@@ -87,6 +63,7 @@ public class enemyAI : MonoBehaviour, IDamage
     //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
+        agent.SetDestination(gameManager.instance.player.transform.position);
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -98,9 +75,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting && angleToPlayer <= lineOfSight/3) // so if he sees us and we are mostly in front of him he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight / 3) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }

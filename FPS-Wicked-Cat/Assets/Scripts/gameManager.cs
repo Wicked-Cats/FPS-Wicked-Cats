@@ -68,8 +68,8 @@ public class gameManager : MonoBehaviour
         timeScaleBase = Time.timeScale;
 
         //set and move player to spawn
-        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        player.transform.position = playerSpawnPos.transform.position;
+        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        //player.transform.position = playerSpawnPos.transform.position;
     }
 
     void Update()
