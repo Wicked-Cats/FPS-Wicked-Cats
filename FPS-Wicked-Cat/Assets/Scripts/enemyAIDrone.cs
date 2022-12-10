@@ -32,7 +32,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
 
     Vector3 playerDir;
-
+    float stopDistOrig;
 
     // Start is called before the first frame update
     void Start()
@@ -44,40 +44,13 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        //if (inSight)
-        //{
-        //    agent.stoppingDistance = stopDistOrig;
-        LineOfSight();
-        //}
-        //else
-        //{
-        //    AiMovement();
-        //}
+        if (inSight)
+        {
+            agent.stoppingDistance = stopDistOrig;
+            LineOfSight();
+        }
 
     }
-
-    //void AiMovement()
-    //{
-    //    agent.SetDestination(gameManager.instance.player.transform.position);
-    //    //if (isPatrolling)
-    //    //{
-    //    //    if (!isWaiting)
-    //    //    {
-    //    //        StartCoroutine(changePoint(patrolPoints[pointMovement]));
-
-    //    //        if (pointMovement != patrolPoints.Length - 1)
-    //    //        {
-    //    //            pointMovement++;
-    //    //        }
-    //    //        else
-    //    //        {
-    //    //            pointMovement = 0;
-    //    //        }
-    //    //    }
-    //    //}
-
-
-    //}
 
     void LineOfSight()
     {

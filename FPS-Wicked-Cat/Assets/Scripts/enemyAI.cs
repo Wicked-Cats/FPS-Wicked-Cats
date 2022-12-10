@@ -17,7 +17,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
 
     [Header("-- Enemy Vision --")]
-    private bool isPatrolling = true;
     [SerializeField] int lineOfSight;
     [SerializeField] float playerFaceSpeed;
     private float angleToPlayer;
@@ -30,14 +29,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] bool isShooting;
 
-    [Header("-- Patrol Points --")]
-    [SerializeField] GameObject[] patrolPoints;
-    private float stopDistOrig;
-    private int pointMovement;
-    bool isWaiting;
 
     Vector3 playerDir;
-    bool playerInRange;
+    private float stopDistOrig;
 
 
     void Start()
@@ -135,7 +129,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             inSight = true;
-            isPatrolling = false;
         }
     }
 
@@ -145,7 +138,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             inSight = false;
-            isPatrolling = true;
         }
     }
 
@@ -155,15 +147,6 @@ public class enemyAI : MonoBehaviour, IDamage
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-    }
-
-    IEnumerator changePoint(GameObject point)
-    {
-        isWaiting = true;
-        agent.stoppingDistance = 0;
-        agent.SetDestination(point.transform.position);
-        yield return new WaitForSeconds(10f);
-        isWaiting = false;
     }
 
     IEnumerator dmgFlash()
