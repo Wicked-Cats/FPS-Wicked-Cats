@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
     [Header("----- Components ----")]
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject model;
+    [SerializeField] Animator anim;
 
     [Header("----- Player Stats ----")]
     [Range(1, 10)] [SerializeField] int HP;
@@ -30,11 +31,14 @@ public class playerController : MonoBehaviour
     int HPOrig;
     int pS;
     bool turning;
-    
 
     private void Start()
     {
+<<<<<<< Updated upstream
         //SetPlayerPos(); //Comment out if you don't have a spawn set in your scene
+=======
+        //SetPlayerPos();
+>>>>>>> Stashed changes
         HPOrig = HP;
         pS = playerSpeed;
     }
@@ -43,6 +47,8 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.isPaused)
         {
+            anim.SetFloat("Speed", move.normalized.magnitude);
+
             movement();
             StartCoroutine(projectileShoot());
             //StartCoroutine(shoot());   us for later 
