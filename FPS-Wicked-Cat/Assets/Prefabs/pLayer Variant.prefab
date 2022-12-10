@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.86
+      value: 22.51
       objectReference: {fileID: 0}
     - target: {fileID: 4729068496758438, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95862797137694222, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f1ffb4d31e0556a498bf401e4556151c, type: 2}
     - target: {fileID: 902140902544573399, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: m_Center.y
       value: 1
@@ -71,6 +75,10 @@ PrefabInstance:
       propertyPath: HP
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1865622293441061432}
     - target: {fileID: 2089006811577711920, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
       propertyPath: model
       value: 
@@ -144,6 +152,11 @@ PrefabInstance:
 --- !u!1 &1780353316503460676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1551184278812530, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
+  m_PrefabInstance: {fileID: 1779088032193571894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1865622293441061432 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95862797137694222, guid: c816c50f1076b564bbe9891c3e74b00e, type: 3}
   m_PrefabInstance: {fileID: 1779088032193571894}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2746828922665607737 stripped
