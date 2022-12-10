@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3635242929573721898}
-  - component: {fileID: 8924780674399509712}
+  - component: {fileID: 3235259225049429627}
   - component: {fileID: 3635242929573721899}
   - component: {fileID: 3635242929573721901}
   - component: {fileID: 3635242929573721902}
@@ -482,7 +482,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8924780674399509712
+--- !u!114 &3235259225049429627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -491,22 +491,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3635242929573721903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4927a4d430f91943be02cf6f5d36831, type: 3}
+  m_Script: {fileID: 11500000, guid: a28a88022bc6a674da523a9838f0cedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 3635242929560348201}
-  agent: {fileID: 3635242929573721901}
-  colorOrig: {r: 0, g: 1, b: 0.91142464, a: 0}
-  HP: 3
-  headPos: {fileID: 676664735842514989}
-  lineOfSight: 75
-  shootDmg: 1
-  shootRate: 1
-  bullet: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
-  shootPos: {fileID: 3635242929621610910}
+  forceField: {fileID: 0}
+  forceFieldEngaged: 0
+  model: {fileID: 0}
+  agent: {fileID: 0}
+  colorOrig: {r: 0, g: 0, b: 0, a: 0}
+  HP: 0
+  headPos: {fileID: 0}
+  lineOfSight: 0
+  shootDmg: 0
+  shootRate: 0
+  bullet: {fileID: 0}
+  shootPos: {fileID: 0}
   isShooting: 0
-  patrolPoints:
-  - {fileID: 0}
 --- !u!95 &3635242929573721899
 Animator:
   serializedVersion: 4
