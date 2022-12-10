@@ -39,6 +39,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
+        stopDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
