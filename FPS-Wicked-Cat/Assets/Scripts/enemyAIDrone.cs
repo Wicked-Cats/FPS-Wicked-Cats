@@ -54,6 +54,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
     void LineOfSight()
     {
+        agent.SetDestination(gameManager.instance.player.transform.position);
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -64,7 +65,6 @@ public class enemyAIDrone : MonoBehaviour, IDamage
             Debug.DrawRay(headPos.position, playerDir);
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
                 transform.LookAt(gameManager.instance.player.transform.position);
                 if (!isShooting) // so if he sees us he starts to shoot
                 {

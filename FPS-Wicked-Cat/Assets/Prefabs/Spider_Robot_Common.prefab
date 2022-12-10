@@ -2904,7 +2904,6 @@ MonoBehaviour:
   bullet: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
   shootPos: {fileID: 5446476510056776260}
   isShooting: 0
-  patrolPoints: []
 --- !u!95 &8872661786961946584
 Animator:
   serializedVersion: 4
@@ -2972,7 +2971,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 100
+  m_Radius: 1000
   m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!1 &8824146027547968208
 GameObject:
