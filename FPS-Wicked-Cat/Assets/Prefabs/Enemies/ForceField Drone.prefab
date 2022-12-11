@@ -50,19 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a88022bc6a674da523a9838f0cedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceField: {fileID: 0}
+  forceField: {fileID: 1799019779132808453, guid: 1e540d660e5117e4b8c65668bb0b9a8d, type: 3}
   forceFieldEngaged: 0
   model: {fileID: 4968729910627561869}
   agent: {fileID: 64460096770593269}
-  colorOrig: {r: 0, g: 0, b: 0, a: 0}
   HP: 0
   headPos: {fileID: 4949753914278949707}
   lineOfSight: 180
-  shootDmg: 0
-  shootRate: 0
-  bullet: {fileID: 0}
-  shootPos: {fileID: 0}
-  isShooting: 0
 --- !u!33 &4960446701612773067
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -173,6 +167,6 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.010323014
-  m_BaseOffset: 0.02
+  m_BaseOffset: 0.04
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

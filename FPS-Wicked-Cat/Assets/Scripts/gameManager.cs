@@ -154,7 +154,7 @@ public class gameManager : MonoBehaviour
     {
         isSpawning = true;
 
-        enemyToSpawn = enemiesOptions[Random.Range(0, enemiesOptions.Length - 1)];
+        enemyToSpawn = enemiesOptions[Random.Range(0, enemiesOptions.Length)];
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
