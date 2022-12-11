@@ -61,7 +61,7 @@ public class enemyAI : MonoBehaviour, IDamage
     void LineOfSight()
     {
         agent.SetDestination(gameManager.instance.player.transform.position);
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         RaycastHit see;
