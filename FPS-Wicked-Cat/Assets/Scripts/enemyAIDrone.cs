@@ -32,55 +32,30 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
 
     Vector3 playerDir;
-
+    float stopDistOrig;
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
         colorOrig = model.material.color;
+        stopDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (inSight)
-        //{
-        //    agent.stoppingDistance = stopDistOrig;
-        LineOfSight();
-        //}
-        //else
-        //{
-        //    AiMovement();
-        //}
+        if (inSight)
+        {
+            agent.stoppingDistance = stopDistOrig;
+            LineOfSight();
+        }
 
     }
 
-    //void AiMovement()
-    //{
-    //    agent.SetDestination(gameManager.instance.player.transform.position);
-    //    //if (isPatrolling)
-    //    //{
-    //    //    if (!isWaiting)
-    //    //    {
-    //    //        StartCoroutine(changePoint(patrolPoints[pointMovement]));
-
-    //    //        if (pointMovement != patrolPoints.Length - 1)
-    //    //        {
-    //    //            pointMovement++;
-    //    //        }
-    //    //        else
-    //    //        {
-    //    //            pointMovement = 0;
-    //    //        }
-    //    //    }
-    //    //}
-
-
-    //}
-
     void LineOfSight()
     {
+        agent.SetDestination(gameManager.instance.player.transform.position);
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -91,7 +66,6 @@ public class enemyAIDrone : MonoBehaviour, IDamage
             Debug.DrawRay(headPos.position, playerDir);
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
                 transform.LookAt(gameManager.instance.player.transform.position);
                 if (!isShooting) // so if he sees us he starts to shoot
                 {

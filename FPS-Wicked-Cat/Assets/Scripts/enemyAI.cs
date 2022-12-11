@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     public Color colorOrig;
 
     [Header("-- Enemy Stats")]
@@ -16,7 +17,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
 
     [Header("-- Enemy Vision --")]
-    private bool isPatrolling = true;
     [SerializeField] int lineOfSight;
     [SerializeField] float playerFaceSpeed;
     private float angleToPlayer;
@@ -29,14 +29,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] bool isShooting;
 
-    [Header("-- Patrol Points --")]
-    [SerializeField] GameObject[] patrolPoints;
-    private float stopDistOrig;
-    private int pointMovement;
-    bool isWaiting;
+    [Header("-- Item Drops --")]
+    [SerializeField] GameObject[] itemDrop;
+    [SerializeField] bool isHealthPack;
+    [SerializeField] bool isComponent;
+    
 
     Vector3 playerDir;
-    bool playerInRange;
+    private float stopDistOrig;
 
 
     void Start()
@@ -50,36 +50,11 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (inSight)
         {
+            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
-        else
-        {
-            AiMovement();
-        }
 
-    }
-
-    //make enemies patrol to designated points but may be changed or phased out for future plans
-    void AiMovement()
-    {
-
-        if (isPatrolling)
-        {
-            if (!isWaiting)
-            {
-                StartCoroutine(changePoint(patrolPoints[pointMovement]));
-
-                if (pointMovement != patrolPoints.Length - 1)
-                {
-                    pointMovement++;
-                }
-                else
-                {
-                    pointMovement = 0;
-                }
-            }
-        }
 
 
     }
@@ -87,6 +62,7 @@ public class enemyAI : MonoBehaviour, IDamage
     //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
+        agent.SetDestination(gameManager.instance.player.transform.position);
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -98,9 +74,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting && angleToPlayer <= lineOfSight/3) // so if he sees us and we are mostly in front of him he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight / 3) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
@@ -135,6 +110,12 @@ public class enemyAI : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
+            // item drop
+            Instantiate(itemDrop[Random.Range(0, itemDrop.Length)]);
+
+            //HealthPack();
+            //Components();
+
             //add components
             gameManager.instance.componentsCurrent += HPOrig;
             gameManager.instance.componentsTotal += HPOrig;
@@ -159,8 +140,10 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             inSight = true;
-            isPatrolling = false;
+            isHealthPack= true;
+            isComponent = true;
         }
+
     }
 
     //code for player leaving enemy sense range
@@ -168,9 +151,33 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            inSight = false;
-            isPatrolling = true;
+            inSight = false; 
+            isHealthPack = false;
+            isComponent = false;
         }
+    }
+
+    void HealthPack()
+    {
+        if (isHealthPack)
+        {
+            gameManager.instance.playerScript.HP += 2;
+            if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPMax)
+            {
+                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
+            }
+            Destroy(gameObject);
+        }
+    }
+
+    void Components()
+    {
+        if (isComponent)
+        {
+            gameManager.instance.componentsCurrent += HPOrig;
+            gameManager.instance.componentsTotal += HPOrig;
+        }
+        Destroy(gameObject);
     }
 
     IEnumerator shoot()
@@ -179,15 +186,6 @@ public class enemyAI : MonoBehaviour, IDamage
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-    }
-
-    IEnumerator changePoint(GameObject point)
-    {
-        isWaiting = true;
-        agent.stoppingDistance = 0;
-        agent.SetDestination(point.transform.position);
-        yield return new WaitForSeconds(10f);
-        isWaiting = false;
     }
 
     IEnumerator dmgFlash()

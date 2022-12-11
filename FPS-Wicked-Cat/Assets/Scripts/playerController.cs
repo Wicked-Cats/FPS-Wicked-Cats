@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class playerController : MonoBehaviour
 {
     [Header("----- Components ----")]
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject model;
+    [SerializeField] Animator anim;
 
     [Header("----- Player Stats ----")]
-    public int damage;
-    [Range(1, 10)] public int HPMax;
-    [Range(1, 10)] public int HP;
-    [Range(3, 20)] public int playerSpeed;
+    [Range(1, 10)] [SerializeField] public int HP;
+    [Range(3, 20)] [SerializeField] public int playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
-    [Range(1, 3)] public int jumpsMax;
+    [Range(1, 3)] [SerializeField] public int jumpsMax;
+    [Range(1, 3)][SerializeField] public int HPMax;
+
 
     [Header("----- Gun Stats ----")]
-    public int shootDamage;
+    [SerializeField] public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
+    [SerializeField] public int damage;
 
     bool isShooting;
     int jumpedTimes;
@@ -33,24 +34,21 @@ public class playerController : MonoBehaviour
     int HPOrig;
     int pS;
     bool turning;
-    
 
     private void Start()
     {
         //SetPlayerPos();
-        if(HPMax < HP)
-        {
-            HP = HPMax;
-        }
+
         HPOrig = HP;
         pS = playerSpeed;
-        updateHPBar();
     }
 
     void Update()
     {
         if (!gameManager.instance.isPaused)
         {
+            anim.SetFloat("Speed", move.normalized.magnitude);
+
             movement();
             StartCoroutine(projectileShoot());
             //StartCoroutine(shoot());   us for later 
@@ -59,15 +57,12 @@ public class playerController : MonoBehaviour
                 StartCoroutine(turnModel());
             }
             
-
         }
-
     }
 
     void movement()
     {
-        //Sprint functionality
-        if(Input.GetButtonDown("Sprint"))
+        if(Input.GetButton("Sprint"))
         {
             playerSpeed = pS * 2;
 
@@ -76,38 +71,30 @@ public class playerController : MonoBehaviour
                 playerSpeed = 25;
             }
         }
-        if(Input.GetButtonUp("Sprint"))
+        else
         {
             playerSpeed = pS;
         }
-
-        //reset player gravity movement and jumps while on ground
+            
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
             playerVelocity.y = 0f;
         }
 
-        //set move variable with key movements
         move = transform.right * Input.GetAxis("Horizontal") +  
                transform.forward * Input.GetAxis("Vertical");  
 
-        //applies movement to controller independent of framerate
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        //jump functionality
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
             //for testing purposes
             //gameManager.instance.componentsTotal += 10;
-            //gameManager.instance.componentsCurrent += 10;
-
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
 
-        
-        //applies gravity to player
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -147,19 +134,14 @@ public class playerController : MonoBehaviour
    
     public void takeDamage(int dmg)
     {
-        //damage player and start feedback to player
         HP -= dmg;
-        updateHPBar();
         StartCoroutine(playerDmgFlash());
 
-        //check for player death
         if (HP <= 0)
         {
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
             gameManager.instance.activeMenu.SetActive(true);
-
-            //checks if player can afford a respawn
             if(gameManager.instance.componentsCurrent < 5)
             {
                 gameManager.instance.respawnButt.interactable = false;
@@ -175,12 +157,6 @@ public class playerController : MonoBehaviour
 
     }
 
-    //public void AddJump(int amount)
-    //{
-    //    jumpsMax += amount;
-    //    gameManager.instance.coins -= gameManager.instance.jumpCost;
-    //}
-
     public void SetPlayerPos()
     {
         controller.enabled = false;
@@ -191,12 +167,16 @@ public class playerController : MonoBehaviour
     public void ResetPlayerHP()
     {
         HP = HPOrig;
-        updateHPBar();
+    }
+
+    public void updateHPBar()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
     }
 
     IEnumerator turnModel()
     {
-        // keeps player model looking in same direction as camera so it can't be seen when turning
+        //model.transform.LookAt(Camera.main.transform.position);
         Quaternion cameraMain = Camera.main.transform.rotation;
 
         cameraMain.x = 0;
@@ -207,10 +187,48 @@ public class playerController : MonoBehaviour
         turning = false;
     }
 
-    public void updateHPBar()
-    {
-        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPMax;
-        gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
-        gameManager.instance.playerHPMax.text = HPMax.ToString("F0");
-    }
+    //public void ComponentsPickUp()
+    //{
+    //    shootDamage = gunStat.shootDamage;
+    //    shootRate = gunStat.shootRate;
+    //    shootDist = gunStat.shootDist;
+
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;             // transfers over the FILTER which is the MODEL
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial; // transfers over the MATERIAL which is the RENDERER
+
+    //    gunList.Add(gunStat);
+
+    //    selectedGun = gunList.Count - 1;
+    //}
+
+    //void gunSelect()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+    //    {
+    //        selectedGun++;
+    //        ChangeGun();
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+    //    {
+    //        selectedGun--;
+    //        ChangeGun();
+    //    }
+    //}
+
+    //IEnumerator playSteps()
+    //{
+    //    stepIsPlaying = true;
+    //    aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length)], playerStepsVol);
+    //    if (isSprinting)
+    //    {
+    //        yield return new WaitForSeconds(0.3f);
+    //    }
+    //    else
+    //    {
+    //        yield return new WaitForSeconds(0.5f);
+
+    //    }
+    //    stepIsPlaying = false;
+    //}
+
 }
