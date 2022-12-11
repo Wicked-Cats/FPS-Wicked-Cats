@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 3)] [SerializeField] public int jumpsMax;
     [Range(1, 3)][SerializeField] public int HPMax;
+    public int HPOrig;
 
 
     [Header("----- Gun Stats ----")]
@@ -27,17 +28,21 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
 
+    [Header("----- Pick Ups ----")]
+    [SerializeField] GameObject health;
+    [SerializeField] GameObject component;
+
+
     bool isShooting;
     int jumpedTimes;
     private Vector3 playerVelocity;
     Vector3 move;
-    public int HPOrig;
     int pS;
     bool turning;
 
     private void Start()
     {
-        SetPlayerPos();
+        //SetPlayerPos();
         HPOrig = HP;
         updateHPBar();
         pS = playerSpeed;
@@ -158,12 +163,12 @@ public class playerController : MonoBehaviour
 
     }
 
-    public void SetPlayerPos()
-    {
-        controller.enabled = false;
-        transform.position = gameManager.instance.playerSpawnPos.transform.position;
-        controller.enabled = true;
-    }
+    //public void SetPlayerPos()
+    //{
+    //    controller.enabled = false;
+    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
+    //    controller.enabled = true;
+    //}
 
     public void ResetPlayerHP()
     {
@@ -190,19 +195,17 @@ public class playerController : MonoBehaviour
         turning = false;
     }
 
-    //public void ComponentsPickUp()
-    //{
-    //    shootDamage = gunStat.shootDamage;
-    //    shootRate = gunStat.shootRate;
-    //    shootDist = gunStat.shootDist;
+    public void healthPickUp()
+    {
+        health.GetComponent<MeshFilter>().sharedMesh = health.GetComponent<MeshFilter>().sharedMesh;            
+        health.GetComponent<MeshRenderer>().sharedMaterial = health.GetComponent<MeshRenderer>().sharedMaterial;
+    }
 
-    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;             
-    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial; 
-
-    //    gunList.Add(gunStat);
-
-    //    selectedGun = gunList.Count - 1;
-    //}
+    public void componentsPickUP()
+    {
+        component.GetComponent<MeshFilter>().sharedMesh = component.GetComponent<MeshFilter>().sharedMesh;             
+        component.GetComponent<MeshRenderer>().sharedMaterial = component.GetComponent<MeshRenderer>().sharedMaterial;
+    }
 
     //void gunSelect()
     //{
