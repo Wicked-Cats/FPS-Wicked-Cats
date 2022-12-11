@@ -120,7 +120,9 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 for (int i = 0; i < HPOrig; i++)
                 {
-                    Instantiate(drop, shootPos.transform.position, transform.rotation);
+                    Transform item = shootPos.transform;
+                    item.position = new Vector3(item.position.x +Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
+                    Instantiate(drop, item.position, transform.rotation);
                 }
             }
 
