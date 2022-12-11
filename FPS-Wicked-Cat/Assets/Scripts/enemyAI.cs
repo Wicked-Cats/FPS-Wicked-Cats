@@ -121,15 +121,15 @@ public class enemyAI : MonoBehaviour, IDamage
             //gameManager.instance.componentsTotal += HPOrig;
 
             //game win condition
-            if (gameManager.instance.componentsTotal >= 30)
-            {
-                gameManager.instance.isPaused = !gameManager.instance.isPaused;
-                gameManager.instance.activeMenu = gameManager.instance.winMenu;
-                gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
-                gameManager.instance.pause();
-                gameManager.instance.componentsTotal = 0;
-                gameManager.instance.componentsCurrent = 0;
-            }
+            //if (gameManager.instance.componentsTotal >= 30)
+            //{
+            //    gameManager.instance.isPaused = !gameManager.instance.isPaused;
+            //    gameManager.instance.activeMenu = gameManager.instance.winMenu;
+            //    gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
+            //    gameManager.instance.pause();
+            //    gameManager.instance.componentsTotal = 0;
+            //    gameManager.instance.componentsCurrent = 0;
+            //}
             Destroy(gameObject);
         }
     }

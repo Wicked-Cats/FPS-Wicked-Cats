@@ -32,6 +32,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
 
+    [Header("------ Timer ------")]
+    [SerializeField] float timeCurrent;
+    [SerializeField] TextMeshProUGUI timerText;
+
+
     [Header("------ Upgrades Stuff ------")]
     public TextMeshProUGUI upgradesComponentCurrent;
     public Button respawnButt;
@@ -73,8 +78,8 @@ public class gameManager : MonoBehaviour
         timeScaleBase = Time.timeScale;
 
         //set and move player to spawn
-        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        //player.transform.position = playerSpawnPos.transform.position;
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        player.transform.position = playerSpawnPos.transform.position;
 
         //Do nav mesh triangulation for spawning
         navMeshTri = NavMesh.CalculateTriangulation();
@@ -104,6 +109,27 @@ public class gameManager : MonoBehaviour
             objectivesSeen = true;
         }
 
+        //timer ticking
+        if (!isPaused)
+        {
+            if (timeCurrent > 0)
+            {
+                timeCurrent -= Time.deltaTime;
+            }
+            else
+            {
+                timeCurrent = 0;
+                gameManager.instance.isPaused = !gameManager.instance.isPaused;
+                gameManager.instance.activeMenu = gameManager.instance.winMenu;
+                gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
+                gameManager.instance.pause();
+                gameManager.instance.componentsTotal = 0;
+                gameManager.instance.componentsCurrent = 0;
+            }
+
+            timerUpdate(timeCurrent);
+        }
+
         //opens pause menu
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
@@ -127,7 +153,7 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        if(!isSpawning)
+        if (!isSpawning)
         {
             StartCoroutine(spawnEnemies());
         }
@@ -159,7 +185,7 @@ public class gameManager : MonoBehaviour
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
         NavMeshHit hit;
-        if(NavMesh.SamplePosition(navMeshTri.vertices[possibleLocation], out hit, 2f, 1))
+        if (NavMesh.SamplePosition(navMeshTri.vertices[possibleLocation], out hit, 2f, 1))
         {
             Instantiate(enemyToSpawn, hit.position, this.transform.rotation);
         }
@@ -167,5 +193,19 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isSpawning = false;
     }
-    
+
+    void timerUpdate(float displaytime)
+    {
+        if (displaytime < 0)
+        {
+            displaytime = 0;
+        }
+
+        float minutes = Mathf.FloorToInt(displaytime / 60);
+        float seconds = Mathf.FloorToInt(displaytime % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+    }
+
 }

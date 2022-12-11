@@ -42,7 +42,7 @@ public class playerController : MonoBehaviour
 
     private void Start()
     {
-        //SetPlayerPos();
+        SetPlayerPos();
         HPOrig = HP;
         updateHPBar();
         pS = playerSpeed;
@@ -163,12 +163,12 @@ public class playerController : MonoBehaviour
 
     }
 
-    //public void SetPlayerPos()
-    //{
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
-    //    controller.enabled = true;
-    //}
+    public void SetPlayerPos()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
 
     public void ResetPlayerHP()
     {
