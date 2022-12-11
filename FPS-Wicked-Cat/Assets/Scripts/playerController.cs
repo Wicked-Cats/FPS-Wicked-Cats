@@ -50,13 +50,13 @@ public class playerController : MonoBehaviour
             anim.SetFloat("Speed", move.normalized.magnitude);
 
             movement();
-            StartCoroutine(projectileShoot());
-            //StartCoroutine(shoot());   us for later 
-            if(!turning)
+            //StartCoroutine(projectileShoot());
+            StartCoroutine(shoot());  //us for later 
+            if (!turning)
             {
                 StartCoroutine(turnModel());
             }
-            
+
         }
     }
 
@@ -100,38 +100,38 @@ public class playerController : MonoBehaviour
     }
 
     //for later development
-    //IEnumerator shoot()
+    IEnumerator shoot()
+    {
+        if (!isShooting && Input.GetButton("Shoot"))
+        {
+            isShooting = true;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            {
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
+                }
+            }
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
+    }
+
+    //IEnumerator projectileShoot()
     //{
     //    if (!isShooting && Input.GetButton("Shoot"))
     //    {
     //        isShooting = true;
-
-    //        RaycastHit hit;
-
-    //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-    //        {
-    //            if (hit.collider.GetComponent<IDamage>() != null)
-    //            {
-    //                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-    //            }
-    //        }
-
+    //        Instantiate(bullet, shootPos.position, transform.rotation);
     //        yield return new WaitForSeconds(shootRate);
     //        isShooting = false;
     //    }
     //}
 
-    IEnumerator projectileShoot()
-    {
-        if (!isShooting && Input.GetButton("Shoot"))
-        {
-            isShooting = true;
-            Instantiate(bullet, shootPos.position, transform.rotation);
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
-    }
-   
     public void takeDamage(int dmg)
     {
         HP -= dmg;
