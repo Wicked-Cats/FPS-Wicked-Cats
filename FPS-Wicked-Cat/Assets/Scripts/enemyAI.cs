@@ -108,7 +108,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-            anim.SetBool("Death", true);
+            StartCoroutine(death());
 
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length-1)];
@@ -127,7 +127,6 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
             }
 
-            Destroy(gameObject);
         }
     }
 
@@ -166,4 +165,10 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = colorOrig;
     }
 
+    IEnumerator death()
+    {
+        anim.SetBool("Death", true); 
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+    }
 }
