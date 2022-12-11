@@ -44,6 +44,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject flyer;
     [SerializeField] GameObject tank;
     [SerializeField] GameObject speedy;
+    [SerializeField] public GameObject enemyAimPoint;
 
     [Header("-- Enemy Spawning --")]
     private NavMeshTriangulation navMeshTri;
