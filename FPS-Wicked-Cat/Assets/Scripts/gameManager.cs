@@ -51,6 +51,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject[] enemiesOptions;
     private NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
+    private float diffTickTime;
+    private int spawnOffset;
+    private bool waitingToTick;
 
     public bool isPaused;
     float timeScaleBase;
@@ -73,6 +76,9 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
+
+        diffTickTime = timeCurrent / (enemiesOptions.Length - 1);
+        spawnOffset = 0;
 
         //set and move player to spawn
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
@@ -127,6 +133,11 @@ public class gameManager : MonoBehaviour
             timerUpdate(timeCurrent);
         }
 
+        if(!waitingToTick)
+        {
+            StartCoroutine(difficultyTick());
+        }
+
         //opens pause menu
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
@@ -177,7 +188,7 @@ public class gameManager : MonoBehaviour
     {
         isSpawning = true;
 
-        enemyToSpawn = enemiesOptions[Random.Range(0, enemiesOptions.Length)];
+        enemyToSpawn = enemiesOptions[Random.Range(0, spawnOffset)];
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
@@ -203,6 +214,15 @@ public class gameManager : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
+    }
+
+    IEnumerator difficultyTick()
+    {
+        waitingToTick = true;
+
+        spawnOffset++;
+        yield return new WaitForSeconds(diffTickTime);
+        waitingToTick = false;
     }
 
 }
