@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2663794351992157219}
   - component: {fileID: 6768671718696795270}
   - component: {fileID: -2161372243336222471}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: HealthPackGreen
   m_TagString: Item Drop
   m_Icon: {fileID: 0}
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cog: {fileID: 2671387097928927799}
+  isHealthPack: 1
 --- !u!33 &2694074990634485699
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -208,7 +209,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3367196
+  m_Radius: 0.75
   m_Center: {x: 0.000000048428774, y: 2.2551405e-16, z: -1.4432899e-15}
 --- !u!54 &6768671718696795270
 Rigidbody:

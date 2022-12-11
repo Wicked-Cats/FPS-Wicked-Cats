@@ -16,7 +16,6 @@ public class playerController : MonoBehaviour
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 3)] [SerializeField] public int jumpsMax;
-    [Range(1, 3)][SerializeField] public int HPMax;
     public int HPOrig;
 
 
@@ -28,10 +27,16 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
 
-    [Header("----- Pick Ups ----")]
-    [SerializeField] GameObject health;
-    [SerializeField] GameObject component;
-
+    [Header("----- Audio ----")]
+    [SerializeField] AudioSource aud;    
+    [SerializeField] AudioClip gunShot; 
+    [Range(0, 1)] [SerializeField] float gunShotVol;
+    [SerializeField] AudioClip[] audPlayerHurt;
+    [Range(0, 1)] [SerializeField] float playerHurtVol;
+    [SerializeField] AudioClip[] audPlayerJump;
+    [Range(0, 1)] [SerializeField] float playerJumpVol;
+    [SerializeField] AudioClip[] audPlayerSteps;
+    [Range(0, 1)] [SerializeField] float playerStepsVol;
 
     bool isShooting;
     int jumpedTimes;
@@ -39,6 +44,8 @@ public class playerController : MonoBehaviour
     Vector3 move;
     int pS;
     bool turning;
+    bool stepIsPlaying;
+    bool isSprinting;
 
     private void Start()
     {
@@ -195,17 +202,7 @@ public class playerController : MonoBehaviour
         turning = false;
     }
 
-    public void healthPickUp()
-    {
-        health.GetComponent<MeshFilter>().sharedMesh = health.GetComponent<MeshFilter>().sharedMesh;            
-        health.GetComponent<MeshRenderer>().sharedMaterial = health.GetComponent<MeshRenderer>().sharedMaterial;
-    }
 
-    public void componentsPickUP()
-    {
-        component.GetComponent<MeshFilter>().sharedMesh = component.GetComponent<MeshFilter>().sharedMesh;             
-        component.GetComponent<MeshRenderer>().sharedMaterial = component.GetComponent<MeshRenderer>().sharedMaterial;
-    }
 
     //void gunSelect()
     //{
@@ -221,20 +218,20 @@ public class playerController : MonoBehaviour
     //    }
     //}
 
-    //IEnumerator playSteps()
-    //{
-    //    stepIsPlaying = true;
-    //    aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length)], playerStepsVol);
-    //    if (isSprinting)
-    //    {
-    //        yield return new WaitForSeconds(0.3f);
-    //    }
-    //    else
-    //    {
-    //        yield return new WaitForSeconds(0.5f);
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+        aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length - 1)], playerStepsVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
 
-    //    }
-    //    stepIsPlaying = false;
-    //}
+        }
+        stepIsPlaying = false;
+    }
 
 }
