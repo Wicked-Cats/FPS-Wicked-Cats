@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using TMPro;
 
 public class gameManager : MonoBehaviour
@@ -44,14 +45,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject tank;
     [SerializeField] GameObject speedy;
 
-    [Header("-- Spwaners --")]
-    [SerializeField] GameObject flyerSpawn1;
-    [SerializeField] GameObject flyerSpawn2;
+    [Header("-- Enemy Spawning --")]
+    private NavMeshTriangulation navMeshTri;
+    [SerializeField] GameObject[] enemiesOptions;
+    private GameObject enemyToSpawn;
 
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
-    bool isSpawningFly;
+    bool isSpawning;
     public int componentsCurrent;
     public int componentsTotal;
     public bool objectivesSeen;
@@ -73,6 +75,9 @@ public class gameManager : MonoBehaviour
         //set and move player to spawn
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
+
+        //Do nav mesh triangulation for spawning
+        navMeshTri = NavMesh.CalculateTriangulation();
     }
 
     void Update()
@@ -122,8 +127,10 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        //Work in progress or will be completely overhauled in future
-        //StartCoroutine(spawnFly());
+        if(!isSpawning)
+        {
+            StartCoroutine(spawnEnemies());
+        }
 
     }
 
@@ -143,24 +150,22 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    //creates flying enemies at a designated spawner
-    //may be changed later or completely phased out
-    IEnumerator spawnFly()
+    IEnumerator spawnEnemies()
     {
-        if (!isSpawningFly)
+        isSpawning = true;
+
+        enemyToSpawn = enemiesOptions[Random.Range(0, enemiesOptions.Length - 1)];
+
+        int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
+
+        NavMeshHit hit;
+        if(NavMesh.SamplePosition(navMeshTri.vertices[possibleLocation], out hit, 2f, 1))
         {
-            isSpawningFly = true;
-            float num = Random.Range(0, 99);
-            if (num < 50)
-            {
-                Instantiate(flyer, flyerSpawn1.transform.position, flyerSpawn1.transform.rotation);
-            }
-            else
-            {
-                Instantiate(flyer, flyerSpawn2.transform.position, flyerSpawn2.transform.rotation);
-            }
-            yield return new WaitForSeconds(10f);
-            isSpawningFly = false;
+            Instantiate(enemyToSpawn, hit.position, this.transform.rotation);
         }
+
+        yield return new WaitForSeconds(1f);
+        isSpawning = false;
     }
+    
 }
