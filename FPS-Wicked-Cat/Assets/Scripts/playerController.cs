@@ -16,7 +16,6 @@ public class playerController : MonoBehaviour
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 3)] [SerializeField] public int jumpsMax;
-    [Range(1, 3)][SerializeField] public int HPMax;
     public int HPOrig;
 
 
@@ -27,10 +26,6 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
-
-    [Header("----- Pick Ups ----")]
-    [SerializeField] GameObject health;
-    [SerializeField] GameObject component;
 
 
     bool isShooting;
@@ -195,17 +190,7 @@ public class playerController : MonoBehaviour
         turning = false;
     }
 
-    public void healthPickUp()
-    {
-        health.GetComponent<MeshFilter>().sharedMesh = health.GetComponent<MeshFilter>().sharedMesh;            
-        health.GetComponent<MeshRenderer>().sharedMaterial = health.GetComponent<MeshRenderer>().sharedMaterial;
-    }
 
-    public void componentsPickUP()
-    {
-        component.GetComponent<MeshFilter>().sharedMesh = component.GetComponent<MeshFilter>().sharedMesh;             
-        component.GetComponent<MeshRenderer>().sharedMaterial = component.GetComponent<MeshRenderer>().sharedMaterial;
-    }
 
     //void gunSelect()
     //{

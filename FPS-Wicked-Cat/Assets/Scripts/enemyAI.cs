@@ -31,8 +31,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
-    [SerializeField] bool isHealthPack;
-    [SerializeField] bool isComponent;
     
 
     Vector3 playerDir;
@@ -110,11 +108,21 @@ public class enemyAI : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
+            
             // item drop
-            Instantiate(itemDrop[Random.Range(0, itemDrop.Length - 1)], shootPos.transform.position, transform.rotation);
-
-            HealthPack();
-            Components();
+            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length-1)];
+            cogPickup cog = drop.GetComponent<cogPickup>();
+            if (cog.isHealthPack)
+            {
+                Instantiate(drop, shootPos.transform.position, transform.rotation);
+            }
+            else
+            {
+                for (int i = 0; i < HPOrig; i++)
+                {
+                    Instantiate(drop, shootPos.transform.position, transform.rotation);
+                }
+            }
 
             //add components
             //gameManager.instance.componentsCurrent += HPOrig;
@@ -140,8 +148,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             inSight = true;
-            isHealthPack= true;
-            isComponent = true;
         }
 
     }
@@ -152,33 +158,9 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             inSight = false; 
-            isHealthPack = false;
-            isComponent = false;
         }
     }
 
-    void HealthPack()
-    {
-        if (isHealthPack)
-        {
-            gameManager.instance.playerScript.HP += 2;
-            if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPMax)
-            {
-                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
-            }
-            Destroy(gameObject);
-        }
-    }
-
-    void Components()
-    {
-        if (isComponent)
-        {
-            gameManager.instance.componentsCurrent += HPOrig;
-            gameManager.instance.componentsTotal += HPOrig;
-        }
-        Destroy(gameObject);
-    }
 
     IEnumerator shoot()
     {

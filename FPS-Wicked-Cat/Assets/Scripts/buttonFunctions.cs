@@ -62,7 +62,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void HpUP()
     {
-        if (gameManager.instance.playerScript.HPMax < gameManager.instance.HPLimit)
+        if (gameManager.instance.playerScript.HPOrig < gameManager.instance.HPLimit)
         {
             if (gameManager.instance.componentsCurrent >= 5)
             {
