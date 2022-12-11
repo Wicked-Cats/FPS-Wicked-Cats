@@ -113,12 +113,12 @@ public class enemyAI : MonoBehaviour, IDamage
             // item drop
             Instantiate(itemDrop[Random.Range(0, itemDrop.Length - 1)], shootPos.transform.position, transform.rotation);
 
-            //HealthPack();
-            //Components();
+            HealthPack();
+            Components();
 
             //add components
-            gameManager.instance.componentsCurrent += HPOrig;
-            gameManager.instance.componentsTotal += HPOrig;
+            //gameManager.instance.componentsCurrent += HPOrig;
+            //gameManager.instance.componentsTotal += HPOrig;
 
             //game win condition
             if (gameManager.instance.componentsTotal >= 30)

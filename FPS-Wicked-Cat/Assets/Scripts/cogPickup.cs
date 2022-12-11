@@ -17,7 +17,9 @@ public class cogPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            
+            gameManager.instance.playerScript.healthPickUp();
+            gameManager.instance.playerScript.componentsPickUP();
+            Destroy(gameObject);
         }
     }
     
