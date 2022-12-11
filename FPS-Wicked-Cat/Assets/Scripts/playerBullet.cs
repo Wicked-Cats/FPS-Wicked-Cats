@@ -34,7 +34,14 @@ public class playerBullet : MonoBehaviour
                 }
             }
 
-            Destroy(gameObject, despawnTimer);
+            Destroy(gameObject);
+        }
+        else if(other is SphereCollider)
+        {
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
