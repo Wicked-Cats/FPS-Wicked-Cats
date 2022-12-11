@@ -111,7 +111,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             // item drop
-            Instantiate(itemDrop[Random.Range(0, itemDrop.Length - 1)]);
+            Instantiate(itemDrop[Random.Range(0, itemDrop.Length - 1)], shootPos.transform.position, transform.rotation);
 
             //HealthPack();
             //Components();

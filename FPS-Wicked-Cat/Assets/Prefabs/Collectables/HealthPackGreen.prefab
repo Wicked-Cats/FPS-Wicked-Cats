@@ -9,13 +9,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2673668310863545607}
+  - component: {fileID: 7438357697288012153}
   - component: {fileID: 2694074990634485699}
   - component: {fileID: 2684601054586238833}
   - component: {fileID: 2608348516479766553}
   - component: {fileID: 2663794351992157219}
+  - component: {fileID: 6768671718696795270}
+  - component: {fileID: -2161372243336222471}
   m_Layer: 2
   m_Name: HealthPackGreen
-  m_TagString: Untagged
+  m_TagString: Item Drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +38,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -4.432, y: 87.707, z: 10.415}
+--- !u!114 &7438357697288012153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671387097928927799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8823bb1ce2b7cf40bcdb039e1814bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cog: {fileID: 2671387097928927799}
 --- !u!33 &2694074990634485699
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -194,3 +210,33 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3367196
   m_Center: {x: 0.000000048428774, y: 2.2551405e-16, z: -1.4432899e-15}
+--- !u!54 &6768671718696795270
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671387097928927799}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &-2161372243336222471
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671387097928927799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.33671963
+  m_Height: 0.6734392
+  m_Direction: 1
+  m_Center: {x: 0.000003863126, y: 0.00000047683716, z: -0.00000011920929}
