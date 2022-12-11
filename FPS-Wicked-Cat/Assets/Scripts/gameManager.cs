@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
     [Header("------Player Components------")]
     public GameObject player;
     public playerController playerScript;
+    [SerializeField] public GameObject enemyAimPoint;
 
     [Header("------ Player Upgrades------")]
     public int jumpsLimit;
@@ -45,15 +46,10 @@ public class gameManager : MonoBehaviour
     public Button HPButton;
     public Button speedButton;
 
-    [Header("------Enemies------")]
-    [SerializeField] GameObject flyer;
-    [SerializeField] GameObject tank;
-    [SerializeField] GameObject speedy;
-    [SerializeField] public GameObject enemyAimPoint;
-
-    [Header("-- Enemy Spawning --")]
-    private NavMeshTriangulation navMeshTri;
+    [Header("------ Enemy Spawning ------")]
+    [Range(1, 100)][SerializeField] float spawnTimer;
     [SerializeField] GameObject[] enemiesOptions;
+    private NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
 
     public bool isPaused;
@@ -191,7 +187,7 @@ public class gameManager : MonoBehaviour
             Instantiate(enemyToSpawn, hit.position, this.transform.rotation);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(spawnTimer);
         isSpawning = false;
     }
 
