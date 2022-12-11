@@ -67,7 +67,7 @@ public class buttonFunctions : MonoBehaviour
             if (gameManager.instance.componentsCurrent >= 5)
             {
                 gameManager.instance.componentsCurrent -= 5;
-                gameManager.instance.playerScript.HPMax += 5;
+                gameManager.instance.playerScript.HPOrig += 5;
                 gameManager.instance.playerScript.HP += 5;
                 gameManager.instance.playerScript.updateHPBar();
                 upgradesButttonsCheck();

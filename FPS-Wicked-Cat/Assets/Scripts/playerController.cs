@@ -31,15 +31,15 @@ public class playerController : MonoBehaviour
     int jumpedTimes;
     private Vector3 playerVelocity;
     Vector3 move;
-    int HPOrig;
+    public int HPOrig;
     int pS;
     bool turning;
 
     private void Start()
     {
-        //SetPlayerPos();
-
+        SetPlayerPos();
         HPOrig = HP;
+        updateHPBar();
         pS = playerSpeed;
     }
 
@@ -135,6 +135,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        updateHPBar();
         StartCoroutine(playerDmgFlash());
 
         if (HP <= 0)
@@ -172,6 +173,8 @@ public class playerController : MonoBehaviour
     public void updateHPBar()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
+        gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
+        gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");
     }
 
     IEnumerator turnModel()

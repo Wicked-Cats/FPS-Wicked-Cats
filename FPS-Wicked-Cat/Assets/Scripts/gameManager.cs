@@ -55,6 +55,9 @@ public class gameManager : MonoBehaviour
     public int componentsCurrent;
     public int componentsTotal;
     public bool objectivesSeen;
+    public bool forceFieldActive;
+    public GameObject forceField;
+    public GameObject forceFieldMaker;
 
 
     void Awake()
@@ -68,8 +71,8 @@ public class gameManager : MonoBehaviour
         timeScaleBase = Time.timeScale;
 
         //set and move player to spawn
-        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
-        //player.transform.position = playerSpawnPos.transform.position;
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        player.transform.position = playerSpawnPos.transform.position;
     }
 
     void Update()
