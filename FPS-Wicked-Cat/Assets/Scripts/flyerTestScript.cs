@@ -16,7 +16,6 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
     private int HPOrig;
-    [SerializeField] Transform headPos;
     // vvv in TESTING phase vvv
     //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
@@ -44,38 +43,28 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     void LineOfSight()
     {
-        //    playerDir = gameManager.instance.player.transform.position - headPos.position;
-        //    angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-        //    RaycastHit see;
-
-        //    if (Physics.Raycast(headPos.position, playerDir, out see))
-        //    {
-        //        Debug.DrawRay(headPos.position, playerDir);
-        //        if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
-        //        {
         agent.SetDestination(gameManager.instance.player.transform.position);
         transform.LookAt(gameManager.instance.player.transform.position);
 
         float xDif = gameManager.instance.player.transform.position.x - this.transform.position.x;
         float zDif = gameManager.instance.player.transform.position.z - this.transform.position.z;
 
-        if (xDif < 3 && xDif > -3)
+        if (!gameManager.instance.forceFieldActive)
         {
-            if (zDif < 3 && zDif > -3)
+            if (xDif < 3 && xDif > -3)
             {
-                forceFieldEngaged = true;
-                gameManager.instance.forceFieldActive = true;
-                gameManager.instance.forceFieldMaker = this.gameObject;
-                Vector3 forceSpawnPos = this.transform.position;
-                forceSpawnPos.y = 0;
-                Instantiate(forceField, forceSpawnPos, this.transform.rotation);
-                gameManager.instance.forceField = GameObject.FindGameObjectWithTag("Force Field");
+                if (zDif < 3 && zDif > -3)
+                {
+                    forceFieldEngaged = true;
+                    gameManager.instance.forceFieldActive = true;
+                    gameManager.instance.forceFieldMaker = this.gameObject;
+                    Vector3 forceSpawnPos = this.transform.position;
+                    forceSpawnPos.y = 0;
+                    Instantiate(forceField, forceSpawnPos, this.transform.rotation);
+                    gameManager.instance.forceField = GameObject.FindGameObjectWithTag("Force Field");
+                }
             }
         }
-        //    }
-
-        //}
     }
 
     public void takeDamage(int damage)
@@ -92,7 +81,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
             gameManager.instance.componentsTotal += HPOrig;
 
             //Destroy active force field if applicable
-            if(gameManager.instance.forceFieldActive && gameManager.instance.forceFieldMaker == this.gameObject)
+            if (gameManager.instance.forceFieldActive && gameManager.instance.forceFieldMaker == this.gameObject)
             {
                 Destroy(gameManager.instance.forceField);
                 gameManager.instance.forceFieldMaker = null;

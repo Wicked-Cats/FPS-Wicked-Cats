@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4949753914278949707}
-  - component: {fileID: 4894784278232614536}
+  - component: {fileID: -8952158925785236443}
   - component: {fileID: 4960446701612773067}
   - component: {fileID: 4968729910627561869}
   - component: {fileID: 4919417316561968677}
@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 64460096770593269}
   m_Layer: 0
   m_Name: ForceField Drone
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4894784278232614536
+--- !u!114 &-8952158925785236443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,8 +54,7 @@ MonoBehaviour:
   forceFieldEngaged: 0
   model: {fileID: 4968729910627561869}
   agent: {fileID: 64460096770593269}
-  HP: 0
-  headPos: {fileID: 4949753914278949707}
+  HP: 5
   lineOfSight: 180
 --- !u!33 &4960446701612773067
 MeshFilter:
