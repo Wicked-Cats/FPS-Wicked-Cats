@@ -2296,7 +2296,6 @@ GameObject:
   m_Component:
   - component: {fileID: 744573090620225224}
   - component: {fileID: 744573090620225226}
-  - component: {fileID: 744573090620225227}
   m_Layer: 3
   m_Name: body
   m_TagString: Player
@@ -2339,27 +2338,13 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f1ffb4d31e0556a498bf401e4556151c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &744573090620225227
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744573090620225077}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &744573090637200792
 GameObject:
   m_ObjectHideFlags: 0

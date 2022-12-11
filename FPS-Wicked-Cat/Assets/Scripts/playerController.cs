@@ -27,6 +27,16 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
 
+    [Header("----- Audio ----")]
+    [SerializeField] AudioSource aud;    
+    [SerializeField] AudioClip gunShot; 
+    [Range(0, 1)] [SerializeField] float gunShotVol;
+    [SerializeField] AudioClip[] audPlayerHurt;
+    [Range(0, 1)] [SerializeField] float playerHurtVol;
+    [SerializeField] AudioClip[] audPlayerJump;
+    [Range(0, 1)] [SerializeField] float playerJumpVol;
+    [SerializeField] AudioClip[] audPlayerSteps;
+    [Range(0, 1)] [SerializeField] float playerStepsVol;
 
     bool isShooting;
     int jumpedTimes;
@@ -34,6 +44,8 @@ public class playerController : MonoBehaviour
     Vector3 move;
     int pS;
     bool turning;
+    bool stepIsPlaying;
+    bool isSprinting;
 
     private void Start()
     {
@@ -158,12 +170,12 @@ public class playerController : MonoBehaviour
 
     }
 
-    //public void SetPlayerPos()
-    //{
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
-    //    controller.enabled = true;
-    //}
+    public void SetPlayerPos()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
 
     public void ResetPlayerHP()
     {
@@ -206,20 +218,20 @@ public class playerController : MonoBehaviour
     //    }
     //}
 
-    //IEnumerator playSteps()
-    //{
-    //    stepIsPlaying = true;
-    //    aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length)], playerStepsVol);
-    //    if (isSprinting)
-    //    {
-    //        yield return new WaitForSeconds(0.3f);
-    //    }
-    //    else
-    //    {
-    //        yield return new WaitForSeconds(0.5f);
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+        aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length - 1)], playerStepsVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
 
-    //    }
-    //    stepIsPlaying = false;
-    //}
+        }
+        stepIsPlaying = false;
+    }
 
 }
