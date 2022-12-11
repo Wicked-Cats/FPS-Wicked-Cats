@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class flyerTestScript : MonoBehaviour
+public class flyerTestScript : MonoBehaviour, IDamage
 {
     [SerializeField] GameObject forceField;
     [SerializeField] bool forceFieldEngaged;
@@ -11,7 +11,7 @@ public class flyerTestScript : MonoBehaviour
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    public Color colorOrig;
+    private Color colorOrig;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
@@ -21,113 +21,61 @@ public class flyerTestScript : MonoBehaviour
     //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
     [Header("-- Enemy Vision --")]
-    //private bool isPatrolling = true;
     [SerializeField] int lineOfSight;
     private float angleToPlayer;
     bool inSight;
 
-    [Header("-- Enemy Gun Stats --")]
-    [SerializeField] int shootDmg;
-    [SerializeField] float shootRate;
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform shootPos;
-    [SerializeField] bool isShooting;
-
-    [Header("-- Patrol Points --")]
-    //[SerializeField] GameObject[] patrolPoints;
-    private float stopDistOrig;
-    //private int pointMovement;
-    //bool isWaiting;
-
     Vector3 playerDir;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
         colorOrig = model.material.color;
-        stopDistOrig = agent.stoppingDistance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (inSight && !forceFieldEngaged)
         {
-            //agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
-        //else
-        //{
-        //    AiMovement();
-        //}
 
     }
 
-    //void AiMovement()
-    //{
-
-    //    if (isPatrolling)
-    //    {
-    //        if (!isWaiting)
-    //        {
-    //            StartCoroutine(changePoint(patrolPoints[pointMovement]));
-
-    //            if (pointMovement != patrolPoints.Length - 1)
-    //            {
-    //                pointMovement++;
-    //            }
-    //            else
-    //            {
-    //                pointMovement = 0;
-    //            }
-    //        }
-    //    }
-
-
-    //}
-
     void LineOfSight()
     {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+        //    playerDir = gameManager.instance.player.transform.position - headPos.position;
+        //    angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
-        RaycastHit see;
+        //    RaycastHit see;
 
-        if (Physics.Raycast(headPos.position, playerDir, out see))
+        //    if (Physics.Raycast(headPos.position, playerDir, out see))
+        //    {
+        //        Debug.DrawRay(headPos.position, playerDir);
+        //        if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
+        //        {
+        agent.SetDestination(gameManager.instance.player.transform.position);
+        transform.LookAt(gameManager.instance.player.transform.position);
+
+        float xDif = gameManager.instance.player.transform.position.x - this.transform.position.x;
+        float zDif = gameManager.instance.player.transform.position.z - this.transform.position.z;
+
+        if (xDif < 3 && xDif > -3)
         {
-            Debug.DrawRay(headPos.position, playerDir);
-            if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
+            if (zDif < 3 && zDif > -3)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-                transform.LookAt(gameManager.instance.player.transform.position);
-
-                float xDif = gameManager.instance.player.transform.position.x - this.transform.position.x;
-                float zDif = gameManager.instance.player.transform.position.z - this.transform.position.z;
-
-                if (xDif < 3 && xDif > -3)
-                {
-                    if (zDif < 3 && zDif > -3)
-                    {
-                        forceFieldEngaged = true;
-                        Vector3 forceSpawnPos = this.transform.position;
-                        forceSpawnPos.y = 0;
-                        Instantiate(forceField, forceSpawnPos, this.transform.rotation);
-                    }
-                }
-                //if (!isShooting) // so if he sees us he starts to shoot
-                //{
-                //    StartCoroutine(shoot());
-                //}
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    transform.LookAt(gameManager.instance.player.transform.position);
-                }
+                forceFieldEngaged = true;
+                gameManager.instance.forceFieldActive = true;
+                gameManager.instance.forceFieldMaker = this.gameObject;
+                Vector3 forceSpawnPos = this.transform.position;
+                forceSpawnPos.y = 0;
+                Instantiate(forceField, forceSpawnPos, this.transform.rotation);
+                gameManager.instance.forceField = GameObject.FindGameObjectWithTag("Force Field");
             }
-
         }
+        //    }
+
+        //}
     }
 
     public void takeDamage(int damage)
@@ -142,6 +90,15 @@ public class flyerTestScript : MonoBehaviour
             //add components
             gameManager.instance.componentsCurrent += HPOrig;
             gameManager.instance.componentsTotal += HPOrig;
+
+            //Destroy active force field if applicable
+            if(gameManager.instance.forceFieldActive && gameManager.instance.forceFieldMaker == this.gameObject)
+            {
+                Destroy(gameManager.instance.forceField);
+                gameManager.instance.forceFieldMaker = null;
+                gameManager.instance.forceField = null;
+                gameManager.instance.forceFieldActive = false;
+            }
 
             Destroy(gameObject);
             //game win condition
@@ -162,7 +119,6 @@ public class flyerTestScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inSight = true;
-            //isPatrolling = false;
         }
     }
 
@@ -171,26 +127,8 @@ public class flyerTestScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inSight = false;
-            //isPatrolling = true;
         }
     }
-
-    //IEnumerator shoot()
-    //{
-    //    isShooting = true;
-    //    Instantiate(bullet, shootPos.position, transform.rotation);
-    //    yield return new WaitForSeconds(shootRate);
-    //    isShooting = false;
-    //}
-
-    //IEnumerator changePoint(GameObject point)
-    //{
-    //    isWaiting = true;
-    //    agent.stoppingDistance = 0;
-    //    agent.SetDestination(point.transform.position);
-    //    yield return new WaitForSeconds(10f);
-    //    isWaiting = false;
-    //}
 
     IEnumerator dmgFlash()
     {
@@ -198,14 +136,6 @@ public class flyerTestScript : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
     }
-
-    // vvv in TESTING phase vvv
-    //private void ItemDrop()
-    //{
-    //    Instantiate(components, transform.parent);
-    //    gameManager.instance.componentsCurrent += HPOrig;
-    //    gameManager.instance.componentsTotal += HPOrig;
-    //}
 }
 
 

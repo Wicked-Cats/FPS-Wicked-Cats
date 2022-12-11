@@ -29,6 +29,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] bool isShooting;
 
+    [Header("-- Item Drops --")]
+    [SerializeField] GameObject[] itemDrop;
+    [SerializeField] bool isHealthPack;
+    [SerializeField] bool isComponent;
+    
 
     Vector3 playerDir;
     private float stopDistOrig;
@@ -105,6 +110,12 @@ public class enemyAI : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
+            // item drop
+            Instantiate(itemDrop[Random.Range(0, itemDrop.Length - 1)]);
+
+            //HealthPack();
+            //Components();
+
             //add components
             gameManager.instance.componentsCurrent += HPOrig;
             gameManager.instance.componentsTotal += HPOrig;
@@ -129,7 +140,10 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             inSight = true;
+            isHealthPack= true;
+            isComponent = true;
         }
+
     }
 
     //code for player leaving enemy sense range
@@ -137,8 +151,33 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            inSight = false;
+            inSight = false; 
+            isHealthPack = false;
+            isComponent = false;
         }
+    }
+
+    void HealthPack()
+    {
+        if (isHealthPack)
+        {
+            gameManager.instance.playerScript.HP += 2;
+            if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPMax)
+            {
+                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPMax;
+            }
+            Destroy(gameObject);
+        }
+    }
+
+    void Components()
+    {
+        if (isComponent)
+        {
+            gameManager.instance.componentsCurrent += HPOrig;
+            gameManager.instance.componentsTotal += HPOrig;
+        }
+        Destroy(gameObject);
     }
 
     IEnumerator shoot()
