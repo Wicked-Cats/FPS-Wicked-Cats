@@ -7938,6 +7938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerScript: {fileID: 0}
+  enemyAimPoint: {fileID: 0}
   jumpsLimit: 100
   HPLimit: 100
   damageLimit: 100
@@ -7960,10 +7961,7 @@ MonoBehaviour:
   dmgButton: {fileID: 5078961630625367838}
   HPButton: {fileID: 7685848371449662894}
   speedButton: {fileID: 4701175054409826616}
-  flyer: {fileID: 0}
-  tank: {fileID: 0}
-  speedy: {fileID: 0}
-  enemyAimPoint: {fileID: 0}
+  spawnTimer: 1
   enemiesOptions:
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
   - {fileID: 7056699094207142954, guid: 7e9a43a22911f1740aab9cfd039095d0, type: 3}
