@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6950623619115011091}
   - component: {fileID: 6950623619115011090}
   - component: {fileID: 6950623619115011093}
+  - component: {fileID: 1024134461}
   m_Layer: 3
   m_Name: New Player
   m_TagString: Player
@@ -94,6 +95,15 @@ MonoBehaviour:
   bullet: {fileID: 4203415293032977398, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}
   shootPos: {fileID: 718580905286881748}
   damage: 0
+  aud: {fileID: 0}
+  gunShot: {fileID: 0}
+  gunShotVol: 0
+  audPlayerHurt: []
+  playerHurtVol: 0
+  audPlayerJump: []
+  playerJumpVol: 0
+  audPlayerSteps: []
+  playerStepsVol: 0
 --- !u!143 &6950623619115011093
 CharacterController:
   m_ObjectHideFlags: 0
@@ -112,6 +122,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &1024134461
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6950623619115011088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &6950623619873750103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6950623619115011091}
     m_Modifications:
+    - target: {fileID: 2000607846321365926, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 5511438540352825196, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -137,11 +165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.891
       objectReference: {fileID: 0}
     - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_LocalRotation.w
@@ -170,6 +198,10 @@ PrefabInstance:
     - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3174ef068456aa4cb979e90df72a954, type: 3}

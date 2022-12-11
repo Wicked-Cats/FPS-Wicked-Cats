@@ -297,6 +297,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &165459502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 915135782, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+  m_PrefabInstance: {fileID: 233329776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &195128716
 Mesh:
   m_ObjectHideFlags: 0
@@ -652,18 +657,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 718580905286881748, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6950623619115011088, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_Name
       value: New Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6950623619115011090, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: shootPos
-      value: 
-      objectReference: {fileID: 1674556907}
     - target: {fileID: 6950623619115011091, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -707,10 +704,6 @@ PrefabInstance:
     - target: {fileID: 6950623619115011091, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914318455467646961, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: near clip plane
-      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
@@ -5750,11 +5743,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 265a000bd58020b4985bdd1c7a59864d, type: 3}
---- !u!4 &1674556907 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 718580905286881748, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-  m_PrefabInstance: {fileID: 233329776}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1683251252
 Mesh:
   m_ObjectHideFlags: 0
@@ -6517,9 +6505,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: timeCurrent
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: enemyAimPoint
+      value: 
+      objectReference: {fileID: 165459502}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
 --- !u!43 &1968637517
