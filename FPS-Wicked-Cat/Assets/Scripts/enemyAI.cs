@@ -19,6 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
     [SerializeField] float playerFaceSpeed;
+    [SerializeField] float extraShotRange;
     private float angleToPlayer;
     bool inSight;
 
@@ -35,6 +36,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     Vector3 playerDir;
     private float stopDistOrig;
+    bool imDead;
 
 
     void Start()
@@ -73,7 +75,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
 
-                if (!isShooting && angleToPlayer <= lineOfSight / 3) // so if he sees us and we are mostly in front of him he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
@@ -94,6 +96,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        if(!imDead)
+        {
         //damages enemy and gives feedback to player
         HP -= damage;
         StartCoroutine(dmgFlash());
@@ -106,6 +110,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StartCoroutine(death());
+                imDead = true;
 
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
@@ -124,6 +129,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
             }
 
+        }
         }
     }
 

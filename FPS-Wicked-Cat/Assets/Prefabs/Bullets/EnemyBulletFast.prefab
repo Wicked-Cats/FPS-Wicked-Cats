@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4203415293032977396}
   - component: {fileID: 1243535788123391383}
   m_Layer: 7
-  m_Name: EnemyBullet
+  m_Name: EnemyBulletFast
   m_TagString: Enemy Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   rb: {fileID: -5332225531961743399}
   damage: 1
   speed: 20
-  despawnTimer: 3
+  despawnTimer: 10
 --- !u!54 &-5332225531961743399
 Rigidbody:
   m_ObjectHideFlags: 0
