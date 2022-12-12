@@ -31,6 +31,8 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.ResetPlayerHP();
             gameManager.instance.unPause();
             gameManager.instance.playerScript.SetPlayerPos();
+            gameManager.instance.updateComponentsDisplay();
+            gameManager.instance.playerScript.updateHPBar();
         }
     }
 
@@ -43,6 +45,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= 3;
                 gameManager.instance.playerScript.jumpsMax++;
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }
@@ -56,6 +59,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= 3;
                 gameManager.instance.playerScript.damage++;
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }
@@ -71,6 +75,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.playerScript.HP += 5;
                 gameManager.instance.playerScript.updateHPBar();
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }
@@ -84,6 +89,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= 4;
                 gameManager.instance.playerScript.playerSpeed++;
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }

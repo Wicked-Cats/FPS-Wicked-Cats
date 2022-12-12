@@ -189,6 +189,10 @@ public class playerController : MonoBehaviour
 
     public void updateHPBar()
     {
+        if(HP < 0)
+        {
+            HP = 0;
+        }
         gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
         gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
         gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");

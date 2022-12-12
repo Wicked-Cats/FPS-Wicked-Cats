@@ -32,6 +32,7 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
+    [SerializeField] TextMeshProUGUI componentsDisplay;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
@@ -88,22 +89,13 @@ public class gameManager : MonoBehaviour
 
         //Do nav mesh triangulation for spawning
         navMeshTri = NavMesh.CalculateTriangulation();
+
+        //Set up UI
+        updateComponentsDisplay();
     }
 
     void Update()
     {
-        //moved to a different location left for testing purposes.
-        //if (componentsTotal >= 30 && activeMenu == null)
-        //{
-        //    isPaused = !isPaused;
-        //    activeMenu = winMenu;
-        //    activeMenu.SetActive(isPaused);
-        //    pause();
-        //    objectivesSeen = false;
-        //    componentsTotal = 0;
-        //    componentsCurrent = 0;
-        //}
-
         // displays the objectives only at start.
         if (!objectivesSeen)
         {
@@ -123,6 +115,7 @@ public class gameManager : MonoBehaviour
             }
             else
             {
+                //win condition
                 timeCurrent = 0;
                 gameManager.instance.isPaused = !gameManager.instance.isPaused;
                 gameManager.instance.activeMenu = gameManager.instance.winMenu;
@@ -236,4 +229,8 @@ public class gameManager : MonoBehaviour
         waitingToTick = false;
     }
 
+    public void updateComponentsDisplay()
+    {
+        componentsDisplay.text = "Components: " + componentsCurrent.ToString();
+    }
 }
