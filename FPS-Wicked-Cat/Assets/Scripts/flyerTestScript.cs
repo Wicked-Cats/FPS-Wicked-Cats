@@ -16,15 +16,14 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
     private int HPOrig;
-    // vvv in TESTING phase vvv
-    //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
-    private float angleToPlayer;
     bool inSight;
 
-    Vector3 playerDir;
+    [Header("-- Item Drops --")]
+    [SerializeField] GameObject[] itemDrop;
+
 
     void Start()
     {

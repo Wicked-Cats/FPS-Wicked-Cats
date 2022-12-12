@@ -7,17 +7,16 @@ public class enemyBullet : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     public int damage;
-    [SerializeField] int speed;
+    [SerializeField] float speed;
     [SerializeField] int despawnTimer;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (CompareTag("Enemy Bullet"))
         {
-            rb.velocity = transform.forward * speed;
+            rb.velocity = Vector3.Normalize(gameManager.instance.enemyAimPoint.transform.position -  transform.position) * speed;
         }
-
+        damage += gameManager.instance.timeDamageIncrease;
         Destroy(gameObject, despawnTimer);
     }
 

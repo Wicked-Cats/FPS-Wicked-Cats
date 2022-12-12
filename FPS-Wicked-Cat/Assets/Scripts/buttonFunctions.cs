@@ -24,28 +24,32 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
-        if (gameManager.instance.componentsCurrent >= 5)
+        if (gameManager.instance.componentsCurrent >= 10 + gameManager.instance.timeDamageIncrease)
         {
-            gameManager.instance.componentsCurrent -= 5;
-            gameManager.instance.componentsTotal -= 5;
+            gameManager.instance.componentsCurrent -= 10 + gameManager.instance.timeDamageIncrease;
+            gameManager.instance.componentsTotal -= 10 + gameManager.instance.timeDamageIncrease;
             gameManager.instance.playerScript.ResetPlayerHP();
             gameManager.instance.unPause();
-            //gameManager.instance.playerScript.SetPlayerPos();
+            gameManager.instance.playerScript.SetPlayerPos();
+            gameManager.instance.updateComponentsDisplay();
+            gameManager.instance.playerScript.updateHPBar();
         }
     }
 
-    public void addJump()
-    {
-        if (gameManager.instance.playerScript.jumpsMax < gameManager.instance.jumpsLimit)
-        {
-            if (gameManager.instance.componentsCurrent >= 3)
-            {
-                gameManager.instance.componentsCurrent -= 3;
-                gameManager.instance.playerScript.jumpsMax++;
-                upgradesButttonsCheck();
-            }
-        }
-    }
+    //not using may use at a later date
+    //public void addJump()
+    //{
+    //    if (gameManager.instance.playerScript.jumpsMax < gameManager.instance.jumpsLimit)
+    //    {
+    //        if (gameManager.instance.componentsCurrent >= 3)
+    //        {
+    //            gameManager.instance.componentsCurrent -= 3;
+    //            gameManager.instance.playerScript.jumpsMax++;
+    //            upgradesButttonsCheck();
+    //            gameManager.instance.updateComponentsDisplay();
+    //        }
+    //    }
+    //}
 
     public void damageUp()
     {
@@ -56,6 +60,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= 3;
                 gameManager.instance.playerScript.damage++;
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }
@@ -71,6 +76,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.playerScript.HP += 5;
                 gameManager.instance.playerScript.updateHPBar();
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }
@@ -84,6 +90,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= 4;
                 gameManager.instance.playerScript.playerSpeed++;
                 upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
             }
         }
     }
@@ -130,4 +137,17 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.upgradesComponentCurrent.text = gameManager.instance.componentsCurrent.ToString("F0");
     }
 
+    public void rangeUp()
+    {
+        if (gameManager.instance.playerScript.rangeUp < gameManager.instance.rangeUpLimit)
+        {
+            if (gameManager.instance.componentsCurrent >= 4)
+            {
+                gameManager.instance.componentsCurrent -= 4;
+                gameManager.instance.playerScript.rangeUp++;
+                upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
+            }
+        }
+    }
 }

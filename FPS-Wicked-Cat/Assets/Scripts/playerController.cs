@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
+    [SerializeField] public int rangeUp;
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;    
@@ -61,14 +62,16 @@ public class playerController : MonoBehaviour
         if (!gameManager.instance.isPaused)
         {
             anim.SetFloat("Speed", move.normalized.magnitude);
-            
-            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
-            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
-            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+
+            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+            //might keep for future use
+            //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
+            //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
             
             movement();
             //StartCoroutine(projectileShoot());
-            StartCoroutine(shoot());  //us for later 
+            StartCoroutine(shoot()); 
             if (!turning)
             {
                 StartCoroutine(turnModel());
@@ -106,14 +109,12 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
-            //for testing purposes
-            //gameManager.instance.componentsTotal += 10;
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
 
     //for later development
@@ -125,7 +126,7 @@ public class playerController : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
@@ -157,10 +158,12 @@ public class playerController : MonoBehaviour
 
         if (HP <= 0)
         {
+            gameManager.instance.isPaused = true;
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
+            gameManager.instance.respawnButtonText.text = "Respawn (-" + (10 + gameManager.instance.timeDamageIncrease) + " Components";
             gameManager.instance.activeMenu.SetActive(true);
-            if(gameManager.instance.componentsCurrent < 5)
+            if(gameManager.instance.componentsCurrent < 10 + gameManager.instance.timeDamageIncrease)
             {
                 gameManager.instance.respawnButt.interactable = false;
             }
@@ -189,6 +192,10 @@ public class playerController : MonoBehaviour
 
     public void updateHPBar()
     {
+        if(HP < 0)
+        {
+            HP = 0;
+        }
         gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
         gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
         gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");
@@ -196,7 +203,6 @@ public class playerController : MonoBehaviour
 
     IEnumerator turnModel()
     {
-        //model.transform.LookAt(Camera.main.transform.position);
         Quaternion cameraMain = Camera.main.transform.rotation;
 
         cameraMain.x = 0;

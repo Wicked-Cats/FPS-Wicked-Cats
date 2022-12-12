@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
     public int HPLimit;
     public int damageLimit;
     public int speedLimit;
+    public int rangeUpLimit;
 
 
     [Header("------UI Components------")]
@@ -32,10 +33,14 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
+    [SerializeField] TextMeshProUGUI componentsDisplay;
+    public TextMeshProUGUI respawnButtonText;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
     [SerializeField] TextMeshProUGUI timerText;
+    private int damageIncreaseOffset;
+    public int timeDamageIncrease;
 
 
     [Header("------ Upgrades Stuff ------")]
@@ -86,22 +91,13 @@ public class gameManager : MonoBehaviour
 
         //Do nav mesh triangulation for spawning
         navMeshTri = NavMesh.CalculateTriangulation();
+
+        //Set up UI
+        updateComponentsDisplay();
     }
 
     void Update()
     {
-        //moved to a different location left for testing purposes.
-        //if (componentsTotal >= 30 && activeMenu == null)
-        //{
-        //    isPaused = !isPaused;
-        //    activeMenu = winMenu;
-        //    activeMenu.SetActive(isPaused);
-        //    pause();
-        //    objectivesSeen = false;
-        //    componentsTotal = 0;
-        //    componentsCurrent = 0;
-        //}
-
         // displays the objectives only at start.
         if (!objectivesSeen)
         {
@@ -121,6 +117,7 @@ public class gameManager : MonoBehaviour
             }
             else
             {
+                //win condition
                 timeCurrent = 0;
                 gameManager.instance.isPaused = !gameManager.instance.isPaused;
                 gameManager.instance.activeMenu = gameManager.instance.winMenu;
@@ -208,6 +205,11 @@ public class gameManager : MonoBehaviour
         {
             displaytime = 0;
         }
+        if(displaytime < 30)
+        {
+            spawnTimer = 1;
+            timerText.color = Color.red;
+        }
 
         float minutes = Mathf.FloorToInt(displaytime / 60);
         float seconds = Mathf.FloorToInt(displaytime % 60);
@@ -221,8 +223,17 @@ public class gameManager : MonoBehaviour
         waitingToTick = true;
 
         spawnOffset++;
+        damageIncreaseOffset++;
+        if(damageIncreaseOffset % 3 == 0)
+        {
+            timeDamageIncrease++;
+        }
         yield return new WaitForSeconds(diffTickTime);
         waitingToTick = false;
     }
 
+    public void updateComponentsDisplay()
+    {
+        componentsDisplay.text = "Components: " + componentsCurrent.ToString();
+    }
 }

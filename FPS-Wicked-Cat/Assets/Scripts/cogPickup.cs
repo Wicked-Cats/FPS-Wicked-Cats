@@ -48,7 +48,7 @@ public class cogPickup : MonoBehaviour
     {
         gameManager.instance.componentsCurrent += 1;
         gameManager.instance.componentsTotal += 1;
-
+        gameManager.instance.updateComponentsDisplay();
         Destroy(gameObject);
     }
 
