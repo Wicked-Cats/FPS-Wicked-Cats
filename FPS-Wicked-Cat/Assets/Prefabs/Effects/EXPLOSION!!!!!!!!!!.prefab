@@ -9834,9 +9834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9350ee74c5649e641a589579aecd2d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBackAmount: 10
+  pushBackAmount: 2
   push: 1
   despawnTimer: 0.5
+  isFireVaccum: 0
 --- !u!135 &5105922968952849643
 SphereCollider:
   m_ObjectHideFlags: 0
