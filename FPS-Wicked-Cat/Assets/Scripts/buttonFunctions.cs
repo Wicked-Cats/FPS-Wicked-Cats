@@ -24,10 +24,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
-        if (gameManager.instance.componentsCurrent >= 5)
+        if (gameManager.instance.componentsCurrent >= 10 + gameManager.instance.timeDamageIncrease)
         {
-            gameManager.instance.componentsCurrent -= 5;
-            gameManager.instance.componentsTotal -= 5;
+            gameManager.instance.componentsCurrent -= 10 + gameManager.instance.timeDamageIncrease;
+            gameManager.instance.componentsTotal -= 10 + gameManager.instance.timeDamageIncrease;
             gameManager.instance.playerScript.ResetPlayerHP();
             gameManager.instance.unPause();
             gameManager.instance.playerScript.SetPlayerPos();
