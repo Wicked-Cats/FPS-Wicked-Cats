@@ -14,8 +14,6 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
-    // vvv in TESTING phase vvv
-    //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;

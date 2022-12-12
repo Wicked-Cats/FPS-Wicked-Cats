@@ -7,20 +7,10 @@ public class explosion : MonoBehaviour
     [SerializeField] float pushBackAmount;
     [SerializeField] bool push;
     [SerializeField] float despawnTimer;
-    [SerializeField] bool isFireVaccum;
-    ParticleSystem mySystem;
 
 
     private void Start()
     {
-        mySystem = GetComponent<ParticleSystem>();
-        mySystem.Stop();
-        var main = mySystem.main;
-        if(isFireVaccum)
-        {
-        main.duration = 2f;
-        }
-        mySystem.Play();
         Destroy(gameObject, despawnTimer);
     }
 

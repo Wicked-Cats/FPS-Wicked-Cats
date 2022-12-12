@@ -63,13 +63,14 @@ public class playerController : MonoBehaviour
             anim.SetFloat("Speed", move.normalized.magnitude);
 
             pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+            //might keep for future use
             //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
             //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
             //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
             
             movement();
             //StartCoroutine(projectileShoot());
-            StartCoroutine(shoot());  //us for later 
+            StartCoroutine(shoot()); 
             if (!turning)
             {
                 StartCoroutine(turnModel());
@@ -107,8 +108,6 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
         {
-            //for testing purposes
-            //gameManager.instance.componentsTotal += 10;
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -201,7 +200,6 @@ public class playerController : MonoBehaviour
 
     IEnumerator turnModel()
     {
-        //model.transform.LookAt(Camera.main.transform.position);
         Quaternion cameraMain = Camera.main.transform.rotation;
 
         cameraMain.x = 0;

@@ -10,7 +10,7 @@ public class playerBullet : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int despawnTimer;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         if (CompareTag("Player Bullet"))
