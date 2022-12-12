@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class explosion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int pushBackAmount;
+    [SerializeField] bool push;
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.CompareTag("Player"))
+        {
+            if (push)
+            {
+                gameManager.instance.playerScript.PushBackInput((other.transform.position - transform.position) * pushBackAmount);
+            }
+            else
+            {
+                gameManager.instance.playerScript.PushBackInput((transform.position - other.transform.position) * pushBackAmount);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            }
+        }
+
     }
 }
