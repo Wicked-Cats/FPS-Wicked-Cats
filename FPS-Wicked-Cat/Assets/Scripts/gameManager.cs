@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
     public int HPLimit;
     public int damageLimit;
     public int speedLimit;
+    public int rangeUpLimit;
 
 
     [Header("------UI Components------")]

@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
+    [SerializeField] public int rangeUp;
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;    
@@ -125,7 +126,7 @@ public class playerController : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {

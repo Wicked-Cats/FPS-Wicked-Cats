@@ -4146,7 +4146,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -4373,7 +4373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Add Jump (3 components)
+  m_text: Range +1  (4 components)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7051,7 +7051,7 @@ GameObject:
   - component: {fileID: 2137562396298201552}
   - component: {fileID: 3055938117465048274}
   m_Layer: 5
-  m_Name: Add Jump
+  m_Name: Add Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7174,7 +7174,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3663768691493126675}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: addJump
+        m_MethodName: rangeUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8079,6 +8079,7 @@ MonoBehaviour:
   HPLimit: 100
   damageLimit: 100
   speedLimit: 100
+  rangeUpLimit: 100
   objectives: {fileID: 508640435}
   activeMenu: {fileID: 0}
   pauseMenu: {fileID: 4577726218536371646}
