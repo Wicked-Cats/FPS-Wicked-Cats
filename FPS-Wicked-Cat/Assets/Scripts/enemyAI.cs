@@ -46,7 +46,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (inSight)
+        if (inSight && HP > 0)
         {
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             agent.stoppingDistance = stopDistOrig;
