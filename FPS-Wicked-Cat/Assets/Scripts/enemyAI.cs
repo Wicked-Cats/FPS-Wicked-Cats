@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     public Color colorOrig;
 
     [Header("-- Enemy Stats")]
@@ -16,9 +17,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
 
     [Header("-- Enemy Vision --")]
-    private bool isPatrolling = true;
     [SerializeField] int lineOfSight;
     [SerializeField] float playerFaceSpeed;
+    [SerializeField] float extraShotRange;
     private float angleToPlayer;
     bool inSight;
 
@@ -29,15 +30,19 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] bool isShooting;
 
-    [Header("-- Patrol Points --")]
-    [SerializeField] GameObject[] patrolPoints;
-    private float stopDistOrig;
-    private int pointMovement;
-    bool isWaiting;
+    [Header("-- Item Drops --")]
+    [SerializeField] GameObject[] itemDrop;
+
+    [Header("-- Effects --")]
+    [SerializeField] GameObject explosion;
+    [SerializeField] GameObject fireVaccum;
+
 
     Vector3 playerDir;
+    private float stopDistOrig;
+    bool imDead;
 
-     // Start is called before the first frame update
+
     void Start()
     {
         HPOrig = HP;
@@ -45,105 +50,112 @@ public class enemyAI : MonoBehaviour, IDamage
         stopDistOrig = agent.stoppingDistance;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (inSight)
+        if (inSight && HP > 0)
         {
+            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
             agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
-        else
-        {
-            AiMovement();
-        }
-     
+
+
+
     }
 
-    void AiMovement()
-    {
-       
-        if (isPatrolling)
-        {
-            if (!isWaiting)
-            {
-                StartCoroutine(changePoint(patrolPoints[pointMovement]));
-
-                if (pointMovement != patrolPoints.Length - 1)
-                {
-                    pointMovement++;
-                }
-                else
-                {
-                    pointMovement = 0;
-                }
-            }
-        }
-     
-        
-    }
-
+    //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        agent.SetDestination(gameManager.instance.player.transform.position);
+        playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         RaycastHit see;
 
+        Debug.DrawRay(headPos.position, playerDir);
+
         if (Physics.Raycast(headPos.position, playerDir, out see))
         {
-            Debug.DrawRay(headPos.position, playerDir);
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-                transform.LookAt(gameManager.instance.player.transform.position);
-                if (!isShooting) // so if he sees us he starts to shoot
+
+                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
-            }
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                transform.LookAt(gameManager.instance.player.transform.position);
+
             }
+            FacePlayer();
+
         }
     }
 
+    void FacePlayer()
+    {
+        playerDir.y = 0;
+        Quaternion rot = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
+    }
 
     public void takeDamage(int damage)
     {
+        if(!imDead)
+        {
+        //damages enemy and gives feedback to player
         HP -= damage;
-        agent.SetDestination(gameManager.instance.player.transform.position);
-        transform.LookAt(gameManager.instance.player.transform.position);
-        
         StartCoroutine(dmgFlash());
 
+        //makes enemy go to players last position in response to the damage
+        FacePlayer();
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
+        //check if enemy has died
         if (HP <= 0)
         {
-            gameManager.instance.componentsCurrent += HPOrig;
-            gameManager.instance.componentsTotal += HPOrig;
-            Destroy(gameObject);
+            StartCoroutine(death());
+                imDead = true;
+
+            // item drop
+            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
+            cogPickup cog = drop.GetComponent<cogPickup>();
+            if (cog.isHealthPack)
+            {
+                Instantiate(drop, shootPos.transform.position, transform.rotation);
+            }
+            else
+            {
+                for (int i = 0; i < HPOrig; i++)
+                {
+                    Transform item = shootPos.transform;
+                    item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
+                    Instantiate(drop, item.position, transform.rotation);
+                }
+            }
+
+        }
         }
     }
 
+    //code for player entering enemies sense range
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             inSight = true;
-            isPatrolling= false;
         }
+
     }
 
+    //code for player leaving enemy sense range
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             inSight = false;
-            isPatrolling= true;
         }
     }
+
 
     IEnumerator shoot()
     {
@@ -153,20 +165,25 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    IEnumerator changePoint(GameObject point)
-    {
-        isWaiting = true;
-        agent.stoppingDistance = 0;
-        agent.SetDestination(point.transform.position);
-        yield return new WaitForSeconds(10f);
-        isWaiting = false;
-    }
-
     IEnumerator dmgFlash()
     {
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         model.material.color = colorOrig;
     }
 
+    IEnumerator death()
+    {
+        anim.SetBool("Death", true);
+        
+        // creates fire vaccum
+        Instantiate(fireVaccum, transform.position, transform.rotation);
+
+        yield return new WaitForSeconds(2f);
+        
+        // creates EXPLOSION!!!!!
+        Instantiate(explosion, transform.position, transform.rotation);
+        
+        Destroy(gameObject);
+    }
 }

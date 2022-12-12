@@ -8,34 +8,52 @@ public class playerController : MonoBehaviour
     [Header("----- Components ----")]
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject model;
+    [SerializeField] Animator anim;
 
     [Header("----- Player Stats ----")]
-    [Range(1, 10)] [SerializeField] int HP;
-    [Range(3, 20)] [SerializeField] int playerSpeed;
+    [Range(1, 10)] [SerializeField] public int HP;
+    [Range(3, 20)] [SerializeField] public int playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
-    [Range(1, 3)] [SerializeField] int jumpsMax;
+    [Range(1, 3)] [SerializeField] public int jumpsMax;
+    public int HPOrig;
+    [SerializeField] int pushBackTime;
 
     [Header("----- Gun Stats ----")]
-    [SerializeField] int shootDamage;
+    [SerializeField] public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
+    [SerializeField] public int damage;
+    [SerializeField] public int rangeUp;
+
+    [Header("----- Audio ----")]
+    [SerializeField] AudioSource aud;    
+    [SerializeField] AudioClip gunShot; 
+    [Range(0, 1)] [SerializeField] float gunShotVol;
+    [SerializeField] AudioClip[] audPlayerHurt;
+    [Range(0, 1)] [SerializeField] float playerHurtVol;
+    [SerializeField] AudioClip[] audPlayerJump;
+    [Range(0, 1)] [SerializeField] float playerJumpVol;
+    [SerializeField] AudioClip[] audPlayerSteps;
+    [Range(0, 1)] [SerializeField] float playerStepsVol;
 
     bool isShooting;
     int jumpedTimes;
     private Vector3 playerVelocity;
     Vector3 move;
-    int HPOrig;
+    Vector3 pushBack;
     int pS;
     bool turning;
-    
+    bool stepIsPlaying;
+    bool isSprinting;
 
     private void Start()
     {
         SetPlayerPos();
         HPOrig = HP;
+        updateHPBar();
         pS = playerSpeed;
     }
 
@@ -43,17 +61,23 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.isPaused)
         {
+            anim.SetFloat("Speed", move.normalized.magnitude);
+
+            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+            //might keep for future use
+            //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
+            //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+            
             movement();
-            StartCoroutine(projectileShoot());
-            //StartCoroutine(shoot());   us for later 
-            if(!turning)
+            //StartCoroutine(projectileShoot());
+            StartCoroutine(shoot()); 
+            if (!turning)
             {
                 StartCoroutine(turnModel());
             }
-            
 
         }
-
     }
 
     void movement()
@@ -72,10 +96,6 @@ public class playerController : MonoBehaviour
             playerSpeed = pS;
         }
             
-
-        
-
-
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
@@ -93,56 +113,57 @@ public class playerController : MonoBehaviour
             playerVelocity.y = jumpHeight;
         }
 
-        
-
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
 
     //for later development
-    //IEnumerator shoot()
+    IEnumerator shoot()
+    {
+        if (!isShooting && Input.GetButton("Shoot"))
+        {
+            isShooting = true;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
+            {
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
+                }
+            }
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
+    }
+
+    //IEnumerator projectileShoot()
     //{
     //    if (!isShooting && Input.GetButton("Shoot"))
     //    {
     //        isShooting = true;
-
-    //        RaycastHit hit;
-
-    //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-    //        {
-    //            if (hit.collider.GetComponent<IDamage>() != null)
-    //            {
-    //                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-    //            }
-    //        }
-
+    //        Instantiate(bullet, shootPos.position, transform.rotation);
     //        yield return new WaitForSeconds(shootRate);
     //        isShooting = false;
     //    }
     //}
 
-    IEnumerator projectileShoot()
-    {
-        if (!isShooting && Input.GetButton("Shoot"))
-        {
-            isShooting = true;
-            Instantiate(bullet, shootPos.position, transform.rotation);
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
-    }
-   
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        updateHPBar();
         StartCoroutine(playerDmgFlash());
 
         if (HP <= 0)
         {
+            gameManager.instance.isPaused = true;
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
+            gameManager.instance.respawnButtonText.text = "Respawn (-" + (10 + gameManager.instance.timeDamageIncrease) + " Components";
             gameManager.instance.activeMenu.SetActive(true);
-            if(gameManager.instance.componentsCurrent < 5)
+            if(gameManager.instance.componentsCurrent < 10 + gameManager.instance.timeDamageIncrease)
             {
                 gameManager.instance.respawnButt.interactable = false;
             }
@@ -157,12 +178,6 @@ public class playerController : MonoBehaviour
 
     }
 
-    //public void AddJump(int amount)
-    //{
-    //    jumpsMax += amount;
-    //    gameManager.instance.coins -= gameManager.instance.jumpCost;
-    //}
-
     public void SetPlayerPos()
     {
         controller.enabled = false;
@@ -175,9 +190,19 @@ public class playerController : MonoBehaviour
         HP = HPOrig;
     }
 
+    public void updateHPBar()
+    {
+        if(HP < 0)
+        {
+            HP = 0;
+        }
+        gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
+        gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
+        gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");
+    }
+
     IEnumerator turnModel()
     {
-        //model.transform.LookAt(Camera.main.transform.position);
         Quaternion cameraMain = Camera.main.transform.rotation;
 
         cameraMain.x = 0;
@@ -187,4 +212,42 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         turning = false;
     }
+
+
+
+    //void gunSelect()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+    //    {
+    //        selectedGun++;
+    //        ChangeGun();
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+    //    {
+    //        selectedGun--;
+    //        ChangeGun();
+    //    }
+    //}
+
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+        aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length - 1)], playerStepsVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+
+        }
+        stepIsPlaying = false;
+    }
+
+    public void PushBackInput(Vector3 dir)
+    {
+        pushBack = dir;
+    }
+
 }
