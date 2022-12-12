@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: a8b2a4195f52a0f45906018e24e8319a, type: 2}
---- !u!82 &85860680 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2416166737621080016, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-  m_PrefabInstance: {fileID: 1593312738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &403498717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -440,6 +435,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2843447507459732600, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843447507459732600, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843447507459732600, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6950623619115011088, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_Name
       value: New Player
@@ -447,23 +454,7 @@ PrefabInstance:
     - target: {fileID: 6950623619115011090, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: aud
       value: 
-      objectReference: {fileID: 85860680}
-    - target: {fileID: 6950623619115011090, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: gunShot
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6950623619115011090, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: playerStepsVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6950623619115011090, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: audPlayerSteps.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6950623619115011090, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
-      propertyPath: audPlayerSteps.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 3279a50c3f348714ba0433b67859d6a5, type: 3}
+      objectReference: {fileID: 2126249675}
     - target: {fileID: 6950623619115011091, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -681,3 +672,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ba14a38d7a978f40bff355482d8d817, type: 3}
+--- !u!82 &2126249675 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6203605120550879200, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+  m_PrefabInstance: {fileID: 1593312738}
+  m_PrefabAsset: {fileID: 0}
