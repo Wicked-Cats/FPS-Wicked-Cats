@@ -207,6 +207,7 @@ public class gameManager : MonoBehaviour
         if(displaytime < 30)
         {
             spawnTimer = 1;
+            timerText.color = Color.red;
         }
 
         float minutes = Mathf.FloorToInt(displaytime / 60);
