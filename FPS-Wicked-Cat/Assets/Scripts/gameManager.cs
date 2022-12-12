@@ -89,6 +89,9 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
 
+        //set enemy aim point 
+        enemyAimPoint = GameObject.FindGameObjectWithTag("Enemy Aim Point");
+
         //Do nav mesh triangulation for spawning
         navMeshTri = NavMesh.CalculateTriangulation();
 
