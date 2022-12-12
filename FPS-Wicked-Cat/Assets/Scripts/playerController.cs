@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 3)] [SerializeField] public int jumpsMax;
     public int HPOrig;
-
+    [SerializeField] int pushBackTime;
 
     [Header("----- Gun Stats ----")]
     [SerializeField] public int shootDamage;
@@ -42,6 +42,7 @@ public class playerController : MonoBehaviour
     int jumpedTimes;
     private Vector3 playerVelocity;
     Vector3 move;
+    Vector3 pushBack;
     int pS;
     bool turning;
     bool stepIsPlaying;
@@ -60,7 +61,11 @@ public class playerController : MonoBehaviour
         if (!gameManager.instance.isPaused)
         {
             anim.SetFloat("Speed", move.normalized.magnitude);
-
+            
+            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
+            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+            
             movement();
             //StartCoroutine(projectileShoot());
             StartCoroutine(shoot());  //us for later 
@@ -232,6 +237,11 @@ public class playerController : MonoBehaviour
 
         }
         stepIsPlaying = false;
+    }
+
+    public void PushBackInput(Vector3 dir)
+    {
+        pushBack = dir;
     }
 
 }
