@@ -803,17 +803,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: spawnTimer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
       propertyPath: enemyAimPoint
       value: 
       objectReference: {fileID: 165459502}
-    - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: respawnButtonText
-      value: 
-      objectReference: {fileID: 2090283864}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
 --- !u!43 &336801788
@@ -7572,17 +7564,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &2090283864 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1456367859, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-  m_PrefabInstance: {fileID: 242769629}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &2100137383
 Mesh:
   m_ObjectHideFlags: 0

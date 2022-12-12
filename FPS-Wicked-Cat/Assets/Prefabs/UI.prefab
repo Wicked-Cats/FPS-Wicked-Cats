@@ -8082,7 +8082,8 @@ MonoBehaviour:
   playerHPCurrent: {fileID: 6463230747529337237}
   playerHPMax: {fileID: 3835017861807718352}
   componentsDisplay: {fileID: 2935375333897442380}
-  timeCurrent: 35
+  respawnButtonText: {fileID: 1456367859}
+  timeCurrent: 300
   timerText: {fileID: 6238504839497357681}
   timeDamageIncrease: 0
   upgradesComponentCurrent: {fileID: 2869389895284597361}
@@ -8091,7 +8092,7 @@ MonoBehaviour:
   dmgButton: {fileID: 5078961630625367838}
   HPButton: {fileID: 7685848371449662894}
   speedButton: {fileID: 4701175054409826616}
-  spawnTimer: 100
+  spawnTimer: 3
   enemiesOptions:
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
