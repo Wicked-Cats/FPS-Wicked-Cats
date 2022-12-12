@@ -17,7 +17,7 @@ public class enemyBullet : MonoBehaviour
         {
             rb.velocity = Vector3.Normalize(gameManager.instance.enemyAimPoint.transform.position -  transform.position) * speed;
         }
-
+        damage += gameManager.instance.timeDamageIncrease;
         Destroy(gameObject, despawnTimer);
     }
 

@@ -36,6 +36,8 @@ public class gameManager : MonoBehaviour
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
     [SerializeField] TextMeshProUGUI timerText;
+    private int damageIncreaseOffset;
+    public int timeDamageIncrease;
 
 
     [Header("------ Upgrades Stuff ------")]
@@ -208,6 +210,10 @@ public class gameManager : MonoBehaviour
         {
             displaytime = 0;
         }
+        if(displaytime < 30)
+        {
+            spawnTimer = 1;
+        }
 
         float minutes = Mathf.FloorToInt(displaytime / 60);
         float seconds = Mathf.FloorToInt(displaytime % 60);
@@ -221,6 +227,11 @@ public class gameManager : MonoBehaviour
         waitingToTick = true;
 
         spawnOffset++;
+        damageIncreaseOffset++;
+        if(damageIncreaseOffset % 3 == 0)
+        {
+            timeDamageIncrease++;
+        }
         yield return new WaitForSeconds(diffTickTime);
         waitingToTick = false;
     }
