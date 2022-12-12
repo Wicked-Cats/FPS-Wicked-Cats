@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using TMPro;
 
 public class gameManager : MonoBehaviour
@@ -11,12 +12,14 @@ public class gameManager : MonoBehaviour
     [Header("------Player Components------")]
     public GameObject player;
     public playerController playerScript;
+    [SerializeField] public GameObject enemyAimPoint;
 
     [Header("------ Player Upgrades------")]
     public int jumpsLimit;
     public int HPLimit;
     public int damageLimit;
     public int speedLimit;
+    public int rangeUpLimit;
 
 
     [Header("------UI Components------")]
@@ -30,6 +33,14 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
+    [SerializeField] TextMeshProUGUI componentsDisplay;
+
+    [Header("------ Timer ------")]
+    [SerializeField] float timeCurrent;
+    [SerializeField] TextMeshProUGUI timerText;
+    private int damageIncreaseOffset;
+    public int timeDamageIncrease;
+
 
     [Header("------ Upgrades Stuff ------")]
     public TextMeshProUGUI upgradesComponentCurrent;
@@ -39,22 +50,25 @@ public class gameManager : MonoBehaviour
     public Button HPButton;
     public Button speedButton;
 
-    [Header("------Enemies------")]
-    [SerializeField] GameObject flyer;
-    [SerializeField] GameObject tank;
-    [SerializeField] GameObject speedy;
-
-    [Header("-- Spwaners --")]
-    [SerializeField] GameObject flyerSpawn1;
-    [SerializeField] GameObject flyerSpawn2;
+    [Header("------ Enemy Spawning ------")]
+    [Range(1, 100)][SerializeField] float spawnTimer;
+    [SerializeField] GameObject[] enemiesOptions;
+    private NavMeshTriangulation navMeshTri;
+    private GameObject enemyToSpawn;
+    private float diffTickTime;
+    private int spawnOffset;
+    private bool waitingToTick;
 
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
-    bool isSpawningFly;
+    bool isSpawning;
     public int componentsCurrent;
     public int componentsTotal;
     public bool objectivesSeen;
+    public bool forceFieldActive;
+    public GameObject forceField;
+    public GameObject forceFieldMaker;
 
 
     void Awake()
@@ -67,25 +81,22 @@ public class gameManager : MonoBehaviour
 
         timeScaleBase = Time.timeScale;
 
+        diffTickTime = timeCurrent / (enemiesOptions.Length - 1);
+        spawnOffset = 0;
+
         //set and move player to spawn
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
+
+        //Do nav mesh triangulation for spawning
+        navMeshTri = NavMesh.CalculateTriangulation();
+
+        //Set up UI
+        updateComponentsDisplay();
     }
 
     void Update()
     {
-        //moved to a different location left for testing purposes.
-        //if (componentsTotal >= 30 && activeMenu == null)
-        //{
-        //    isPaused = !isPaused;
-        //    activeMenu = winMenu;
-        //    activeMenu.SetActive(isPaused);
-        //    pause();
-        //    objectivesSeen = false;
-        //    componentsTotal = 0;
-        //    componentsCurrent = 0;
-        //}
-
         // displays the objectives only at start.
         if (!objectivesSeen)
         {
@@ -94,6 +105,33 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(isPaused);
             pause();
             objectivesSeen = true;
+        }
+
+        //timer ticking
+        if (!isPaused)
+        {
+            if (timeCurrent > 0)
+            {
+                timeCurrent -= Time.deltaTime;
+            }
+            else
+            {
+                //win condition
+                timeCurrent = 0;
+                gameManager.instance.isPaused = !gameManager.instance.isPaused;
+                gameManager.instance.activeMenu = gameManager.instance.winMenu;
+                gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
+                gameManager.instance.pause();
+                gameManager.instance.componentsTotal = 0;
+                gameManager.instance.componentsCurrent = 0;
+            }
+
+            timerUpdate(timeCurrent);
+        }
+
+        if(!waitingToTick)
+        {
+            StartCoroutine(difficultyTick());
         }
 
         //opens pause menu
@@ -119,8 +157,10 @@ public class gameManager : MonoBehaviour
             unPause();
         }
 
-        //Work in progress or will be completely overhauled in future
-        //StartCoroutine(spawnFly());
+        if (!isSpawning)
+        {
+            StartCoroutine(spawnEnemies());
+        }
 
     }
 
@@ -140,24 +180,59 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    //creates flying enemies at a designated spawner
-    //may be changed later or completely phased out
-    IEnumerator spawnFly()
+    IEnumerator spawnEnemies()
     {
-        if (!isSpawningFly)
+        isSpawning = true;
+
+        enemyToSpawn = enemiesOptions[Random.Range(0, spawnOffset)];
+
+        int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(navMeshTri.vertices[possibleLocation], out hit, 2f, 1))
         {
-            isSpawningFly = true;
-            float num = Random.Range(0, 99);
-            if (num < 50)
-            {
-                Instantiate(flyer, flyerSpawn1.transform.position, flyerSpawn1.transform.rotation);
-            }
-            else
-            {
-                Instantiate(flyer, flyerSpawn2.transform.position, flyerSpawn2.transform.rotation);
-            }
-            yield return new WaitForSeconds(10f);
-            isSpawningFly = false;
+            Instantiate(enemyToSpawn, hit.position, this.transform.rotation);
         }
+
+        yield return new WaitForSeconds(spawnTimer);
+        isSpawning = false;
+    }
+
+    void timerUpdate(float displaytime)
+    {
+        if (displaytime < 0)
+        {
+            displaytime = 0;
+        }
+        if(displaytime < 30)
+        {
+            spawnTimer = 1;
+            timerText.color = Color.red;
+        }
+
+        float minutes = Mathf.FloorToInt(displaytime / 60);
+        float seconds = Mathf.FloorToInt(displaytime % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+    }
+
+    IEnumerator difficultyTick()
+    {
+        waitingToTick = true;
+
+        spawnOffset++;
+        damageIncreaseOffset++;
+        if(damageIncreaseOffset % 3 == 0)
+        {
+            timeDamageIncrease++;
+        }
+        yield return new WaitForSeconds(diffTickTime);
+        waitingToTick = false;
+    }
+
+    public void updateComponentsDisplay()
+    {
+        componentsDisplay.text = "Components: " + componentsCurrent.ToString();
     }
 }

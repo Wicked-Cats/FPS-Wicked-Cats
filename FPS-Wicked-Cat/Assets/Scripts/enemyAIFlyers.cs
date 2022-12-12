@@ -14,8 +14,6 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
-    // vvv in TESTING phase vvv
-    //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;
@@ -35,6 +33,10 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     private float stopDistOrig;
     private int pointMovement;
     bool isWaiting;
+
+    [Header("-- Item Drops --")]
+    [SerializeField] GameObject[] itemDrop;
+
 
     Vector3 playerDir;
 
@@ -115,28 +117,35 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        //damages enemy and gives feedback to player
         HP -= damage;
-        agent.SetDestination(gameManager.instance.player.transform.position);
-
         StartCoroutine(dmgFlash());
 
+        //makes enemy go to players last position in response to the damage
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
+        //check if enemy has died
         if (HP <= 0)
         {
-            //add components
-            gameManager.instance.componentsCurrent += HPOrig;
-            gameManager.instance.componentsTotal += HPOrig;
+
+            // item drop
+            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
+            cogPickup cog = drop.GetComponent<cogPickup>();
+            if (cog.isHealthPack)
+            {
+                Instantiate(drop, shootPos.transform.position, transform.rotation);
+            }
+            else
+            {
+                for (int i = 0; i < HPOrig; i++)
+                {
+                    Transform item = shootPos.transform;
+                    item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
+                    Instantiate(drop, item.position, transform.rotation);
+                }
+            }
 
             Destroy(gameObject);
-            //game win condition
-            if (gameManager.instance.componentsTotal >= 30)
-            {
-                gameManager.instance.isPaused = !gameManager.instance.isPaused;
-                gameManager.instance.activeMenu = gameManager.instance.winMenu;
-                gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
-                gameManager.instance.pause();
-                gameManager.instance.componentsTotal = 0;
-                gameManager.instance.componentsCurrent = 0;
-            }
         }
     }
 

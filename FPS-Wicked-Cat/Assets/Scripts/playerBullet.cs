@@ -10,13 +10,16 @@ public class playerBullet : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int despawnTimer;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        rb.velocity = Camera.main.transform.forward * speed;
-        damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
-
+        if (CompareTag("Player Bullet"))
+        {
+            rb.velocity = Camera.main.transform.forward * speed;
+            damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
+        }
         Destroy(gameObject, despawnTimer);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,8 +33,15 @@ public class playerBullet : MonoBehaviour
                     other.GetComponent<IDamage>().takeDamage(damage);
                 }
             }
-        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        else if(other is SphereCollider)
+        {
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
