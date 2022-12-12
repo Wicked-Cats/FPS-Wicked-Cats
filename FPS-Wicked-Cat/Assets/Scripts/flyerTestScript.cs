@@ -21,10 +21,8 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
-    private float angleToPlayer;
     bool inSight;
 
-    Vector3 playerDir;
 
     void Start()
     {

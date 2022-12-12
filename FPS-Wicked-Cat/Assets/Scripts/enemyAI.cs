@@ -19,6 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
     [SerializeField] float playerFaceSpeed;
+    [SerializeField] float extraShotRange;
     private float angleToPlayer;
     bool inSight;
 
@@ -31,10 +32,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
-    
+
 
     Vector3 playerDir;
     private float stopDistOrig;
+    bool imDead;
 
 
     void Start()
@@ -73,17 +75,14 @@ public class enemyAI : MonoBehaviour, IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
 
-                if (!isShooting && angleToPlayer <= lineOfSight / 3) // so if he sees us and we are mostly in front of him he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
 
-                //turns enemy towards player if he gets to close
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FacePlayer();
-                }
+
             }
+            FacePlayer();
 
         }
     }
@@ -97,6 +96,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        if(!imDead)
+        {
         //damages enemy and gives feedback to player
         HP -= damage;
         StartCoroutine(dmgFlash());
@@ -109,9 +110,10 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StartCoroutine(death());
+                imDead = true;
 
             // item drop
-            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length-1)];
+            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
             if (cog.isHealthPack)
             {
@@ -122,11 +124,12 @@ public class enemyAI : MonoBehaviour, IDamage
                 for (int i = 0; i < HPOrig; i++)
                 {
                     Transform item = shootPos.transform;
-                    item.position = new Vector3(item.position.x +Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
+                    item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
 
+        }
         }
     }
 
@@ -145,7 +148,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            inSight = false; 
+            inSight = false;
         }
     }
 
@@ -167,7 +170,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator death()
     {
-        anim.SetBool("Death", true); 
+        anim.SetBool("Death", true);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
