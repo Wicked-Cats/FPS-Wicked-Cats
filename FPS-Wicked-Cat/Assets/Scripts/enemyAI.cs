@@ -33,6 +33,10 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
 
+    [Header("-- Effects --")]
+    [SerializeField] GameObject explosion;
+    [SerializeField] GameObject fireVaccum;
+
 
     Vector3 playerDir;
     private float stopDistOrig;
@@ -171,7 +175,15 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator death()
     {
         anim.SetBool("Death", true);
+        
+        // creates fire vaccum
+        Instantiate(fireVaccum, transform.position, transform.rotation);
+
         yield return new WaitForSeconds(2f);
+        
+        // creates EXPLOSION!!!!!
+        Instantiate(explosion, transform.position, transform.rotation);
+        
         Destroy(gameObject);
     }
 }

@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class explosion : MonoBehaviour
 {
-    [SerializeField] int pushBackAmount;
+    [SerializeField] float pushBackAmount;
     [SerializeField] bool push;
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] float despawnTimer;
+
+    private void Start()
+    {
+        Destroy(gameObject, despawnTimer);
+    }
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
