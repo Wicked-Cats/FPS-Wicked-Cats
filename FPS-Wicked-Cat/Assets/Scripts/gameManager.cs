@@ -34,6 +34,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     [SerializeField] TextMeshProUGUI componentsDisplay;
+    public TextMeshProUGUI respawnButtonText;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;

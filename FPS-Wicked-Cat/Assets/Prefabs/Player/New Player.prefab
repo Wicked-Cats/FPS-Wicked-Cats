@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 915135783}
   m_Layer: 3
   m_Name: Enemy AimPoint
-  m_TagString: Untagged
+  m_TagString: Enemy Aim Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   bullet: {fileID: 4203415293032977398, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}
   shootPos: {fileID: 718580905286881748}
   damage: 0
+  rangeUp: 0
   aud: {fileID: 0}
   gunShot: {fileID: 0}
   gunShotVol: 0
@@ -170,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.25
+      value: 0.284
       objectReference: {fileID: 0}
     - target: {fileID: 7605870437519814019, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_LocalRotation.w
