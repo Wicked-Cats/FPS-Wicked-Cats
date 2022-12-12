@@ -61,10 +61,11 @@ public class playerController : MonoBehaviour
         if (!gameManager.instance.isPaused)
         {
             anim.SetFloat("Speed", move.normalized.magnitude);
-            
-            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
-            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
-            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+
+            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+            //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
+            //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
             
             movement();
             //StartCoroutine(projectileShoot());
@@ -113,7 +114,7 @@ public class playerController : MonoBehaviour
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
 
     //for later development
