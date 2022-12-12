@@ -31,7 +31,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
-    
+
 
     Vector3 playerDir;
     private float stopDistOrig;
@@ -78,12 +78,9 @@ public class enemyAI : MonoBehaviour, IDamage
                     StartCoroutine(shoot());
                 }
 
-                //turns enemy towards player if he gets to close
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FacePlayer();
-                }
+
             }
+            FacePlayer();
 
         }
     }
@@ -111,7 +108,7 @@ public class enemyAI : MonoBehaviour, IDamage
             StartCoroutine(death());
 
             // item drop
-            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length-1)];
+            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
             if (cog.isHealthPack)
             {
@@ -122,7 +119,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 for (int i = 0; i < HPOrig; i++)
                 {
                     Transform item = shootPos.transform;
-                    item.position = new Vector3(item.position.x +Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
+                    item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
@@ -145,7 +142,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            inSight = false; 
+            inSight = false;
         }
     }
 
@@ -167,7 +164,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator death()
     {
-        anim.SetBool("Death", true); 
+        anim.SetBool("Death", true);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
