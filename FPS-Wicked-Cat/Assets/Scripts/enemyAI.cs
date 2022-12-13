@@ -58,9 +58,6 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
-
-
-
     }
 
     //checks if player is in enemies view and start shooting when 

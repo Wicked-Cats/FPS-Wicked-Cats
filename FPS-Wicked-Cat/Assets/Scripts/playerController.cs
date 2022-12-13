@@ -20,6 +20,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int pushBackTime;
 
     [Header("----- Gun Stats ----")]
+    [SerializeField] List<gunObjects> gunList = new List<gunObjects>();
     [SerializeField] public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
@@ -27,6 +28,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
     [SerializeField] public int rangeUp;
+    [SerializeField] GameObject gunModel;
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;    
@@ -41,6 +43,7 @@ public class playerController : MonoBehaviour
 
     bool isShooting;
     int jumpedTimes;
+    int selectedGun;
     private Vector3 playerVelocity;
     Vector3 move;
     Vector3 pushBack;
@@ -124,13 +127,24 @@ public class playerController : MonoBehaviour
         {
             isShooting = true;
 
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
+            // if gun is not a raycast weapon...
+            if (gunList[selectedGun].bulletModel != null)
             {
-                if (hit.collider.GetComponent<IDamage>() != null)
+                // ... instantiate bullet from current weapon
+                bullet = gunList[selectedGun].bulletModel;
+                Instantiate(bullet, shootPos.position, transform.rotation);
+            }
+            // if gun is a raycast weapon
+            else
+            {
+                RaycastHit hit;
+
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
                 {
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
+                    }
                 }
             }
 
@@ -138,17 +152,6 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
     }
-
-    //IEnumerator projectileShoot()
-    //{
-    //    if (!isShooting && Input.GetButton("Shoot"))
-    //    {
-    //        isShooting = true;
-    //        Instantiate(bullet, shootPos.position, transform.rotation);
-    //        yield return new WaitForSeconds(shootRate);
-    //        isShooting = false;
-    //    }
-    //}
 
     public void takeDamage(int dmg)
     {
@@ -248,4 +251,23 @@ public class playerController : MonoBehaviour
         pushBack = dir;
     }
 
+    public void gunPickup(gunObjects gunObject)
+    {
+        shootDamage = gunObject.shootDamage;
+        shootRate = gunObject.shootRate;
+        shootDist = gunObject.shootDistance;
+
+        // take model from pickup and put it on player
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunObject.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunObject.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        // take bullet model from pickup and prepare it for instancing
+
+        gunList.Add(gunObject);
+
+        if (gunList.Count > 0)
+        {
+            selectedGun = gunList.Count - 1;
+        }
+    }
 }

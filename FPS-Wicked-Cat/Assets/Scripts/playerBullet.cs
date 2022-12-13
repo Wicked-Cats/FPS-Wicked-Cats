@@ -19,7 +19,6 @@ public class playerBullet : MonoBehaviour
             damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
         }
         Destroy(gameObject, despawnTimer);
-
     }
 
     private void OnTriggerEnter(Collider other)
