@@ -35,6 +35,10 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerHPMax;
     [SerializeField] TextMeshProUGUI componentsDisplay;
     public TextMeshProUGUI respawnButtonText;
+    public TextMeshProUGUI rangeButtonText;
+    public TextMeshProUGUI damageButtonText;
+    public TextMeshProUGUI HPButtonText;
+    public TextMeshProUGUI speedButtonText;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
@@ -50,6 +54,12 @@ public class gameManager : MonoBehaviour
     public Button dmgButton;
     public Button HPButton;
     public Button speedButton;
+    public Button rangeButton;
+    public int respawnCost;
+    public int damageCost;
+    public int HPCost;
+    public int rangeCost;
+    public int speedCost;
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)][SerializeField] float spawnTimer;

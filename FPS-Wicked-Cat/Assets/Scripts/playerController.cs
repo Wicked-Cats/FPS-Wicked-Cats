@@ -161,7 +161,7 @@ public class playerController : MonoBehaviour
             gameManager.instance.isPaused = !gameManager.instance.isPaused;
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
-            gameManager.instance.respawnButtonText.text = "Respawn (-" + (10 + gameManager.instance.timeDamageIncrease) + " Components";
+            gameManager.instance.respawnButtonText.text = "Respawn (-" + (gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease) + " Components";
             gameManager.instance.activeMenu.SetActive(true);
             if(gameManager.instance.componentsCurrent < 10 + gameManager.instance.timeDamageIncrease)
             {
