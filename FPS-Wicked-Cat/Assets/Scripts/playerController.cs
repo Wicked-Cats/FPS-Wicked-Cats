@@ -29,8 +29,8 @@ public class playerController : MonoBehaviour
     [SerializeField] public int rangeUp;
 
     [Header("----- Audio ----")]
-    [SerializeField] AudioSource aud;    
-    [SerializeField] AudioClip gunShot; 
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip gunShot;
     [Range(0, 1)] [SerializeField] float gunShotVol;
     [SerializeField] AudioClip[] audPlayerHurt;
     [Range(0, 1)] [SerializeField] float playerHurtVol;
@@ -68,10 +68,16 @@ public class playerController : MonoBehaviour
             //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
             //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
             //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
-            
+
             movement();
+
+            if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
+            {
+                StartCoroutine(playSteps());
+            }
+
             //StartCoroutine(projectileShoot());
-            StartCoroutine(shoot()); 
+            StartCoroutine(shoot());
             if (!turning)
             {
                 StartCoroutine(turnModel());
@@ -82,28 +88,33 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        if(Input.GetButton("Sprint"))
+        if (Input.GetButtonDown("Sprint"))
         {
             playerSpeed = pS * 2;
+            isSprinting = true;
 
-            if(playerSpeed > 25)
+            if (playerSpeed > 25)
             {
                 playerSpeed = 25;
             }
+            anim.SetBool("isSprinting", true);
         }
-        else
+        if (Input.GetButtonUp("Sprint"))
         {
             playerSpeed = pS;
+            isSprinting = false;
+
+            anim.SetBool("isSprinting", false);
         }
-            
+
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
             playerVelocity.y = 0f;
         }
 
-        move = transform.right * Input.GetAxis("Horizontal") +  
-               transform.forward * Input.GetAxis("Vertical");  
+        move = transform.right * Input.GetAxis("Horizontal") +
+               transform.forward * Input.GetAxis("Vertical");
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
@@ -111,7 +122,10 @@ public class playerController : MonoBehaviour
         {
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
+            aud.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], playerJumpVol);
+
         }
+
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
@@ -163,7 +177,7 @@ public class playerController : MonoBehaviour
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
             gameManager.instance.respawnButtonText.text = "Respawn (-" + (gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease) + " Components";
             gameManager.instance.activeMenu.SetActive(true);
-            if(gameManager.instance.componentsCurrent < 10 + gameManager.instance.timeDamageIncrease)
+            if (gameManager.instance.componentsCurrent < 10 + gameManager.instance.timeDamageIncrease)
             {
                 gameManager.instance.respawnButt.interactable = false;
             }
@@ -192,11 +206,11 @@ public class playerController : MonoBehaviour
 
     public void updateHPBar()
     {
-        if(HP < 0)
+        if (HP < 0)
         {
             HP = 0;
         }
-        gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
         gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
         gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");
     }
@@ -235,11 +249,11 @@ public class playerController : MonoBehaviour
         aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length - 1)], playerStepsVol);
         if (isSprinting)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds((float)pS / 20f);
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds((float)pS / 10f);
 
         }
         stepIsPlaying = false;
