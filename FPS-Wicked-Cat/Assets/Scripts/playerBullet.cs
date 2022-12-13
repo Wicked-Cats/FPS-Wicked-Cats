@@ -9,6 +9,7 @@ public class playerBullet : MonoBehaviour
     public int damage;
     [SerializeField] int speed;
     [SerializeField] int despawnTimer;
+    [SerializeField] GameObject explosion;
 
 
     void Start()
@@ -31,7 +32,7 @@ public class playerBullet : MonoBehaviour
         }
         else if (other is MeshCollider)
         {
-
+            Instantiate(explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

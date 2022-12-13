@@ -544,6 +544,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2289691431639891567, guid: 6ba14a38d7a978f40bff355482d8d817, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289691431639891567, guid: 6ba14a38d7a978f40bff355482d8d817, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ba14a38d7a978f40bff355482d8d817, type: 3}
 --- !u!1 &1670102345 stripped
@@ -605,18 +613,6 @@ PrefabInstance:
     - target: {fileID: 2294147116915201204, guid: 00314e3a4c51ea84eaa8dfe68c4c3ba3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3740525713480854181, guid: 00314e3a4c51ea84eaa8dfe68c4c3ba3, type: 3}
-      propertyPath: maxHeight
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3740525713480854181, guid: 00314e3a4c51ea84eaa8dfe68c4c3ba3, type: 3}
-      propertyPath: hoverSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3740525713480854181, guid: 00314e3a4c51ea84eaa8dfe68c4c3ba3, type: 3}
-      propertyPath: hoverAmount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00314e3a4c51ea84eaa8dfe68c4c3ba3, type: 3}

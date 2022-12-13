@@ -16,7 +16,7 @@ public class explosion : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             if (push)
             {
@@ -25,9 +25,7 @@ public class explosion : MonoBehaviour
             else
             {
                 gameManager.instance.playerScript.PushBackInput((transform.position - other.transform.position) * pushBackAmount);
-
             }
         }
-
     }
 }
