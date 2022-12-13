@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9db227a83ab374daf27eed1f078730, type: 3}
+  m_Name: BazookaGunStats
+  m_EditorClassIdentifier: 
+  gunName: Bazooka
+  shootDamage: 5
+  shootRate: 1
+  shootDistance: 25
+  bulletModel: {fileID: 8068006878290532875, guid: 2ee9eb5002687a7438ce7c2d9fa77e65, type: 3}
+  gunModel: {fileID: 919132149155446097, guid: 4311dac403f1e004db14392e31c92415, type: 3}
+  gunShot: {fileID: 8300000, guid: 40e71b0f7bd610849b40f150553f4702, type: 3}

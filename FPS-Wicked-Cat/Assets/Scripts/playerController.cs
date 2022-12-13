@@ -20,6 +20,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int pushBackTime;
 
     [Header("----- Gun Stats ----")]
+    [SerializeField] List<gunObjects> gunList = new List<gunObjects>();
     [SerializeField] public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
@@ -27,10 +28,11 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
     [SerializeField] public int rangeUp;
+    [SerializeField] GameObject gunModel;
 
     [Header("----- Audio ----")]
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip gunShot;
+    [SerializeField] AudioSource aud;    
+    [SerializeField] AudioClip gunShot; 
     [Range(0, 1)] [SerializeField] float gunShotVol;
     [SerializeField] AudioClip[] audPlayerHurt;
     [Range(0, 1)] [SerializeField] float playerHurtVol;
@@ -41,6 +43,7 @@ public class playerController : MonoBehaviour
 
     bool isShooting;
     int jumpedTimes;
+    int selectedGun;
     private Vector3 playerVelocity;
     Vector3 move;
     Vector3 pushBack;
@@ -68,53 +71,45 @@ public class playerController : MonoBehaviour
             //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
             //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
             //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
-
+            
             movement();
-
-            if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
+            //StartCoroutine(projectileShoot());
+            if (gunList.Count > 0)
             {
-                StartCoroutine(playSteps());
+                StartCoroutine(shoot());
             }
 
-            //StartCoroutine(projectileShoot());
-            StartCoroutine(shoot());
             if (!turning)
             {
                 StartCoroutine(turnModel());
             }
-
         }
     }
 
     void movement()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if(Input.GetButton("Sprint"))
         {
             playerSpeed = pS * 2;
-            isSprinting = true;
 
-            if (playerSpeed > 25)
+            if(playerSpeed > 25)
             {
                 playerSpeed = 25;
             }
-            anim.SetBool("isSprinting", true);
         }
-        if (Input.GetButtonUp("Sprint"))
+        else
         {
             playerSpeed = pS;
-            isSprinting = false;
-
-            anim.SetBool("isSprinting", false);
         }
-
+            
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpedTimes = 0;
             playerVelocity.y = 0f;
         }
 
-        move = transform.right * Input.GetAxis("Horizontal") +
-               transform.forward * Input.GetAxis("Vertical");
+        move = transform.right * Input.GetAxis("Horizontal") +  
+               transform.forward * Input.GetAxis("Vertical");  
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
@@ -122,10 +117,7 @@ public class playerController : MonoBehaviour
         {
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
-            aud.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], playerJumpVol);
-
         }
-
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
@@ -138,13 +130,24 @@ public class playerController : MonoBehaviour
         {
             isShooting = true;
 
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
+            // if gun is not a raycast weapon...
+            if (gunList[selectedGun].bulletModel != null)
             {
-                if (hit.collider.GetComponent<IDamage>() != null)
+                // ... instantiate bullet from current weapon
+                bullet = gunList[selectedGun].bulletModel;
+                Instantiate(bullet, shootPos.position, transform.rotation);
+            }
+            // if gun is a raycast weapon
+            else
+            {
+                RaycastHit hit;
+
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
                 {
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
+                    }
                 }
             }
 
@@ -152,17 +155,6 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
     }
-
-    //IEnumerator projectileShoot()
-    //{
-    //    if (!isShooting && Input.GetButton("Shoot"))
-    //    {
-    //        isShooting = true;
-    //        Instantiate(bullet, shootPos.position, transform.rotation);
-    //        yield return new WaitForSeconds(shootRate);
-    //        isShooting = false;
-    //    }
-    //}
 
     public void takeDamage(int dmg)
     {
@@ -172,12 +164,10 @@ public class playerController : MonoBehaviour
 
         if (HP <= 0)
         {
-            gameManager.instance.isPaused = !gameManager.instance.isPaused;
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
-            gameManager.instance.respawnButtonText.text = "Respawn (-" + (gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease) + " Components";
             gameManager.instance.activeMenu.SetActive(true);
-            if (gameManager.instance.componentsCurrent < gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease)
+            if(gameManager.instance.componentsCurrent < 5)
             {
                 gameManager.instance.respawnButt.interactable = false;
             }
@@ -206,11 +196,11 @@ public class playerController : MonoBehaviour
 
     public void updateHPBar()
     {
-        if (HP < 0)
+        if(HP < 0)
         {
             HP = 0;
         }
-        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+        gameManager.instance.playerHPBar.fillAmount = (float)HP/ (float)HPOrig;
         gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
         gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");
     }
@@ -249,11 +239,11 @@ public class playerController : MonoBehaviour
         aud.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length - 1)], playerStepsVol);
         if (isSprinting)
         {
-            yield return new WaitForSeconds((float)pS / 20f);
+            yield return new WaitForSeconds(0.3f);
         }
         else
         {
-            yield return new WaitForSeconds((float)pS / 10f);
+            yield return new WaitForSeconds(0.5f);
 
         }
         stepIsPlaying = false;
@@ -264,4 +254,21 @@ public class playerController : MonoBehaviour
         pushBack = dir;
     }
 
+    public void gunPickup(gunObjects gunObject)
+    {
+        shootDamage = gunObject.shootDamage;
+        shootRate = gunObject.shootRate;
+        shootDist = gunObject.shootDistance;
+
+        // take model from pickup and put it on player
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunObject.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunObject.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        gunList.Add(gunObject);
+
+        if (gunList.Count > 0)
+        {
+            selectedGun = gunList.Count - 1;
+        }
+    }
 }

@@ -25,9 +25,7 @@ public class explosion : MonoBehaviour
             else
             {
                 gameManager.instance.playerScript.PushBackInput((transform.position - other.transform.position) * pushBackAmount);
-
             }
         }
-
     }
 }

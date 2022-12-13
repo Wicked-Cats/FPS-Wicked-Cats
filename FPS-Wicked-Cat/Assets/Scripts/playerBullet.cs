@@ -9,38 +9,30 @@ public class playerBullet : MonoBehaviour
     public int damage;
     [SerializeField] int speed;
     [SerializeField] int despawnTimer;
+    [SerializeField] GameObject explosion;
 
 
     void Start()
     {
-        if (CompareTag("Player Bullet"))
-        {
-            rb.velocity = Camera.main.transform.forward * speed;
-            damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
-        }
+        rb.velocity = Camera.main.transform.forward * speed;
+        transform.rotation = Camera.main.transform.rotation;
+        damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
         Destroy(gameObject, despawnTimer);
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is CapsuleCollider)
+        if (other.CompareTag("Enemy") && other is CapsuleCollider)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.GetComponent<IDamage>() != null)
             {
-                if (other.GetComponent<IDamage>() != null)
-                {
-                    other.GetComponent<IDamage>().takeDamage(damage);
-                }
+                other.GetComponent<IDamage>().takeDamage(damage);
             }
-
             Destroy(gameObject);
         }
-        else if(other is SphereCollider)
+        else if (other is MeshCollider)
         {
-        }
-        else
-        {
+            Instantiate(explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
