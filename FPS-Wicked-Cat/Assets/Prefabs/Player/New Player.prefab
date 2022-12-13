@@ -62,7 +62,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2843447507459732600}
+  - {fileID: 8821432148164070409}
   - {fileID: 718580905286881748}
   - {fileID: 6950623619167583514}
   - {fileID: 915135783}
@@ -98,13 +98,16 @@ MonoBehaviour:
   shootPos: {fileID: 718580905286881748}
   damage: 0
   rangeUp: 0
-  aud: {fileID: 0}
+  aud: {fileID: 796662425991907217}
   gunShot: {fileID: 0}
   gunShotVol: 0
   audPlayerHurt: []
   playerHurtVol: 0
-  audPlayerJump: []
-  playerJumpVol: 0
+  audPlayerJump:
+  - {fileID: 8300000, guid: 1956421396f26d941bf4ac8c4a0ea1b7, type: 3}
+  - {fileID: 8300000, guid: 52c3cfdc66b397a499eed4590ad57b97, type: 3}
+  - {fileID: 8300000, guid: 5a7ba5e4b422a564c8f65da11543e19a, type: 3}
+  playerJumpVol: 1
   audPlayerSteps:
   - {fileID: 8300000, guid: 3279a50c3f348714ba0433b67859d6a5, type: 3}
   playerStepsVol: 1
@@ -140,7 +143,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!1001 &26443814389091401
+--- !u!1001 &6720500108921123896
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -197,10 +200,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa605dbf2ffb64c45aa8a2a2ce981982, type: 3}
---- !u!4 &2843447507459732600 stripped
+--- !u!82 &796662425991907217 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6217874042109670313, guid: fa605dbf2ffb64c45aa8a2a2ce981982, type: 3}
+  m_PrefabInstance: {fileID: 6720500108921123896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8821432148164070409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2821512807440218161, guid: fa605dbf2ffb64c45aa8a2a2ce981982, type: 3}
-  m_PrefabInstance: {fileID: 26443814389091401}
+  m_PrefabInstance: {fileID: 6720500108921123896}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6950623619873750103
 PrefabInstance:
