@@ -30,6 +30,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.componentsTotal -= 10 + gameManager.instance.timeDamageIncrease;
             gameManager.instance.playerScript.ResetPlayerHP();
             gameManager.instance.unPause();
+            gameManager.instance.isPaused = !gameManager.instance.isPaused;
             gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
