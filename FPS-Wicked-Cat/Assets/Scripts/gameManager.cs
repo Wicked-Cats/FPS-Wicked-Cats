@@ -34,7 +34,6 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     [SerializeField] TextMeshProUGUI componentsDisplay;
-    public TextMeshProUGUI respawnButtonText;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
@@ -88,9 +87,6 @@ public class gameManager : MonoBehaviour
         //set and move player to spawn
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
-
-        //set enemy aim point 
-        enemyAimPoint = GameObject.FindGameObjectWithTag("Enemy Aim Point");
 
         //Do nav mesh triangulation for spawning
         navMeshTri = NavMesh.CalculateTriangulation();
