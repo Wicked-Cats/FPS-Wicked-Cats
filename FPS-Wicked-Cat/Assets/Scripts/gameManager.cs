@@ -132,12 +132,12 @@ public class gameManager : MonoBehaviour
             {
                 //win condition
                 timeCurrent = 0;
-                gameManager.instance.isPaused = !gameManager.instance.isPaused;
-                gameManager.instance.activeMenu = gameManager.instance.winMenu;
-                gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
-                gameManager.instance.pause();
-                gameManager.instance.componentsTotal = 0;
-                gameManager.instance.componentsCurrent = 0;
+                isPaused = !isPaused;
+                activeMenu = winMenu;
+                activeMenu.SetActive(isPaused);
+                pause();
+                componentsTotal = 0;
+                componentsCurrent = 0;
             }
 
             timerUpdate(timeCurrent);

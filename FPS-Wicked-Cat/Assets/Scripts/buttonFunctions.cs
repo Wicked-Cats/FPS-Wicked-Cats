@@ -30,8 +30,8 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.componentsTotal -= gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease;
             gameManager.instance.respawnCost += 5;
             gameManager.instance.playerScript.ResetPlayerHP();
-            gameManager.instance.unPause();
             gameManager.instance.isPaused = !gameManager.instance.isPaused;
+            gameManager.instance.unPause();
             //gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
