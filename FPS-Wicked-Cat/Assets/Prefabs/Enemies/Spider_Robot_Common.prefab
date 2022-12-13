@@ -2854,7 +2854,7 @@ GameObject:
   - component: {fileID: 8825336060285978749}
   - component: {fileID: 8825336060285978690}
   - component: {fileID: 8825336060285978691}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Spider_Robot_Common
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2968,7 +2968,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8824145509658991786}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1
   m_Height: 3

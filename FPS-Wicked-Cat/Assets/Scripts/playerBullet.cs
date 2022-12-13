@@ -21,23 +21,17 @@ public class playerBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is CapsuleCollider)
+        if (other.CompareTag("Enemy") && other is CapsuleCollider)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.GetComponent<IDamage>() != null)
             {
-                if (other.GetComponent<IDamage>() != null)
-                {
-                    other.GetComponent<IDamage>().takeDamage(damage);
-                }
+                other.GetComponent<IDamage>().takeDamage(damage);
             }
-
             Destroy(gameObject);
         }
-        else if(other is SphereCollider)
+        else if (other is MeshCollider)
         {
-        }
-        else
-        {
+
             Destroy(gameObject);
         }
     }
