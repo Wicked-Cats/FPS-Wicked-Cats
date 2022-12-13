@@ -158,7 +158,7 @@ public class playerController : MonoBehaviour
 
         if (HP <= 0)
         {
-            gameManager.instance.isPaused = true;
+            gameManager.instance.isPaused = !gameManager.instance.isPaused;
             gameManager.instance.pause();
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
             gameManager.instance.respawnButtonText.text = "Respawn (-" + (10 + gameManager.instance.timeDamageIncrease) + " Components";
