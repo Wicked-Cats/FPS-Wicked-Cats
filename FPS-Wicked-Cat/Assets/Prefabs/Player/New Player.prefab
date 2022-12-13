@@ -85,7 +85,7 @@ MonoBehaviour:
   model: {fileID: 6950623619603603283}
   anim: {fileID: 6950623619167583512}
   HP: 10
-  playerSpeed: 5
+  playerSpeed: 4
   jumpHeight: 11
   gravityValue: 21
   jumpsMax: 2
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2821512807440218161, guid: fa605dbf2ffb64c45aa8a2a2ce981982, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7503042
+      value: -0.524
       objectReference: {fileID: 0}
     - target: {fileID: 2821512807440218161, guid: fa605dbf2ffb64c45aa8a2a2ce981982, type: 3}
       propertyPath: m_LocalRotation.w

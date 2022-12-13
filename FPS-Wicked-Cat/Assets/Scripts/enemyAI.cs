@@ -66,7 +66,12 @@ public class enemyAI : MonoBehaviour, IDamage
     //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        //agent.SetDestination(gameManager.instance.player.transform.position);
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+
+
         playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 

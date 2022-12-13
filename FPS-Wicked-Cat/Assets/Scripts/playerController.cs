@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Player Stats ----")]
     [Range(1, 10)] [SerializeField] public int HP;
-    [Range(3, 20)] [SerializeField] public int playerSpeed;
+    [Range(3, 20)] [SerializeField] public float playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 3)] [SerializeField] public int jumpsMax;
@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour
     private Vector3 playerVelocity;
     Vector3 move;
     Vector3 pushBack;
-    int pS;
+    float pS;
     bool turning;
     bool stepIsPlaying;
     bool isSprinting;
@@ -90,7 +90,7 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            playerSpeed = pS * 2;
+            playerSpeed = pS * 1.5f;
             isSprinting = true;
 
             if (playerSpeed > 25)
