@@ -24,14 +24,15 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
-        if (gameManager.instance.componentsCurrent >= 10 + gameManager.instance.timeDamageIncrease)
+        if (gameManager.instance.componentsCurrent >= gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease)
         {
-            gameManager.instance.componentsCurrent -= 10 + gameManager.instance.timeDamageIncrease;
-            gameManager.instance.componentsTotal -= 10 + gameManager.instance.timeDamageIncrease;
+            gameManager.instance.componentsCurrent -= gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease;
+            gameManager.instance.componentsTotal -= gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease;
+            gameManager.instance.respawnCost += 5;
             gameManager.instance.playerScript.ResetPlayerHP();
             gameManager.instance.unPause();
             gameManager.instance.isPaused = !gameManager.instance.isPaused;
-            gameManager.instance.playerScript.SetPlayerPos();
+            //gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
         }
@@ -56,10 +57,11 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.playerScript.damage < gameManager.instance.damageLimit)
         {
-            if (gameManager.instance.componentsCurrent >= 3)
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.damageCost)
             {
-                gameManager.instance.componentsCurrent -= 3;
+                gameManager.instance.componentsCurrent -= gameManager.instance.damageCost;
                 gameManager.instance.playerScript.damage++;
+                gameManager.instance.damageCost += 2;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -70,12 +72,13 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.playerScript.HPOrig < gameManager.instance.HPLimit)
         {
-            if (gameManager.instance.componentsCurrent >= 5)
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.HPCost)
             {
-                gameManager.instance.componentsCurrent -= 5;
+                gameManager.instance.componentsCurrent -= gameManager.instance.HPCost;
                 gameManager.instance.playerScript.HPOrig += 5;
                 gameManager.instance.playerScript.HP += 5;
                 gameManager.instance.playerScript.updateHPBar();
+                gameManager.instance.HPCost += 2;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -86,10 +89,11 @@ public class buttonFunctions : MonoBehaviour
     {
         if (gameManager.instance.playerScript.playerSpeed < gameManager.instance.speedLimit)
         {
-            if (gameManager.instance.componentsCurrent >= 4)
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.speedCost)
             {
-                gameManager.instance.componentsCurrent -= 4;
+                gameManager.instance.componentsCurrent -= gameManager.instance.speedCost;
                 gameManager.instance.playerScript.playerSpeed++;
+                gameManager.instance.speedCost += 2;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -112,40 +116,54 @@ public class buttonFunctions : MonoBehaviour
 
     public void upgradesButttonsCheck()
     {
-        if(gameManager.instance.componentsCurrent < 3)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.damageCost)
         {
             gameManager.instance.dmgButton.interactable = false;
-            gameManager.instance.speedButton.interactable = false;
-            gameManager.instance.HPButton.interactable = false;
-            gameManager.instance.jumpButton.interactable = false;
         }
-        else if(gameManager.instance.componentsCurrent < 4)
+        else
         {
-            gameManager.instance.speedButton.interactable = false;
-            gameManager.instance.HPButton.interactable = false;
+            gameManager.instance.dmgButton.interactable = true;
         }
-        else if(gameManager.instance.componentsCurrent < 5)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.rangeCost)
+        {
+            gameManager.instance.rangeButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.rangeButton.interactable = true;
+        }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.HPCost)
         {
             gameManager.instance.HPButton.interactable = false;
         }
         else
         {
-            gameManager.instance.dmgButton.interactable = true;
-            gameManager.instance.speedButton.interactable = true;
             gameManager.instance.HPButton.interactable = true;
-            gameManager.instance.jumpButton.interactable = true;
+        }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.speedCost)
+        {
+            gameManager.instance.speedButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.speedButton.interactable = true;
         }
         gameManager.instance.upgradesComponentCurrent.text = gameManager.instance.componentsCurrent.ToString("F0");
+        gameManager.instance.damageButtonText.text = "Damage + 1 (-" + gameManager.instance.damageCost.ToString() + " Components)";
+        gameManager.instance.HPButtonText.text = "HP + 5 (-" + gameManager.instance.HPCost.ToString() + " Components)";
+        gameManager.instance.rangeButtonText.text = "Range + 1 (-" + gameManager.instance.rangeCost.ToString() + " Components)";
+        gameManager.instance.speedButtonText.text = "Speed + 1 (-" + gameManager.instance.speedCost.ToString() + " Components)";
     }
 
     public void rangeUp()
     {
         if (gameManager.instance.playerScript.rangeUp < gameManager.instance.rangeUpLimit)
         {
-            if (gameManager.instance.componentsCurrent >= 4)
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.rangeCost)
             {
-                gameManager.instance.componentsCurrent -= 4;
+                gameManager.instance.componentsCurrent -= gameManager.instance.rangeCost;
                 gameManager.instance.playerScript.rangeUp++;
+                gameManager.instance.rangeCost += 2;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }

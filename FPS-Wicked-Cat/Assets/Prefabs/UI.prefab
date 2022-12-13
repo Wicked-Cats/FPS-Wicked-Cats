@@ -8066,10 +8066,10 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   enemyAimPoint: {fileID: 0}
-  jumpsLimit: 100
-  HPLimit: 100
-  damageLimit: 100
-  speedLimit: 100
+  jumpsLimit: 2
+  HPLimit: 150
+  damageLimit: 20
+  speedLimit: 20
   rangeUpLimit: 100
   objectives: {fileID: 508640435}
   activeMenu: {fileID: 0}
@@ -8092,6 +8092,12 @@ MonoBehaviour:
   dmgButton: {fileID: 5078961630625367838}
   HPButton: {fileID: 7685848371449662894}
   speedButton: {fileID: 4701175054409826616}
+  rangeButton: {fileID: 3055938117465048274}
+  respawnCost: 10
+  damageCost: 4
+  HPCost: 5
+  rangeCost: 3
+  speedCost: 5
   spawnTimer: 3
   enemiesOptions:
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
