@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class hover : MonoBehaviour
 {
-    [Range(0.01f, 1.0f)] [SerializeField] float hoverAmount;
+    [SerializeField] float hoverAmount;
     [SerializeField] int hoverSpeed;
+    [SerializeField] float maxHeight;
 
     public void Update()
     {
-        Vector3.Lerp(transform.position, transform.up, 3);
+        Vector3 pos = transform.position;
+        float newY = (Mathf.Sin((Time.time) * hoverSpeed) * hoverAmount) + maxHeight;
+        transform.position = new Vector3(pos.x, newY, pos.z);
     }
 }
