@@ -16,7 +16,7 @@ public class explosion : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
             if (push)
             {
