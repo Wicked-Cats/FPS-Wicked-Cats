@@ -13,11 +13,9 @@ public class playerBullet : MonoBehaviour
 
     void Start()
     {
-        if (CompareTag("Player Bullet"))
-        {
-            rb.velocity = Camera.main.transform.forward * speed;
-            damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
-        }
+        rb.velocity = Camera.main.transform.forward * speed;
+        transform.rotation = Camera.main.transform.rotation;
+        damage = gameManager.instance.playerScript.damage + gameManager.instance.playerScript.shootDamage;
         Destroy(gameObject, despawnTimer);
     }
 

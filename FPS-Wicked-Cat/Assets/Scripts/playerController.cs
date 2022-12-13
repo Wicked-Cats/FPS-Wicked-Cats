@@ -74,12 +74,15 @@ public class playerController : MonoBehaviour
             
             movement();
             //StartCoroutine(projectileShoot());
-            StartCoroutine(shoot()); 
+            if (gunList.Count > 0)
+            {
+                StartCoroutine(shoot());
+            }
+
             if (!turning)
             {
                 StartCoroutine(turnModel());
             }
-
         }
     }
 
@@ -260,8 +263,6 @@ public class playerController : MonoBehaviour
         // take model from pickup and put it on player
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunObject.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunObject.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-        // take bullet model from pickup and prepare it for instancing
 
         gunList.Add(gunObject);
 
