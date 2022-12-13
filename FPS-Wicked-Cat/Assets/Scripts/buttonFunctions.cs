@@ -31,7 +31,7 @@ public class buttonFunctions : MonoBehaviour
             gameManager.instance.playerScript.ResetPlayerHP();
             gameManager.instance.unPause();
             gameManager.instance.isPaused = !gameManager.instance.isPaused;
-            gameManager.instance.playerScript.SetPlayerPos();
+            //gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
         }
