@@ -34,6 +34,11 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     [SerializeField] TextMeshProUGUI componentsDisplay;
+    public TextMeshProUGUI respawnButtonText;
+    public TextMeshProUGUI rangeButtonText;
+    public TextMeshProUGUI damageButtonText;
+    public TextMeshProUGUI HPButtonText;
+    public TextMeshProUGUI speedButtonText;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
@@ -49,6 +54,12 @@ public class gameManager : MonoBehaviour
     public Button dmgButton;
     public Button HPButton;
     public Button speedButton;
+    public Button rangeButton;
+    public int respawnCost;
+    public int damageCost;
+    public int HPCost;
+    public int rangeCost;
+    public int speedCost;
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)][SerializeField] float spawnTimer;
@@ -88,6 +99,9 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         player.transform.position = playerSpawnPos.transform.position;
 
+        //set enemy aim point 
+        enemyAimPoint = GameObject.FindGameObjectWithTag("Enemy Aim Point");
+
         //Do nav mesh triangulation for spawning
         navMeshTri = NavMesh.CalculateTriangulation();
 
@@ -118,12 +132,12 @@ public class gameManager : MonoBehaviour
             {
                 //win condition
                 timeCurrent = 0;
-                gameManager.instance.isPaused = !gameManager.instance.isPaused;
-                gameManager.instance.activeMenu = gameManager.instance.winMenu;
-                gameManager.instance.activeMenu.SetActive(gameManager.instance.isPaused);
-                gameManager.instance.pause();
-                gameManager.instance.componentsTotal = 0;
-                gameManager.instance.componentsCurrent = 0;
+                isPaused = !isPaused;
+                activeMenu = winMenu;
+                activeMenu.SetActive(isPaused);
+                pause();
+                componentsTotal = 0;
+                componentsCurrent = 0;
             }
 
             timerUpdate(timeCurrent);
