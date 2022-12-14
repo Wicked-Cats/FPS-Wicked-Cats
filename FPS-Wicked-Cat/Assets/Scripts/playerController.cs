@@ -29,6 +29,7 @@ public class playerController : MonoBehaviour
     [SerializeField] public int damage;
     [SerializeField] public int rangeUp;
     [SerializeField] GameObject gunModel;
+    [SerializeField] GameObject[] gunPos;
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;
@@ -79,10 +80,10 @@ public class playerController : MonoBehaviour
                 StartCoroutine(playSteps());
             }
 
-            //StartCoroutine(projectileShoot());
             if (gunList.Count > 0)
             {
                 StartCoroutine(shoot());
+                gunSelect();
             }
 
             if (!turning)
@@ -233,22 +234,6 @@ public class playerController : MonoBehaviour
         turning = false;
     }
 
-
-
-    //void gunSelect()
-    //{
-    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
-    //    {
-    //        selectedGun++;
-    //        ChangeGun();
-    //    }
-    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-    //    {
-    //        selectedGun--;
-    //        ChangeGun();
-    //    }
-    //}
-
     IEnumerator playSteps()
     {
         stepIsPlaying = true;
@@ -270,15 +255,62 @@ public class playerController : MonoBehaviour
         pushBack = dir;
     }
 
+    void gunSelect()
+    {
+        for(int i = 0; i < gunPos.Length; i++)
+        {
+            gunPos[i].SetActive(false);
+        }
+
+        if (gunList.Count > 0)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+            {
+                selectedGun++;
+                ChangeGun();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+            {
+                selectedGun--;
+                ChangeGun();
+            }
+        }
+
+        if (gunList[selectedGun].name == "BazookaGunStats")
+        {
+            gunPos[0].SetActive(true);
+        }
+        else if (gunList[selectedGun].name == "Sniper Rifle")
+        {
+            gunPos[1].SetActive(true);
+        }
+    }
+
+    void ChangeGun()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootRate = gunList[selectedGun].shootRate;
+        shootDist = gunList[selectedGun].shootDistance;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;             // transfers over the FILTER which is the MODEL
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial; // transfers over the MATERIAL which is the RENDERER
+    }
+
     public void gunPickup(gunObjects gunObject)
     {
-        shootDamage = gunObject.shootDamage;
-        shootRate = gunObject.shootRate;
-        shootDist = gunObject.shootDistance;
-
-        // take model from pickup and put it on player
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunObject.gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunObject.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        // assign gunModel
+        if (gunObject.name == "BazookaGunStats")
+        {
+            gunPos[1].SetActive(false);
+            gunModel = gunPos[0];
+            gunPos[0].SetActive(true);
+        }
+        else if (gunObject.name == "Sniper Rifle")
+        {
+            gunPos[0].SetActive(false);
+            gunModel = gunPos[1];
+            gunPos[1].SetActive(true);
+        }
 
         gunList.Add(gunObject);
 
@@ -286,5 +318,7 @@ public class playerController : MonoBehaviour
         {
             selectedGun = gunList.Count - 1;
         }
+
+        ChangeGun();
     }
 }
