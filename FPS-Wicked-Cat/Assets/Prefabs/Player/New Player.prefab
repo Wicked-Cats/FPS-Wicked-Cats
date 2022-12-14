@@ -178,11 +178,13 @@ MonoBehaviour:
   shootDamage: 10
   shootRate: 0.5
   shootDist: 20
-  bullet: {fileID: 4203415293032977398, guid: 3b3536cc33168ce4eb7541fe6d18265a, type: 3}
   shootPos: {fileID: 718580905286881748}
   damage: 0
   rangeUp: 0
-  gunModel: {fileID: 6961084784332242013}
+  gunModel: {fileID: 0}
+  gunPos:
+  - {fileID: 5827445236260538033}
+  - {fileID: 6961084784332242013}
   aud: {fileID: 796662425991907217}
   gunShot: {fileID: 0}
   gunShotVol: 0
@@ -395,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000607846321365926, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 2039
+      value: 2035
       objectReference: {fileID: 0}
     - target: {fileID: 5511438540352825196, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: m_Name
@@ -581,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 744573089726789839, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 744573089748798079, guid: 83ec47465f47c1c40b98223e25983f22, type: 3}
       propertyPath: m_Layer
