@@ -29,6 +29,7 @@ public class playerController : MonoBehaviour
     [SerializeField] public int rangeUp;
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject[] gunPos;
+    [SerializeField] GameObject hitEffect;
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;
@@ -158,6 +159,8 @@ public class playerController : MonoBehaviour
                 {
                     hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
                 }
+
+                Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
             }
 
             yield return new WaitForSeconds(shootRate);

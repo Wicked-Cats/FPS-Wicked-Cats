@@ -12,5 +12,4 @@ public class gunObjects : ScriptableObject
     public int shootDistance;
     public GameObject bulletModel;
     public GameObject gunModel;
-    public AudioClip gunShot;
 }
