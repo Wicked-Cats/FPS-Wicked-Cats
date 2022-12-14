@@ -8,9 +8,19 @@ public class explosion : MonoBehaviour
     [SerializeField] protected bool push;
     [SerializeField] protected float despawnTimer;
 
+    [Header("-- Audio --")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip audEnemyExplosion;
+    [Range(0, 1)][SerializeField] float audEnemyExplosionVol;
+
 
     private void Start()
     {
+        if (push)
+        {
+            aud.PlayOneShot(audEnemyExplosion, audEnemyExplosionVol);
+        }
+
         Destroy(gameObject, despawnTimer);
     }
 
