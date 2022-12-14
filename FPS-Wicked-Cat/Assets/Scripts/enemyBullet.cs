@@ -14,7 +14,7 @@ public class enemyBullet : MonoBehaviour
     {
         if (CompareTag("Enemy Bullet"))
         {
-            rb.velocity = Vector3.Normalize(gameManager.instance.enemyAimPoint.transform.position -  transform.position) * speed;
+            rb.velocity = Vector3.Normalize(gameManager.instance.enemyAimPoint.transform.position - transform.position) * speed;
         }
         damage += gameManager.instance.timeDamageIncrease;
         Destroy(gameObject, despawnTimer);
@@ -29,6 +29,14 @@ public class enemyBullet : MonoBehaviour
                 gameManager.instance.playerScript.takeDamage(damage);
             }
 
+            Destroy(gameObject);
+        }
+        else if (other is SphereCollider)
+        {
+            
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
