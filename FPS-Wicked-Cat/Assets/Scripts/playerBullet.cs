@@ -28,11 +28,18 @@ public class playerBullet : MonoBehaviour
             {
                 other.GetComponent<IDamage>().takeDamage(damage);
             }
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
         }
         else if (other is MeshCollider)
         {
-            Instantiate(explosion, transform.position, transform.rotation);
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
         }
     }

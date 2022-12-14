@@ -9792,12 +9792,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6488416902889107292}
-  - component: {fileID: 1614916758281855210}
+  - component: {fileID: -4162533912388716859}
   - component: {fileID: 5105922968952849643}
   - component: {fileID: 1366037367038374267}
   - component: {fileID: 8464042598802425279}
   m_Layer: 0
-  m_Name: EXPLOSION!!!!!!!!!!
+  m_Name: BazookaExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9810,7 +9810,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3372761020627971056}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23.44, y: 0, z: -29.84}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -9822,7 +9822,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1614916758281855210
+--- !u!114 &-4162533912388716859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9831,12 +9831,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3372761020627971056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9350ee74c5649e641a589579aecd2d60, type: 3}
+  m_Script: {fileID: 11500000, guid: fe69abc01277fb249b5e2f7b06e16bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerPushBackAmount: 2
   push: 1
   despawnTimer: 0.5
+  damageAmount: 5
+  radius: 10
+  force: 5
+  enemies: []
 --- !u!135 &5105922968952849643
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9848,7 +9852,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &1366037367038374267
 ParticleSystem:

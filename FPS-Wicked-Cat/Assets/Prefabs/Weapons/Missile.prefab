@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -4883096023522153853}
-  damage: 10
-  speed: 10
-  despawnTimer: 10
-  explosion: {fileID: 3372761020627971056, guid: baa9cf5c63287a04ca735116f52a3a77, type: 3}
+  damage: 5
+  speed: 25
+  despawnTimer: 5
+  explosion: {fileID: 3372761020627971056, guid: 61543e1102b406b43adfef4f85f76934, type: 3}
 --- !u!54 &-4883096023522153853
 Rigidbody:
   m_ObjectHideFlags: 0

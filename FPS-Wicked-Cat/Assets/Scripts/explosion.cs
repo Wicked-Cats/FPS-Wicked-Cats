@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class explosion : MonoBehaviour
 {
-    [SerializeField] float pushBackAmount;
-    [SerializeField] bool push;
-    [SerializeField] float despawnTimer;
+    [SerializeField] protected float playerPushBackAmount;
+    [SerializeField] protected bool push;
+    [SerializeField] protected float despawnTimer;
 
 
     private void Start()
@@ -14,17 +14,17 @@ public class explosion : MonoBehaviour
         Destroy(gameObject, despawnTimer);
     }
 
-    private void OnTriggerStay(Collider other)
+    protected void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             if (push)
             {
-                gameManager.instance.playerScript.PushBackInput((other.transform.position - transform.position) * pushBackAmount);
+                gameManager.instance.playerScript.PushBackInput((other.transform.position - transform.position) * playerPushBackAmount);
             }
             else
             {
-                gameManager.instance.playerScript.PushBackInput((transform.position - other.transform.position) * pushBackAmount);
+                gameManager.instance.playerScript.PushBackInput((transform.position - other.transform.position) * playerPushBackAmount);
             }
         }
     }
