@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5827445236260538033, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6950623619115011088, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_Name
       value: New Player
@@ -194,9 +198,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6950623620547556125, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961084784332242013, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7798886179350598574, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914318455467646961, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2035
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}

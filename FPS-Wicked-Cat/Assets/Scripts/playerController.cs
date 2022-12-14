@@ -24,7 +24,6 @@ public class playerController : MonoBehaviour
     [SerializeField] public int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] float shootDist;
-    [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
     [SerializeField] public int damage;
     [SerializeField] public int rangeUp;
@@ -82,7 +81,14 @@ public class playerController : MonoBehaviour
 
             if (gunList.Count > 0)
             {
-                StartCoroutine(shoot());
+                if (gunList[selectedGun].bulletModel == null)
+                {
+                    StartCoroutine(shoot());
+                }
+                else
+                {
+                    StartCoroutine(projectileShoot());
+                }
                 gunSelect();
             }
 
@@ -144,28 +150,27 @@ public class playerController : MonoBehaviour
         if (!isShooting && Input.GetButton("Shoot"))
         {
             isShooting = true;
+            RaycastHit hit;
 
-            // if gun is not a raycast weapon...
-            if (gunList[selectedGun].bulletModel != null)
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
             {
-                // ... instantiate bullet from current weapon
-                bullet = gunList[selectedGun].bulletModel;
-                Instantiate(bullet, shootPos.position, transform.rotation);
-            }
-            // if gun is a raycast weapon
-            else
-            {
-                RaycastHit hit;
-
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist + rangeUp))
+                if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    if (hit.collider.GetComponent<IDamage>() != null)
-                    {
-                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
-                    }
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage + damage);
                 }
             }
 
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
+    }
+
+    IEnumerator projectileShoot()
+    {
+        if (!isShooting && Input.GetButton("Shoot"))
+        {
+            isShooting = true;
+            Instantiate(gunList[selectedGun].bulletModel, shootPos.position, transform.rotation);
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
         }
