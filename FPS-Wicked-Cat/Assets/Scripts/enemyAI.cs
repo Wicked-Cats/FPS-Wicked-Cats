@@ -181,12 +181,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator death()
     {
-        anim.SetBool("Death", true);
-
+        agent.SetDestination(transform.position);
         agent.isStopped = true;
-
         // creates fire vaccum
         Instantiate(fireVaccum, transform.position, transform.rotation);
+        anim.SetBool("Death", true);
 
         yield return new WaitForSeconds(2f);
 

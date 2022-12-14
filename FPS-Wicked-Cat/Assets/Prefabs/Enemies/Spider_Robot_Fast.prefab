@@ -3471,9 +3471,6 @@ MonoBehaviour:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   explosion: {fileID: 3372761020627971056, guid: baa9cf5c63287a04ca735116f52a3a77, type: 3}
   fireVaccum: {fileID: 999388949060202778, guid: 44a91380231a76446913dc9645dfb0d2, type: 3}
-  aud: {fileID: 7755337368426711303}
-  audEnemyExplosion: {fileID: 8300000, guid: 440303bdb061c1946aefe7b6d75e0490, type: 3}
-  audEnemyExplosionVol: 1
 --- !u!95 &6969814122608207704
 Animator:
   serializedVersion: 4
@@ -3514,7 +3511,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &7053239024719628482
 CapsuleCollider:
