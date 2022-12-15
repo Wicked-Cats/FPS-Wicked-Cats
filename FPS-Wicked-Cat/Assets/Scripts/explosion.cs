@@ -20,6 +20,10 @@ public class explosion : MonoBehaviour
         {
             aud.PlayOneShot(audEnemyExplosion, audEnemyExplosionVol);
         }
+        else
+        {
+            aud.PlayOneShot(audEnemyExplosion, 0);
+        }
 
         Destroy(gameObject, despawnTimer);
     }

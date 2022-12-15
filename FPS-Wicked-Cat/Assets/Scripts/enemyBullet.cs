@@ -22,13 +22,15 @@ public class enemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is CapsuleCollider)
+        if (other is CapsuleCollider && (other.CompareTag("Player")))
         {
-            if (other.CompareTag("Player"))
-            {
-                gameManager.instance.playerScript.takeDamage(damage);
-            }
+            gameManager.instance.playerScript.takeDamage(damage);
+            
 
+            Destroy(gameObject);
+        }
+        else if (!(other is SphereCollider) && !(other.CompareTag("Enemy")))
+        {
             Destroy(gameObject);
         }
      
