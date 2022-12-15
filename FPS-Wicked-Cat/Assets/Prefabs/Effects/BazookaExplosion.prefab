@@ -9837,10 +9837,14 @@ MonoBehaviour:
   playerPushBackAmount: 2
   push: 1
   despawnTimer: 0.5
+  aud: {fileID: 0}
+  audEnemyExplosion: {fileID: 0}
+  audEnemyExplosionVol: 0
   damageAmount: 5
   radius: 10
   force: 5
   enemies: []
+  hitEffect: {fileID: 1764654978243476, guid: a98b15aa948478849b54661e4d9a317e, type: 3}
 --- !u!135 &5105922968952849643
 SphereCollider:
   m_ObjectHideFlags: 0
