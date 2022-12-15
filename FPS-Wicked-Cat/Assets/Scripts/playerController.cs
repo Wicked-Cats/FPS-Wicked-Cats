@@ -292,6 +292,10 @@ public class playerController : MonoBehaviour
         {
             gunPos[1].SetActive(true);
         }
+        else if (gunList[selectedGun].name == "Pistol")
+        {
+            gunPos[2].SetActive(true);
+        }
     }
 
     void ChangeGun()
@@ -310,14 +314,23 @@ public class playerController : MonoBehaviour
         if (gunObject.name == "BazookaGunStats")
         {
             gunPos[1].SetActive(false);
+            gunPos[2].SetActive(false);
             gunModel = gunPos[0];
             gunPos[0].SetActive(true);
         }
         else if (gunObject.name == "Sniper Rifle")
         {
             gunPos[0].SetActive(false);
+            gunPos[2].SetActive(false);
             gunModel = gunPos[1];
             gunPos[1].SetActive(true);
+        }
+        else if (gunObject.name == "Pistol")
+        {
+            gunPos[0].SetActive(false);
+            gunPos[1].SetActive(false);
+            gunModel = gunPos[2];
+            gunPos[2].SetActive(true);
         }
 
         gunList.Add(gunObject);
