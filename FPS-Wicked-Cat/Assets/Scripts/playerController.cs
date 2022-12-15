@@ -33,6 +33,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;
+
     [SerializeField] AudioClip gunShot;
     [Range(0, 1)] [SerializeField] float gunShotVol;
     [SerializeField] AudioClip[] audPlayerHurt;
@@ -150,6 +151,8 @@ public class playerController : MonoBehaviour
     {
         if (!isShooting && Input.GetButton("Shoot"))
         {
+            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
             isShooting = true;
             RaycastHit hit;
 
@@ -172,6 +175,8 @@ public class playerController : MonoBehaviour
     {
         if (!isShooting && Input.GetButton("Shoot"))
         {
+            aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+
             isShooting = true;
             Instantiate(gunList[selectedGun].bulletModel, shootPos.position, transform.rotation);
             yield return new WaitForSeconds(shootRate);
