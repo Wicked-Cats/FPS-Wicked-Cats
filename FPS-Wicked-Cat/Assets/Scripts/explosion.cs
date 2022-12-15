@@ -14,7 +14,7 @@ public class explosion : MonoBehaviour
     [Range(0, 1)][SerializeField] float audEnemyExplosionVol;
 
 
-    private void Start()
+    protected void Start()
     {
         if (push)
         {

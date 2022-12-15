@@ -9,6 +9,11 @@ public class BazookaExplosion : explosion
     [SerializeField] int force;
     [SerializeField] GameObject[] enemies;
 
+    private new void Start()
+    {
+        base.Start(); 
+    }
+
     private void Update()
     {
         StartCoroutine(damage());
