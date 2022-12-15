@@ -31,13 +31,6 @@ public class enemyBullet : MonoBehaviour
 
             Destroy(gameObject);
         }
-        else if (other is SphereCollider)
-        {
-            
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+     
     }
 }
