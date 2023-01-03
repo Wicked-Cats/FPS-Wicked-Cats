@@ -9837,10 +9837,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPushBackAmount: 2
   push: 1
-  despawnTimer: 0.5
+  despawnTimer: 0.65
   aud: {fileID: 8446436750821142854}
   audEnemyExplosion: {fileID: 8300000, guid: 440303bdb061c1946aefe7b6d75e0490, type: 3}
-  audEnemyExplosionVol: 1
+  audEnemyExplosionVol: 0.4
 --- !u!135 &5105922968952849643
 SphereCollider:
   m_ObjectHideFlags: 0

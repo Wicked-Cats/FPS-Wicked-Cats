@@ -8,10 +8,12 @@ public class BazookaExplosion : explosion
     [SerializeField] int radius;
     [SerializeField] int force;
     [SerializeField] GameObject[] enemies;
+    [SerializeField] GameObject hitEffect;
 
-    private void Update()
+    private new void Start()
     {
         StartCoroutine(damage());
+        Destroy(gameObject);
     }
 
     private new void OnTriggerStay(Collider other)
@@ -34,7 +36,8 @@ public class BazookaExplosion : explosion
                 enemy.GetComponent<IDamage>().takeDamage(damageAmount);
             }
         }
-
+        Instantiate(hitEffect, transform.position, transform.rotation);
         yield return new WaitForSeconds(1);
+        
     }
 }

@@ -34,7 +34,7 @@ public class playerBullet : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        else if (other is MeshCollider)
+        else if (!other.CompareTag("Player") && !(other is SphereCollider))
         {
             if (explosion != null)
             {
