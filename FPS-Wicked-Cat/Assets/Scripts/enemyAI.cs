@@ -38,6 +38,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject fireVaccum;
 
 
+
+
     Vector3 playerDir;
     private float stopDistOrig;
     bool imDead;
@@ -58,15 +60,17 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
-
-
-
     }
 
     //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        //agent.SetDestination(gameManager.instance.player.transform.position);
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+
+
         playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -100,40 +104,40 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
-        if(!imDead)
+        if (!imDead)
         {
-        //damages enemy and gives feedback to player
-        HP -= damage;
-        StartCoroutine(dmgFlash());
+            //damages enemy and gives feedback to player
+            HP -= damage;
+            StartCoroutine(dmgFlash());
 
-        //makes enemy go to players last position in response to the damage
-        FacePlayer();
-        agent.SetDestination(gameManager.instance.player.transform.position);
+            //makes enemy go to players last position in response to the damage
+            FacePlayer();
+            agent.SetDestination(gameManager.instance.player.transform.position);
 
-        //check if enemy has died
-        if (HP <= 0)
-        {
-            StartCoroutine(death());
+            //check if enemy has died
+            if (HP <= 0)
+            {
+                StartCoroutine(death());
                 imDead = true;
 
-            // item drop
-            GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
-            cogPickup cog = drop.GetComponent<cogPickup>();
-            if (cog.isHealthPack)
-            {
-                Instantiate(drop, shootPos.transform.position, transform.rotation);
-            }
-            else
-            {
-                for (int i = 0; i < HPOrig; i++)
+                // item drop
+                GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
+                cogPickup cog = drop.GetComponent<cogPickup>();
+                if (cog.isHealthPack)
                 {
-                    Transform item = shootPos.transform;
-                    item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
-                    Instantiate(drop, item.position, transform.rotation);
+                    Instantiate(drop, shootPos.transform.position, transform.rotation);
                 }
-            }
+                else
+                {
+                    for (int i = 0; i < HPOrig; i++)
+                    {
+                        Transform item = shootPos.transform;
+                        item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
+                        Instantiate(drop, item.position, transform.rotation);
+                    }
+                }
 
-        }
+            }
         }
     }
 
@@ -174,16 +178,17 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator death()
     {
-        anim.SetBool("Death", true);
-        
+        agent.SetDestination(transform.position);
+        agent.isStopped = true;
         // creates fire vaccum
         Instantiate(fireVaccum, transform.position, transform.rotation);
+        anim.SetBool("Death", true);
 
         yield return new WaitForSeconds(2f);
-        
+
         // creates EXPLOSION!!!!!
         Instantiate(explosion, transform.position, transform.rotation);
-        
+
         Destroy(gameObject);
     }
 }
