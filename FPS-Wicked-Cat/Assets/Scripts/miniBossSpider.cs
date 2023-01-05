@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class miniBossSpider : MonoBehaviour
 {
     [Header("-- Components --")]
     [SerializeField] Renderer model;
@@ -167,3 +167,4 @@ public class enemyAI : MonoBehaviour, IDamage
         Destroy(gameObject);
     }
 }
+
