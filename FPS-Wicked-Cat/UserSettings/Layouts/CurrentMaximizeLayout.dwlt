@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 7825
+  controlID: 8336
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 7817
+  controlID: 8337
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -390,16 +390,16 @@ MonoBehaviour:
   m_WindowGUID: 46f2406bd5608fb4eb9c7b9080196b4c
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 0
+  m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -30.208294, y: -3.0435472, z: 471.6994}
+    m_Target: {x: -72.19726, y: -0.74497485, z: 476.16412}
     speed: 2
-    m_Value: {x: -30.208294, y: -3.0435472, z: 471.6994}
+    m_Value: {x: -72.19726, y: -0.74497485, z: 476.16412}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -446,13 +446,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.15958822, y: 0.27123246, z: -0.04577473, w: 0.948005}
+    m_Target: {x: -0.059929296, y: 0.46735662, z: -0.031607628, w: -0.8814097}
     speed: 2
-    m_Value: {x: 0.15960065, y: 0.2712536, z: -0.045778297, w: 0.9480788}
+    m_Value: {x: -0.05993242, y: 0.46738097, z: -0.031609274, w: -0.8814556}
   m_Size:
-    m_Target: 15.876044
+    m_Target: 29.401554
     speed: 2
-    m_Value: 15.876044
+    m_Value: 29.401554
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 7826
+  controlID: 8288
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -841,22 +841,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Bullets
+    - Assets/UnityStore Downloads/Spider_Robot/Materials
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Bullets
+  - Assets/UnityStore Downloads/Spider_Robot/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\brainfreeze2day\Documents\GitHub\FPS-Wicked-Cats\FPS-Wicked-Cat
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2c850000
-    m_LastClickedID: 34092
-    m_ExpandedIDs: 0000000016850000188500001a8500001c8500001e85000000ca9a3b
+    m_SelectedIDs: 74860000
+    m_LastClickedID: 34420
+    m_ExpandedIDs: 0000000016850000188500001a8500001c8500001e8500006885000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -909,9 +909,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 08ebffff
-    m_LastClickedInstanceID: -5368
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 406900005ae10000b4df00000000000050e10000947f0000a28f000076b80000f27f0000d2750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -959,8 +959,8 @@ MonoBehaviour:
     y: 0
     width: 431
     height: 988
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -1003,7 +1003,7 @@ MonoBehaviour:
     m_CachedPref: 151
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -5368
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

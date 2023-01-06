@@ -10,6 +10,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     public Color colorOrig;
+    [SerializeField] Material baseMaterial;
+    [SerializeField] Material dissolveMaterial;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;

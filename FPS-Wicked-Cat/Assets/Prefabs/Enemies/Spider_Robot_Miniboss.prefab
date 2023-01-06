@@ -2875,9 +2875,8 @@ MonoBehaviour:
   lineOfSight: 90
   playerFaceSpeed: 50
   extraShotRange: 50
-  shootDmg: 3
   shootRate: 1.5
-  bullet: {fileID: 4203415293032977398, guid: a0a297b388bdeca4fb16e5d5bc560197, type: 3}
+  bullet: {fileID: 4203415293032977398, guid: 70199925c8c52cd4a946f3dd55f9140d, type: 3}
   shootPos: {fileID: 2613302574465634515}
   isShooting: 0
   itemDrop:
@@ -2903,7 +2902,7 @@ Animator:
   m_GameObject: {fileID: 1559438208038063677}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ba509da5a84fd224b94cc8ab02aa120d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 15e4ffd6ebae9d045b631579e11e94cf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53d3fa6703c4fed45b37bf1bf04da8be, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
