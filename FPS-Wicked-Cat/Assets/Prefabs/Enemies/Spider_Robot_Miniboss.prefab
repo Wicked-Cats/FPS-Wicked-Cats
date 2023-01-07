@@ -2870,6 +2870,8 @@ MonoBehaviour:
   agent: {fileID: 1560621775041616618}
   anim: {fileID: 1509712743460926799}
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
+  baseMaterial: {fileID: 2100000, guid: 384f886dd89d5e24e9f2bb050bf17fca, type: 2}
+  dissolveMaterial: {fileID: 2100000, guid: 3e7101ee60b046b418bc7a05d385162b, type: 2}
   HP: 50
   headPos: {fileID: 2613302574465634515}
   lineOfSight: 90
@@ -2921,7 +2923,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1559438208038063677}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.55
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2932,7 +2934,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1560621775041616597
 CapsuleCollider:

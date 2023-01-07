@@ -3448,12 +3448,13 @@ MonoBehaviour:
   agent: {fileID: 7053239024719628541}
   anim: {fileID: 6969814122608207704}
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
+  baseMaterial: {fileID: 0}
+  dissolveMaterial: {fileID: 0}
   HP: 2
   headPos: {fileID: 5768550792167228100}
   lineOfSight: 90
   playerFaceSpeed: 50
   extraShotRange: 20
-  shootDmg: 1
   shootRate: 0.5
   bullet: {fileID: 4203415293032977398, guid: 3e90ba434d5b01b48b851a20ba1d7e5b, type: 3}
   shootPos: {fileID: 5768550792167228100}
@@ -3511,7 +3512,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &7053239024719628482
 CapsuleCollider:

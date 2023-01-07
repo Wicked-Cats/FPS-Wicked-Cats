@@ -42,6 +42,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     Vector3 playerDir;
     bool imDead;
+    bool isPathed;
 
 
     void Start()
@@ -63,9 +64,13 @@ public class enemyAI : MonoBehaviour, IDamage
     void LineOfSight()
     {
         //agent.SetDestination(gameManager.instance.player.transform.position);
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(gameManager.instance.player.transform.position, path);
-        agent.SetPath(path);
+        //NavMeshPath path = new NavMeshPath();
+        //agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        //agent.SetPath(path);
+        if(!isPathed && agent.isOnOffMeshLink == false)
+        {
+            StartCoroutine(path());
+        }
 
 
         playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
@@ -141,6 +146,7 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        //anim.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
@@ -167,5 +173,15 @@ public class enemyAI : MonoBehaviour, IDamage
         Instantiate(explosion, transform.position, transform.rotation);
 
         Destroy(gameObject);
+    }
+
+    IEnumerator path()
+    {
+        isPathed = true;
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+        yield return new WaitForSeconds(1.5f);
+        isPathed = false;
     }
 }
