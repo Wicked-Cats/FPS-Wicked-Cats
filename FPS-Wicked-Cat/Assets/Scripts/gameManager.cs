@@ -41,7 +41,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI speedButtonText;
 
     [Header("------ Timer ------")]
-    [SerializeField] float timeCurrent;
+    [SerializeField] public float timeCurrent;
     [SerializeField] TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
@@ -69,6 +69,10 @@ public class gameManager : MonoBehaviour
     private float diffTickTime;
     private int spawnOffset;
     private bool waitingToTick;
+
+    //[Header("----- Main Menu -----")]
+    //public GameObject mainMenu;
+    //public bool isMain;
 
     public bool isPaused;
     float timeScaleBase;
@@ -109,8 +113,19 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
     }
 
+
+
     void Update()
-    {
+    { 
+        //if (!isMain) DONT DELETE
+        //{
+        //    isPaused = !isPaused;
+        //    activeMenu = mainMenu;
+        //    activeMenu.SetActive(isPaused);
+        //    pause();
+        //    isMain = true;
+        //}
+
         // displays the objectives only at start.
         if (!objectivesSeen)
         {

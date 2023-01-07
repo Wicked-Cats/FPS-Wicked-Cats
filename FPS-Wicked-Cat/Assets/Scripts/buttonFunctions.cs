@@ -169,4 +169,18 @@ public class buttonFunctions : MonoBehaviour
             }
         }
     }
+
+
+    //// VVV Main Menu Items VVV
+    //public void QuickPlay()
+    //{
+    //    gameManager.instance.timeCurrent = 300;
+
+    //}
+
+    //public void SurvivalMode()
+    //{
+    //    gameManager.instance.timeCurrent = 1800;
+    //}
+
 }
