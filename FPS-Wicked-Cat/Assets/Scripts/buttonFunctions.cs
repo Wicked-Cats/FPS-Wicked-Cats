@@ -169,4 +169,27 @@ public class buttonFunctions : MonoBehaviour
             }
         }
     }
+
+
+    // VVV Main Menu Items VVV
+    public void QuickPlay()
+    {
+        gameManager.instance.timeCurrent = 300;
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        gameManager.instance.objectivesSeen = true;
+        gameManager.instance.unPause();
+        gameManager.instance.activeMenu = null;
+        gameManager.instance.UIEnable();
+    }
+
+    public void SurvivalMode()
+    {
+        gameManager.instance.timeCurrent = 1800;
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        gameManager.instance.objectivesSeen = true;
+        gameManager.instance.unPause();
+        gameManager.instance.activeMenu = null;
+        gameManager.instance.UIEnable();
+    }
+
 }

@@ -7026,7 +7026,10 @@ MonoBehaviour:
   playerHPBar: {fileID: 5850887500501781046}
   playerHPCurrent: {fileID: 6463230747529337237}
   playerHPMax: {fileID: 3835017861807718352}
+  forwardSlash: {fileID: 153444268271820176}
   componentsDisplay: {fileID: 2935375333897442380}
+  reticle: {fileID: 9154903762500099521}
+  crosshair: {fileID: 2354781215036093847}
   respawnButtonText: {fileID: 1456367859}
   rangeButtonText: {fileID: 6985428476506636531}
   damageButtonText: {fileID: 5270446168728181431}
@@ -7069,6 +7072,8 @@ MonoBehaviour:
   - {fileID: 4946527954549988055, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
   - {fileID: 7056699094207142954, guid: 7e9a43a22911f1740aab9cfd039095d0, type: 3}
   - {fileID: 7056699094207142954, guid: 7e9a43a22911f1740aab9cfd039095d0, type: 3}
+  mainMenu: {fileID: 0}
+  isMain: 0
   isPaused: 0
   playerSpawnPos: {fileID: 0}
   componentsCurrent: 0

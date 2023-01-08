@@ -33,7 +33,10 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
-    [SerializeField] TextMeshProUGUI componentsDisplay;
+    public TextMeshProUGUI forwardSlash;
+    [SerializeField] public TextMeshProUGUI componentsDisplay;
+    public Image reticle;
+    public Image crosshair;
     public TextMeshProUGUI respawnButtonText;
     public TextMeshProUGUI rangeButtonText;
     public TextMeshProUGUI damageButtonText;
@@ -41,8 +44,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI speedButtonText;
 
     [Header("------ Timer ------")]
-    [SerializeField] float timeCurrent;
-    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] public float timeCurrent;
+    [SerializeField] public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
 
@@ -70,13 +73,17 @@ public class gameManager : MonoBehaviour
     private int spawnOffset;
     private bool waitingToTick;
 
+    [Header("----- Main Menu -----")]
+    public GameObject mainMenu;
+    public bool isMain;
+
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
     bool isSpawning;
     public int componentsCurrent;
     public int componentsTotal;
-    public bool objectivesSeen;
+    public bool objectivesSeen =false;
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
@@ -109,16 +116,29 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
     }
 
+
     void Update()
     {
+        if (!isMain) //DONT DELETE
+        {
+            // turning off UI elements they are turn on when user clicks a mode
+            UIDisable();
+
+            isPaused = !isPaused;
+            activeMenu = mainMenu;
+            activeMenu.SetActive(isPaused);
+            pause();
+            isMain = true;
+        }
+
         // displays the objectives only at start.
-        if (!objectivesSeen)
+        if (objectivesSeen)
         {
             isPaused = !isPaused;
             activeMenu = objectives;
             activeMenu.SetActive(isPaused);
             pause();
-            objectivesSeen = true;
+            objectivesSeen = false;
         }
 
         //timer ticking
@@ -248,5 +268,33 @@ public class gameManager : MonoBehaviour
     public void updateComponentsDisplay()
     {
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
+    }
+
+    // turning ON UI 
+    public void UIEnable()
+    {
+        playerHPBar.enabled = true;
+        playerHPMax.enabled = true;
+        playerHPCurrent.enabled = true;
+        componentsDisplay.enabled = true;
+        timerText.enabled = true;
+        reticle.enabled = true;
+        crosshair.enabled = true;
+        forwardSlash.enabled = true;
+        updateComponentsDisplay();
+
+    }
+    // turning OFF UI
+    public void UIDisable()
+    {
+        playerHPBar.enabled = false;
+        playerHPMax.enabled = false;
+        playerHPCurrent.enabled = false;
+        componentsDisplay.enabled = false;
+        timerText.enabled = false;
+        reticle.enabled = false;
+        crosshair.enabled = false;
+        forwardSlash.enabled = false;
+
     }
 }
