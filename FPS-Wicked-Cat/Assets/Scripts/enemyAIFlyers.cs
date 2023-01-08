@@ -121,8 +121,6 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
         HP -= damage;
         StartCoroutine(dmgFlash());
 
-        //makes enemy go to players last position in response to the damage
-        agent.SetDestination(gameManager.instance.player.transform.position);
 
         //check if enemy has died
         if (HP <= 0)
@@ -147,6 +145,8 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
 
             Destroy(gameObject);
         }
+        //makes enemy go to players last position in response to the damage
+        agent.SetDestination(gameManager.instance.player.transform.position);
     }
 
     public void OnTriggerEnter(Collider other)

@@ -62,7 +62,7 @@ public class gameManager : MonoBehaviour
     public int speedCost;
 
     [Header("------ Enemy Spawning ------")]
-    [Range(1, 100)][SerializeField] float spawnTimer;
+    [Range(1, 100)] [SerializeField] float spawnTimer;
     [SerializeField] GameObject[] enemiesOptions;
     private NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
@@ -141,12 +141,12 @@ public class gameManager : MonoBehaviour
             }
 
             timerUpdate(timeCurrent);
+            if (!waitingToTick)
+            {
+                StartCoroutine(difficultyTick());
+            }
         }
 
-        if(!waitingToTick)
-        {
-            StartCoroutine(difficultyTick());
-        }
 
         //opens pause menu
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
@@ -218,7 +218,7 @@ public class gameManager : MonoBehaviour
         {
             displaytime = 0;
         }
-        if(displaytime < 30)
+        if (displaytime < 30)
         {
             spawnTimer = 1;
             timerText.color = Color.red;
@@ -237,7 +237,7 @@ public class gameManager : MonoBehaviour
 
         spawnOffset++;
         damageIncreaseOffset++;
-        if(damageIncreaseOffset % 3 == 0)
+        if (damageIncreaseOffset % 3 == 0)
         {
             timeDamageIncrease++;
         }
