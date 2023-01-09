@@ -70,7 +70,7 @@ public class gameManager : MonoBehaviour
     private NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
     private float diffTickTime;
-    private int spawnOffset;
+    private float spawnOffset;
     private bool waitingToTick;
 
     [Header("----- Main Menu -----")]
@@ -99,7 +99,7 @@ public class gameManager : MonoBehaviour
 
         timeScaleBase = Time.timeScale;
 
-        diffTickTime = timeCurrent / (enemiesOptions.Length - 1);
+        diffTickTime = timeCurrent / (enemiesOptions.Length);
         spawnOffset = 0;
 
         //set and move player to spawn
@@ -218,7 +218,8 @@ public class gameManager : MonoBehaviour
     {
         isSpawning = true;
 
-        enemyToSpawn = enemiesOptions[Random.Range(0, spawnOffset)];
+        int spawnStorage = Mathf.FloorToInt(spawnOffset);
+        enemyToSpawn = enemiesOptions[Random.Range(0, spawnStorage)];
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
@@ -255,7 +256,7 @@ public class gameManager : MonoBehaviour
     {
         waitingToTick = true;
 
-        spawnOffset++;
+        spawnOffset+= 1f;
         damageIncreaseOffset++;
         if(damageIncreaseOffset % 3 == 0)
         {
