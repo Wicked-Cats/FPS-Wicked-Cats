@@ -112,7 +112,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
             //makes enemy go to players last position in response to the damage
             FacePlayer();
-            agent.SetDestination(gameManager.instance.player.transform.position);
 
             //check if enemy has died
             if (HP <= 0)
