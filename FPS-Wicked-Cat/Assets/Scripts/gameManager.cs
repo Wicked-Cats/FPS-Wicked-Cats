@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour
     [Header("------Player Components------")]
     public GameObject player;
     public playerController playerScript;
-    [SerializeField] public GameObject enemyAimPoint;
+    public GameObject enemyAimPoint;
 
     [Header("------ Player Upgrades------")]
     public int jumpsLimit;
@@ -34,7 +34,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     public TextMeshProUGUI forwardSlash;
-    [SerializeField] public TextMeshProUGUI componentsDisplay;
+    public TextMeshProUGUI componentsDisplay;
     public Image reticle;
     public Image crosshair;
     public TextMeshProUGUI respawnButtonText;
@@ -44,8 +44,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI speedButtonText;
 
     [Header("------ Timer ------")]
-    [SerializeField] public float timeCurrent;
-    [SerializeField] public TextMeshProUGUI timerText;
+    public float timeCurrent;
+    public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
 
@@ -66,10 +66,10 @@ public class gameManager : MonoBehaviour
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)][SerializeField] float spawnTimer;
-    [SerializeField] GameObject[] enemiesOptions;
+    public GameObject[] enemiesOptions;
     private NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
-    private float diffTickTime;
+    public float diffTickTime;
     private float spawnOffset;
     private bool waitingToTick;
 
@@ -99,7 +99,7 @@ public class gameManager : MonoBehaviour
 
         timeScaleBase = Time.timeScale;
 
-        diffTickTime = timeCurrent / (enemiesOptions.Length);
+        diffTickTime = timeCurrent / (enemiesOptions.Length-1);
         spawnOffset = 0;
 
         //set and move player to spawn

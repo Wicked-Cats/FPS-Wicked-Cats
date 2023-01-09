@@ -175,6 +175,7 @@ public class buttonFunctions : MonoBehaviour
     public void QuickPlay()
     {
         gameManager.instance.timeCurrent = 300;
+        gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.objectivesSeen = true;
         gameManager.instance.unPause();
@@ -185,6 +186,7 @@ public class buttonFunctions : MonoBehaviour
     public void SurvivalMode()
     {
         gameManager.instance.timeCurrent = 1800;
+        gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.objectivesSeen = true;
         gameManager.instance.unPause();
