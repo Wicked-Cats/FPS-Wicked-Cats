@@ -7,11 +7,15 @@ public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("-- Components --")]
     [SerializeField] Renderer model;
+    [SerializeField] SkinnedMeshRenderer meshRenderer1;
+    [SerializeField] SkinnedMeshRenderer meshRenderer2;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     public Color colorOrig;
     [SerializeField] Material baseMaterial;
     [SerializeField] Material dissolveMaterial;
+    [SerializeField] GameObject body;
+    [SerializeField] GameObject[] legs;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
@@ -36,6 +40,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Effects --")]
     [SerializeField] GameObject explosion;
     [SerializeField] GameObject fireVaccum;
+    [SerializeField] float dissolveSpeed;
 
 
 
@@ -43,16 +48,62 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     bool imDead;
     bool isPathed;
-
+    bool teleporting;
+    float timeForDissolve;
+    bool teleportCycle;
 
     void Start()
     {
         HPOrig = HP;
         colorOrig = model.material.color;
+        meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
     }
 
     void Update()
     {
+        if (agent.isOnOffMeshLink || teleporting)
+        {
+            if (!teleporting)
+            {
+                agent.isStopped = true;
+                meshRenderer1.material = dissolveMaterial;
+                foreach (GameObject x in legs)
+                {
+
+                    meshRenderer2 = x.GetComponent<SkinnedMeshRenderer>();
+                    meshRenderer2.material = dissolveMaterial;
+                }
+                timeForDissolve = 0.01f;
+                teleporting = true;
+            }
+            if (teleporting)
+            {
+
+                //meshRenderer1.material = dissolveMaterial;
+                //meshRenderer2.material = dissolveMaterial;
+
+                if (dissolveMaterial.GetFloat("_Cutoff") > 0.9f)
+                {
+                    agent.CompleteOffMeshLink();
+                    teleportCycle = true;
+                }
+                else if (dissolveMaterial.GetFloat("_Cutoff") < 0.05f && teleportCycle)
+                {
+                    meshRenderer1.material = baseMaterial;
+                    foreach (GameObject x in legs)
+                    {
+
+                        meshRenderer2 = x.GetComponent<SkinnedMeshRenderer>();
+                        meshRenderer2.material = baseMaterial;
+                    }
+                    agent.isStopped = false;
+                    teleporting = false;
+                    teleportCycle = false;
+                }
+            }
+            dissolveMaterial.SetFloat("_Cutoff", Mathf.Sin(timeForDissolve * dissolveSpeed));
+            timeForDissolve += Time.deltaTime;
+        }
         if (HP > 0)
         {
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
@@ -67,7 +118,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //NavMeshPath path = new NavMeshPath();
         //agent.CalculatePath(gameManager.instance.player.transform.position, path);
         //agent.SetPath(path);
-        if(!isPathed && agent.isOnOffMeshLink == false)
+        if (!isPathed && agent.isOnOffMeshLink == false && !teleporting)
         {
             StartCoroutine(path());
         }
@@ -85,7 +136,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
 
-                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange) // so if he sees us and we are mostly in front of him he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange && !teleporting) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
@@ -112,9 +163,6 @@ public class enemyAI : MonoBehaviour, IDamage
             HP -= damage;
             StartCoroutine(dmgFlash());
 
-            //makes enemy go to players last position in response to the damage
-            FacePlayer();
-            agent.SetDestination(gameManager.instance.player.transform.position);
 
             //check if enemy has died
             if (HP <= 0)
@@ -140,6 +188,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
 
             }
+            //makes enemy go to players last position in response to the damage
+            FacePlayer();
         }
     }
 

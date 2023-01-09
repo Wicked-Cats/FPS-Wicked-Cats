@@ -2867,11 +2867,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1463571439440455645}
+  meshRenderer1: {fileID: 0}
+  meshRenderer2: {fileID: 0}
   agent: {fileID: 1560621775041616618}
   anim: {fileID: 1509712743460926799}
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
   baseMaterial: {fileID: 2100000, guid: 384f886dd89d5e24e9f2bb050bf17fca, type: 2}
   dissolveMaterial: {fileID: 2100000, guid: 3e7101ee60b046b418bc7a05d385162b, type: 2}
+  body: {fileID: 1558638240378942459}
+  legs:
+  - {fileID: 1559325078323810139}
+  - {fileID: 1558953377182696281}
+  - {fileID: 1559203613139158985}
+  - {fileID: 1559066171789666101}
+  - {fileID: 1558754827607406473}
+  - {fileID: 1559493229147028693}
+  - {fileID: 1558558250494618071}
+  - {fileID: 1559351440141127513}
+  - {fileID: 1558880899212052255}
+  - {fileID: 1559319024214136827}
+  - {fileID: 1558879940748351429}
+  - {fileID: 1559454849364273783}
+  - {fileID: 1559271861265061915}
+  - {fileID: 1558877182990144031}
+  - {fileID: 1559056271499645289}
+  - {fileID: 1558767373657292369}
+  - {fileID: 1559131437634991727}
+  - {fileID: 1559365836622541623}
+  - {fileID: 1559070515652526311}
+  - {fileID: 1559144959904311361}
+  - {fileID: 1559484113791983469}
+  - {fileID: 1559077254628967707}
   HP: 50
   headPos: {fileID: 2613302574465634515}
   lineOfSight: 90
@@ -2894,6 +2920,7 @@ MonoBehaviour:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   explosion: {fileID: 3372761020627971056, guid: baa9cf5c63287a04ca735116f52a3a77, type: 3}
   fireVaccum: {fileID: 999388949060202778, guid: 44a91380231a76446913dc9645dfb0d2, type: 3}
+  dissolveSpeed: 0.5
 --- !u!95 &1509712743460926799
 Animator:
   serializedVersion: 4
@@ -2929,7 +2956,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 300
   m_StoppingDistance: 20
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2

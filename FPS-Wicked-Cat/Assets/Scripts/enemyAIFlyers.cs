@@ -145,8 +145,6 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
 
             Destroy(gameObject);
         }
-        //makes enemy go to players last position in response to the damage
-        agent.SetDestination(gameManager.instance.player.transform.position);
     }
 
     public void OnTriggerEnter(Collider other)
