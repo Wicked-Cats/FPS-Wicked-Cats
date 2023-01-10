@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1855505518042960597, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4262074351900611885, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -222,6 +226,10 @@ PrefabInstance:
       propertyPath: mainMenu
       value: 
       objectReference: {fileID: 1217816413}
+    - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
+      propertyPath: playerSpawnPos
+      value: 
+      objectReference: {fileID: 2021644503}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
 --- !u!1 &919032425
@@ -624,6 +632,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6584789116421772801, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9907d1b344d87bf46ad5887e9d35daec, type: 3}
+--- !u!1 &2021644503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2729289053740082269, guid: 8c274b614bae6cc41a4455ca37d12e5a, type: 3}
+  m_PrefabInstance: {fileID: 1047608979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6965813199524732339
 PrefabInstance:
   m_ObjectHideFlags: 0
