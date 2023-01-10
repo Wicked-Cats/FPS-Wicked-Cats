@@ -1894,21 +1894,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 508640435, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 722999811091666801, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1855505518042960597, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3685723030257546574, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4262074351900611885, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
       propertyPath: m_Pivot.x
@@ -1994,18 +1982,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7685848371449662894, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265243950962698309, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: timeCurrent
-      value: 1800
-      objectReference: {fileID: 0}
+      propertyPath: miniBoss
+      value: 
+      objectReference: {fileID: 1892907188}
     - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
       propertyPath: enemyAimPoint
       value: 
@@ -19802,6 +19782,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1892907188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1559438208038063677, guid: 707ebd1c004a1d8479114424a56b7f2c, type: 3}
+  m_PrefabInstance: {fileID: 4248132937317170799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1918676089
 Mesh:
   m_ObjectHideFlags: 0

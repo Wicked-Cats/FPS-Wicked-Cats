@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)] [SerializeField] float spawnTimer;
     [SerializeField] GameObject[] enemiesOptions;
+    [SerializeField] GameObject miniBoss;
     private NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
     private float diffTickTime;
@@ -80,6 +81,8 @@ public class gameManager : MonoBehaviour
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
+    bool area1Open;
+    bool miniBossSpawned;
 
 
     void Awake()
@@ -173,7 +176,12 @@ public class gameManager : MonoBehaviour
 
         if (!isSpawning)
         {
-            StartCoroutine(spawnEnemies());
+            StartCoroutine(spawnEnemies(0));
+        }
+
+        if (area1Open && !miniBossSpawned)
+        {
+            StartCoroutine(spawnEnemies(1));
         }
 
     }
@@ -194,11 +202,17 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    IEnumerator spawnEnemies()
+    IEnumerator spawnEnemies(int spawnType)
     {
-        isSpawning = true;
-
-        enemyToSpawn = enemiesOptions[Random.Range(0, spawnOffset)];
+        if (spawnType == 0)
+        {
+            isSpawning = true;
+            enemyToSpawn = enemiesOptions[Random.Range(0, spawnOffset)];
+        }
+        else if (spawnType == 1)
+        {
+            enemyToSpawn = miniBoss;
+        }
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
@@ -209,7 +223,10 @@ public class gameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(spawnTimer);
-        isSpawning = false;
+        if (spawnType == 0)
+        {
+            isSpawning = false;
+        }
     }
 
     void timerUpdate(float displaytime)

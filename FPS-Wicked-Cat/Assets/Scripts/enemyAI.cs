@@ -79,9 +79,6 @@ public class enemyAI : MonoBehaviour, IDamage
             if (teleporting)
             {
 
-                //meshRenderer1.material = dissolveMaterial;
-                //meshRenderer2.material = dissolveMaterial;
-
                 if (dissolveMaterial.GetFloat("_Cutoff") > 0.9f)
                 {
                     agent.CompleteOffMeshLink();
@@ -114,10 +111,6 @@ public class enemyAI : MonoBehaviour, IDamage
     //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
-        //agent.SetDestination(gameManager.instance.player.transform.position);
-        //NavMeshPath path = new NavMeshPath();
-        //agent.CalculatePath(gameManager.instance.player.transform.position, path);
-        //agent.SetPath(path);
         if (!isPathed && agent.isOnOffMeshLink == false && !teleporting)
         {
             StartCoroutine(path());
@@ -157,7 +150,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
-        if (!imDead)
+        if (!imDead && !teleporting)
         {
             //damages enemy and gives feedback to player
             HP -= damage;
@@ -188,7 +181,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
 
             }
-            //makes enemy go to players last position in response to the damage
+            //makes enemy look to players last position in response to the damage
             FacePlayer();
         }
     }
