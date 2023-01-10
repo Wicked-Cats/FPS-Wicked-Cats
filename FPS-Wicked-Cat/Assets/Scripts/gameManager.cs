@@ -31,6 +31,7 @@ public class gameManager : MonoBehaviour
     public GameObject upgradesMenu;
     public GameObject damageFlash;
     public Image playerHPBar;
+    public Image playerHPBackground;
     public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     public TextMeshProUGUI forwardSlash;
@@ -275,6 +276,7 @@ public class gameManager : MonoBehaviour
     public void UIEnable()
     {
         playerHPBar.enabled = true;
+        playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
         playerHPCurrent.enabled = true;
         componentsDisplay.enabled = true;
@@ -289,6 +291,7 @@ public class gameManager : MonoBehaviour
     public void UIDisable()
     {
         playerHPBar.enabled = false;
+        playerHPBackground.enabled = false;
         playerHPMax.enabled = false;
         playerHPCurrent.enabled = false;
         componentsDisplay.enabled = false;
