@@ -23,6 +23,7 @@ public class gameManager : MonoBehaviour
 
 
     [Header("------UI Components------")]
+    public GameObject optionsMenu;
     public GameObject objectives;
     public GameObject activeMenu;
     public GameObject pauseMenu;

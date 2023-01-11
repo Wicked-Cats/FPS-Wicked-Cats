@@ -194,4 +194,17 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UIEnable();
     }
 
+    public void OptionsMenu()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.optionsMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseMenu.SetActive(false);
+    }
+
+    public void CloseOptions()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.mainMenu;
+        gameManager.instance.optionsMenu.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(true);
+    }
 }
