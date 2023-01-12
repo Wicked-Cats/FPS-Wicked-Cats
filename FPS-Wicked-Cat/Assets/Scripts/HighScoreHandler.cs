@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class HighScoreHandler : MonoBehaviour
 {
-    [SerializeField] ScoreUI scoreUI;
+   
     int highscore;
 
-    public int Highscore
-    {
-        get { return highscore; }
-        set
-        {
-            highscore = value;
-            scoreUI.SetScoreValue(value);
-        }
-    }
-
+    
     private void Start()
     {
         // calls for current High score on game start
@@ -27,7 +18,7 @@ public class HighScoreHandler : MonoBehaviour
     // pulls most resent High Score form local game file and sets default
     private void SetLatesHighScore()
     {
-        Highscore = PlayerPrefs.GetInt("ScoreText", 0);
+        highscore = PlayerPrefs.GetInt("ScoreText", 0);
     }
 
 
@@ -41,9 +32,9 @@ public class HighScoreHandler : MonoBehaviour
     // Changes High Score when new score is reached and saves to local game file
     public void SetHighscoreIfGreater(int newScore)
     {
-        if (newScore > Highscore)
+        if (newScore > highscore)
         {
-            Highscore = newScore;
+            highscore = newScore;
             SaveHighscore(newScore);
         }
     }

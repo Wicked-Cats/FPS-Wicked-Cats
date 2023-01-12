@@ -14,7 +14,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
-    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath; //Stores the score for killing an enemy
     // vvv in TESTING phase vvv
     //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 

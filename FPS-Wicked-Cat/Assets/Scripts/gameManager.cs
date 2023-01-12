@@ -71,9 +71,9 @@ public class gameManager : MonoBehaviour
     private int spawnOffset;
     private bool waitingToTick;
 
-    [SerializeField] HighScoreHandler highscoreHandler;
-    [SerializeField] TextMeshProUGUI scoreText;
-    public int currentScore;//stores current Score
+    [SerializeField] HighScoreHandler highscoreHandler; // logic to save and load localy 
+    [SerializeField] TextMeshProUGUI scoreText; // stores the score varialbe
+    public int currentScore; //stores current Score
 
     public bool isPaused;
     float timeScaleBase;
@@ -258,7 +258,7 @@ public class gameManager : MonoBehaviour
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
     }
 
-    // adds to Score Reward on death to player score UI
+    // adds Score to player current score in the in-Game UI 
     public void AddScore(int amount)
     {
         currentScore += amount;

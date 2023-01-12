@@ -16,7 +16,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
     private int HPOrig;
-    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath;//Stores the score for killing an enemy
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;

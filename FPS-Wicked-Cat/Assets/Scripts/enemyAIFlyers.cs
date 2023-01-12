@@ -14,7 +14,7 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
-    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath; //Stores the score for killing an enemy
 
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;

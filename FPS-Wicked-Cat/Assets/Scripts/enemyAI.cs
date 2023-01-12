@@ -32,7 +32,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
-    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath; //Stores the score for killing an enemy
 
 
     [Header("-- Effects --")]
