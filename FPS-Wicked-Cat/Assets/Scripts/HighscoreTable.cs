@@ -5,8 +5,8 @@ using UnityEngine;
 public class HighscoreTable : MonoBehaviour
 {
    
-    public Transform entryContainer;
-    public Transform entryTemplate;
+    [SerializeField] Transform entryContainer;
+    [SerializeField] Transform entryTemplate;
 
     private void Awake()
     {
