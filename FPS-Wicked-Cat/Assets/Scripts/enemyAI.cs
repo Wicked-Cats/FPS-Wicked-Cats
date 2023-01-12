@@ -32,6 +32,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
+    
 
     [Header("-- Effects --")]
     [SerializeField] GameObject explosion;
