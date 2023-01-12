@@ -16,7 +16,7 @@ public class HighscoreTable : MonoBehaviour
 
         entryTemplate.gameObject.SetActive(false);
 
-        float templateHeight = 10f;
+        float templateHeight = 20f;
 
         for (int i = 0; i < 10; i++)
         {
