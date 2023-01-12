@@ -39,7 +39,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
-    public TextMeshProUGUI currentScore;//stores current Score
+   
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
@@ -70,7 +70,8 @@ public class gameManager : MonoBehaviour
     private float diffTickTime;
     private int spawnOffset;
     private bool waitingToTick;
-
+    
+    public int currentScore;//stores current Score
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
@@ -249,5 +250,11 @@ public class gameManager : MonoBehaviour
     public void updateComponentsDisplay()
     {
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
+    }
+
+    // adds to Score Reward on death to player score UI
+    public void AddScore(int amount)
+    {
+        currentScore += amount;
     }
 }

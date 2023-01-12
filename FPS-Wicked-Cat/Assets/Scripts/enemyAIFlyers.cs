@@ -14,7 +14,7 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
-    [SerializeField] int scoreRewardedDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
 
     [Header("-- Enemy Vision --")]
     private bool isPatrolling = true;
@@ -129,7 +129,7 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
         if (HP <= 0)
         {
 
-            scoreRewardedDeath++;// should add points to score 
+            gameManager.instance.AddScore(scoreRewardOnDeath);
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();

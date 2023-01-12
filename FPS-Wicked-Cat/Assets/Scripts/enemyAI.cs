@@ -32,7 +32,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
-    [SerializeField] int scoreRewardedDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
 
 
     [Header("-- Effects --")]
@@ -122,7 +122,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 StartCoroutine(death());
                 imDead = true;
 
-                scoreRewardedDeath++;// should add points to score 
+                gameManager.instance.AddScore(scoreRewardOnDeath);
                 // item drop
                 GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
                 cogPickup cog = drop.GetComponent<cogPickup>();

@@ -2,35 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighScore : MonoBehaviour
+public class HighScoreHandler : MonoBehaviour
 {
-    int highScore;
+    int highscore;
 
     private void Start()
     {
         // calls for current High score on game start
-        SetLatestHightScore();
+        SetLatesHighScore();
     }
+
 
     // pulls most resent High Score form local game file and sets default
-    private void SetLatestHightScore()
+    private void SetLatesHighScore()
     {
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        highscore = PlayerPrefs.GetInt("ScoreValue", 0);
     }
+
 
     // save current High Score to local game file
-    private void SaveScore(int score)
+    private void SaveHighscore(int score)
     {
-        PlayerPrefs.SetInt("HighScore", score);
+        PlayerPrefs.SetInt("ScoreValue", score);
     }
 
+
     // Changes High Score when new score is reached and saves to local game file
-    public void SetScoreIfGreater(int newScore)
+    public void SetHighscoreIfGreater(int newScore)
     {
-        if (highScore > newScore)
+        if (newScore > highscore)
         {
-            highScore = newScore;
-            SaveScore(newScore);
+            highscore = newScore;
+            SaveHighscore(newScore);
         }
     }
 }

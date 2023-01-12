@@ -16,7 +16,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
     private int HPOrig;
-    [SerializeField] int scoreRewardedDeath; //score for killing that enemy
+    [SerializeField] int scoreRewardOnDeath; //score for killing that enemy
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
@@ -76,7 +76,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            scoreRewardedDeath++;// should add points to score 
+            gameManager.instance.AddScore(scoreRewardOnDeath);
             //add components
             gameManager.instance.componentsCurrent += HPOrig;
             gameManager.instance.componentsTotal += HPOrig;
