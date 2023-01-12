@@ -19,10 +19,18 @@ public class optionsMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat(mixerName, Mathf.Log10(volume) * 20f);
+        PlayerPrefs.SetFloat(mixerName, volume);
     }
 
     private void Start()
     {
-        slider.value= defaultVol;
+        if (PlayerPrefs.HasKey(mixerName))
+        {
+            slider.value = PlayerPrefs.GetFloat(mixerName);
+        }
+        else
+        {
+            slider.value= defaultVol;
+        }
     }
 }
