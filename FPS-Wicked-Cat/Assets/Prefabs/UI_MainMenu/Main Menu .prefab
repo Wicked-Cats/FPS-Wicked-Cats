@@ -54,9 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724fdcafd2fdca468b66a52aa076db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSilder: {fileID: 4357165}
-  defaultSFXVolume: 0.5
-  defaultBGMVolume: 0.5
+  audioMixer: {fileID: 0}
+  mixerName: 
+  slider: {fileID: 0}
+  defaultVol: 0.5
 --- !u!114 &4357165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367028711}
+  - component: {fileID: 4141537642401794646}
   - component: {fileID: 367028712}
   m_Layer: 5
   m_Name: SFX Slider
@@ -235,6 +237,22 @@ RectTransform:
   m_AnchoredPosition: {x: 75, y: 52}
   m_SizeDelta: {x: 333.01, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4141537642401794646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367028710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4724fdcafd2fdca468b66a52aa076db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 33aa4c7f820fb0a47b07109a679982e3, type: 2}
+  mixerName: SFX
+  slider: {fileID: 367028712}
+  defaultVol: 0.5
 --- !u!114 &367028712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,13 +304,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 4141537642401794646}
+        m_TargetAssemblyTypeName: optionsMenu, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1314,7 +1332,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1206993925}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5773746463513923912}
+        m_TargetAssemblyTypeName: optionsMenu, Assembly-CSharp
+        m_MethodName: ApplyBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4141537642401794646}
+        m_TargetAssemblyTypeName: optionsMenu, Assembly-CSharp
+        m_MethodName: ApplyBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1726123475}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
+        m_MethodName: CloseOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1224822327
 GameObject:
   m_ObjectHideFlags: 0

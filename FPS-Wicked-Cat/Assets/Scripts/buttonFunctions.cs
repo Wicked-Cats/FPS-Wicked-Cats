@@ -207,4 +207,18 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.optionsMenu.SetActive(false);
         gameManager.instance.activeMenu.SetActive(true);
     }
+
+    public void GoBackToPause()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+        gameManager.instance.optionsMenufromPause.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void OptionsMenuFromPause()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.optionsMenufromPause;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseMenu.SetActive(false);
+    }
 }
