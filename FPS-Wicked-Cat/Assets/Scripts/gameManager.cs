@@ -70,8 +70,11 @@ public class gameManager : MonoBehaviour
     private float diffTickTime;
     private int spawnOffset;
     private bool waitingToTick;
-    
+
+    [SerializeField] HighScoreHandler highscoreHandler;
+    [SerializeField] TextMeshProUGUI scoreText;
     public int currentScore;//stores current Score
+
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
@@ -87,6 +90,9 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        currentScore= 0;
+        AddScore(0);
 
         // set player character info
         player = GameObject.FindGameObjectWithTag("Player");
@@ -256,5 +262,6 @@ public class gameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         currentScore += amount;
+        scoreText.text = "Score: " + currentScore;
     }
 }

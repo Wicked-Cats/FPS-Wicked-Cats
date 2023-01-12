@@ -97,8 +97,9 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-
+            //Adds points to in game score
             gameManager.instance.AddScore(scoreRewardOnDeath);
+            
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();

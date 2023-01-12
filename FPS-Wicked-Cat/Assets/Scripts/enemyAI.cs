@@ -122,7 +122,9 @@ public class enemyAI : MonoBehaviour, IDamage
                 StartCoroutine(death());
                 imDead = true;
 
+                //Adds points to in game score
                 gameManager.instance.AddScore(scoreRewardOnDeath);
+               
                 // item drop
                 GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
                 cogPickup cog = drop.GetComponent<cogPickup>();
