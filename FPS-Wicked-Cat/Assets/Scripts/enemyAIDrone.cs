@@ -14,6 +14,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
+    [SerializeField] int scoreRewardedDeath; //score for killing that enemy
     // vvv in TESTING phase vvv
     //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
@@ -97,6 +98,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         if (HP <= 0)
         {
 
+            scoreRewardedDeath++;// should add points to score 
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();

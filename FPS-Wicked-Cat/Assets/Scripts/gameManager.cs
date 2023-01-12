@@ -39,6 +39,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
+    public TextMeshProUGUI currentScore;//stores current Score
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
