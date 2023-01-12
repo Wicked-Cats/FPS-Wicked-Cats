@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class HighScore : MonoBehaviour
 {
-    int highScore;
+    int score;
 
     private void Start()
     {
@@ -13,7 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void SetLatestScore()
     {
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        score = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     private void SaveScore(int score)
@@ -21,12 +21,12 @@ public class NewBehaviourScript : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", score);
     }
 
-    public void SetScoreIfGreater(int score)
+    public void SetScoreIfGreater(int newScore)
     {
-        if (highScore > score)
+        if (score > newScore)
         {
-            highScore = score;
-            SaveScore(score);
+            score = newScore;
+            SaveScore(newScore);
         }
     }
 }
