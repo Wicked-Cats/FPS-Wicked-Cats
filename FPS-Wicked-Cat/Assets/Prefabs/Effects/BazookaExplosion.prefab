@@ -9840,7 +9840,7 @@ MonoBehaviour:
   despawnTimer: 0.5
   aud: {fileID: -448487084540521898}
   audEnemyExplosion: {fileID: 8300000, guid: 07d86f38d24ec394398898718fd5e4fb, type: 3}
-  audEnemyExplosionVol: 1
+  audEnemyExplosionVol: 0.5
   SFXMixer: {fileID: 3591997216138423708, guid: 33aa4c7f820fb0a47b07109a679982e3, type: 2}
   damageAmount: 5
   radius: 10
@@ -14727,9 +14727,9 @@ AudioSource:
   m_GameObject: {fileID: 3372761020627971056}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 3591997216138423708, guid: 33aa4c7f820fb0a47b07109a679982e3, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 07d86f38d24ec394398898718fd5e4fb, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
