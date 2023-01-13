@@ -29,11 +29,11 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject upgradesMenu;
-    public GameObject damageFlash;
+    public GameObject upgradesMenu;         
+    public GameObject damageFlash;          
     public Image playerHPBar;
-    public Image playerHPBackground;
-    public TextMeshProUGUI playerHPCurrent;
+    public Image playerHPBackground;        
+    public TextMeshProUGUI playerHPCurrent; 
     public TextMeshProUGUI playerHPMax;
     public TextMeshProUGUI forwardSlash;
     public TextMeshProUGUI componentsDisplay;
