@@ -19,10 +19,10 @@ public class HighScoreData : MonoBehaviour
     public void Awake()
     {
 
-        //entrycontainer = Transform.Find("EntryContainer");
+        //entrycontainer = GameObject.Find("EntryContainer");
         //entrytemplate = entrycontainer.Find("entrytemp");
 
-        entrycontainer.SetActive(true);
+        entrycontainer.SetActive(false);
 
 
         float templateheight = 30f;
@@ -32,6 +32,7 @@ public class HighScoreData : MonoBehaviour
             GameObject entrytransform = Instantiate( entrycontainer );
             RectTransform entryrect = entrytransform.GetComponent<RectTransform>();
             entryrect.anchoredPosition = new Vector2(0, -templateheight * i);
+            entrycontainer.SetActive(true);
 
 
             //int rank = i + 1;
