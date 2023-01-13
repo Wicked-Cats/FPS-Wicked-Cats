@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
@@ -33,7 +34,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Audio ----")]
     [SerializeField] AudioSource aud;
-
+    public AudioMixerGroup mixer;
     [SerializeField] AudioClip gunShot;
     [Range(0, 1)] [SerializeField] float gunShotVol;
     [SerializeField] AudioClip[] audPlayerHurt;

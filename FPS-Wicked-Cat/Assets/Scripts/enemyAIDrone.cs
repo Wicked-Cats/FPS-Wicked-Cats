@@ -91,9 +91,6 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         HP -= damage;
         StartCoroutine(dmgFlash());
 
-        //makes enemy go to players last position in response to the damage
-        agent.SetDestination(gameManager.instance.player.transform.position);
-
         //check if enemy has died
         if (HP <= 0)
         {
