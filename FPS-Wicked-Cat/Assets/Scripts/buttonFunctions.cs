@@ -178,6 +178,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.objectivesSeen = true;
+        gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.unPause();
         gameManager.instance.activeMenu = null;
         gameManager.instance.UIEnable();
@@ -189,6 +190,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.objectivesSeen = true;
+        gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.unPause();
         gameManager.instance.activeMenu = null;
         gameManager.instance.UIEnable();
@@ -201,7 +203,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(false);
     }
 
-    public void CloseOptions()
+    public void GoBackToMain()
     {
         gameManager.instance.activeMenu = gameManager.instance.mainMenu;
         gameManager.instance.optionsMenu.SetActive(false);
@@ -211,14 +213,25 @@ public class buttonFunctions : MonoBehaviour
     public void GoBackToPause()
     {
         gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
-        gameManager.instance.optionsMenufromPause.SetActive(false);
+        gameManager.instance.optionsMenu.SetActive(false);
         gameManager.instance.activeMenu.SetActive(true);
     }
 
-    public void OptionsMenuFromPause()
+    public void CloseOptionsBtn()
     {
-        gameManager.instance.activeMenu = gameManager.instance.optionsMenufromPause;
-        gameManager.instance.activeMenu.SetActive(true);
-        gameManager.instance.pauseMenu.SetActive(false);
+        if (!gameManager.instance.isOptionBtnMain)
+        {
+            GoBackToMain();
+        }
+        else
+        {
+            GoBackToPause();
+        }
     }
+    //public void OptionsMenuFromPause()
+    //{
+    //    gameManager.instance.activeMenu = gameManager.instance.optionsMenufromPause;
+    //    gameManager.instance.activeMenu.SetActive(true);
+    //    gameManager.instance.pauseMenu.SetActive(false);
+    //}
 }

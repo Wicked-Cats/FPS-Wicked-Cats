@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class optionsMenu : MonoBehaviour
-{
+{  
     [Header("--- Mixer ---")]
     public AudioMixer audioMixer;
     public string mixerName;
@@ -24,17 +25,11 @@ public class optionsMenu : MonoBehaviour
     public void ApplyBtn()
     {
         PlayerPrefs.SetFloat(mixerName, slider.value);
+        Console.WriteLine("Saving Setting...");
     }
 
-    private void Start()
+    public void CloseBtn()
     {
-        if (PlayerPrefs.HasKey(mixerName))
-        {
-            slider.value = PlayerPrefs.GetFloat(mixerName);
-        }
-        else
-        {
-            slider.value= defaultVol;
-        }
+        audioMixer.SetFloat(mixerName, defaultVol);
     }
 }
