@@ -228,10 +228,5 @@ public class buttonFunctions : MonoBehaviour
             GoBackToPause();
         }
     }
-    //public void OptionsMenuFromPause()
-    //{
-    //    gameManager.instance.activeMenu = gameManager.instance.optionsMenufromPause;
-    //    gameManager.instance.activeMenu.SetActive(true);
-    //    gameManager.instance.pauseMenu.SetActive(false);
-    //}
+
 }
