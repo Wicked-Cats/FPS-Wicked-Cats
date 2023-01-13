@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu]
 
@@ -13,4 +14,5 @@ public class gunObjects : ScriptableObject
     public GameObject bulletModel;
     public GameObject gunModel;
     public AudioClip gunShot;
+    public AudioMixerGroup SFXMixer;
 }
