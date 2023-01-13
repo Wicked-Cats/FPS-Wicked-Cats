@@ -178,6 +178,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.objectivesSeen = true;
+        gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.unPause();
         gameManager.instance.activeMenu = null;
         gameManager.instance.UIEnable();
@@ -189,9 +190,43 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.objectivesSeen = true;
+        gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.unPause();
         gameManager.instance.activeMenu = null;
         gameManager.instance.UIEnable();
+    }
+
+    public void OptionsMenu()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.optionsMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseMenu.SetActive(false);
+    }
+
+    public void GoBackToMain()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.mainMenu;
+        gameManager.instance.optionsMenu.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void GoBackToPause()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+        gameManager.instance.optionsMenu.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void CloseOptionsBtn()
+    {
+        if (!gameManager.instance.isOptionBtnMain)
+        {
+            GoBackToMain();
+        }
+        else
+        {
+            GoBackToPause();
+        }
     }
 
 }

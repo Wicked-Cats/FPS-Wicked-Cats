@@ -23,15 +23,17 @@ public class gameManager : MonoBehaviour
 
 
     [Header("------UI Components------")]
+    public GameObject optionsMenu;
     public GameObject objectives;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject upgradesMenu;
-    public GameObject damageFlash;
+    public GameObject upgradesMenu;         
+    public GameObject damageFlash;          
     public Image playerHPBar;
-    public TextMeshProUGUI playerHPCurrent;
+    public Image playerHPBackground;        
+    public TextMeshProUGUI playerHPCurrent; 
     public TextMeshProUGUI playerHPMax;
     public TextMeshProUGUI forwardSlash;
     public TextMeshProUGUI componentsDisplay;
@@ -76,6 +78,12 @@ public class gameManager : MonoBehaviour
     [Header("----- Main Menu -----")]
     public GameObject mainMenu;
     public bool isMain;
+    public bool isOptionBtnMain = false;
+
+    [Header("----- Audio -----")]
+    public Slider SFXSlider;
+    public Slider BGMSlider;
+    private float defaultVol = 0.5f;
 
     public bool isPaused;
     float timeScaleBase;
@@ -92,6 +100,18 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        // Audio Saved from previous game
+        if (PlayerPrefs.HasKey("BGM") || PlayerPrefs.HasKey("SFX"))
+        {
+            BGMSlider.value = PlayerPrefs.GetFloat("BGM");
+            SFXSlider.value = PlayerPrefs.GetFloat("SFX");
+        }
+        else
+        {
+            BGMSlider.value = defaultVol;
+            SFXSlider.value = defaultVol;
+        }
 
         // set player character info
         player = GameObject.FindGameObjectWithTag("Player");
@@ -139,6 +159,7 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(isPaused);
             pause();
             objectivesSeen = false;
+            isOptionBtnMain= true;
         }
 
         //timer ticking
@@ -275,6 +296,7 @@ public class gameManager : MonoBehaviour
     public void UIEnable()
     {
         playerHPBar.enabled = true;
+        playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
         playerHPCurrent.enabled = true;
         componentsDisplay.enabled = true;
@@ -289,6 +311,7 @@ public class gameManager : MonoBehaviour
     public void UIDisable()
     {
         playerHPBar.enabled = false;
+        playerHPBackground.enabled = false;
         playerHPMax.enabled = false;
         playerHPCurrent.enabled = false;
         componentsDisplay.enabled = false;
