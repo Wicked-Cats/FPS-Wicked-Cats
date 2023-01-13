@@ -127,7 +127,7 @@ public class enemyAIFlyers : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //Adds points to in game score
-            gameManager.instance.AddScore(scoreRewardOnDeath);
+            //gameManager.instance.AddScore(scoreRewardOnDeath);
             
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];

@@ -77,7 +77,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //Adds points to in game score
-            gameManager.instance.AddScore(scoreRewardOnDeath);
+            //gameManager.instance.AddScore(scoreRewardOnDeath);
             
             //add components
             gameManager.instance.componentsCurrent += HPOrig;
