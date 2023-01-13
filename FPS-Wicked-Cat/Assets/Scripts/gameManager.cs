@@ -319,6 +319,5 @@ public class gameManager : MonoBehaviour
         reticle.enabled = false;
         crosshair.enabled = false;
         forwardSlash.enabled = false;
-
     }
 }

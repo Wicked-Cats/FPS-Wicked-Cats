@@ -33,7 +33,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
 
     [Header("----- Audio ----")]
-    [SerializeField] AudioSource aud;
+    public AudioSource aud;
     public AudioMixerGroup mixer;
     [SerializeField] AudioClip gunShot;
     [Range(0, 1)] [SerializeField] float gunShotVol;
@@ -43,6 +43,7 @@ public class playerController : MonoBehaviour
     [Range(0, 1)] [SerializeField] float playerJumpVol;
     [SerializeField] AudioClip[] audPlayerSteps;
     [Range(0, 1)] [SerializeField] float playerStepsVol;
+    public AudioClip SFXBtn;
 
     bool isShooting;
     int jumpedTimes;
