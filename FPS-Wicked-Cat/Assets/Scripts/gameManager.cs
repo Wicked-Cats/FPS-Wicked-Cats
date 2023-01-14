@@ -44,6 +44,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
+    
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -79,6 +80,11 @@ public class gameManager : MonoBehaviour
     public GameObject mainMenu;
     public bool isMain;
     public bool isOptionBtnMain = false;
+
+    [Header("----- High-Score Menu -----")]
+    public GameObject highScoreUI;
+    public bool isHighScoreBoard;
+    //public bool isOptionBtnHighScoreBoard = false;
 
     [Header("----- Audio -----")]
     public Slider SFXSlider;
@@ -295,6 +301,7 @@ public class gameManager : MonoBehaviour
     // turning ON UI 
     public void UIEnable()
     {
+        
         playerHPBar.enabled = true;
         playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
@@ -320,5 +327,5 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = false;
         forwardSlash.enabled = false;
 
-    }
+    }  
 }
