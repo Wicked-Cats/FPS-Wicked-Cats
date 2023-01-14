@@ -9,7 +9,7 @@ public class HighScoreTable : MonoBehaviour
     [Header("------ Score board Container ------")]
     private Transform entryContainer;
     private Transform entryTemplate;
-    private List<HighscoreEntry> highscoreEntrylist;
+    private List<HighscoreEntryData> highscoreEntrylist;
     private List<Transform> highscoreEntryTransformList;
 
     public TextMeshProUGUI userName;
@@ -54,7 +54,7 @@ public class HighScoreTable : MonoBehaviour
             {
                 if (highscores.highscoreEntryList[j].score > highscores.highscoreEntryList[i].score)
                 {
-                    HighscoreEntry temp = highscores.highscoreEntryList[i];
+                    HighscoreEntryData temp = highscores.highscoreEntryList[i];
                     highscores.highscoreEntryList[i] = highscores.highscoreEntryList[j];
                     highscores.highscoreEntryList[j] = temp;
                 }
@@ -64,13 +64,13 @@ public class HighScoreTable : MonoBehaviour
 
         
 
-        foreach (HighscoreEntry highscoreEntry in highscores.highscoreEntryList)
+        foreach (HighscoreEntryData highscoreEntry in highscores.highscoreEntryList)
         {
             CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
         }      
     }
 
-    private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformlist)
+    private void CreateHighscoreEntryTransform(HighscoreEntryData highscoreEntry, Transform container, List<Transform> transformlist)
     {
         Transform entryTransform = Instantiate(entryTemplate, container);
         RectTransform entry = entryTransform.GetComponent<RectTransform>();
@@ -89,7 +89,7 @@ public class HighScoreTable : MonoBehaviour
     private void AddHighscoreEntry(string name, int score,int enemykillCount , string timeSurvived)
     {
 
-        HighscoreEntry highscoreEntry = new HighscoreEntry { name = name , score = score , enemykillCount = enemykillCount , timeSurvived = timeSurvived };
+        HighscoreEntryData highscoreEntry = new HighscoreEntryData { name = name , score = score , enemykillCount = enemykillCount , timeSurvived = timeSurvived };
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         HighScore highscores = JsonUtility.FromJson<HighScore>(jsonString);
@@ -104,18 +104,18 @@ public class HighScoreTable : MonoBehaviour
         }
         if (highscores.highscoreEntryList == null)
         {
-            highscores.highscoreEntryList = new List<HighscoreEntry>();
+            highscores.highscoreEntryList = new List<HighscoreEntryData>();
         }
 
     }
 
     private class HighScore
     {
-        public List<HighscoreEntry> highscoreEntryList;
+        public List<HighscoreEntryData> highscoreEntryList;
     }
 
     [System.Serializable]
-    private class HighscoreEntry
+    private class HighscoreEntryData
     {
         public string name;
         public int score;
