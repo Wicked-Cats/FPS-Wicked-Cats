@@ -144,14 +144,14 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
         
         entryTable = HighTable.GetComponent<HighScoreTable>();
-
+        /*entryTable.HighScoreTableEntry()*/;
 
     }
 
 
     void Update()
     {
-        entryTable.HighScoreEntry();
+       
         //if (!isMain) //DONT DELETE
         //{
         //    // turning off UI elements they are turn on when user clicks a mode
