@@ -149,6 +149,7 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(isPaused);
             pause();
             isMain = true;
+            NavigateMenu.instance.OnMenuOpen(0);
         }
 
         // displays the objectives only at start.
@@ -195,6 +196,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
+            NavigateMenu.instance.OnMenuOpen(1);
 
             if (isPaused)
             {
