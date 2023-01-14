@@ -8,6 +8,8 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    [SerializeField] HighScoreTable entryTable;
+    [SerializeField] GameObject HighTable;
 
     [Header("------Player Components------")]
     public GameObject player;
@@ -140,22 +142,27 @@ public class gameManager : MonoBehaviour
 
         //Set up UI
         updateComponentsDisplay();
+        
+        entryTable = HighTable.GetComponent<HighScoreTable>();
+
+
     }
 
 
     void Update()
     {
-        if (!isMain) //DONT DELETE
-        {
-            // turning off UI elements they are turn on when user clicks a mode
-            UIDisable();
+        entryTable.HighScoreEntry();
+        //if (!isMain) //DONT DELETE
+        //{
+        //    // turning off UI elements they are turn on when user clicks a mode
+        //    UIDisable();
 
-            isPaused = !isPaused;
-            activeMenu = mainMenu;
-            activeMenu.SetActive(isPaused);
-            pause();
-            isMain = true;
-        }
+        //    isPaused = !isPaused;
+        //    activeMenu = mainMenu;
+        //    activeMenu.SetActive(isPaused);
+        //    pause();
+        //    isMain = true;
+        //}
 
         // displays the objectives only at start.
         if (objectivesSeen)
