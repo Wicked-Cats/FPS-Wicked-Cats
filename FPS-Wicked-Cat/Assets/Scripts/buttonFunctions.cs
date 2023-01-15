@@ -212,6 +212,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.activeMenu = gameManager.instance.optionsMenu;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.pauseMenu.SetActive(false);
+        NavigateMenu.instance.OnMenuOpen(3);
     }
 
     public void GoBackToMain()
