@@ -157,7 +157,6 @@ public class enemyAI : MonoBehaviour, IDamage
             HP -= damage;
             StartCoroutine(dmgFlash());
 
-
             //check if enemy has died
             if (HP <= 0)
             {

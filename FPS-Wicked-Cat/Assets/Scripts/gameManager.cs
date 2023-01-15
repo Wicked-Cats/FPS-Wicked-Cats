@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour
     [Header("------Player Components------")]
     public GameObject player;
     public playerController playerScript;
-    [SerializeField] public GameObject enemyAimPoint;
+    public GameObject enemyAimPoint;
 
     [Header("------ Player Upgrades------")]
     public int jumpsLimit;
@@ -23,17 +23,22 @@ public class gameManager : MonoBehaviour
 
 
     [Header("------UI Components------")]
+    public GameObject optionsMenu;
     public GameObject objectives;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject upgradesMenu;
-    public GameObject damageFlash;
+    public GameObject upgradesMenu;         
+    public GameObject damageFlash;          
     public Image playerHPBar;
-    public TextMeshProUGUI playerHPCurrent;
+    public Image playerHPBackground;        
+    public TextMeshProUGUI playerHPCurrent; 
     public TextMeshProUGUI playerHPMax;
-    [SerializeField] TextMeshProUGUI componentsDisplay;
+    public TextMeshProUGUI forwardSlash;
+    public TextMeshProUGUI componentsDisplay;
+    public Image reticle;
+    public Image crosshair;
     public TextMeshProUGUI respawnButtonText;
     public TextMeshProUGUI rangeButtonText;
     public TextMeshProUGUI damageButtonText;
@@ -41,8 +46,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI speedButtonText;
 
     [Header("------ Timer ------")]
-    [SerializeField] float timeCurrent;
-    [SerializeField] TextMeshProUGUI timerText;
+    public float timeCurrent;
+    public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
 
@@ -67,9 +72,19 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject miniBoss;
     public NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
-    private float diffTickTime;
-    private int spawnOffset;
+    public float diffTickTime;
+    private float spawnOffset;
     private bool waitingToTick;
+
+    [Header("----- Main Menu -----")]
+    public GameObject mainMenu;
+    public bool isMain;
+    public bool isOptionBtnMain = false;
+
+    [Header("----- Audio -----")]
+    public Slider SFXSlider;
+    public Slider BGMSlider;
+    private float defaultVol = 0.5f;
 
     public bool isPaused;
     float timeScaleBase;
@@ -77,7 +92,7 @@ public class gameManager : MonoBehaviour
     bool isSpawning;
     public int componentsCurrent;
     public int componentsTotal;
-    public bool objectivesSeen;
+    public bool objectivesSeen =false;
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
@@ -89,13 +104,25 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
 
+        // Audio Saved from previous game
+        if (PlayerPrefs.HasKey("BGM") || PlayerPrefs.HasKey("SFX"))
+        {
+            BGMSlider.value = PlayerPrefs.GetFloat("BGM");
+            SFXSlider.value = PlayerPrefs.GetFloat("SFX");
+        }
+        else
+        {
+            BGMSlider.value = defaultVol;
+            SFXSlider.value = defaultVol;
+        }
+
         // set player character info
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
 
-        diffTickTime = timeCurrent / (enemiesOptions.Length - 1);
+        diffTickTime = timeCurrent / (enemiesOptions.Length-1);
         spawnOffset = 0;
 
         //set and move player to spawn
@@ -112,8 +139,22 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
     }
 
+
     void Update()
     {
+        if (!isMain) //DONT DELETE
+        {
+            // turning off UI elements they are turn on when user clicks a mode
+            UIDisable();
+
+            isPaused = !isPaused;
+            activeMenu = mainMenu;
+            activeMenu.SetActive(isPaused);
+            pause();
+            isMain = true;
+            NavigateMenu.instance.OnMenuOpen(0);
+        }
+
         // displays the objectives only at start.
         //if (!objectivesSeen)
         //{
@@ -157,6 +198,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
+            NavigateMenu.instance.OnMenuOpen(1);
 
             if (isPaused)
             {
@@ -252,7 +294,7 @@ public class gameManager : MonoBehaviour
     {
         waitingToTick = true;
 
-        spawnOffset++;
+        spawnOffset+= 1f;
         damageIncreaseOffset++;
         if (damageIncreaseOffset % 3 == 0)
         {
@@ -265,5 +307,34 @@ public class gameManager : MonoBehaviour
     public void updateComponentsDisplay()
     {
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
+    }
+
+    // turning ON UI 
+    public void UIEnable()
+    {
+        playerHPBar.enabled = true;
+        playerHPBackground.enabled= true;
+        playerHPMax.enabled = true;
+        playerHPCurrent.enabled = true;
+        componentsDisplay.enabled = true;
+        timerText.enabled = true;
+        reticle.enabled = true;
+        crosshair.enabled = true;
+        forwardSlash.enabled = true;
+        updateComponentsDisplay();
+
+    }
+    // turning OFF UI
+    public void UIDisable()
+    {
+        playerHPBar.enabled = false;
+        playerHPBackground.enabled = false;
+        playerHPMax.enabled = false;
+        playerHPCurrent.enabled = false;
+        componentsDisplay.enabled = false;
+        timerText.enabled = false;
+        reticle.enabled = false;
+        crosshair.enabled = false;
+        forwardSlash.enabled = false;
     }
 }

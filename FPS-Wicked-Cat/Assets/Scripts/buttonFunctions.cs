@@ -7,6 +7,7 @@ public class buttonFunctions : MonoBehaviour
 {
     public void resume()
     {
+        SFXBtnClick();
         gameManager.instance.isPaused = !gameManager.instance.isPaused;
         gameManager.instance.unPause();
     }
@@ -24,6 +25,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
+        SFXBtnClick();
         if (gameManager.instance.componentsCurrent >= gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease)
         {
             gameManager.instance.componentsCurrent -= gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease;
@@ -55,6 +57,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void damageUp()
     {
+        SFXBtnClick();
         if (gameManager.instance.playerScript.damage < gameManager.instance.damageLimit)
         {
             if (gameManager.instance.componentsCurrent >= gameManager.instance.damageCost)
@@ -70,6 +73,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void HpUP()
     {
+        SFXBtnClick();
         if (gameManager.instance.playerScript.HPOrig < gameManager.instance.HPLimit)
         {
             if (gameManager.instance.componentsCurrent >= gameManager.instance.HPCost)
@@ -87,6 +91,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void speedUp()
     {
+        SFXBtnClick();
         if (gameManager.instance.playerScript.playerSpeed < gameManager.instance.speedLimit)
         {
             if (gameManager.instance.componentsCurrent >= gameManager.instance.speedCost)
@@ -102,6 +107,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void upgradesMenu()
     {
+        SFXBtnClick();
         gameManager.instance.activeMenu = gameManager.instance.upgradesMenu;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.pauseMenu.SetActive(false);
@@ -109,6 +115,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void closeUpgrades()
     {
+        SFXBtnClick();
         gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
         gameManager.instance.upgradesMenu.SetActive(false);
         gameManager.instance.activeMenu.SetActive(true);
@@ -157,6 +164,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void rangeUp()
     {
+        SFXBtnClick();
         if (gameManager.instance.playerScript.rangeUp < gameManager.instance.rangeUpLimit)
         {
             if (gameManager.instance.componentsCurrent >= gameManager.instance.rangeCost)
@@ -168,5 +176,75 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.updateComponentsDisplay();
             }
         }
+    }
+
+
+    // VVV Main Menu Items VVV
+    public void QuickPlay()
+    {
+        SFXBtnClick();
+        gameManager.instance.timeCurrent = 300;
+        gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        gameManager.instance.objectivesSeen = true;
+        gameManager.instance.mainMenu.SetActive(false);
+        gameManager.instance.unPause();
+        gameManager.instance.activeMenu = null;
+        gameManager.instance.UIEnable();
+    }
+
+    public void SurvivalMode()
+    {
+        SFXBtnClick();
+        gameManager.instance.timeCurrent = 1800;
+        gameManager.instance.diffTickTime = gameManager.instance.timeCurrent / (gameManager.instance.enemiesOptions.Length - 1);
+        gameManager.instance.isPaused = !gameManager.instance.isPaused;
+        gameManager.instance.objectivesSeen = true;
+        gameManager.instance.mainMenu.SetActive(false);
+        gameManager.instance.unPause();
+        gameManager.instance.activeMenu = null;
+        gameManager.instance.UIEnable();
+    }
+
+    public void OptionsMenu()
+    {
+        SFXBtnClick();
+        gameManager.instance.activeMenu = gameManager.instance.optionsMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseMenu.SetActive(false);
+    }
+
+    public void GoBackToMain()
+    {
+        SFXBtnClick();
+        gameManager.instance.activeMenu = gameManager.instance.mainMenu;
+        gameManager.instance.optionsMenu.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void GoBackToPause()
+    {
+        SFXBtnClick();
+        gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+        gameManager.instance.optionsMenu.SetActive(false);
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void CloseOptionsBtn()
+    {
+        SFXBtnClick();
+        if (!gameManager.instance.isOptionBtnMain)
+        {
+            GoBackToMain();
+        }
+        else
+        {
+            GoBackToPause();
+        }
+    }
+
+    public void SFXBtnClick()
+    {
+        gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.SFXBtn, 1f);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class explosion : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class explosion : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip audEnemyExplosion;
     [Range(0, 1)][SerializeField] float audEnemyExplosionVol;
+    public AudioMixerGroup SFXMixer;
 
 
     protected void Start()
