@@ -23,7 +23,8 @@ public class NavigateMenu : MonoBehaviour
     [Header("--- Options Menu Button List ---")]
     [SerializeField] Selectable[] selectableArr;
     [SerializeField] Slider[] sliderArr;
-    [SerializeField] Button[] btnArr;
+    [SerializeField] Button[] highlightBtnArr;
+    [SerializeField] Button[] optionBtnArr;
 
     // Start is called before the first frame update
     void Awake()
@@ -73,10 +74,10 @@ public class NavigateMenu : MonoBehaviour
             {
                 mainMenuArr[selection].onClick.Invoke();
             }
-            
+
 
         }
-        else if(gameManager.instance.activeMenu == gameManager.instance.pauseMenu)
+        else if (gameManager.instance.activeMenu == gameManager.instance.pauseMenu)
         {
 
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
@@ -94,7 +95,7 @@ public class NavigateMenu : MonoBehaviour
                     PauseSelection();
 
                 }
-            } 
+            }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 if (selection != pauseMenuArr.Length - 1)
@@ -136,6 +137,27 @@ public class NavigateMenu : MonoBehaviour
                 }
 
             }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                if (selection != selectableArr.Length - 1)
+                {
+                    currImage.color = Orig;
+                    selection++;
+                    OptionSelection();
+                }
+                else
+                {
+                    currImage.color = Orig;
+                    selection = 0;
+                    OptionSelection();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                optionBtnArr[selection].onClick.Invoke();
+            }
+
         }
 
     }
@@ -167,7 +189,6 @@ public class NavigateMenu : MonoBehaviour
 
     private void PauseSelection()
     {
-
         currImage = pauseMenuArr[selection].GetComponent<Image>();
         Orig = currImage.color;
         currImage.color = Color.cyan;
@@ -195,22 +216,28 @@ public class NavigateMenu : MonoBehaviour
     {
         if (selectableArr[selection].name == "CloseOptions Menu")
         {
-            currImage = btnArr[selection].GetComponent<Image>();
+            currImage = highlightBtnArr[selection].GetComponent<Image>();
             Orig = currImage.color;
             currImage.color = Color.gray;
         }
         else if (selectableArr[selection].name == "SFX Slider")
         {
+            currImage = highlightBtnArr[selection].gameObject.GetComponent<Image>();
+            Orig = currImage.color;
+            currImage.color = Color.gray;
             SoundControls();
         }
         else if (selectableArr[selection].name == "BGM Slider")
         {
-
+            currImage = highlightBtnArr[selection].gameObject.GetComponent<Image>();
+            Orig = currImage.color;
+            currImage.color = Color.gray;
+            SoundControls();
         }
         else if (selectableArr[selection].name == "Apply_Changes")
         {
-            currImage = btnArr[selection].GetComponent<Image>();
-            Orig= currImage.color;
+            currImage = highlightBtnArr[selection].GetComponent<Image>();
+            Orig = currImage.color;
             currImage.color = Color.gray;
 
         }
@@ -219,9 +246,27 @@ public class NavigateMenu : MonoBehaviour
     private void SoundControls()
     {
         // Increase Vol
-        if (Input.GetKeyDown(KeyCode.RightArrow) ||Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            
+            if (sliderArr[selection].value > 1)
+            {
+                sliderArr[selection].value = 1f;
+            }
+            else
+            {
+                sliderArr[selection].value += 0.1f;
+            }
+        }// Decrease Vol
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            if (sliderArr[selection].value < 0)
+            {
+                sliderArr[selection].value = 0.0001f;
+            }
+            else
+            {
+                sliderArr[selection].value -= 0.1f;
+            }
         }
     }
 }

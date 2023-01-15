@@ -20,7 +20,6 @@ public class optionsMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat(mixerName, Mathf.Log10(volume) * 20f);
-
     }
 
     public void ApplyBtn()
