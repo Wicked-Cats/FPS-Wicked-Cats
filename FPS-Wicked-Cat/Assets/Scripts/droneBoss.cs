@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class droneBoss : MonoBehaviour
+public class droneBoss : MonoBehaviour , IDamage
 {
     [Header("-- Components --")]
     [SerializeField] Renderer model;

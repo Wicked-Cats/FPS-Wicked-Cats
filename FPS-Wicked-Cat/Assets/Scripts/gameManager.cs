@@ -50,6 +50,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
+    private float timeTotal;
 
 
     [Header("------ Upgrades Stuff ------")]
@@ -70,6 +71,7 @@ public class gameManager : MonoBehaviour
     [Range(1, 100)] [SerializeField] float spawnTimer;
     public GameObject[] enemiesOptions;
     [SerializeField] GameObject miniBoss;
+    [SerializeField] GameObject droneBoss;
     public NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
     public float diffTickTime;
@@ -97,7 +99,9 @@ public class gameManager : MonoBehaviour
     public GameObject forceField;
     public GameObject forceFieldMaker;
     bool area1Open;
+    bool area2Open;
     bool miniBossSpawned;
+    bool droneBossSpawned;
 
 
     void Awake()
@@ -121,6 +125,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
+        timeTotal = timeCurrent;
 
         diffTickTime = timeCurrent / (enemiesOptions.Length-1);
         spawnOffset = 0;
@@ -221,9 +226,22 @@ public class gameManager : MonoBehaviour
             StartCoroutine(spawnEnemies(0));
         }
 
-        if (area1Open && !miniBossSpawned)
+        if (!miniBossSpawned)
         {
-            StartCoroutine(spawnEnemies(1));
+            if (area1Open || timeCurrent < (timeTotal - (timeTotal / 4)))
+            {
+                StartCoroutine(spawnEnemies(1));
+                miniBossSpawned = true;
+            }
+        }
+
+        if (!droneBossSpawned)
+        {
+            if(area2Open || timeCurrent < (timeTotal - (timeTotal / 2)))
+            {
+                StartCoroutine(spawnEnemies(2));
+                droneBossSpawned = true;
+            }
         }
 
     }
@@ -254,6 +272,10 @@ public class gameManager : MonoBehaviour
         else if (spawnType == 1)
         {
             enemyToSpawn = miniBoss;
+        }
+        else if (spawnType == 2)
+        {
+            enemyToSpawn = droneBoss;
         }
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);

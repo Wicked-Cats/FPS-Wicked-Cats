@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 35644302}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPos 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 253535368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPos 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 744725200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPos 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1930663652}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPos 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299339030494394}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel_R2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4910746818284266}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Propeller_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4661785240714256}
   - component: {fileID: 82402514122850390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SFX_Firing_R2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148668175390700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4238859913371026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4005460095209498}
   - component: {fileID: 82146032611901468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SFX_Firing_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4824834059050348}
   - component: {fileID: 82590754032547736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SFX_Firing_L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734674953036268}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Joint_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4922908556504046}
   - component: {fileID: 82450716750101048}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SFX_Firing_L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,7 +986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4987749184050318}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Joint_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 4310574398731710}
   - component: {fileID: 33008677900351390}
   - component: {fileID: 23094945855023906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Drone_Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671283423545292}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel_L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4071338559760152}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Propeller_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4076090795514380}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel_L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4818929198137846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,9 +1232,15 @@ GameObject:
   - component: {fileID: 95950840671610858}
   - component: {fileID: 64068170659441588}
   - component: {fileID: 5502784689039928027}
-  m_Layer: 0
-  m_Name: PF_Steam_Battle_Drone
-  m_TagString: Untagged
+  - component: {fileID: 564924281773048055}
+  - component: {fileID: 3933837210169554447}
+  - component: {fileID: 1417307885238596729}
+  - component: {fileID: 2737699035154048698}
+  - component: {fileID: 3853885435801045192}
+  - component: {fileID: 4811692481186714245}
+  m_Layer: 10
+  m_Name: Drone Boss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1351,6 +1357,88 @@ NavMeshAgent:
   m_BaseOffset: 2.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &564924281773048055
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678291946364222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0.44}
+--- !u!136 &3933837210169554447
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678291946364222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: -0.44}
+--- !u!136 &1417307885238596729
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678291946364222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0.71, y: 0.45, z: 0.47}
+--- !u!136 &2737699035154048698
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678291946364222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: -0.71, y: 0.45, z: 0.47}
+--- !u!135 &3853885435801045192
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678291946364222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 1.31, y: 1.63, z: -0.07}
+--- !u!135 &4811692481186714245
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678291946364222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: -1.31, y: 1.63, z: -0.07}
 --- !u!1 &1712044561607254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4043879320257274}
   - component: {fileID: 95515228623765452}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Battle_Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1416,7 +1504,7 @@ GameObject:
   - component: {fileID: 4916716256076316}
   - component: {fileID: 137301217144876542}
   - component: {fileID: 95064350154910134}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Battle_Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,7 +1622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4177984937517864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Barrel_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1566,7 +1654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371670560287590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1601,7 +1689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4579144884306092}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Engine_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1633,7 +1721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4492689585787190}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Engine_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1665,7 +1753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3760686692751002519}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HeadPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
