@@ -10,8 +10,8 @@ public class NavigateMenu : MonoBehaviour
     public static NavigateMenu instance;
 
     public int selection;
-    private Image currImage;
-    Color Orig;
+    public Image currImage;
+    public Color Orig;
 
 
     [Header("--- Main Menu Button List ---")]
@@ -72,6 +72,7 @@ public class NavigateMenu : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
+                currImage.color = Orig;
                 mainMenuArr[selection].onClick.Invoke();
             }
 
@@ -114,6 +115,7 @@ public class NavigateMenu : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
+                currImage.color = Orig;
                 pauseMenuArr[selection].onClick.Invoke();
             }
         }
@@ -125,14 +127,12 @@ public class NavigateMenu : MonoBehaviour
                 {
                     currImage.color = Orig;
                     selection--;
-                    // Call OptionSelection 
                     OptionSelection();
                 }
                 else
                 {
                     currImage.color = Orig;
                     selection = 0;
-                    // Call OptionSelection
                     OptionSelection();
                 }
 
@@ -155,6 +155,7 @@ public class NavigateMenu : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
+                currImage.color = Orig;
                 optionBtnArr[selection].onClick.Invoke();
             }
 
@@ -196,19 +197,26 @@ public class NavigateMenu : MonoBehaviour
 
     public void OnMenuOpen(int choice)
     {
-        selection = 0;
-
         if (choice == 0)
         {
+            selection = 2;
             currImage = mainMenuArr[selection].GetComponent<Image>();
             Orig = currImage.color;
             MenuSelection();
         }
         else if (choice == 1)
         {
+            selection = 0;
             currImage = pauseMenuArr[selection].GetComponent<Image>();
             Orig = currImage.color;
             PauseSelection();
+        }
+        else if (choice == 3)
+        {
+            selection = 1;
+            currImage = highlightBtnArr[selection].GetComponent<Image>();
+            Orig = currImage.color;
+            OptionSelection();    
         }
     }
 
