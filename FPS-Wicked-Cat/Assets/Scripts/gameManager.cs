@@ -39,6 +39,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
+    public GameObject interactableTextParent;
+    public TextMeshProUGUI interactableText;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;
