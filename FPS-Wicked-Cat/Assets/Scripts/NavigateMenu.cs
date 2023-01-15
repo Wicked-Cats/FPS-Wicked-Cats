@@ -21,8 +21,9 @@ public class NavigateMenu : MonoBehaviour
     [SerializeField] Button[] pauseMenuArr;
 
     [Header("--- Options Menu Button List ---")]
-    [SerializeField] Button[] optionsMenuArr;
-    [SerializeField] Slider[] slidersMenuArr;
+    [SerializeField] Selectable[] selectableArr;
+    [SerializeField] Slider[] sliderArr;
+    [SerializeField] Button[] btnArr;
 
     // Start is called before the first frame update
     void Awake()
@@ -67,7 +68,8 @@ public class NavigateMenu : MonoBehaviour
                 }
 
             }
-            if (Input.GetKeyDown(KeyCode.Return))
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 mainMenuArr[selection].onClick.Invoke();
             }
@@ -109,7 +111,7 @@ public class NavigateMenu : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 pauseMenuArr[selection].onClick.Invoke();
             }
@@ -123,12 +125,14 @@ public class NavigateMenu : MonoBehaviour
                     currImage.color = Orig;
                     selection--;
                     // Call OptionSelection 
+                    OptionSelection();
                 }
                 else
                 {
                     currImage.color = Orig;
                     selection = 0;
                     // Call OptionSelection
+                    OptionSelection();
                 }
 
             }
@@ -189,8 +193,35 @@ public class NavigateMenu : MonoBehaviour
 
     private void OptionSelection()
     {
-        currImage = optionsMenuArr[selection].GetComponent<Image>();
-        Orig = currImage.color;
-        currImage.color = Color.gray;
+        if (selectableArr[selection].name == "CloseOptions Menu")
+        {
+            currImage = btnArr[selection].GetComponent<Image>();
+            Orig = currImage.color;
+            currImage.color = Color.gray;
+        }
+        else if (selectableArr[selection].name == "SFX Slider")
+        {
+            SoundControls();
+        }
+        else if (selectableArr[selection].name == "BGM Slider")
+        {
+
+        }
+        else if (selectableArr[selection].name == "Apply_Changes")
+        {
+            currImage = btnArr[selection].GetComponent<Image>();
+            Orig= currImage.color;
+            currImage.color = Color.gray;
+
+        }
+    }
+
+    private void SoundControls()
+    {
+        // Increase Vol
+        if (Input.GetKeyDown(KeyCode.RightArrow) ||Input.GetKeyDown(KeyCode.D))
+        {
+            
+        }
     }
 }

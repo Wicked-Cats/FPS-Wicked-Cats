@@ -2545,6 +2545,8 @@ MonoBehaviour:
   - {fileID: 1772972074701075140}
   - {fileID: 3558538790357768464}
   - {fileID: 7467899922203907906}
+  optionsMenuArr: []
+  slidersMenuArr: []
 --- !u!1 &189385481587178657
 GameObject:
   m_ObjectHideFlags: 0
@@ -6831,7 +6833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2613481826913121382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8554,7 +8556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4773546271001390015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10893,7 +10895,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
