@@ -68,7 +68,7 @@ public class gameManager : MonoBehaviour
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)] [SerializeField] float spawnTimer;
-    [SerializeField] GameObject[] enemiesOptions;
+    public GameObject[] enemiesOptions;
     [SerializeField] GameObject miniBoss;
     public NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
@@ -249,7 +249,7 @@ public class gameManager : MonoBehaviour
         if (spawnType == 0)
         {
             isSpawning = true;
-            enemyToSpawn = enemiesOptions[Random.Range(0, spawnOffset)];
+            enemyToSpawn = enemiesOptions[Random.Range(0, (int)spawnOffset)];
         }
         else if (spawnType == 1)
         {
