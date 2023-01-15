@@ -7,9 +7,15 @@ public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("-- Components --")]
     [SerializeField] Renderer model;
+    [SerializeField] SkinnedMeshRenderer meshRenderer1;
+    [SerializeField] SkinnedMeshRenderer meshRenderer2;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     public Color colorOrig;
+    [SerializeField] Material baseMaterial;
+    [SerializeField] Material dissolveMaterial;
+    [SerializeField] GameObject body;
+    [SerializeField] GameObject[] legs;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
@@ -21,10 +27,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float playerFaceSpeed;
     [SerializeField] float extraShotRange;
     private float angleToPlayer;
-    bool inSight;
 
     [Header("-- Enemy Gun Stats --")]
-    [SerializeField] int shootDmg;
     [SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
@@ -36,28 +40,71 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-- Effects --")]
     [SerializeField] GameObject explosion;
     [SerializeField] GameObject fireVaccum;
+    [SerializeField] float dissolveSpeed;
 
 
 
 
     Vector3 playerDir;
-    private float stopDistOrig;
     bool imDead;
-
+    bool isPathed;
+    bool teleporting;
+    float timeForDissolve;
+    bool teleportCycle;
 
     void Start()
     {
         HPOrig = HP;
         colorOrig = model.material.color;
-        stopDistOrig = agent.stoppingDistance;
+        meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
     }
 
     void Update()
     {
-        if (inSight && HP > 0)
+        if (agent.isOnOffMeshLink || teleporting)
+        {
+            if (!teleporting)
+            {
+                agent.isStopped = true;
+                meshRenderer1.material = dissolveMaterial;
+                foreach (GameObject x in legs)
+                {
+
+                    meshRenderer2 = x.GetComponent<SkinnedMeshRenderer>();
+                    meshRenderer2.material = dissolveMaterial;
+                }
+                timeForDissolve = 0.01f;
+                teleporting = true;
+            }
+            if (teleporting)
+            {
+
+                if (dissolveMaterial.GetFloat("_Cutoff") > 0.9f)
+                {
+                    agent.CompleteOffMeshLink();
+                    teleportCycle = true;
+                }
+                else if (dissolveMaterial.GetFloat("_Cutoff") < 0.05f && teleportCycle)
+                {
+                    meshRenderer1.material = baseMaterial;
+                    foreach (GameObject x in legs)
+                    {
+
+                        meshRenderer2 = x.GetComponent<SkinnedMeshRenderer>();
+                        meshRenderer2.material = baseMaterial;
+                    }
+                    agent.isStopped = false;
+                    teleporting = false;
+                    teleportCycle = false;
+                }
+            }
+            dissolveMaterial.SetFloat("_Cutoff", Mathf.Sin(timeForDissolve * dissolveSpeed));
+            timeForDissolve += Time.deltaTime;
+        }
+
+        if (HP > 0)
         {
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
-            agent.stoppingDistance = stopDistOrig;
             LineOfSight();
         }
     }
@@ -65,10 +112,10 @@ public class enemyAI : MonoBehaviour, IDamage
     //checks if player is in enemies view and start shooting when 
     void LineOfSight()
     {
-        //agent.SetDestination(gameManager.instance.player.transform.position);
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(gameManager.instance.player.transform.position, path);
-        agent.SetPath(path);
+        if (!isPathed && agent.isOnOffMeshLink == false && !teleporting)
+        {
+            StartCoroutine(path());
+        }
 
 
         playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
@@ -83,7 +130,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
 
-                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange) // so if he sees us and we are mostly in front of him he starts to shoot
+                if (!isShooting && angleToPlayer <= lineOfSight / 3 && playerDir.magnitude <= agent.stoppingDistance + extraShotRange && !teleporting) // so if he sees us and we are mostly in front of him he starts to shoot
                 {
                     StartCoroutine(shoot());
                 }
@@ -104,14 +151,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
-        if (!imDead)
+        if (!imDead && !teleporting)
         {
             //damages enemy and gives feedback to player
             HP -= damage;
             StartCoroutine(dmgFlash());
-
-            //makes enemy go to players last position in response to the damage
-            FacePlayer();
 
             //check if enemy has died
             if (HP <= 0)
@@ -137,32 +181,15 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
 
             }
+            //makes enemy look to players last position in response to the damage
+            FacePlayer();
         }
     }
-
-    //code for player entering enemies sense range
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inSight = true;
-        }
-
-    }
-
-    //code for player leaving enemy sense range
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inSight = false;
-        }
-    }
-
 
     IEnumerator shoot()
     {
         isShooting = true;
+        //anim.SetTrigger("Shoot");
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
@@ -189,5 +216,15 @@ public class enemyAI : MonoBehaviour, IDamage
         Instantiate(explosion, transform.position, transform.rotation);
 
         Destroy(gameObject);
+    }
+
+    IEnumerator path()
+    {
+        isPathed = true;
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+        yield return new WaitForSeconds(1.5f);
+        isPathed = false;
     }
 }

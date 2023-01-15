@@ -14,8 +14,6 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [SerializeField] int HP;
     private int HPOrig;
     [SerializeField] Transform headPos;
-    // vvv in TESTING phase vvv
-    //[SerializeField] GameObject components;  // this object will be the item that drops from the enemy
 
     [Header("-- Drone Vision --")]
     [SerializeField] int lineOfSight;
@@ -48,12 +46,8 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (inSight)
-        {
             agent.stoppingDistance = stopDistOrig;
             LineOfSight();
-        }
-
     }
 
     void LineOfSight()
@@ -115,22 +109,6 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inSight = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inSight = false;
-        }
-    }
-
     IEnumerator shoot()
     {
         isShooting = true;
@@ -146,12 +124,4 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
     }
-
-    // vvv in TESTING phase vvv
-    //private void ItemDrop()
-    //{
-    //    Instantiate(components, transform.parent);
-    //    gameManager.instance.componentsCurrent += HPOrig;
-    //    gameManager.instance.componentsTotal += HPOrig;
-    //}
 }

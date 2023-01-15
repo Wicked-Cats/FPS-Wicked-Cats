@@ -50,6 +50,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
+    private float timeTotal;
 
 
     [Header("------ Upgrades Stuff ------")]
@@ -67,9 +68,11 @@ public class gameManager : MonoBehaviour
     public int speedCost;
 
     [Header("------ Enemy Spawning ------")]
-    [Range(1, 100)][SerializeField] float spawnTimer;
+    [Range(1, 100)] [SerializeField] float spawnTimer;
     public GameObject[] enemiesOptions;
-    private NavMeshTriangulation navMeshTri;
+    [SerializeField] GameObject miniBoss;
+    [SerializeField] GameObject droneBoss;
+    public NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
     public float diffTickTime;
     private float spawnOffset;
@@ -95,6 +98,10 @@ public class gameManager : MonoBehaviour
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
+    bool area1Open;
+    bool area2Open;
+    bool miniBossSpawned;
+    bool droneBossSpawned;
 
 
     void Awake()
@@ -118,6 +125,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
+        timeTotal = timeCurrent;
 
         diffTickTime = timeCurrent / (enemiesOptions.Length-1);
         spawnOffset = 0;
@@ -153,15 +161,14 @@ public class gameManager : MonoBehaviour
         }
 
         // displays the objectives only at start.
-        if (objectivesSeen)
-        {
-            isPaused = !isPaused;
-            activeMenu = objectives;
-            activeMenu.SetActive(isPaused);
-            pause();
-            objectivesSeen = false;
-            isOptionBtnMain= true;
-        }
+        //if (!objectivesSeen)
+        //{
+        //    isPaused = !isPaused;
+        //    activeMenu = objectives;
+        //    activeMenu.SetActive(isPaused);
+        //    pause();
+        //    objectivesSeen = true;
+        //}
 
         //timer ticking
         if (!isPaused)
@@ -183,12 +190,12 @@ public class gameManager : MonoBehaviour
             }
 
             timerUpdate(timeCurrent);
+            if (!waitingToTick)
+            {
+                StartCoroutine(difficultyTick());
+            }
         }
 
-        if(!waitingToTick)
-        {
-            StartCoroutine(difficultyTick());
-        }
 
         //opens pause menu
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
@@ -216,7 +223,25 @@ public class gameManager : MonoBehaviour
 
         if (!isSpawning)
         {
-            StartCoroutine(spawnEnemies());
+            StartCoroutine(spawnEnemies(0));
+        }
+
+        if (!miniBossSpawned)
+        {
+            if (area1Open || timeCurrent < (timeTotal - (timeTotal / 4)))
+            {
+                StartCoroutine(spawnEnemies(1));
+                miniBossSpawned = true;
+            }
+        }
+
+        if (!droneBossSpawned)
+        {
+            if(area2Open || timeCurrent < (timeTotal - (timeTotal / 2)))
+            {
+                StartCoroutine(spawnEnemies(2));
+                droneBossSpawned = true;
+            }
         }
 
     }
@@ -237,12 +262,21 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    IEnumerator spawnEnemies()
+    IEnumerator spawnEnemies(int spawnType)
     {
-        isSpawning = true;
-
-        int spawnStorage = Mathf.FloorToInt(spawnOffset);
-        enemyToSpawn = enemiesOptions[Random.Range(0, spawnStorage)];
+        if (spawnType == 0)
+        {
+            isSpawning = true;
+            enemyToSpawn = enemiesOptions[Random.Range(0, (int)spawnOffset)];
+        }
+        else if (spawnType == 1)
+        {
+            enemyToSpawn = miniBoss;
+        }
+        else if (spawnType == 2)
+        {
+            enemyToSpawn = droneBoss;
+        }
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
@@ -253,7 +287,10 @@ public class gameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(spawnTimer);
-        isSpawning = false;
+        if (spawnType == 0)
+        {
+            isSpawning = false;
+        }
     }
 
     void timerUpdate(float displaytime)
@@ -262,7 +299,7 @@ public class gameManager : MonoBehaviour
         {
             displaytime = 0;
         }
-        if(displaytime < 30)
+        if (displaytime < 30)
         {
             spawnTimer = 1;
             timerText.color = Color.red;
@@ -281,7 +318,7 @@ public class gameManager : MonoBehaviour
 
         spawnOffset+= 1f;
         damageIncreaseOffset++;
-        if(damageIncreaseOffset % 3 == 0)
+        if (damageIncreaseOffset % 3 == 0)
         {
             timeDamageIncrease++;
         }
