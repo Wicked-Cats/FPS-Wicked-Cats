@@ -20,6 +20,9 @@ public class NavigateMenu : MonoBehaviour
     [Header("--- Pause Menu Button List ---")]
     [SerializeField] Button[] pauseMenuArr;
 
+    [Header("--- Options Menu Button List ---")]
+    [SerializeField] Button[] optionsMenuArr;
+    [SerializeField] Slider[] slidersMenuArr;
 
     // Start is called before the first frame update
     void Awake()
@@ -89,7 +92,7 @@ public class NavigateMenu : MonoBehaviour
                     PauseSelection();
 
                 }
-            } // DOWN KEY DOE
+            } 
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 if (selection != pauseMenuArr.Length - 1)
@@ -111,6 +114,25 @@ public class NavigateMenu : MonoBehaviour
                 pauseMenuArr[selection].onClick.Invoke();
             }
         }
+        else if (gameManager.instance.activeMenu == gameManager.instance.optionsMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            {
+                if (selection != 0)
+                {
+                    currImage.color = Orig;
+                    selection--;
+                    // Call OptionSelection 
+                }
+                else
+                {
+                    currImage.color = Orig;
+                    selection = 0;
+                    // Call OptionSelection
+                }
+
+            }
+        }
 
     }
 
@@ -128,7 +150,7 @@ public class NavigateMenu : MonoBehaviour
         {
             currImage = mainMenuArr[selection].GetComponent<Image>();
             Orig = currImage.color;
-            currImage.color = Color.grey;
+            currImage.color = Color.gray;
         }
         else
         {
@@ -163,5 +185,12 @@ public class NavigateMenu : MonoBehaviour
             Orig = currImage.color;
             PauseSelection();
         }
+    }
+
+    private void OptionSelection()
+    {
+        currImage = optionsMenuArr[selection].GetComponent<Image>();
+        Orig = currImage.color;
+        currImage.color = Color.gray;
     }
 }
