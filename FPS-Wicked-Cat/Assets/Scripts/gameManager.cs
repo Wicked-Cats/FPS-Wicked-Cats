@@ -65,7 +65,7 @@ public class gameManager : MonoBehaviour
     [Range(1, 100)] [SerializeField] float spawnTimer;
     [SerializeField] GameObject[] enemiesOptions;
     [SerializeField] GameObject miniBoss;
-    private NavMeshTriangulation navMeshTri;
+    public NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
     private float diffTickTime;
     private int spawnOffset;
@@ -115,14 +115,14 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         // displays the objectives only at start.
-        if (!objectivesSeen)
-        {
-            isPaused = !isPaused;
-            activeMenu = objectives;
-            activeMenu.SetActive(isPaused);
-            pause();
-            objectivesSeen = true;
-        }
+        //if (!objectivesSeen)
+        //{
+        //    isPaused = !isPaused;
+        //    activeMenu = objectives;
+        //    activeMenu.SetActive(isPaused);
+        //    pause();
+        //    objectivesSeen = true;
+        //}
 
         //timer ticking
         if (!isPaused)

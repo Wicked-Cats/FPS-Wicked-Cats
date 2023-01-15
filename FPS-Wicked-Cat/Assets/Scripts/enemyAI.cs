@@ -101,6 +101,7 @@ public class enemyAI : MonoBehaviour, IDamage
             dissolveMaterial.SetFloat("_Cutoff", Mathf.Sin(timeForDissolve * dissolveSpeed));
             timeForDissolve += Time.deltaTime;
         }
+
         if (HP > 0)
         {
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
