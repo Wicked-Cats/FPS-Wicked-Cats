@@ -111,6 +111,16 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
     }
 
+    private void Start()
+    {
+        // set all menus inactive
+        pauseMenu.SetActive(false);
+        loseMenu.SetActive(false);
+        winMenu.SetActive(false);
+        objectives.SetActive(false);
+        upgradesMenu.SetActive(false);
+    }
+
     void Update()
     {
         // displays the objectives only at start.
