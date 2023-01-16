@@ -30,7 +30,7 @@ public class enemyBullet : MonoBehaviour
         if (homing)
         {
             float angleToPlayer = Vector3.Angle(gameManager.instance.enemyAimPoint.transform.position - transform.position, transform.forward);
-            if (angleToPlayer <= 1.25f)
+            if (angleToPlayer <= 1.5f)
             {
                 rb.velocity = Vector3.Lerp(rb.velocity, Vector3.Normalize(gameManager.instance.enemyAimPoint.transform.position - transform.position) * speed, homingAccuracy * 1000f);
                 transform.forward = Vector3.Normalize(rb.velocity);

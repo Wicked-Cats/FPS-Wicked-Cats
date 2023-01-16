@@ -1287,14 +1287,16 @@ MonoBehaviour:
   HP: 25
   headPos: {fileID: 3760686692751002519}
   lineOfSight: 90
-  shootRate: 0.5
+  shootRate1: 0.5
+  shootRate2: 1.5
   bullet1: {fileID: 4203415293032977398, guid: 4b5983e34fd97994582a6024c9104f0e, type: 3}
-  bullet2: {fileID: 4203415293032977398, guid: a0a297b388bdeca4fb16e5d5bc560197, type: 3}
+  bullet2: {fileID: 8068006878290532875, guid: ee54b46738a9efc428f5ee4f75c36c90, type: 3}
   shootPos1: {fileID: 744725200}
   shootPos2: {fileID: 35644302}
   shootPos3: {fileID: 253535368}
   shootPos4: {fileID: 1930663652}
-  isShooting: 0
+  isShooting1: 0
+  isShooting2: 0
   itemDrop:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 2671387097928927799, guid: a5a708365a458324c967eb4e887e8419, type: 3}

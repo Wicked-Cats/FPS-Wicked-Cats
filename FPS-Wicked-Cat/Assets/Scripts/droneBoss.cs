@@ -22,14 +22,16 @@ public class droneBoss : MonoBehaviour , IDamage
     private float angleToPlayer;
 
     [Header("-- Enemy Gun Stats --")]
-    [SerializeField] float shootRate;
+    [SerializeField] float shootRate1;
+    [SerializeField] float shootRate2;
     [SerializeField] GameObject bullet1;
     [SerializeField] GameObject bullet2;
     [SerializeField] Transform shootPos1;
     [SerializeField] Transform shootPos2;
     [SerializeField] Transform shootPos3;
     [SerializeField] Transform shootPos4;
-    [SerializeField] bool isShooting;
+    [SerializeField] bool isShooting1;
+    [SerializeField] bool isShooting2;
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
@@ -96,9 +98,13 @@ public class droneBoss : MonoBehaviour , IDamage
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
                 playerInSightTick = 0;
-                if (!isShooting) // so if he sees us he starts to shoot
+                if (!isShooting1) // so if he sees us he starts to shoot
                 {
-                    StartCoroutine(shoot());
+                    StartCoroutine(shoot1());
+                }
+                if (!isShooting2)
+                {
+                    StartCoroutine(shoot2());
                 }
             }
             else if (!isTeleporting)
@@ -145,17 +151,25 @@ public class droneBoss : MonoBehaviour , IDamage
         }
     }
 
-    IEnumerator shoot()
+    IEnumerator shoot1()
     {
-        isShooting = true;
+        isShooting1 = true;
         Instantiate(bullet1, shootPos1.position, transform.rotation);
         Instantiate(bullet1, shootPos2.position, transform.rotation);
-        Instantiate(bullet2, shootPos3.position, transform.rotation);
-        Instantiate(bullet2, shootPos4.position, transform.rotation);
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        yield return new WaitForSeconds(shootRate1);
+        isShooting1 = false;
     }
 
+    IEnumerator shoot2()
+    {
+        isShooting2 = true;
+        Instantiate(bullet2, shootPos3.position, transform.rotation);
+        Instantiate(bullet2, shootPos4.position, transform.rotation);
+        yield return new WaitForSeconds(shootRate1);
+        isShooting2 = false;
+    }
+
+    
     IEnumerator dmgFlash()
     {
         model.material.color = Color.red;
