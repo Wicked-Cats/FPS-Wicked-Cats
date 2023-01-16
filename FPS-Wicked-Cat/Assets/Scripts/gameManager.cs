@@ -41,6 +41,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI speedButtonText;
     public GameObject interactableTextParent;
     public TextMeshProUGUI interactableText;
+    public GameObject shopSpawnBroadcastParent;
+    public TextMeshProUGUI shopSpawnBrodcast;
 
     [Header("------ Timer ------")]
     [SerializeField] float timeCurrent;

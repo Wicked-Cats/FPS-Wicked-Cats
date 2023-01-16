@@ -13,14 +13,14 @@ public class Interaction : MonoBehaviour
 
     void Awake()
     {
-        menus = GameObject.FindGameObjectsWithTag("Menu");
-        foreach(GameObject menu in menus)
-        {
-            if (menu.name == menuName)
-            {
-                currentMenu = menu;
-            }
-        }
+        //menus = GameObject.FindGameObjectsWithTag("Menu");
+        //foreach(GameObject menu in menus)
+        //{
+        //    if (menu.name == menuName)
+        //    {
+        //        currentMenu = menu;
+        //    }
+        //}
     }
 
     // Update is called once per frame
@@ -31,8 +31,7 @@ public class Interaction : MonoBehaviour
             // pull up screen
             gameManager.instance.pause();
             gameManager.instance.isPaused = !gameManager.instance.isPaused;
-            gameManager.instance.activeMenu = currentMenu;
-
+            gameManager.instance.activeMenu = gameManager.instance.upgradesMenu;
             gameManager.instance.activeMenu.SetActive(true);
 
             inMenu = true;

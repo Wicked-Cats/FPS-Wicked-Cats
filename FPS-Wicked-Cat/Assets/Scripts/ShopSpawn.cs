@@ -6,16 +6,64 @@ public class ShopSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject shopModel;
     [SerializeField] private GameObject[] shopSpawnLocations;
+    [SerializeField] private int shopSpawnFrequency;
+    [SerializeField] private int shopDuration;
 
     private int shopSpawnLocation;
+    private GameObject instantiatedShopModel;
+    private bool isSpawning = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        // determine spawn locations
         shopSpawnLocations = GameObject.FindGameObjectsWithTag("Shop Spawn Pos");
+    }
 
+    public void Update()
+    {
+        if (!isSpawning)
+        {
+            isSpawning = true;
+            StartCoroutine(spawn());
+        }
+    }
+
+
+    IEnumerator spawn()
+    {
+        // wait before spawning
+        yield return new WaitForSeconds(shopSpawnFrequency);
+
+
+        // select random spawn location
         shopSpawnLocation = Random.Range(0, shopSpawnLocations.Length - 1);
-        
-        Instantiate(shopModel, shopSpawnLocations[shopSpawnLocation].transform.position, shopSpawnLocations[shopSpawnLocation].transform.rotation);
+
+
+        // spawn shop
+        instantiatedShopModel = Instantiate(shopModel, shopSpawnLocations[shopSpawnLocation].transform.position, shopSpawnLocations[shopSpawnLocation].transform.rotation);
+
+
+        // broadcast message
+        gameManager.instance.shopSpawnBroadcastParent.SetActive(true);
+
+
+        StartCoroutine(remove());
+    }
+
+    IEnumerator remove()
+    {
+        // wait before removing
+        yield return new WaitForSeconds(shopDuration);
+
+
+        // despawn
+        Destroy(instantiatedShopModel);
+
+
+        // remove broadcast message
+        gameManager.instance.shopSpawnBroadcastParent.SetActive(false);
+
+
+        isSpawning = false;
     }
 }
