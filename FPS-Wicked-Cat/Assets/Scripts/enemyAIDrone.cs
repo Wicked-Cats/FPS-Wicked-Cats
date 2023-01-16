@@ -40,14 +40,12 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
-        stopDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-            agent.stoppingDistance = stopDistOrig;
-            LineOfSight();
+        LineOfSight();
     }
 
     void LineOfSight()
@@ -57,21 +55,15 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         RaycastHit see;
+        transform.LookAt(gameManager.instance.player.transform.position);
 
         if (Physics.Raycast(headPos.position, playerDir, out see))
         {
-            Debug.DrawRay(headPos.position, playerDir);
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
             {
-                transform.LookAt(gameManager.instance.player.transform.position);
                 if (!isShooting) // so if he sees us he starts to shoot
                 {
                     StartCoroutine(shoot());
-                }
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    transform.LookAt(gameManager.instance.player.transform.position);
                 }
             }
 
