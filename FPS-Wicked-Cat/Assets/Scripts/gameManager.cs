@@ -151,18 +151,18 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-       
-        //if (!isMain) //DONT DELETE
-        //{
-        //    // turning off UI elements they are turn on when user clicks a mode
-        //    UIDisable();
 
-        //    isPaused = !isPaused;
-        //    activeMenu = mainMenu;
-        //    activeMenu.SetActive(isPaused);
-        //    pause();
-        //    isMain = true;
-        //}
+        if (!isMain) //DONT DELETE
+        {
+            // turning off UI elements they are turn on when user clicks a mode
+            UIDisable();
+
+            isPaused = !isPaused;
+            activeMenu = mainMenu;
+            activeMenu.SetActive(isPaused);
+            pause();
+            isMain = true;
+        }
 
         // displays the objectives only at start.
         if (objectivesSeen)

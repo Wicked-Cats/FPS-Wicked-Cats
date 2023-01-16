@@ -26,41 +26,42 @@ public class HighScoreTable : MonoBehaviour
 
         entryContainer.gameObject.SetActive(false);
 
-       
+        //PlayerPrefs.DeleteAll();
 
-        //highscoreEntrylist = new List<HighscoreEntry>()
-        //{
-        //    new HighscoreEntry() {name = "AGT", score = 4443223, enemykillCount = 12, timeSurvived = "23:00" },
-        //    new HighscoreEntry() {name = "GJT", score = 443223,  enemykillCount = 12, timeSurvived = "5:00" },
-        //    new HighscoreEntry() {name = "RAT", score = 43223,   enemykillCount = 12, timeSurvived = "12:00" },
-        //    new HighscoreEntry() {name = "JAT", score = 3223,    enemykillCount = 12, timeSurvived = "22:00" },
-        //    new HighscoreEntry() {name = "DJT", score = 44432,   enemykillCount = 12, timeSurvived = "14:00" },
-        //    new HighscoreEntry() {name = "NAT", score = 44433,   enemykillCount = 12, timeSurvived = "3:00" },
-        //    new HighscoreEntry() {name = "SBC", score = 444,     enemykillCount = 12, timeSurvived = "5:00" },
-        //    new HighscoreEntry() {name = "AMT", score = 4423,    enemykillCount = 12, timeSurvived = "8:00" },
-        //    new HighscoreEntry() {name = "BWT", score = 423,     enemykillCount = 12, timeSurvived = "9:00" },
-        //    new HighscoreEntry() {name = "JJT", score = 443,     enemykillCount = 12, timeSurvived = "6:00" },
-        //};
+        highscoreEntrylist = new List<HighscoreEntryData>()
+        {
+            new HighscoreEntryData() {name = "AGT", score = 4443223, enemykillCount = 12, timeSurvived = "23:00" },
+            new HighscoreEntryData() {name = "GJT", score = 443223,  enemykillCount = 12, timeSurvived = "5:00" },
+            new HighscoreEntryData() {name = "RAT", score = 43223,   enemykillCount = 12, timeSurvived = "12:00" },
+            new HighscoreEntryData() {name = "JAT", score = 3223,    enemykillCount = 12, timeSurvived = "22:00" },
+            new HighscoreEntryData() {name = "DJT", score = 44432,   enemykillCount = 12, timeSurvived = "14:00" },
+            new HighscoreEntryData() {name = "NAT", score = 44433,   enemykillCount = 12, timeSurvived = "3:00" },
+            new HighscoreEntryData() {name = "SBC", score = 444,     enemykillCount = 12, timeSurvived = "5:00" },
+            new HighscoreEntryData() {name = "AMT", score = 4423,    enemykillCount = 12, timeSurvived = "8:00" },
+            new HighscoreEntryData() {name = "BWT", score = 423,     enemykillCount = 12, timeSurvived = "9:00" },
+            new HighscoreEntryData() {name = "JJT", score = 443,     enemykillCount = 12, timeSurvived = "6:00" },
+        };
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         HighScore highscores = JsonUtility.FromJson<HighScore>(jsonString);
+        
 
         highscoreEntryTransformList = new List<Transform>();
 
-        //List shorting by score
-        for (int i = 0; i < highscores.highscoreEntryList.Count; i++)
-        {
-            for (int j = i + 1 ; j < highscores.highscoreEntryList.Count; j++)
-            {
-                if (highscores.highscoreEntryList[j].score > highscores.highscoreEntryList[i].score)
-                {
-                    HighscoreEntryData temp = highscores.highscoreEntryList[i];
-                    highscores.highscoreEntryList[i] = highscores.highscoreEntryList[j];
-                    highscores.highscoreEntryList[j] = temp;
-                }
+        ////List shorting by score
+        //for (int i = 0; i < highscores.highscoreEntryList.Count; i++)
+        //{
+        //    for (int j = i + 1 ; j < highscores.highscoreEntryList.Count; j++)
+        //    {
+        //        if (highscores.highscoreEntryList[j].score > highscores.highscoreEntryList[i].score)
+        //        {
+        //            HighscoreEntryData temp = highscores.highscoreEntryList[i];
+        //            highscores.highscoreEntryList[i] = highscores.highscoreEntryList[j];
+        //            highscores.highscoreEntryList[j] = temp;
+        //        }
                 
-            }
-        }
+        //    }
+        //}
 
         
 
