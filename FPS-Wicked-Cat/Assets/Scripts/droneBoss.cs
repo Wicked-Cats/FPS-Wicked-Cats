@@ -165,7 +165,7 @@ public class droneBoss : MonoBehaviour , IDamage
         isShooting2 = true;
         Instantiate(bullet2, shootPos3.position, transform.rotation);
         Instantiate(bullet2, shootPos4.position, transform.rotation);
-        yield return new WaitForSeconds(shootRate1);
+        yield return new WaitForSeconds(shootRate2);
         isShooting2 = false;
     }
 
