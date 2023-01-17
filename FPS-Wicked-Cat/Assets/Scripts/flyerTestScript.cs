@@ -19,10 +19,9 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
-    bool inSight;
 
     [Header("-- Item Drops --")]
-    [SerializeField] GameObject[] itemDrop;
+    [SerializeField] GameObject itemDrop;
 
 
     void Start()
@@ -33,11 +32,10 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (inSight && !forceFieldEngaged)
+        if (!forceFieldEngaged)
         {
-            LineOfSight();
+           LineOfSight();
         }
-
     }
 
     void LineOfSight()
@@ -75,10 +73,6 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            //add components
-            gameManager.instance.componentsCurrent += HPOrig;
-            gameManager.instance.componentsTotal += HPOrig;
-
             //Destroy active force field if applicable
             if (gameManager.instance.forceFieldActive && gameManager.instance.forceFieldMaker == this.gameObject)
             {
@@ -88,23 +82,9 @@ public class flyerTestScript : MonoBehaviour, IDamage
                 gameManager.instance.forceFieldActive = false;
             }
 
+            Instantiate(itemDrop, transform.position, transform.rotation);
+
             Destroy(gameObject);
-        }
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inSight = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inSight = false;
         }
     }
 

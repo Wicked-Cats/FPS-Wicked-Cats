@@ -3405,7 +3405,6 @@ GameObject:
   - component: {fileID: 6969814122608207704}
   - component: {fileID: 7053239024719628541}
   - component: {fileID: 7053239024719628482}
-  - component: {fileID: 7053239024719628483}
   m_Layer: 10
   m_Name: Spider_Robot_Fast
   m_TagString: Enemy
@@ -3528,7 +3527,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7056699094207142954}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
@@ -3537,7 +3536,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 3.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -3555,16 +3554,3 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
---- !u!135 &7053239024719628483
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7056699094207142954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1000
-  m_Center: {x: 0, y: 1.3, z: 0}
