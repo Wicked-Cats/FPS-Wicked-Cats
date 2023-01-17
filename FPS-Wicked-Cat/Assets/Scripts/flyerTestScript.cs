@@ -40,6 +40,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
+        meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
     }
 
     void Update()

@@ -51,6 +51,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
+        meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
     }
 
     // Update is called once per frame
