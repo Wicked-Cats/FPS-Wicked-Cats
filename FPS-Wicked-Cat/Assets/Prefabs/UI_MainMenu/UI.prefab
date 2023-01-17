@@ -6976,6 +6976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767818675712307719}
   - component: {fileID: 9121162943614510846}
+  - component: {fileID: 8560925604817705452}
   - component: {fileID: 1829818967}
   m_Layer: 5
   m_Name: Game Manager
@@ -7046,10 +7047,6 @@ MonoBehaviour:
   damageButtonText: {fileID: 5270446168728181431}
   HPButtonText: {fileID: 8266686652967124423}
   speedButtonText: {fileID: 4218347351575324676}
-  interactableTextParent: {fileID: 7178151601533099507}
-  interactableText: {fileID: 702741753}
-  shopSpawnBroadcastParent: {fileID: 1158395727405405371}
-  shopSpawnBrodcast: {fileID: 1417462027}
   timeCurrent: 300
   timerText: {fileID: 6238504839497357681}
   timeDamageIncrease: 0
@@ -7097,6 +7094,11 @@ MonoBehaviour:
   isHighScoreBoard: 0
   SFXSlider: {fileID: 3327587692068512693}
   BGMSlider: {fileID: 3627488578550424813}
+  btnFunc: {fileID: 8560925604817705452}
+  interactableTextParent: {fileID: 7178151601533099507}
+  interactableText: {fileID: 702741753}
+  shopSpawnBroadcastParent: {fileID: 1158395727405405371}
+  shopSpawnBrodcast: {fileID: 1417462027}
   isPaused: 0
   playerSpawnPos: {fileID: 0}
   componentsCurrent: 0
@@ -7105,6 +7107,18 @@ MonoBehaviour:
   forceFieldActive: 0
   forceField: {fileID: 0}
   forceFieldMaker: {fileID: 0}
+--- !u!114 &8560925604817705452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413471873533842082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce2a93b7c18cde4b815955110776e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1829818967
 MonoBehaviour:
   m_ObjectHideFlags: 0

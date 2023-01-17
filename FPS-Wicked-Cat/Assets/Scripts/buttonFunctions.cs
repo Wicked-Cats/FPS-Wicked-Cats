@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    bool openedFromMenu;
+
     public void resume()
     {
         SFXBtnClick();
@@ -107,6 +109,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void upgradesMenu()
     {
+        openedFromMenu = true;
         SFXBtnClick();
         gameManager.instance.activeMenu = gameManager.instance.upgradesMenu;
         gameManager.instance.activeMenu.SetActive(true);
@@ -116,9 +119,19 @@ public class buttonFunctions : MonoBehaviour
     public void closeUpgrades()
     {
         SFXBtnClick();
-        gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
-        gameManager.instance.upgradesMenu.SetActive(false);
-        gameManager.instance.activeMenu.SetActive(true);
+        if (openedFromMenu)
+        {
+            gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+            gameManager.instance.upgradesMenu.SetActive(false);
+            gameManager.instance.activeMenu.SetActive(true);
+        }
+        else
+        {
+            gameManager.instance.isPaused = !gameManager.instance.isPaused;
+            gameManager.instance.unPause();
+            gameManager.instance.activeMenu=null;
+        }
+        openedFromMenu = false;
     }
 
     public void upgradesButttonsCheck()

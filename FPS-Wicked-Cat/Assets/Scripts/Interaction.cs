@@ -10,6 +10,7 @@ public class Interaction : MonoBehaviour
     GameObject currentMenu;
     [SerializeField] string interactionText;
     [SerializeField] string menuName;
+    
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class Interaction : MonoBehaviour
             gameManager.instance.isPaused = !gameManager.instance.isPaused;
             gameManager.instance.activeMenu = gameManager.instance.upgradesMenu;
             gameManager.instance.activeMenu.SetActive(true);
+            gameManager.instance.btnFunc.upgradesButttonsCheck();
 
             inMenu = true;
         }

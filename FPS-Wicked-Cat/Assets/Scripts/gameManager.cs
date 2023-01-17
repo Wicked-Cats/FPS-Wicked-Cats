@@ -48,10 +48,6 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
-    public GameObject interactableTextParent;
-    public TextMeshProUGUI interactableText;
-    public GameObject shopSpawnBroadcastParent;
-    public TextMeshProUGUI shopSpawnBrodcast;
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -100,6 +96,13 @@ public class gameManager : MonoBehaviour
     public Slider SFXSlider;
     public Slider BGMSlider;
     private float defaultVol = 0.5f;
+
+    [Header("----- Shop -----")]
+    public buttonFunctions btnFunc;
+    public GameObject interactableTextParent;
+    public TextMeshProUGUI interactableText;
+    public GameObject shopSpawnBroadcastParent;
+    public TextMeshProUGUI shopSpawnBrodcast;
 
     public bool isPaused;
     float timeScaleBase;
