@@ -49,6 +49,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        HP = HP + gameManager.instance.timeDamageIncrease;
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<MeshRenderer>();

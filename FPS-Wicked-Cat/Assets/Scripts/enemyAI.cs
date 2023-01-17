@@ -54,6 +54,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
+        HP = HP + gameManager.instance.timeDamageIncrease;
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();

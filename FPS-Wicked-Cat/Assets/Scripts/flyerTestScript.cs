@@ -38,6 +38,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     void Start()
     {
+        HP = HP + gameManager.instance.timeDamageIncrease;
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<MeshRenderer>();
@@ -102,7 +103,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
                     gameManager.instance.forceFieldActive = true;
                     gameManager.instance.forceFieldMaker = this.gameObject;
                     Vector3 forceSpawnPos = this.transform.position;
-                    forceSpawnPos.y = 0;
+                    forceSpawnPos.y = forceSpawnPos.y -3;
                     Instantiate(forceField, forceSpawnPos, this.transform.rotation);
                     gameManager.instance.forceField = GameObject.FindGameObjectWithTag("Force Field");
                 }
