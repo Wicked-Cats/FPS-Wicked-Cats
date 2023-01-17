@@ -789,6 +789,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3779632975521905379, guid: 66e6751b8b8dbe6408b0d1d42ee94176, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1808899894955185635}
+    - target: {fileID: 3779632975521905379, guid: 66e6751b8b8dbe6408b0d1d42ee94176, type: 3}
+      propertyPath: baseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b9dbe5f74afc4024da71f373678a8254, type: 2}
+    - target: {fileID: 3779632975521905379, guid: 66e6751b8b8dbe6408b0d1d42ee94176, type: 3}
+      propertyPath: dissolveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 61c980f1ec00f1c4488d5e3d3895e771, type: 2}
     - target: {fileID: 3779632975523674143, guid: 66e6751b8b8dbe6408b0d1d42ee94176, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -839,6 +851,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66e6751b8b8dbe6408b0d1d42ee94176, type: 3}
+--- !u!1 &1808899894955185635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3779632975524095039, guid: 66e6751b8b8dbe6408b0d1d42ee94176, type: 3}
+  m_PrefabInstance: {fileID: 1808899894955185634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2073085341166535519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -846,6 +863,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8952158925785236443, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 2073085341166535520}
+    - target: {fileID: -8952158925785236443, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
+      propertyPath: baseMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 19eb29a63b51fc94a94d66d707579432, type: 2}
+    - target: {fileID: -8952158925785236443, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
+      propertyPath: dissolveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1341210879254db45a8f4a9c1ffeed93, type: 2}
     - target: {fileID: 4946527954549988055, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
       propertyPath: m_Name
       value: ForceField Drone
@@ -896,6 +925,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
+--- !u!1 &2073085341166535520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4946527954549988055, guid: f77aa9e56c5c07c4b8423fcf0d94d03b, type: 3}
+  m_PrefabInstance: {fileID: 2073085341166535519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6552550572691596343
 PrefabInstance:
   m_ObjectHideFlags: 0

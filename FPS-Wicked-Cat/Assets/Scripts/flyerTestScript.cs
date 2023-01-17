@@ -11,7 +11,11 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] SkinnedMeshRenderer meshRenderer1;
     private Color colorOrig;
+    [SerializeField] Material baseMaterial;
+    [SerializeField] Material dissolveMaterial;
+    [SerializeField] GameObject body;
 
     [Header("-- Enemy Stats")]
     [SerializeField] int HP;
@@ -23,7 +27,13 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Item Drops --")]
     [SerializeField] GameObject itemDrop;
 
+    [Header("-- Effects --")]
+    [SerializeField] float dissolveSpeed;
+
     bool isPathed;
+    bool teleporting;
+    float timeForDissolve;
+    bool teleportCycle;
 
 
     void Start()
@@ -34,6 +44,34 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     void Update()
     {
+        if (agent.isOnOffMeshLink || teleporting)
+        {
+            if (!teleporting)
+            {
+                agent.isStopped = true;
+                meshRenderer1.material = dissolveMaterial;
+                timeForDissolve = 0.01f;
+                teleporting = true;
+            }
+            if (teleporting)
+            {
+
+                if (dissolveMaterial.GetFloat("_Cutoff") > 0.9f)
+                {
+                    agent.CompleteOffMeshLink();
+                    teleportCycle = true;
+                }
+                else if (dissolveMaterial.GetFloat("_Cutoff") < 0.05f && teleportCycle)
+                {
+                    meshRenderer1.material = baseMaterial;
+                    agent.isStopped = false;
+                    teleporting = false;
+                    teleportCycle = false;
+                }
+            }
+            dissolveMaterial.SetFloat("_Cutoff", Mathf.Sin(timeForDissolve * dissolveSpeed));
+            timeForDissolve += Time.deltaTime;
+        }
 
         if (!forceFieldEngaged)
         {
