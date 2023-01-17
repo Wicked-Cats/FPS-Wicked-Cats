@@ -8,7 +8,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] SkinnedMeshRenderer meshRenderer1;
+    [SerializeField] MeshRenderer meshRenderer1;
     public Color colorOrig;
     [SerializeField] Material baseMaterial;
     [SerializeField] Material dissolveMaterial;
@@ -51,7 +51,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
-        meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
+        meshRenderer1 = body.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame

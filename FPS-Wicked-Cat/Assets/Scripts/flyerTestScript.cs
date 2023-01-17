@@ -11,7 +11,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] SkinnedMeshRenderer meshRenderer1;
+    [SerializeField] MeshRenderer meshRenderer1;
     private Color colorOrig;
     [SerializeField] Material baseMaterial;
     [SerializeField] Material dissolveMaterial;
@@ -40,7 +40,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
-        meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
+        meshRenderer1 = body.GetComponent<MeshRenderer>();
     }
 
     void Update()
