@@ -146,7 +146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3779632975521905407}
   agent: {fileID: 3779632975521905378}
+  meshRenderer1: {fileID: 0}
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
+  baseMaterial: {fileID: 2100000, guid: b9dbe5f74afc4024da71f373678a8254, type: 2}
+  dissolveMaterial: {fileID: 2100000, guid: 61c980f1ec00f1c4488d5e3d3895e771, type: 2}
+  body: {fileID: 3779632975524095039}
   HP: 2
   headPos: {fileID: 3779632974663616496}
   lineOfSight: 50
@@ -167,6 +171,7 @@ MonoBehaviour:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
+  dissolveSpeed: 0.5
 --- !u!195 &3779632975521905378
 NavMeshAgent:
   m_ObjectHideFlags: 0

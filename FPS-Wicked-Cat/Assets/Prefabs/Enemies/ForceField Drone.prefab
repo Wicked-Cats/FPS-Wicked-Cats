@@ -53,9 +53,14 @@ MonoBehaviour:
   forceFieldEngaged: 0
   model: {fileID: 4968729910627561869}
   agent: {fileID: 64460096770593269}
+  meshRenderer1: {fileID: 0}
+  baseMaterial: {fileID: 2100000, guid: 19eb29a63b51fc94a94d66d707579432, type: 2}
+  dissolveMaterial: {fileID: 2100000, guid: 1341210879254db45a8f4a9c1ffeed93, type: 2}
+  body: {fileID: 4946527954549988055}
   HP: 5
   lineOfSight: 180
   itemDrop: {fileID: 2671387097928927799, guid: a5a708365a458324c967eb4e887e8419, type: 3}
+  dissolveSpeed: 0.5
 --- !u!33 &4960446701612773067
 MeshFilter:
   m_ObjectHideFlags: 0
