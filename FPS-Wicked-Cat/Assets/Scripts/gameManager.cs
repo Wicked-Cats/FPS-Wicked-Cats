@@ -45,10 +45,6 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
-    public GameObject interactableTextParent;
-    public TextMeshProUGUI interactableText;
-    public GameObject shopSpawnBroadcastParent;
-    public TextMeshProUGUI shopSpawnBrodcast;
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -149,15 +145,6 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
     }
 
-    private void Start()
-    {
-        // set all menus inactive
-        pauseMenu.SetActive(false);
-        loseMenu.SetActive(false);
-        winMenu.SetActive(false);
-        objectives.SetActive(false);
-        upgradesMenu.SetActive(false);
-    }
 
     void Update()
     {
