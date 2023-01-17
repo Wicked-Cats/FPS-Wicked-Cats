@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject objectives;
     public GameObject activeMenu;
+    public GameObject lastMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
