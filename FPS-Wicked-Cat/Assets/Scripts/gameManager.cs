@@ -178,6 +178,7 @@ public class gameManager : MonoBehaviour
     {
         if(!isMain)
         {
+            UIDisable();
             isPaused = !isPaused;
             activeMenu = mainMenu;
             activeMenu.SetActive(isPaused);

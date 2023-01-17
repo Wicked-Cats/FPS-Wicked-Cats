@@ -23,6 +23,8 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [Header("-- Item Drops --")]
     [SerializeField] GameObject itemDrop;
 
+    bool isPathed;
+
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     void Update()
     {
+
         if (!forceFieldEngaged)
         {
            LineOfSight();
@@ -40,7 +43,11 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     void LineOfSight()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        if (!isPathed && agent.isOnOffMeshLink == false )//&& !teleporting)
+        {
+            StartCoroutine(path());
+        }
+
         transform.LookAt(gameManager.instance.player.transform.position);
 
         float xDif = gameManager.instance.player.transform.position.x - this.transform.position.x;
@@ -93,6 +100,16 @@ public class flyerTestScript : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
+    }
+
+    IEnumerator path()
+    {
+        isPathed = true;
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+        yield return new WaitForSeconds(1f);
+        isPathed = false;
     }
 }
 
