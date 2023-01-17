@@ -8,8 +8,9 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    [SerializeField] HighScoreTable entryTable;
-    [SerializeField] GameObject HighTable;
+
+    //[SerializeField] HighScoreTable entryTable;
+    //[SerializeField] GameObject HighTable;
 
     [Header("------Player Components------")]
     public GameObject player;
@@ -155,8 +156,8 @@ public class gameManager : MonoBehaviour
         //Set up UI
         updateComponentsDisplay();
         
-        entryTable = HighTable.GetComponent<HighScoreTable>();
-        /*entryTable.HighScoreTableEntry()*/;
+        //entryTable = HighTable.GetComponent<HighScoreTable>();
+        ///*entryTable.HighScoreTableEntry()*/;
 
     }
 
