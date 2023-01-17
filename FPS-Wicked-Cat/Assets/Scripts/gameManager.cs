@@ -172,7 +172,8 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-
+        if(!isMain)
+        {
             isPaused = !isPaused;
             activeMenu = mainMenu;
             activeMenu.SetActive(isPaused);
