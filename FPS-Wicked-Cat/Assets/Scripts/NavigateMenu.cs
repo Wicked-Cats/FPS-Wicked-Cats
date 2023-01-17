@@ -12,7 +12,7 @@ public class NavigateMenu : MonoBehaviour
     public int selection;
     public Image currImage;
     public Color Orig;
-
+    messageAppear message;
 
     [Header("--- Main Menu Button List ---")]
     [SerializeField] Button[] mainMenuArr;
@@ -43,12 +43,20 @@ public class NavigateMenu : MonoBehaviour
                 if (selection != 0)
                 {
                     currImage.color = Orig;
+                    if (message != null)
+                    {
+                        message.OnPointerExitManual();
+                    }
                     selection--;
                     MenuSelection();
                 }
                 else
                 {
                     currImage.color = Orig;
+                    if (message != null)
+                    {
+                        message.OnPointerExitManual();
+                    }
                     selection = mainMenuArr.Length - 1;
                     MenuSelection();
                 }
@@ -58,12 +66,20 @@ public class NavigateMenu : MonoBehaviour
                 if (selection != mainMenuArr.Length - 1)
                 {
                     currImage.color = Orig;
+                    if (message != null)
+                    {
+                        message.OnPointerExitManual();
+                    }
                     selection++;
                     MenuSelection();
                 }
                 else
                 {
                     currImage.color = Orig;
+                    if (message != null)
+                    {
+                        message.OnPointerExitManual();
+                    }
                     selection = 0;
                     MenuSelection();
                 }
@@ -173,6 +189,11 @@ public class NavigateMenu : MonoBehaviour
 
     private void MenuSelection()
     {
+        message = mainMenuArr[selection].GetComponent<messageAppear>();
+        if (message != null)
+        {
+            message.OnPointerEnterManual();
+        }
 
         if (mainMenuArr[selection].name == "Options_Button")
         {

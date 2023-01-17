@@ -22,4 +22,15 @@ public class messageAppear : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         _rules.SetActive(false);
     }
+
+    public void OnPointerEnterManual()
+    {
+        _rules.SetActive(true);
+    }
+
+    public void OnPointerExitManual()
+    {
+        _rules.SetActive(false);
+    }
+
 }

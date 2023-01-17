@@ -53,18 +53,8 @@ public class HighScoreTable : MonoBehaviour
 
     }
 
-    private void Start()
+    private void Update()
     {
-
-
-
-
-
-
-
-
-
-
 
         //    highscoreEntryTransformList = new List<Transform>();
 
