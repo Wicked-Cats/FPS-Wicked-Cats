@@ -156,7 +156,14 @@ public class NavigateMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 currImage.color = Orig;
-                optionBtnArr[selection].onClick.Invoke();
+                if (selectableArr[selection].name== "CloseOptions Menu")
+                {
+                   optionBtnArr[0].onClick.Invoke();
+                }
+                else if (selectableArr[selection].name == "Apply_Changes")
+                {
+                    optionBtnArr[1].onClick.Invoke();
+                }
             }
 
         }

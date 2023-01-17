@@ -209,10 +209,11 @@ public class buttonFunctions : MonoBehaviour
     public void OptionsMenu()
     {
         SFXBtnClick();
+        gameManager.instance.lastMenu = gameManager.instance.activeMenu;
         gameManager.instance.activeMenu = gameManager.instance.optionsMenu;
         gameManager.instance.activeMenu.SetActive(true);
         gameManager.instance.pauseMenu.SetActive(false);
-        NavigateMenu.instance.OnMenuOpen(3);
+        NavigateMenu.instance.OnMenuOpen(3); 
     }
 
     public void GoBackToMain()
@@ -234,11 +235,11 @@ public class buttonFunctions : MonoBehaviour
     public void CloseOptionsBtn()
     {
         SFXBtnClick();
-        if (!gameManager.instance.isOptionBtnMain)
+        if (gameManager.instance.lastMenu == gameManager.instance.mainMenu)
         {
             GoBackToMain();
         }
-        else
+        else if(gameManager.instance.lastMenu == gameManager.instance.pauseMenu) 
         {
             GoBackToPause();
         }
