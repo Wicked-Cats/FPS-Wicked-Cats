@@ -8,6 +8,8 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    [SerializeField] HighScoreTable entryTable;
+    [SerializeField] GameObject HighTable;
 
     [Header("------Player Components------")]
     public GameObject player;
@@ -88,6 +90,11 @@ public class gameManager : MonoBehaviour
     public bool isMain;
     public bool isOptionBtnMain = false;
 
+    [Header("----- High-Score Menu -----")]
+    public GameObject highScoreUI;
+    public bool isHighScoreBoard;
+    //public bool isOptionBtnHighScoreBoard = false;
+
     [Header("----- Audio -----")]
     public Slider SFXSlider;
     public Slider BGMSlider;
@@ -147,6 +154,10 @@ public class gameManager : MonoBehaviour
 
         //Set up UI
         updateComponentsDisplay();
+        
+        entryTable = HighTable.GetComponent<HighScoreTable>();
+        /*entryTable.HighScoreTableEntry()*/;
+
     }
 
     private void Start()
@@ -161,10 +172,6 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        if (!isMain) //DONT DELETE
-        {
-            // turning off UI elements they are turn on when user clicks a mode
-            UIDisable();
 
             isPaused = !isPaused;
             activeMenu = mainMenu;
@@ -348,6 +355,7 @@ public class gameManager : MonoBehaviour
     // turning ON UI 
     public void UIEnable()
     {
+        
         playerHPBar.enabled = true;
         playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
