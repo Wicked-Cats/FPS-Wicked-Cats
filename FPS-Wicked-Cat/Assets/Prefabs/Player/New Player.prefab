@@ -566,6 +566,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6950623619115011091}
     m_Modifications:
+    - target: {fileID: 1343409111575988233, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
+      propertyPath: sensHor
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343409111575988233, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
+      propertyPath: sensVert
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 2000607846321365926, guid: a3174ef068456aa4cb979e90df72a954, type: 3}
       propertyPath: field of view
       value: 95
