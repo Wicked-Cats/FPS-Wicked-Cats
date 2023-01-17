@@ -224,7 +224,7 @@ public class enemyAI : MonoBehaviour, IDamage
         NavMeshPath path = new NavMeshPath();
         agent.CalculatePath(gameManager.instance.player.transform.position, path);
         agent.SetPath(path);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         isPathed = false;
     }
 }

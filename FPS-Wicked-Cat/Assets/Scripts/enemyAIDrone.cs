@@ -34,6 +34,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
     Vector3 playerDir;
     float stopDistOrig;
+    bool isPathed;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,11 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
     void LineOfSight()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        if (!isPathed && agent.isOnOffMeshLink == false )//&& !teleporting)
+        {
+            StartCoroutine(path());
+        }
+
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -115,5 +120,14 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
+    }
+    IEnumerator path()
+    {
+        isPathed = true;
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+        yield return new WaitForSeconds(1f);
+        isPathed = false;
     }
 }
