@@ -99,7 +99,14 @@ public class buttonFunctions : MonoBehaviour
             if (gameManager.instance.componentsCurrent >= gameManager.instance.speedCost)
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.speedCost;
-                gameManager.instance.playerScript.playerSpeed++;
+                if (gameManager.instance.playerScript.isSprinting)
+                {
+                    gameManager.instance.playerScript.pS++;
+                }
+                else
+                {
+                    gameManager.instance.playerScript.playerSpeed++;
+                }
                 gameManager.instance.speedCost += 2;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
