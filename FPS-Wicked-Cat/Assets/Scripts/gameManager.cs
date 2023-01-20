@@ -9,6 +9,9 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
+    //[SerializeField] HighScoreTable entryTable;
+    //[SerializeField] GameObject HighTable;
+
     [Header("------Player Components------")]
     public GameObject player;
     public playerController playerScript;
@@ -40,6 +43,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI componentsDisplay;
     public Image reticle;
     public Image crosshair;
+    public Image timerBackground;
     public TextMeshProUGUI respawnButtonText;
     public TextMeshProUGUI rangeButtonText;
     public TextMeshProUGUI damageButtonText;
@@ -84,10 +88,22 @@ public class gameManager : MonoBehaviour
     public bool isMain;
     public bool isOptionBtnMain = false;
 
+    [Header("----- High-Score Menu -----")]
+    public GameObject highScoreUI;
+    public bool isHighScoreBoard;
+    //public bool isOptionBtnHighScoreBoard = false;
+
     [Header("----- Audio -----")]
     public Slider SFXSlider;
     public Slider BGMSlider;
     private float defaultVol = 0.5f;
+
+    [Header("----- Shop -----")]
+    public buttonFunctions btnFunc;
+    public GameObject interactableTextParent;
+    public TextMeshProUGUI interactableText;
+    public GameObject shopSpawnBroadcastParent;
+    public TextMeshProUGUI shopSpawnBrodcast;
 
     public bool isPaused;
     float timeScaleBase;
@@ -143,16 +159,30 @@ public class gameManager : MonoBehaviour
 
         //Set up UI
         updateComponentsDisplay();
+        
+        //entryTable = HighTable.GetComponent<HighScoreTable>();
+        ///*entryTable.HighScoreTableEntry()*/;
+
     }
 
+<<<<<<< HEAD
+=======
+    private void Start()
+    {
+        // set all menus inactive
+        pauseMenu.SetActive(false);
+        loseMenu.SetActive(false);
+        winMenu.SetActive(false);
+        objectives.SetActive(false);
+        upgradesMenu.SetActive(false);
+    }
+>>>>>>> origin/Because_AJ
 
     void Update()
     {
-        if (!isMain) //DONT DELETE
+        if(!isMain)
         {
-            // turning off UI elements they are turn on when user clicks a mode
             UIDisable();
-
             isPaused = !isPaused;
             activeMenu = mainMenu;
             activeMenu.SetActive(isPaused);
@@ -335,6 +365,7 @@ public class gameManager : MonoBehaviour
     // turning ON UI 
     public void UIEnable()
     {
+        
         playerHPBar.enabled = true;
         playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
@@ -344,6 +375,7 @@ public class gameManager : MonoBehaviour
         reticle.enabled = true;
         crosshair.enabled = true;
         forwardSlash.enabled = true;
+        timerBackground.enabled = true;
         updateComponentsDisplay();
 
     }
@@ -359,5 +391,6 @@ public class gameManager : MonoBehaviour
         reticle.enabled = false;
         crosshair.enabled = false;
         forwardSlash.enabled = false;
+        timerBackground.enabled = false;
     }
 }

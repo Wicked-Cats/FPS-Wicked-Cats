@@ -20,10 +20,12 @@ public class cogPickup : MonoBehaviour
         {
             if (isHealthPack)
             {
+                gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.pickupHPSFX);
                 HealthPack();
             }
             else
             {
+                gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.pickupComponentsSFX);
                 Components();
             }
             Destroy(gameObject);

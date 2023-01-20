@@ -8,7 +8,11 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] MeshRenderer meshRenderer1;
     public Color colorOrig;
+    [SerializeField] Material baseMaterial;
+    [SerializeField] Material dissolveMaterial;
+    [SerializeField] GameObject body;
 
     [Header("-- Drone Stats")]
     [SerializeField] int HP;
@@ -31,26 +35,67 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
 
+    [Header("-- Effects --")]
+    [SerializeField] float dissolveSpeed;
+
 
     Vector3 playerDir;
     float stopDistOrig;
+    bool isPathed;
+    bool teleporting;
+    float timeForDissolve;
+    bool teleportCycle;
 
     // Start is called before the first frame update
     void Start()
     {
+        HP = HP + gameManager.instance.timeDamageIncrease;
         HPOrig = HP;
         colorOrig = model.material.color;
+        meshRenderer1 = body.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (agent.isOnOffMeshLink || teleporting)
+        {
+            if (!teleporting)
+            {
+                agent.isStopped = true;
+                meshRenderer1.material = dissolveMaterial;
+                timeForDissolve = 0.01f;
+                teleporting = true;
+            }
+            if (teleporting)
+            {
+
+                if (dissolveMaterial.GetFloat("_Cutoff") > 0.9f)
+                {
+                    agent.CompleteOffMeshLink();
+                    teleportCycle = true;
+                }
+                else if (dissolveMaterial.GetFloat("_Cutoff") < 0.05f && teleportCycle)
+                {
+                    meshRenderer1.material = baseMaterial;
+                    agent.isStopped = false;
+                    teleporting = false;
+                    teleportCycle = false;
+                }
+            }
+            dissolveMaterial.SetFloat("_Cutoff", Mathf.Sin(timeForDissolve * dissolveSpeed));
+            timeForDissolve += Time.deltaTime;
+        }
         LineOfSight();
     }
 
     void LineOfSight()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        if (!isPathed && agent.isOnOffMeshLink == false )//&& !teleporting)
+        {
+            StartCoroutine(path());
+        }
+
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -115,5 +160,14 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
+    }
+    IEnumerator path()
+    {
+        isPathed = true;
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(gameManager.instance.player.transform.position, path);
+        agent.SetPath(path);
+        yield return new WaitForSeconds(1f);
+        isPathed = false;
     }
 }

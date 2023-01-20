@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Animator anim;
 
     [Header("----- Player Stats ----")]
-    [Range(1, 10)] [SerializeField] public int HP;
+    [Range(1, 100)] [SerializeField] public int HP;
     [Range(3, 20)] [SerializeField] public float playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
@@ -44,6 +44,10 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] audPlayerSteps;
     [Range(0, 1)] [SerializeField] float playerStepsVol;
     public AudioClip SFXBtn;
+    public AudioClip pickupGunSFX;
+    public AudioClip pickupHPSFX;
+    public AudioClip pickupComponentsSFX;
+    public AudioClip shopEnterSFX;
 
     bool isShooting;
     int jumpedTimes;
@@ -317,6 +321,7 @@ public class playerController : MonoBehaviour
 
     public void gunPickup(gunObjects gunObject)
     {
+        aud.PlayOneShot(pickupGunSFX);
         // assign gunModel
         if (gunObject.name == "BazookaGunStats")
         {
