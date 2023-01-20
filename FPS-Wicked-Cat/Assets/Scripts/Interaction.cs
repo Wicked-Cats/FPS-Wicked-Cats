@@ -29,6 +29,7 @@ public class Interaction : MonoBehaviour
     {
         if(playerInSphere == true && Input.GetKeyDown(KeyCode.E) && inMenu == false)
         {
+            gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.shopEnterSFX);
             // pull up screen
             gameManager.instance.pause();
             gameManager.instance.isPaused = !gameManager.instance.isPaused;

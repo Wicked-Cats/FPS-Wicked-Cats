@@ -47,6 +47,7 @@ public class playerController : MonoBehaviour
     public AudioClip pickupGunSFX;
     public AudioClip pickupHPSFX;
     public AudioClip pickupComponentsSFX;
+    public AudioClip shopEnterSFX;
 
     bool isShooting;
     int jumpedTimes;
