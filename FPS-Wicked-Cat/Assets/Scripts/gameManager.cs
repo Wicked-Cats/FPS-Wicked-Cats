@@ -8,8 +8,9 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    [SerializeField] HighScoreTable entryTable;
-    [SerializeField] GameObject HighTable;
+
+    //[SerializeField] HighScoreTable entryTable;
+    //[SerializeField] GameObject HighTable;
 
     [Header("------Player Components------")]
     public GameObject player;
@@ -28,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject objectives;
     public GameObject activeMenu;
+    public GameObject lastMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
@@ -41,18 +43,19 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI componentsDisplay;
     public Image reticle;
     public Image crosshair;
+    public Image timerBackground;
     public TextMeshProUGUI respawnButtonText;
     public TextMeshProUGUI rangeButtonText;
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
-    
 
     [Header("------ Timer ------")]
     public float timeCurrent;
     public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
+    private float timeTotal;
 
 
     [Header("------ Upgrades Stuff ------")]
@@ -70,9 +73,11 @@ public class gameManager : MonoBehaviour
     public int speedCost;
 
     [Header("------ Enemy Spawning ------")]
-    [Range(1, 100)][SerializeField] float spawnTimer;
+    [Range(1, 100)] [SerializeField] float spawnTimer;
     public GameObject[] enemiesOptions;
-    private NavMeshTriangulation navMeshTri;
+    [SerializeField] GameObject miniBoss;
+    [SerializeField] GameObject droneBoss;
+    public NavMeshTriangulation navMeshTri;
     private GameObject enemyToSpawn;
     public float diffTickTime;
     private float spawnOffset;
@@ -93,6 +98,13 @@ public class gameManager : MonoBehaviour
     public Slider BGMSlider;
     private float defaultVol = 0.5f;
 
+    [Header("----- Shop -----")]
+    public buttonFunctions btnFunc;
+    public GameObject interactableTextParent;
+    public TextMeshProUGUI interactableText;
+    public GameObject shopSpawnBroadcastParent;
+    public TextMeshProUGUI shopSpawnBrodcast;
+
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
@@ -103,6 +115,10 @@ public class gameManager : MonoBehaviour
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
+    bool area1Open;
+    bool area2Open;
+    bool miniBossSpawned;
+    bool droneBossSpawned;
 
 
     void Awake()
@@ -126,6 +142,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
+        timeTotal = timeCurrent;
 
         diffTickTime = timeCurrent / (enemiesOptions.Length-1);
         spawnOffset = 0;
@@ -143,37 +160,43 @@ public class gameManager : MonoBehaviour
         //Set up UI
         updateComponentsDisplay();
         
-        entryTable = HighTable.GetComponent<HighScoreTable>();
-        /*entryTable.HighScoreTableEntry()*/;
+        //entryTable = HighTable.GetComponent<HighScoreTable>();
+        ///*entryTable.HighScoreTableEntry()*/;
 
     }
 
+    private void Start()
+    {
+        // set all menus inactive
+        pauseMenu.SetActive(false);
+        loseMenu.SetActive(false);
+        winMenu.SetActive(false);
+        objectives.SetActive(false);
+        upgradesMenu.SetActive(false);
+    }
 
     void Update()
     {
-
-        if (!isMain) //DONT DELETE
+        if(!isMain)
         {
-            // turning off UI elements they are turn on when user clicks a mode
             UIDisable();
-
             isPaused = !isPaused;
             activeMenu = mainMenu;
             activeMenu.SetActive(isPaused);
             pause();
             isMain = true;
+            NavigateMenu.instance.OnMenuOpen(0);
         }
 
         // displays the objectives only at start.
-        if (objectivesSeen)
-        {
-            isPaused = !isPaused;
-            activeMenu = objectives;
-            activeMenu.SetActive(isPaused);
-            pause();
-            objectivesSeen = false;
-            isOptionBtnMain= true;
-        }
+        //if (!objectivesSeen)
+        //{
+        //    isPaused = !isPaused;
+        //    activeMenu = objectives;
+        //    activeMenu.SetActive(isPaused);
+        //    pause();
+        //    objectivesSeen = true;
+        //}
 
         //timer ticking
         if (!isPaused)
@@ -195,12 +218,12 @@ public class gameManager : MonoBehaviour
             }
 
             timerUpdate(timeCurrent);
+            if (!waitingToTick)
+            {
+                StartCoroutine(difficultyTick());
+            }
         }
 
-        if(!waitingToTick)
-        {
-            StartCoroutine(difficultyTick());
-        }
 
         //opens pause menu
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
@@ -208,6 +231,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
+            NavigateMenu.instance.OnMenuOpen(1);
 
             if (isPaused)
             {
@@ -227,7 +251,25 @@ public class gameManager : MonoBehaviour
 
         if (!isSpawning)
         {
-            StartCoroutine(spawnEnemies());
+            StartCoroutine(spawnEnemies(0));
+        }
+
+        if (!miniBossSpawned)
+        {
+            if (area1Open || timeCurrent < (timeTotal - (timeTotal / 4)))
+            {
+                StartCoroutine(spawnEnemies(1));
+                miniBossSpawned = true;
+            }
+        }
+
+        if (!droneBossSpawned)
+        {
+            if(area2Open || timeCurrent < (timeTotal - (timeTotal / 2)))
+            {
+                StartCoroutine(spawnEnemies(2));
+                droneBossSpawned = true;
+            }
         }
 
     }
@@ -248,12 +290,21 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    IEnumerator spawnEnemies()
+    IEnumerator spawnEnemies(int spawnType)
     {
-        isSpawning = true;
-
-        int spawnStorage = Mathf.FloorToInt(spawnOffset);
-        enemyToSpawn = enemiesOptions[Random.Range(0, spawnStorage)];
+        if (spawnType == 0)
+        {
+            isSpawning = true;
+            enemyToSpawn = enemiesOptions[Random.Range(0, (int)spawnOffset)];
+        }
+        else if (spawnType == 1)
+        {
+            enemyToSpawn = miniBoss;
+        }
+        else if (spawnType == 2)
+        {
+            enemyToSpawn = droneBoss;
+        }
 
         int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
 
@@ -264,7 +315,10 @@ public class gameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(spawnTimer);
-        isSpawning = false;
+        if (spawnType == 0)
+        {
+            isSpawning = false;
+        }
     }
 
     void timerUpdate(float displaytime)
@@ -273,7 +327,7 @@ public class gameManager : MonoBehaviour
         {
             displaytime = 0;
         }
-        if(displaytime < 30)
+        if (displaytime < 30)
         {
             spawnTimer = 1;
             timerText.color = Color.red;
@@ -292,7 +346,7 @@ public class gameManager : MonoBehaviour
 
         spawnOffset+= 1f;
         damageIncreaseOffset++;
-        if(damageIncreaseOffset % 3 == 0)
+        if (damageIncreaseOffset % 3 == 0)
         {
             timeDamageIncrease++;
         }
@@ -318,6 +372,7 @@ public class gameManager : MonoBehaviour
         reticle.enabled = true;
         crosshair.enabled = true;
         forwardSlash.enabled = true;
+        timerBackground.enabled = true;
         updateComponentsDisplay();
 
     }
@@ -333,6 +388,6 @@ public class gameManager : MonoBehaviour
         reticle.enabled = false;
         crosshair.enabled = false;
         forwardSlash.enabled = false;
-
-    }  
+        timerBackground.enabled = false;
+    }
 }

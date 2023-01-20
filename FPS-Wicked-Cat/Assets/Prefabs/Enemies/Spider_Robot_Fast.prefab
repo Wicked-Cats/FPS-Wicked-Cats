@@ -3405,7 +3405,6 @@ GameObject:
   - component: {fileID: 6969814122608207704}
   - component: {fileID: 7053239024719628541}
   - component: {fileID: 7053239024719628482}
-  - component: {fileID: 7053239024719628483}
   m_Layer: 10
   m_Name: Spider_Robot_Fast
   m_TagString: Enemy
@@ -3445,15 +3444,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 6919205515999262154}
+  meshRenderer1: {fileID: 0}
+  meshRenderer2: {fileID: 0}
   agent: {fileID: 7053239024719628541}
   anim: {fileID: 6969814122608207704}
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
+  baseMaterial: {fileID: 2100000, guid: e5e66eb440929564d97c559b42130180, type: 2}
+  dissolveMaterial: {fileID: 2100000, guid: 3ff9b6cb2b4d70d4e832cbafc94b2d1e, type: 2}
+  body: {fileID: 7055794268957188588}
+  legs:
+  - {fileID: 7055319121475870028}
+  - {fileID: 7055119093733560654}
+  - {fileID: 7055229481537246686}
+  - {fileID: 7055092044944356642}
+  - {fileID: 7055906931113239966}
+  - {fileID: 7056644108384808642}
+  - {fileID: 7055819832984484800}
+  - {fileID: 7055380739949681998}
+  - {fileID: 7054910062386697480}
+  - {fileID: 7055314179292693996}
+  - {fileID: 7054910473137276370}
+  - {fileID: 7056605522384943200}
+  - {fileID: 7055442723389114892}
+  - {fileID: 7055007771818229768}
+  - {fileID: 7055086533851382654}
+  - {fileID: 7055882858270944326}
+  - {fileID: 7055301621423465592}
+  - {fileID: 7055355348316217632}
+  - {fileID: 7055096513161024240}
+  - {fileID: 7055276587568183894}
+  - {fileID: 7056635048528825722}
+  - {fileID: 7055071580719896332}
   HP: 2
   headPos: {fileID: 5768550792167228100}
   lineOfSight: 90
   playerFaceSpeed: 50
   extraShotRange: 20
-  shootDmg: 1
   shootRate: 0.5
   bullet: {fileID: 4203415293032977398, guid: 3e90ba434d5b01b48b851a20ba1d7e5b, type: 3}
   shootPos: {fileID: 5768550792167228100}
@@ -3471,6 +3497,7 @@ MonoBehaviour:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   explosion: {fileID: 3372761020627971056, guid: baa9cf5c63287a04ca735116f52a3a77, type: 3}
   fireVaccum: {fileID: 999388949060202778, guid: 44a91380231a76446913dc9645dfb0d2, type: 3}
+  dissolveSpeed: 0.5
 --- !u!95 &6969814122608207704
 Animator:
   serializedVersion: 4
@@ -3500,18 +3527,18 @@ NavMeshAgent:
   m_GameObject: {fileID: 7056699094207142954}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 300
   m_StoppingDistance: 10
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 3.5
   m_BaseOffset: 0
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &7053239024719628482
 CapsuleCollider:
@@ -3527,16 +3554,3 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
---- !u!135 &7053239024719628483
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7056699094207142954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1000
-  m_Center: {x: 0, y: 1.3, z: 0}

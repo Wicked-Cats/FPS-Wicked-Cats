@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 3779632975520774207}
   - component: {fileID: 3779632975521905407}
   - component: {fileID: 3779632975521905405}
-  - component: {fileID: 3779632975521905404}
   m_Layer: 10
   m_Name: EnemyDrone
   m_TagString: Enemy
@@ -147,7 +146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3779632975521905407}
   agent: {fileID: 3779632975521905378}
+  meshRenderer1: {fileID: 0}
   colorOrig: {r: 0, g: 0, b: 0, a: 0}
+  baseMaterial: {fileID: 2100000, guid: b9dbe5f74afc4024da71f373678a8254, type: 2}
+  dissolveMaterial: {fileID: 2100000, guid: 61c980f1ec00f1c4488d5e3d3895e771, type: 2}
+  body: {fileID: 3779632975524095039}
   HP: 2
   headPos: {fileID: 3779632974663616496}
   lineOfSight: 50
@@ -168,6 +171,7 @@ MonoBehaviour:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
+  dissolveSpeed: 0.5
 --- !u!195 &3779632975521905378
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -186,9 +190,9 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 3.6569984
+  m_Height: 12.5
   m_BaseOffset: 11
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!33 &3779632975520774207
 MeshFilter:
@@ -254,16 +258,3 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &3779632975521905404
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779632975524095039}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1000
-  m_Center: {x: 0, y: 1, z: 0}

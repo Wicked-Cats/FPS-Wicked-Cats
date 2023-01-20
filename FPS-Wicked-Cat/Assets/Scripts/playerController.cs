@@ -12,11 +12,11 @@ public class playerController : MonoBehaviour
     [SerializeField] Animator anim;
 
     [Header("----- Player Stats ----")]
-    [Range(1, 10)] [SerializeField] public int HP;
+    [Range(1, 100)] [SerializeField] public int HP;
     [Range(3, 20)] [SerializeField] public float playerSpeed;
     [Range(10, 15)] [SerializeField] int jumpHeight;
     [Range(15, 35)] [SerializeField] int gravityValue;
-    [Range(1, 3)] [SerializeField] public int jumpsMax;
+    [Range(1, 6)] [SerializeField] public int jumpsMax;
     public int HPOrig;
     [SerializeField] int pushBackTime;
 
@@ -33,7 +33,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
 
     [Header("----- Audio ----")]
-    [SerializeField] AudioSource aud;
+    public AudioSource aud;
     public AudioMixerGroup mixer;
     [SerializeField] AudioClip gunShot;
     [Range(0, 1)] [SerializeField] float gunShotVol;
@@ -43,6 +43,7 @@ public class playerController : MonoBehaviour
     [Range(0, 1)] [SerializeField] float playerJumpVol;
     [SerializeField] AudioClip[] audPlayerSteps;
     [Range(0, 1)] [SerializeField] float playerStepsVol;
+    public AudioClip SFXBtn;
 
     bool isShooting;
     int jumpedTimes;
