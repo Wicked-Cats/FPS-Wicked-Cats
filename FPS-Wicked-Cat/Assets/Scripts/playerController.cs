@@ -44,6 +44,9 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] audPlayerSteps;
     [Range(0, 1)] [SerializeField] float playerStepsVol;
     public AudioClip SFXBtn;
+    public AudioClip pickupGunSFX;
+    public AudioClip pickupHPSFX;
+    public AudioClip pickupComponentsSFX;
 
     bool isShooting;
     int jumpedTimes;
@@ -317,6 +320,7 @@ public class playerController : MonoBehaviour
 
     public void gunPickup(gunObjects gunObject)
     {
+        aud.PlayOneShot(pickupGunSFX);
         // assign gunModel
         if (gunObject.name == "BazookaGunStats")
         {
