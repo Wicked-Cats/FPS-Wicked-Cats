@@ -7748,13 +7748,24 @@ PrefabInstance:
     - target: {fileID: 5414069820630004773, guid: 07073dc3c89c283458ec58a70f82bb2a, type: 3}
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
-      objectReference: {fileID: 338080697530540016}
+      objectReference: {fileID: 4252909259189288313}
     - target: {fileID: 5414069820630004773, guid: 07073dc3c89c283458ec58a70f82bb2a, type: 3}
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 8045297600534939181}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07073dc3c89c283458ec58a70f82bb2a, type: 3}
+--- !u!114 &7818618851311099088 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5414069820630004773, guid: 07073dc3c89c283458ec58a70f82bb2a, type: 3}
+  m_PrefabInstance: {fileID: 2856394572047739125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6553033811085356367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8170,6 +8181,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4262074351900611885}
     m_Modifications:
+    - target: {fileID: 9871776490838794, guid: abc673929a147dd489074af71b3fd64d, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 7818618851311099088}
+    - target: {fileID: 1100231264650382307, guid: abc673929a147dd489074af71b3fd64d, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 4252909259189288313}
     - target: {fileID: 1599079422199075470, guid: abc673929a147dd489074af71b3fd64d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8256,6 +8275,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6089130229438849118, guid: abc673929a147dd489074af71b3fd64d, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 6971993744941389508}
+    - target: {fileID: 6089130229438849118, guid: abc673929a147dd489074af71b3fd64d, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 7818618851311099088}
     - target: {fileID: 6783535358103280867, guid: abc673929a147dd489074af71b3fd64d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
