@@ -3818,8 +3818,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 5076845109927212322}
-    m_SelectOnDown: {fileID: 3558538790357768464}
+    m_SelectOnUp: {fileID: 3558538790357768464}
+    m_SelectOnDown: {fileID: 7467899922203907906}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -5016,8 +5016,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1772972074701075140}
-    m_SelectOnDown: {fileID: 7467899922203907906}
+    m_SelectOnUp: {fileID: 5076845109927212322}
+    m_SelectOnDown: {fileID: 1772972074701075140}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -6579,8 +6579,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 4785944560892460535}
-    m_SelectOnDown: {fileID: 3558538790357768464}
+    m_SelectOnUp: {fileID: 1772972074701075140}
+    m_SelectOnDown: {fileID: 4785944560892460535}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -8310,7 +8310,7 @@ PrefabInstance:
     - target: {fileID: 3463955734064912843, guid: 2ace46a2a01c60046a754b9c5dc4e8cc, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 1772972074701075140}
+      objectReference: {fileID: 3558538790357768464}
     - target: {fileID: 3463955734064912843, guid: 2ace46a2a01c60046a754b9c5dc4e8cc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
