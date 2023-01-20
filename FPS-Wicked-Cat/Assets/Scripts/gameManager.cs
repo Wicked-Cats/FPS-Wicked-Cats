@@ -49,6 +49,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
+    
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -105,6 +106,9 @@ public class gameManager : MonoBehaviour
     public GameObject shopSpawnBroadcastParent;
     public TextMeshProUGUI shopSpawnBrodcast;
 
+    
+
+
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
@@ -119,7 +123,10 @@ public class gameManager : MonoBehaviour
     bool area2Open;
     bool miniBossSpawned;
     bool droneBossSpawned;
-
+    
+    [Header("----- Scoring System -----")]
+    public TextMeshProUGUI scoreText;
+    private int score;
 
     void Awake()
     {
@@ -159,6 +166,9 @@ public class gameManager : MonoBehaviour
 
         //Set up UI
         updateComponentsDisplay();
+
+        score= 0;
+        UpDateScore(0);
         
         //entryTable = HighTable.GetComponent<HighScoreTable>();
         ///*entryTable.HighScoreTableEntry()*/;
@@ -357,6 +367,17 @@ public class gameManager : MonoBehaviour
     public void updateComponentsDisplay()
     {
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
+    }
+
+    public void UpDateScore(int newScore)
+    {
+        score += newScore;
+        scoreText.text = "Score: " + score;
+    }
+
+    public void AddScore()
+    {
+       
     }
 
     // turning ON UI 
