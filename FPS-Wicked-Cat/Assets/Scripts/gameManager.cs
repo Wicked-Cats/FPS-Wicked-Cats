@@ -43,6 +43,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI componentsDisplay;
     public Image reticle;
     public Image crosshair;
+    public Image timerBackground;
     public TextMeshProUGUI respawnButtonText;
     public TextMeshProUGUI rangeButtonText;
     public TextMeshProUGUI damageButtonText;
@@ -371,6 +372,7 @@ public class gameManager : MonoBehaviour
         reticle.enabled = true;
         crosshair.enabled = true;
         forwardSlash.enabled = true;
+        timerBackground.enabled = true;
         updateComponentsDisplay();
 
     }
@@ -386,5 +388,6 @@ public class gameManager : MonoBehaviour
         reticle.enabled = false;
         crosshair.enabled = false;
         forwardSlash.enabled = false;
+        timerBackground.enabled = false;
     }
 }

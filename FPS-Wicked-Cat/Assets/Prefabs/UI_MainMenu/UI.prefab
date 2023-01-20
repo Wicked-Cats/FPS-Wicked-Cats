@@ -4845,7 +4845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2613481826913121382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7042,6 +7042,7 @@ MonoBehaviour:
   componentsDisplay: {fileID: 2935375333897442380}
   reticle: {fileID: 9154903762500099521}
   crosshair: {fileID: 2354781215036093847}
+  timerBackground: {fileID: 1015561285}
   respawnButtonText: {fileID: 1456367859}
   rangeButtonText: {fileID: 6985428476506636531}
   damageButtonText: {fileID: 5270446168728181431}
@@ -8128,7 +8129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6061328406936777617, guid: abc673929a147dd489074af71b3fd64d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6783535358103280867, guid: abc673929a147dd489074af71b3fd64d, type: 3}
       propertyPath: m_Pivot.x
