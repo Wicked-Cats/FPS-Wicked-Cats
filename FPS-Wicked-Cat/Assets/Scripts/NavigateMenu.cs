@@ -227,7 +227,7 @@ public class NavigateMenu : MonoBehaviour
     {
         if (choice == 0)
         {
-            selection = 2;
+            selection = 0;
             currImage = mainMenuArr[selection].GetComponent<Image>();
             Orig = currImage.color;
             MenuSelection();
