@@ -153,7 +153,8 @@ public class droneBoss : MonoBehaviour , IDamage
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
-            killCount++;
+            killCount++;          
+
             gameManager.UpDateScore(scoreValue);
             Destroy(gameObject);
         }

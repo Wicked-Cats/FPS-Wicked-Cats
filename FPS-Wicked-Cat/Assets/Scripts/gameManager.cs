@@ -33,11 +33,11 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject upgradesMenu;         
-    public GameObject damageFlash;          
+    public GameObject upgradesMenu;
+    public GameObject damageFlash;
     public Image playerHPBar;
-    public Image playerHPBackground;        
-    public TextMeshProUGUI playerHPCurrent; 
+    public Image playerHPBackground;
+    public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     public TextMeshProUGUI forwardSlash;
     public TextMeshProUGUI componentsDisplay;
@@ -49,7 +49,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
-    
+
+
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -74,7 +75,7 @@ public class gameManager : MonoBehaviour
     public int speedCost;
 
     [Header("------ Enemy Spawning ------")]
-    [Range(1, 100)] [SerializeField] float spawnTimer;
+    [Range(1, 100)][SerializeField] float spawnTimer;
     public GameObject[] enemiesOptions;
     [SerializeField] GameObject miniBoss;
     [SerializeField] GameObject droneBoss;
@@ -106,7 +107,7 @@ public class gameManager : MonoBehaviour
     public GameObject shopSpawnBroadcastParent;
     public TextMeshProUGUI shopSpawnBrodcast;
 
-    
+
 
 
     public bool isPaused;
@@ -115,7 +116,7 @@ public class gameManager : MonoBehaviour
     bool isSpawning;
     public int componentsCurrent;
     public int componentsTotal;
-    public bool objectivesSeen =false;
+    public bool objectivesSeen = false;
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
@@ -123,10 +124,11 @@ public class gameManager : MonoBehaviour
     bool area2Open;
     bool miniBossSpawned;
     bool droneBossSpawned;
-    
+
     [Header("----- Scoring System -----")]
     public TextMeshProUGUI scoreText;
     private int score;
+    public HighscoreVar highscorefinal;
 
     void Awake()
     {
@@ -151,7 +153,7 @@ public class gameManager : MonoBehaviour
         timeScaleBase = Time.timeScale;
         timeTotal = timeCurrent;
 
-        diffTickTime = timeCurrent / (enemiesOptions.Length-1);
+        diffTickTime = timeCurrent / (enemiesOptions.Length - 1);
         spawnOffset = 0;
 
         //set and move player to spawn
@@ -167,9 +169,9 @@ public class gameManager : MonoBehaviour
         //Set up UI
         updateComponentsDisplay();
 
-        score= 0;
+        score = 0;
         UpDateScore(0);
-        
+
         //entryTable = HighTable.GetComponent<HighScoreTable>();
         ///*entryTable.HighScoreTableEntry()*/;
 
@@ -187,7 +189,7 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        if(!isMain)
+        if (!isMain)
         {
             UIDisable();
             isPaused = !isPaused;
@@ -275,7 +277,7 @@ public class gameManager : MonoBehaviour
 
         if (!droneBossSpawned)
         {
-            if(area2Open || timeCurrent < (timeTotal - (timeTotal / 2)))
+            if (area2Open || timeCurrent < (timeTotal - (timeTotal / 2)))
             {
                 StartCoroutine(spawnEnemies(2));
                 droneBossSpawned = true;
@@ -354,7 +356,7 @@ public class gameManager : MonoBehaviour
     {
         waitingToTick = true;
 
-        spawnOffset+= 1f;
+        spawnOffset += 1f;
         damageIncreaseOffset++;
         if (damageIncreaseOffset % 3 == 0)
         {
@@ -371,21 +373,23 @@ public class gameManager : MonoBehaviour
 
     public void UpDateScore(int newScore)
     {
+        
         score += newScore;
         scoreText.text = "Score: " + score;
+        //highscorefinal.score += score;
     }
 
     public void AddScore()
     {
-       
+
     }
 
     // turning ON UI 
     public void UIEnable()
     {
-        
+
         playerHPBar.enabled = true;
-        playerHPBackground.enabled= true;
+        playerHPBackground.enabled = true;
         playerHPMax.enabled = true;
         playerHPCurrent.enabled = true;
         componentsDisplay.enabled = true;
@@ -394,6 +398,7 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = true;
         forwardSlash.enabled = true;
         timerBackground.enabled = true;
+        scoreText.enabled = true;
         updateComponentsDisplay();
 
     }
@@ -410,5 +415,6 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = false;
         forwardSlash.enabled = false;
         timerBackground.enabled = false;
+        scoreText.enabled = false;
     }
 }

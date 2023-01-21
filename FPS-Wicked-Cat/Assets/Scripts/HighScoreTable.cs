@@ -31,25 +31,25 @@ public class HighScoreTable : MonoBehaviour
 
         //entryContainer.gameObject.SetActive(false);
 
-        
+
 
         highscoreArray = new HighscoreEntryData[10]
         {
-            new HighscoreEntryData( "AGT",  4443223,  12,  "23:00") ,
+            new HighscoreEntryData( "AGT",  40000000,  12,  "23:00"),
             new HighscoreEntryData( "GJT", 443223, 12,  "5:00") ,
-            new HighscoreEntryData("RAT",  43223,  12,  "12:00") ,
-            new HighscoreEntryData("JAT", 3223,  12, "22:00"), 
+            new HighscoreEntryData( "RAT",  43223,  12,  "12:00") ,
+            new HighscoreEntryData( "JAT", 3223,  12, "22:00"),
             new HighscoreEntryData( "DJT",  44432,  12,  "14:00" ) ,
-            new HighscoreEntryData(  "NAT",  44433, 123,  "3:00" ) ,
+            new HighscoreEntryData( "NAT",  44433, 123,  "3:00" ) ,
             new HighscoreEntryData("SBC", 444, 12, "5:00") ,
-            new HighscoreEntryData("AMT", 4423, 12, "8:00"), 
+            new HighscoreEntryData("AMT", 4423, 12, "8:00"),
             new HighscoreEntryData("BWT", 423, 12, "9:00") ,
             new HighscoreEntryData("JJT", 443, 12, "6:00") ,
         };
 
         //string jsonString = PlayerPrefs.GetString("highscoreTable");
         //HighScore highscores = JsonUtility.FromJson<HighScore>(jsonString);
-        
+
 
     }
 
@@ -105,8 +105,8 @@ public class HighScoreTable : MonoBehaviour
 
     private void AddHighscoreEntry(string name, int score,int enemykillCount , string timeSurvived)
     {
-
-        //HighscoreEntryData highscoreEntry = new HighscoreEntryData { name = name , score = score , enemykillCount = enemykillCount , timeSurvived = timeSurvived };
+        
+        
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         HighScore highscores = JsonUtility.FromJson<HighScore>(jsonString);
