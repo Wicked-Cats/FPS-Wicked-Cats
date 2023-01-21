@@ -23,6 +23,10 @@ public class gameManager : MonoBehaviour
     public int damageLimit;
     public int speedLimit;
     public int rangeUpLimit;
+    public int critChanceLimit;
+    public float critDamageLimit;
+    public int critChance;
+    public float critDamageMulti;
 
 
     [Header("------UI Components------")]
