@@ -210,15 +210,15 @@ public class buttonFunctions : MonoBehaviour
         }
 
         gameManager.instance.upgradesComponentCurrent.text = gameManager.instance.componentsCurrent.ToString("F0");
-        gameManager.instance.damageButtonText.text = "Damage + 1 (-" + gameManager.instance.damageCost.ToString("F0") + " Components)";
-        gameManager.instance.HPButtonText.text = "HP + 5 (-" + gameManager.instance.HPCost.ToString("F0") + " Components)";
-        gameManager.instance.rangeButtonText.text = "Range + 1 (-" + gameManager.instance.rangeCost.ToString("F0") + " Components)";
-        gameManager.instance.speedButtonText.text = "Speed + 1 (-" + gameManager.instance.speedCost.ToString("F0") + " Components)";
-        gameManager.instance.critDamageButtonText.text = "Crit Damage + 25% (-" + gameManager.instance.critDamageCost.ToString("F0") + " Components)";
-        gameManager.instance.critChanceButtonText.text = "Crit Chance + 5% (-" + gameManager.instance.critChanceCost.ToString("F0") + " Components)";
-        gameManager.instance.magnetButtonText.text = "Pickup Range + 10% (-" + gameManager.instance.magnetCost.ToString("F0") + " Components)";
-        gameManager.instance.armorButtonText.text = "Armor + 10 (-" + gameManager.instance.armorCost.ToString("F0") + " Componemts)";
-        gameManager.instance.healthPackButtonText.text = "Heal 10% of HP (-" + gameManager.instance.healthPackCost.ToString("F0") + " Components)";
+        gameManager.instance.damageButtonText.text = "Damage + 1\n (-" + gameManager.instance.damageCost.ToString("F0") + " Components)";
+        gameManager.instance.HPButtonText.text = "HP + 5\n (-" + gameManager.instance.HPCost.ToString("F0") + " Components)";
+        gameManager.instance.rangeButtonText.text = "Range + 1\n (-" + gameManager.instance.rangeCost.ToString("F0") + " Components)";
+        gameManager.instance.speedButtonText.text = "Speed + 1\n (-" + gameManager.instance.speedCost.ToString("F0") + " Components)";
+        gameManager.instance.critDamageButtonText.text = "Crit Damage + 25%\n (-" + gameManager.instance.critDamageCost.ToString("F0") + " Components)";
+        gameManager.instance.critChanceButtonText.text = "Crit Chance + 5%\n (-" + gameManager.instance.critChanceCost.ToString("F0") + " Components)";
+        gameManager.instance.magnetButtonText.text = "Pickup Range + 10%\n (-" + gameManager.instance.magnetCost.ToString("F0") + " Components)";
+        gameManager.instance.armorButtonText.text = "Armor + 10\n (-" + gameManager.instance.armorCost.ToString("F0") + " Componemts)";
+        gameManager.instance.healthPackButtonText.text = "Heal 10% of HP\n (-" + gameManager.instance.healthPackCost.ToString("F0") + " Components)";
     }
 
     public void rangeUp()
