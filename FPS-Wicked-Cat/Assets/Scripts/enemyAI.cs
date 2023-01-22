@@ -19,7 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-- Enemy Stats")]
     [SerializeField] float HP;
-    private int HPOrig;
+    private float HPOrig;
     [SerializeField] Transform headPos;
 
     [Header("-- Enemy Vision --")]
@@ -150,7 +150,7 @@ public class enemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(int damage)
     {
         if (!imDead && !teleporting)
         {
@@ -158,7 +158,7 @@ public class enemyAI : MonoBehaviour, IDamage
             int rand = Random.Range(1, 100);
             if (rand <= gameManager.instance.critChance)
             {
-                HP -= damage * gameManager.instance.critDamageMulti;
+                HP -= (float)damage * gameManager.instance.critDamageMulti;
             }
             else
             {

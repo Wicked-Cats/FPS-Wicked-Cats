@@ -27,6 +27,8 @@ public class gameManager : MonoBehaviour
     public float critDamageLimit;
     public int critChance;
     public float critDamageMulti;
+    public float magnetRange;
+    public float magnetLimit;
 
 
     [Header("------UI Components------")]
@@ -52,6 +54,9 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
+    public TextMeshProUGUI critChanceButtonText;
+    public TextMeshProUGUI critDamageButtonText;
+    public TextMeshProUGUI magnetButtonText;
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -69,11 +74,17 @@ public class gameManager : MonoBehaviour
     public Button HPButton;
     public Button speedButton;
     public Button rangeButton;
+    public Button critDamageButton;
+    public Button critChanceButton;
+    public Button magnetButton;
     public int respawnCost;
     public int damageCost;
     public int HPCost;
     public int rangeCost;
     public int speedCost;
+    public int magnetCost;
+    public int critChanceCost;
+    public int critDamageCost;
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)] [SerializeField] float spawnTimer;

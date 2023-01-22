@@ -16,7 +16,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
     [Header("-- Drone Stats")]
     [SerializeField] float HP;
-    private int HPOrig;
+    private float HPOrig;
     [SerializeField] Transform headPos;
 
     [Header("-- Drone Vision --")]
@@ -121,7 +121,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         int rand = Random.Range(1, 100);
         if (rand <= gameManager.instance.critChance)
         {
-            HP -= damage * gameManager.instance.critDamageMulti;
+            HP -= (float)damage * gameManager.instance.critDamageMulti;
         }
         else
         {

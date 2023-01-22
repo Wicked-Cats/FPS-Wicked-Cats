@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 6950623619115011093}
   - component: {fileID: 1024134461}
   - component: {fileID: 639417777}
+  - component: {fileID: 1036016136}
   m_Layer: 3
   m_Name: New Player
   m_TagString: Player
@@ -258,6 +259,7 @@ MonoBehaviour:
   jumpsMax: 1
   HPOrig: 0
   pushBackTime: 1
+  magnetPullStrength: 3
   gunList: []
   shootDamage: 10
   shootRate: 0.5
@@ -414,6 +416,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1036016136
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6950623619115011088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6961084784332242013
 GameObject:
   m_ObjectHideFlags: 0

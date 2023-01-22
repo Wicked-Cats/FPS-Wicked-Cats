@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour
     [Range(1, 6)] [SerializeField] public int jumpsMax;
     public int HPOrig;
     [SerializeField] int pushBackTime;
+    [SerializeField] int magnetPullStrength;
 
     [Header("----- Gun Stats ----")]
     [SerializeField] List<gunObjects> gunList = new List<gunObjects>();
@@ -55,6 +56,7 @@ public class playerController : MonoBehaviour
     bool turning;
     bool stepIsPlaying;
     bool isSprinting;
+    SphereCollider magnet;
 
     private void Start()
     {
@@ -62,6 +64,7 @@ public class playerController : MonoBehaviour
         HPOrig = HP;
         updateHPBar();
         pS = playerSpeed;
+        magnet = this.GetComponent<SphereCollider>();
     }
 
     void Update()
@@ -348,5 +351,19 @@ public class playerController : MonoBehaviour
         }
 
         ChangeGun();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Item Drop"))
+        {
+            cogPickup temp = other.GetComponent<cogPickup>();
+            temp.PushbackSet((gameManager.instance.enemyAimPoint.transform.position - other.transform.position)* magnetPullStrength);
+        }
+    }
+
+    public void magnetRangeSet(int _magnetRange)
+    {
+        magnet.radius = _magnetRange;
     }
 }

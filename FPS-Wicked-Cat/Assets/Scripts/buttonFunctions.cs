@@ -168,11 +168,39 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.speedButton.interactable = true;
         }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.critDamageCost)
+        {
+            gameManager.instance.critDamageButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.critDamageButton.interactable = true;
+        }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.critChanceCost)
+        {
+            gameManager.instance.critChanceButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.critChanceButton.interactable = true;
+        }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.magnetCost)
+        {
+            gameManager.instance.magnetButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.magnetButton.interactable = true;
+        }
+
         gameManager.instance.upgradesComponentCurrent.text = gameManager.instance.componentsCurrent.ToString("F0");
         gameManager.instance.damageButtonText.text = "Damage + 1 (-" + gameManager.instance.damageCost.ToString() + " Components)";
         gameManager.instance.HPButtonText.text = "HP + 5 (-" + gameManager.instance.HPCost.ToString() + " Components)";
         gameManager.instance.rangeButtonText.text = "Range + 1 (-" + gameManager.instance.rangeCost.ToString() + " Components)";
         gameManager.instance.speedButtonText.text = "Speed + 1 (-" + gameManager.instance.speedCost.ToString() + " Components)";
+        gameManager.instance.critDamageButtonText.text = "Crit Damage + 25% (-" + gameManager.instance.critDamageCost.ToString() + " Components)";
+        gameManager.instance.critChanceButtonText.text = "Crit Chance + 5% (-" + gameManager.instance.critChanceCost.ToString() + " Components)";
+        gameManager.instance.magnetButtonText.text = "Magnet Range + 3 (-" + gameManager.instance.magnetCost.ToString() + " Components)";
     }
 
     public void rangeUp()
@@ -261,5 +289,50 @@ public class buttonFunctions : MonoBehaviour
     public void SFXBtnClick()
     {
         gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.SFXBtn, 1f);
+    }
+
+    public void MagnetUpgrade()
+    {
+        if (gameManager.instance.magnetRange < gameManager.instance.magnetLimit)
+        {
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.magnetCost)
+            {
+                gameManager.instance.componentsCurrent -= gameManager.instance.magnetCost;
+                gameManager.instance.magnetRange += 3;
+                gameManager.instance.magnetCost += 2;
+                upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
+            }
+        }
+    }
+
+    public void CritChanceUpgrade()
+    {
+        if (gameManager.instance.critChance < gameManager.instance.critChanceLimit)
+        {
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.critChanceCost)
+            {
+                gameManager.instance.componentsCurrent -= gameManager.instance.critChanceCost;
+                gameManager.instance.critChance += 5;
+                gameManager.instance.critChanceCost += 2;
+                upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
+            }
+        }
+    }
+
+    public void CritDamageUpgrade()
+    {
+        if (gameManager.instance.critDamageMulti < gameManager.instance.critDamageLimit)
+        {
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.critDamageCost)
+            {
+                gameManager.instance.componentsCurrent -= gameManager.instance.critDamageCost;
+                gameManager.instance.critDamageMulti += 0.25f;
+                gameManager.instance.critDamageCost += 2;
+                upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
+            }
+        }
     }
 }

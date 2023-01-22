@@ -19,7 +19,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     [Header("-- Enemy Stats")]
     [SerializeField] float HP;
-    private int HPOrig;
+    private float HPOrig;
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
@@ -116,13 +116,12 @@ public class flyerTestScript : MonoBehaviour, IDamage
         int rand = Random.Range(1, 100);
         if (rand <= gameManager.instance.critChance)
         {
-            HP -= damage * gameManager.instance.critDamageMulti;
+            HP -= (float)damage * gameManager.instance.critDamageMulti;
         }
         else
         {
             HP -= damage;
         }
-        agent.SetDestination(gameManager.instance.player.transform.position);
 
         StartCoroutine(dmgFlash(rand));
 
