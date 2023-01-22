@@ -49,6 +49,11 @@ public class playerController : MonoBehaviour
     public AudioClip pickupComponentsSFX;
     public AudioClip shopEnterSFX;
 
+
+    [Header("---- Shooting Effects ----")]
+    public GameObject pistolMuzzleFlash;
+    public GameObject sniperMuzzleFlash;
+
     bool isShooting;
     int jumpedTimes;
     int selectedGun;
@@ -158,6 +163,14 @@ public class playerController : MonoBehaviour
         if (!isShooting && Input.GetButton("Shoot"))
         {
             aud.PlayOneShot(gunList[selectedGun].gunShot, gunShotVol);
+            if (gunList[selectedGun].name == "Pistol")
+            {
+                pistolMuzzleFlash.SetActive(true);
+            }
+            else if (gunList[selectedGun].name == "Sniper Rifle")
+            {
+                sniperMuzzleFlash.SetActive(true);
+            }
 
             isShooting = true;
             RaycastHit hit;
@@ -174,6 +187,8 @@ public class playerController : MonoBehaviour
 
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
+            pistolMuzzleFlash.SetActive(false);
+            sniperMuzzleFlash.SetActive(false);
         }
     }
 
