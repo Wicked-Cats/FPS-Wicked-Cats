@@ -16,6 +16,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public GameObject enemyAimPoint;
+    public int armor;
 
     [Header("------ Player Upgrades------")]
     public int jumpsLimit;
@@ -23,6 +24,12 @@ public class gameManager : MonoBehaviour
     public int damageLimit;
     public int speedLimit;
     public int rangeUpLimit;
+    public int critChanceLimit;
+    public float critDamageLimit;
+    public int critChance;
+    public float critDamageMulti;
+    public float magnetRange;
+    public float magnetLimit;
 
 
     [Header("------UI Components------")]
@@ -49,6 +56,13 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI damageButtonText;
     public TextMeshProUGUI HPButtonText;
     public TextMeshProUGUI speedButtonText;
+    public TextMeshProUGUI critChanceButtonText;
+    public TextMeshProUGUI critDamageButtonText;
+    public TextMeshProUGUI magnetButtonText;
+    public TextMeshProUGUI armorButtonText;
+    public TextMeshProUGUI healthPackButtonText;
+    public TextMeshProUGUI armorText;
+    public TextMeshProUGUI armorCurrent;
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -66,11 +80,21 @@ public class gameManager : MonoBehaviour
     public Button HPButton;
     public Button speedButton;
     public Button rangeButton;
+    public Button critDamageButton;
+    public Button critChanceButton;
+    public Button magnetButton;
+    public Button armorButton;
+    public Button healthPackButton;
     public int respawnCost;
     public int damageCost;
     public int HPCost;
     public int rangeCost;
     public int speedCost;
+    public int magnetCost;
+    public int critChanceCost;
+    public int critDamageCost;
+    public int armorCost;
+    public int healthPackCost;
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)] [SerializeField] float spawnTimer;
@@ -159,6 +183,8 @@ public class gameManager : MonoBehaviour
 
         //Set up UI
         updateComponentsDisplay();
+
+        armor = 0;
         
         //entryTable = HighTable.GetComponent<HighScoreTable>();
         ///*entryTable.HighScoreTableEntry()*/;
@@ -367,6 +393,8 @@ public class gameManager : MonoBehaviour
         playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
         playerHPCurrent.enabled = true;
+        armorCurrent.enabled = true;
+        armorText.enabled = true;
         componentsDisplay.enabled = true;
         timerText.enabled = true;
         reticle.enabled = true;
@@ -383,6 +411,8 @@ public class gameManager : MonoBehaviour
         playerHPBackground.enabled = false;
         playerHPMax.enabled = false;
         playerHPCurrent.enabled = false;
+        armorText.enabled = false;
+        armorCurrent.enabled = false;
         componentsDisplay.enabled = false;
         timerText.enabled = false;
         reticle.enabled = false;

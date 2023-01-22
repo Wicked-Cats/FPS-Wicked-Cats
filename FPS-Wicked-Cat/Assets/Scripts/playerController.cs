@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour
     [Range(1, 6)] [SerializeField] public int jumpsMax;
     public int HPOrig;
     [SerializeField] int pushBackTime;
+    [SerializeField] int magnetPullStrength;
 
     [Header("----- Gun Stats ----")]
     [SerializeField] List<gunObjects> gunList = new List<gunObjects>();
@@ -64,6 +65,7 @@ public class playerController : MonoBehaviour
     bool turning;
     bool stepIsPlaying;
     bool isSprinting;
+    SphereCollider magnet;
 
     private void Start()
     {
@@ -71,6 +73,8 @@ public class playerController : MonoBehaviour
         HPOrig = HP;
         updateHPBar();
         pS = playerSpeed;
+        magnet = this.GetComponent<SphereCollider>();
+        magnet.radius = gameManager.instance.magnetRange;
     }
 
     void Update()
@@ -207,7 +211,23 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg;
+        if (gameManager.instance.armor != 0)
+        {
+            if(dmg > gameManager.instance.armor)
+            {
+                dmg -= gameManager.instance.armor;
+                HP -= dmg;
+                gameManager.instance.armor = 0;
+            }
+            else
+            {
+                gameManager.instance.armor -= dmg;
+            }
+        }
+        else
+        {
+            HP -= dmg;
+        }
         updateHPBar();
         StartCoroutine(playerDmgFlash());
 
@@ -254,6 +274,7 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
         gameManager.instance.playerHPCurrent.text = HP.ToString("F0");
         gameManager.instance.playerHPMax.text = HPOrig.ToString("F0");
+        gameManager.instance.armorCurrent.text = gameManager.instance.armor.ToString("F0");
     }
 
     IEnumerator turnModel()
@@ -291,7 +312,7 @@ public class playerController : MonoBehaviour
 
     void gunSelect()
     {
-        for(int i = 0; i < gunPos.Length; i++)
+        for (int i = 0; i < gunPos.Length; i++)
         {
             gunPos[i].SetActive(false);
         }
@@ -368,5 +389,19 @@ public class playerController : MonoBehaviour
         }
 
         ChangeGun();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Item Drop"))
+        {
+            cogPickup temp = other.GetComponent<cogPickup>();
+            temp.PushbackSet((gameManager.instance.enemyAimPoint.transform.position - other.transform.position) * magnetPullStrength);
+        }
+    }
+
+    public void magnetRangeSet(float _magnetRange)
+    {
+        magnet.radius = _magnetRange;
     }
 }

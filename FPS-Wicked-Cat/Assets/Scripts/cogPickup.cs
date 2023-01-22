@@ -6,17 +6,27 @@ public class cogPickup : MonoBehaviour
 {
     [SerializeField] GameObject cog;
     [SerializeField] public bool isHealthPack;
+    [SerializeField] Rigidbody rb;
     Vector3 rot;
+    Vector3 pushBack;
+    bool beingPulled;
 
-
+    private void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+    }
     private void Update()
     {
         transform.Rotate(0f, 0.5f, 0f);
+        if (beingPulled)
+        {
+            rb.velocity = pushBack;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !(other is SphereCollider))
         {
             if (isHealthPack)
             {
@@ -34,7 +44,7 @@ public class cogPickup : MonoBehaviour
 
     void HealthPack()
     {
-        gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HP + (gameManager.instance.playerScript.HPOrig / 10);
+        gameManager.instance.playerScript.HP += (gameManager.instance.playerScript.HPOrig / 10);
 
         if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPOrig)
         {
@@ -53,4 +63,9 @@ public class cogPickup : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void PushbackSet(Vector3 _pushBack)
+    {
+        pushBack = _pushBack;
+        beingPulled = true;
+    }
 }

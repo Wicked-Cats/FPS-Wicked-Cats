@@ -15,8 +15,8 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [SerializeField] GameObject body;
 
     [Header("-- Drone Stats")]
-    [SerializeField] int HP;
-    private int HPOrig;
+    [SerializeField] float HP;
+    private float HPOrig;
     [SerializeField] Transform headPos;
 
     [Header("-- Drone Vision --")]
@@ -118,8 +118,16 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     public void takeDamage(int damage)
     {
         //damages enemy and gives feedback to player
-        HP -= damage;
-        StartCoroutine(dmgFlash());
+        int rand = Random.Range(1, 100);
+        if (rand <= gameManager.instance.critChance)
+        {
+            HP -= (float)damage * gameManager.instance.critDamageMulti;
+        }
+        else
+        {
+            HP -= damage;
+        }
+        StartCoroutine(dmgFlash(rand));
 
         //check if enemy has died
         if (HP <= 0)
@@ -155,9 +163,16 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    IEnumerator dmgFlash()
+    IEnumerator dmgFlash(int rand)
     {
-        model.material.color = Color.red;
+        if (rand <= gameManager.instance.critChance)
+        {
+            model.material.color = Color.yellow;
+        }
+        else
+        {
+            model.material.color = Color.red;
+        }
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
     }

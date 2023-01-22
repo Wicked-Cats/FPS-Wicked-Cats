@@ -18,8 +18,8 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [SerializeField] GameObject body;
 
     [Header("-- Enemy Stats")]
-    [SerializeField] int HP;
-    private int HPOrig;
+    [SerializeField] float HP;
+    private float HPOrig;
 
     [Header("-- Enemy Vision --")]
     [SerializeField] int lineOfSight;
@@ -113,10 +113,17 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
-        HP -= damage;
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        int rand = Random.Range(1, 100);
+        if (rand <= gameManager.instance.critChance)
+        {
+            HP -= (float)damage * gameManager.instance.critDamageMulti;
+        }
+        else
+        {
+            HP -= damage;
+        }
 
-        StartCoroutine(dmgFlash());
+        StartCoroutine(dmgFlash(rand));
 
         if (HP <= 0)
         {
@@ -135,9 +142,16 @@ public class flyerTestScript : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator dmgFlash()
+    IEnumerator dmgFlash(int rand)
     {
-        model.material.color = Color.red;
+        if (rand <= gameManager.instance.critChance)
+        {
+            model.material.color = Color.yellow;
+        }
+        else
+        {
+            model.material.color = Color.red;
+        }
         yield return new WaitForSeconds(0.2f);
         model.material.color = colorOrig;
     }

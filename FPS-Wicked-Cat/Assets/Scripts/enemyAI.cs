@@ -18,8 +18,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject[] legs;
 
     [Header("-- Enemy Stats")]
-    [SerializeField] int HP;
-    private int HPOrig;
+    [SerializeField] float HP;
+    private float HPOrig;
     [SerializeField] Transform headPos;
 
     [Header("-- Enemy Vision --")]
@@ -155,8 +155,16 @@ public class enemyAI : MonoBehaviour, IDamage
         if (!imDead && !teleporting)
         {
             //damages enemy and gives feedback to player
-            HP -= damage;
-            StartCoroutine(dmgFlash());
+            int rand = Random.Range(1, 100);
+            if (rand <= gameManager.instance.critChance)
+            {
+                HP -= (float)damage * gameManager.instance.critDamageMulti;
+            }
+            else
+            {
+                HP -= damage;
+            }
+            StartCoroutine(dmgFlash(rand));
 
             //check if enemy has died
             if (HP <= 0)
@@ -196,9 +204,16 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    IEnumerator dmgFlash()
+    IEnumerator dmgFlash(int rand)
     {
-        model.material.color = Color.red;
+        if (rand <= gameManager.instance.critChance)
+        {
+            model.material.color = Color.yellow;
+        }
+        else
+        {
+            model.material.color = Color.red;
+        }
         yield return new WaitForSeconds(0.3f);
         model.material.color = colorOrig;
     }
