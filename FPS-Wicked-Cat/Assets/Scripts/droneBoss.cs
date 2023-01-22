@@ -208,7 +208,7 @@ public class droneBoss : MonoBehaviour , IDamage
                     gameManager.instance.player.transform.position.z + zChange);
 
                 NavMeshHit hit;
-                if (NavMesh.SamplePosition(targetPos, out hit, 2f, 1))
+                if (NavMesh.SamplePosition(targetPos, out hit, 10f, 1))
                 {
                     agent.transform.position = hit.position;
                     teleportCycle = true;
