@@ -310,7 +310,7 @@ public class buttonFunctions : MonoBehaviour
     }
 
     public void MagnetUpgrade()
-    {
+    { 
         if (gameManager.instance.magnetRange < gameManager.instance.magnetLimit)
         {
             if (gameManager.instance.componentsCurrent >= gameManager.instance.magnetCost)
@@ -323,6 +323,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.updateComponentsDisplay();
             }
         }
+        SFXBtnClick();
     }
 
     public void CritChanceUpgrade()
@@ -338,6 +339,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.updateComponentsDisplay();
             }
         }
+        SFXBtnClick();
     }
 
     public void CritDamageUpgrade()
@@ -353,6 +355,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.updateComponentsDisplay();
             }
         }
+        SFXBtnClick();
     }
 
     public void ArmorUpgrade()
@@ -367,12 +370,14 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.playerScript.updateHPBar();
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
-            }
+            }     
         }
+        SFXBtnClick();
     }
 
     public void HealthPackUpgrade()
     {
+        gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.pickupHPSFX);
         if (gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
         {
             if (gameManager.instance.componentsCurrent >= gameManager.instance.healthPackCost)
@@ -391,5 +396,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.updateComponentsDisplay();
             }
         }
+        
     }
+
 }
