@@ -63,7 +63,6 @@ public class playerController : MonoBehaviour
         SetPlayerPos();
         HPOrig = HP;
         updateHPBar();
-        pS = playerSpeed;
         magnet = this.GetComponent<SphereCollider>();
         magnet.radius = gameManager.instance.magnetRange;
     }
@@ -111,6 +110,7 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint"))
         {
+            pS = playerSpeed;
             playerSpeed = pS * 1.5f;
             isSprinting = true;
 
