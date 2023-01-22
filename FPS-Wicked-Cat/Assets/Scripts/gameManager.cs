@@ -60,6 +60,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI magnetButtonText;
     public TextMeshProUGUI armorButtonText;
     public TextMeshProUGUI healthPackButtonText;
+    public TextMeshProUGUI armorText;
+    public TextMeshProUGUI armorCurrent;
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -180,6 +182,8 @@ public class gameManager : MonoBehaviour
 
         //Set up UI
         updateComponentsDisplay();
+
+        armor = 0;
         
         //entryTable = HighTable.GetComponent<HighScoreTable>();
         ///*entryTable.HighScoreTableEntry()*/;
@@ -388,6 +392,8 @@ public class gameManager : MonoBehaviour
         playerHPBackground.enabled= true;
         playerHPMax.enabled = true;
         playerHPCurrent.enabled = true;
+        armorCurrent.enabled = true;
+        armorText.enabled = true;
         componentsDisplay.enabled = true;
         timerText.enabled = true;
         reticle.enabled = true;
@@ -403,6 +409,8 @@ public class gameManager : MonoBehaviour
         playerHPBackground.enabled = false;
         playerHPMax.enabled = false;
         playerHPCurrent.enabled = false;
+        armorText.enabled = false;
+        armorCurrent.enabled = false;
         componentsDisplay.enabled = false;
         timerText.enabled = false;
         reticle.enabled = false;
