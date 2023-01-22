@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class droneBoss : MonoBehaviour , IDamage
 {
+    private Score score;
     private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
@@ -45,7 +46,7 @@ public class droneBoss : MonoBehaviour , IDamage
 
     [Header("----- Scoring System -----")]
     public int scoreValue;
-    private int killCount;
+    
 
 
     Vector3 playerDir;
@@ -136,7 +137,7 @@ public class droneBoss : MonoBehaviour , IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-            gameManager.UpDateScore(scoreValue);
+            
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
@@ -153,8 +154,8 @@ public class droneBoss : MonoBehaviour , IDamage
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
-            killCount++;
-            gameManager.UpDateScore(scoreValue);
+            score.UpdateEnemyKillCount();
+            score.AddScore(scoreValue);
 
             
             Destroy(gameObject);

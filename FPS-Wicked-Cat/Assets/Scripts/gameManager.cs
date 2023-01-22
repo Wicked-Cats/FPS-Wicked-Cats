@@ -9,8 +9,7 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    //[SerializeField] HighScoreTable entryTable;
-    //[SerializeField] GameObject HighTable;
+    
 
     [Header("------Player Components------")]
     public GameObject player;
@@ -89,11 +88,7 @@ public class gameManager : MonoBehaviour
     public GameObject mainMenu;
     public bool isMain;
     public bool isOptionBtnMain = false;
-
-    [Header("----- High-Score Menu -----")]
-    public GameObject highScoreUI;
-    public bool isHighScoreBoard;
-    //public bool isOptionBtnHighScoreBoard = false;
+  
 
     [Header("----- Audio -----")]
     public Slider SFXSlider;
@@ -106,6 +101,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI interactableText;
     public GameObject shopSpawnBroadcastParent;
     public TextMeshProUGUI shopSpawnBrodcast;
+
+   
 
 
 
@@ -125,9 +122,7 @@ public class gameManager : MonoBehaviour
     bool miniBossSpawned;
     bool droneBossSpawned;
 
-    [Header("----- Scoring System -----")]
-    public TextMeshProUGUI scoreText;
-    private int score;
+   
     
 
     void Awake()
@@ -167,13 +162,7 @@ public class gameManager : MonoBehaviour
         navMeshTri = NavMesh.CalculateTriangulation();
 
         //Set up UI
-        updateComponentsDisplay();
-
-        score = 0;
-        UpDateScore(0);
-
-        //entryTable = HighTable.GetComponent<HighScoreTable>();
-        ///*entryTable.HighScoreTableEntry()*/;
+        updateComponentsDisplay();      
 
     }
 
@@ -369,17 +358,7 @@ public class gameManager : MonoBehaviour
     public void updateComponentsDisplay()
     {
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
-    }
-
-    public void UpDateScore(int newScore)
-    {
-        
-        score += newScore;
-        scoreText.text = "Score: " + score;
-       
-    }
-
-   
+    } 
 
     // turning ON UI 
     public void UIEnable()
@@ -395,7 +374,7 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = true;
         forwardSlash.enabled = true;
         timerBackground.enabled = true;
-        scoreText.enabled = true;
+        
         updateComponentsDisplay();
 
     }
@@ -412,6 +391,6 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = false;
         forwardSlash.enabled = false;
         timerBackground.enabled = false;
-        scoreText.enabled = false;
+       
     }
 }

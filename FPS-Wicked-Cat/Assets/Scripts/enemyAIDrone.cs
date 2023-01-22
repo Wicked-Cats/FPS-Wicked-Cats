@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class enemyAIDrone : MonoBehaviour, IDamage
 {
+    private Score score;
     private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
@@ -41,7 +42,8 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
     [Header("----- Scoring System -----")]
     public int scoreValue;
-    private int killCount;
+    public int killCount;
+
 
 
     Vector3 playerDir;
@@ -147,8 +149,10 @@ public class enemyAIDrone : MonoBehaviour, IDamage
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
-            killCount++;
-            gameManager.UpDateScore(scoreValue);
+
+            score.UpdateEnemyKillCount();
+            score.AddScore(scoreValue);
+
             Destroy(gameObject);
         }
     }

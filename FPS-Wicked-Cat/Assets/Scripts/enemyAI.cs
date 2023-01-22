@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
+    private Score score;
     private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
@@ -45,7 +46,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("----- Scoring System -----")]
     public int scoreValue;
-    private int killCount;
+    public int killCount;
 
 
 
@@ -169,8 +170,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 StartCoroutine(death());
                 imDead = true;
 
-                killCount++;
-                gameManager.UpDateScore(scoreValue);
+                score.UpdateEnemyKillCount();
+                score.AddScore(scoreValue);
 
                 // item drop
                 GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];

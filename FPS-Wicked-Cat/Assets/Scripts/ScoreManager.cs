@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     private ScoreData scoreData;
+    [Header("----- Scoring System -----")]
+    public TextMeshProUGUI scoreText;
 
     private void Awake()
     {

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class flyerTestScript : MonoBehaviour, IDamage
 {
+    private Score score;
     private gameManager gameManager;
     [SerializeField] GameObject forceField;
     [SerializeField] bool forceFieldEngaged;
@@ -33,7 +34,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     [Header("----- Scoring System -----")]
     public int scoreValue;
-    private int killCount;
+    public int killCount;
 
     bool isPathed;
     bool teleporting;
@@ -136,9 +137,9 @@ public class flyerTestScript : MonoBehaviour, IDamage
             }
 
             Instantiate(itemDrop, transform.position, transform.rotation);
-
-            gameManager.UpDateScore(scoreValue);
-            killCount++;
+            score.UpdateEnemyKillCount();
+            score.AddScore(scoreValue);
+            
 
             Destroy(gameObject);
         }
