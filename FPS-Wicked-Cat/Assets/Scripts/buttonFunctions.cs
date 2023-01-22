@@ -192,6 +192,22 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.magnetButton.interactable = true;
         }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.armorCost)
+        {
+            gameManager.instance.armorButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.armorButton.interactable = true;
+        }
+        if (gameManager.instance.componentsCurrent < gameManager.instance.healthPackCost)
+        {
+            gameManager.instance.healthPackButton.interactable = false;
+        }
+        else
+        {
+            gameManager.instance.healthPackButton.interactable = true;
+        }
 
         gameManager.instance.upgradesComponentCurrent.text = gameManager.instance.componentsCurrent.ToString("F0");
         gameManager.instance.damageButtonText.text = "Damage + 1 (-" + gameManager.instance.damageCost.ToString() + " Components)";
@@ -201,6 +217,8 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.critDamageButtonText.text = "Crit Damage + 25% (-" + gameManager.instance.critDamageCost.ToString() + " Components)";
         gameManager.instance.critChanceButtonText.text = "Crit Chance + 5% (-" + gameManager.instance.critChanceCost.ToString() + " Components)";
         gameManager.instance.magnetButtonText.text = "Magnet Range + 3 (-" + gameManager.instance.magnetCost.ToString() + " Components)";
+        gameManager.instance.armorButtonText.text = "Armor + 10 (-" + gameManager.instance.armorCost.ToString() + " Componemts)";
+        gameManager.instance.healthPackButtonText.text = "Heal 10% of HP (-" + gameManager.instance.healthPackCost.ToString() + " Components)";
     }
 
     public void rangeUp()
@@ -330,6 +348,43 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.componentsCurrent -= gameManager.instance.critDamageCost;
                 gameManager.instance.critDamageMulti += 0.25f;
                 gameManager.instance.critDamageCost += 2;
+                upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
+            }
+        }
+    }
+
+    public void ArmorUpgrade()
+    {
+        if (gameManager.instance.armor < gameManager.instance.playerScript.HPOrig)
+        {
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.armorCost)
+            {
+                gameManager.instance.componentsCurrent -= gameManager.instance.armorCost;
+                gameManager.instance.armor += 10;
+                gameManager.instance.armorCost += 2;
+                upgradesButttonsCheck();
+                gameManager.instance.updateComponentsDisplay();
+            }
+        }
+    }
+
+    public void HealthPackUpgrade()
+    {
+        if (gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
+        {
+            if (gameManager.instance.componentsCurrent >= gameManager.instance.healthPackCost)
+            {
+                gameManager.instance.componentsCurrent -= gameManager.instance.healthPackCost;
+                gameManager.instance.playerScript.HP += (gameManager.instance.playerScript.HPOrig / 10);
+
+                if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPOrig)
+                {
+                    gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
+                }
+
+                gameManager.instance.playerScript.updateHPBar();
+                gameManager.instance.healthPackCost += 2;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }

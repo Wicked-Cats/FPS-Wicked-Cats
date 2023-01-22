@@ -16,6 +16,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public GameObject enemyAimPoint;
+    public int armor;
 
     [Header("------ Player Upgrades------")]
     public int jumpsLimit;
@@ -57,6 +58,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI critChanceButtonText;
     public TextMeshProUGUI critDamageButtonText;
     public TextMeshProUGUI magnetButtonText;
+    public TextMeshProUGUI armorButtonText;
+    public TextMeshProUGUI healthPackButtonText;
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -77,6 +80,8 @@ public class gameManager : MonoBehaviour
     public Button critDamageButton;
     public Button critChanceButton;
     public Button magnetButton;
+    public Button armorButton;
+    public Button healthPackButton;
     public int respawnCost;
     public int damageCost;
     public int HPCost;
@@ -85,6 +90,8 @@ public class gameManager : MonoBehaviour
     public int magnetCost;
     public int critChanceCost;
     public int critDamageCost;
+    public int armorCost;
+    public int healthPackCost;
 
     [Header("------ Enemy Spawning ------")]
     [Range(1, 100)] [SerializeField] float spawnTimer;

@@ -42,7 +42,7 @@ public class cogPickup : MonoBehaviour
 
     void HealthPack()
     {
-        gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HP + (gameManager.instance.playerScript.HPOrig / 10);
+        gameManager.instance.playerScript.HP += (gameManager.instance.playerScript.HPOrig / 10);
 
         if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPOrig)
         {
