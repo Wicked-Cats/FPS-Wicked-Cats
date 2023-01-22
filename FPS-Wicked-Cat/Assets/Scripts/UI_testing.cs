@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// code is an atemped at testing the input window
 public class UI_testing : MonoBehaviour
 {
     [SerializeField] private UI_InputWindow inputWindow;

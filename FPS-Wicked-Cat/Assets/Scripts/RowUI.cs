@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RowUI : MonoBehaviour
 {
+    // all the HighScore UI referances
+
     public TextMeshProUGUI name;
     public TextMeshProUGUI score;
     public TextMeshProUGUI enemyKillCount;

@@ -178,16 +178,16 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        //if (!isMain)
-        //{
-        //    UIDisable();
-        //    isPaused = !isPaused;
-        //    activeMenu = mainMenu;
-        //    activeMenu.SetActive(isPaused);
-        //    pause();
-        //    isMain = true;
-        //    NavigateMenu.instance.OnMenuOpen(0);
-        //}
+        if (!isMain)
+        {
+            UIDisable();
+            isPaused = !isPaused;
+            activeMenu = mainMenu;
+            activeMenu.SetActive(isPaused);
+            pause();
+            isMain = true;
+            NavigateMenu.instance.OnMenuOpen(0);
+        }
 
         // displays the objectives only at start.
         //if (!objectivesSeen)

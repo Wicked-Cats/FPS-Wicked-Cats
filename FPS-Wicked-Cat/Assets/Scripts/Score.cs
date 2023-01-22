@@ -22,21 +22,28 @@ public class Score
     private int enemyKillCountHS = 0;
     private int timeSurvivedHS = 0;
     private int userDeathHS;
-     
+
+    //1.Need to look into logic that will check to see if a new top 10 score is reached and pull up the input window if 
+    //the a new top 10 score is reached 
+    //2. Need to link HighScore UI to the main menue.
+    
+
     void Awake()
     {
         instance= this;
     }
 
+    // need to finish players name input window 
     public void AddNewHighScorePlayerName()
     {
 
     }
-    
-    public void HighScoreUpdate() 
-    {
-        score += scoreHS;
-    }
+
+    // not sure if i still need this function
+    //public void HighScoreUpdate() 
+    //{
+    //    score += scoreHS;
+    //}
     // called in every Enemy script TakeDamage funtion
     public void UpdateEnemyKillCount()
     {
@@ -44,10 +51,13 @@ public class Score
         enemyKillCount = enemyKillCountHS;
     }
 
+
+    // need to wright logic to collect time when player exits the game
     public void TimeServived()
     {
 
     }
+
     // called on the Player Respawn funtion in buttonFunction
     public void UserDeathCount()
     {
@@ -55,11 +65,17 @@ public class Score
         userDeath += userDeathHS;
     }
 
-    public void AddScore(int scoreHS)
+    // update the ingame score UI 
+    public void AddScore(int newScore)
     {
-        score += scoreHS;
-        scoreManager.scoreText.text = "Score: " + scoreHS;
+        score += newScore;
+        scoreManager.scoreText.text = "Score: " + newScore;
+
+        if(newScore > scoreHS)
+        {  newScore = scoreHS; }
     }
+
+    // this is adding a single High score entry 
     public Score(string name, int score, int enemyKillCount, int timeSurvived , int userDeaths)
     {
         this.nameHS = name;

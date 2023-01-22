@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UI_InputWindow : MonoBehaviour
 {
-
+    // code is the start for the input for users name
     private void Awake()
     {
         Hide();
