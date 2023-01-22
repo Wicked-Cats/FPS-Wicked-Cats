@@ -128,7 +128,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Scoring System -----")]
     public TextMeshProUGUI scoreText;
     private int score;
-    public HighscoreVar highscorefinal;
+    
 
     void Awake()
     {
@@ -376,13 +376,10 @@ public class gameManager : MonoBehaviour
         
         score += newScore;
         scoreText.text = "Score: " + score;
-        //highscorefinal.score += score;
+       
     }
 
-    public void AddScore()
-    {
-
-    }
+   
 
     // turning ON UI 
     public void UIEnable()
