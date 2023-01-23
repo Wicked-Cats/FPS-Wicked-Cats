@@ -175,6 +175,10 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 StartCoroutine(death());
                 imDead = true;
+                foreach(CapsuleCollider collider in hitCollider)
+                {
+                    collider.enabled = false;
+                }
 
                 //score.UpdateEnemyKillCount();
                 //score.AddScore(scoreValue);

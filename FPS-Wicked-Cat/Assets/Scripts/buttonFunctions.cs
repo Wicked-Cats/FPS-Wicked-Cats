@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
-    private Score score;
     bool openedFromMenu;
 
     public void resume()

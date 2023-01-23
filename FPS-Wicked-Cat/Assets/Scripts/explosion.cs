@@ -36,11 +36,11 @@ public class explosion : MonoBehaviour
         {
             if (push)
             {
-                gameManager.instance.playerScript.PushBackInput((other.transform.position - transform.position) * playerPushBackAmount);
+                gameManager.instance.playerScript.PushBackInput(Vector3.Normalize(other.transform.position - transform.position) * playerPushBackAmount);
             }
             else
             {
-                gameManager.instance.playerScript.PushBackInput((transform.position - other.transform.position) * playerPushBackAmount);
+                gameManager.instance.playerScript.PushBackInput(Vector3.Normalize(transform.position - other.transform.position) * playerPushBackAmount);
             }
         }
     }

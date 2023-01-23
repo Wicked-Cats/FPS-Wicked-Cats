@@ -18,7 +18,7 @@ public class playerController : MonoBehaviour
     [Range(15, 35)] [SerializeField] int gravityValue;
     [Range(1, 6)] [SerializeField] public int jumpsMax;
     public int HPOrig;
-    [SerializeField] int pushBackTime;
+    [SerializeField] float pushBackTime;
     public int magnetPullStrength;
 
     [Header("----- Gun Stats ----")]
@@ -82,11 +82,11 @@ public class playerController : MonoBehaviour
         {
             anim.SetFloat("Speed", move.normalized.magnitude);
 
-            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+            //pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
             //might keep for future use
-            //pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
-            //pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 2f);
-            //pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            pushBack.y = 0;
+            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
 
             movement();
 
