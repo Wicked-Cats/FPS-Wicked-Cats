@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class enemyAIDrone : MonoBehaviour, IDamage
 {
-    private Score score;
-    private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -41,8 +39,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [SerializeField] float dissolveSpeed;
 
     [Header("----- Scoring System -----")]
-    public int scoreValue;
-    public int killCount;
+    [SerializeField] int score;
 
 
 
@@ -60,7 +57,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<MeshRenderer>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
+        score = (int)HPOrig;
     }
 
     // Update is called once per frame
@@ -140,7 +137,8 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-
+            gameManager.instance.scoreTotal += score;
+            gameManager.instance.killcount++;
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
@@ -158,8 +156,6 @@ public class enemyAIDrone : MonoBehaviour, IDamage
                 }
             }
 
-            score.UpdateEnemyKillCount();
-            score.AddScore(scoreValue);
 
             Destroy(gameObject);
         }
