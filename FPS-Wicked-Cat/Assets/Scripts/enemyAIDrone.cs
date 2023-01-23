@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class enemyAIDrone : MonoBehaviour, IDamage
 {
+    private Score score;
+    private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -38,6 +40,11 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [Header("-- Effects --")]
     [SerializeField] float dissolveSpeed;
 
+    [Header("----- Scoring System -----")]
+    public int scoreValue;
+    public int killCount;
+
+
 
     Vector3 playerDir;
     float stopDistOrig;
@@ -53,6 +60,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<MeshRenderer>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
     }
 
     // Update is called once per frame
@@ -149,6 +157,9 @@ public class enemyAIDrone : MonoBehaviour, IDamage
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
+
+            score.UpdateEnemyKillCount();
+            score.AddScore(scoreValue);
 
             Destroy(gameObject);
         }
