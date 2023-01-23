@@ -8,7 +8,6 @@ public class cogPickup : MonoBehaviour
     [SerializeField] public bool isHealthPack;
     [SerializeField] Rigidbody rb;
     Vector3 rot;
-    Vector3 pushBack;
     bool beingPulled;
 
     private void Start()
@@ -20,7 +19,7 @@ public class cogPickup : MonoBehaviour
         transform.Rotate(0f, 0.5f, 0f);
         if (beingPulled)
         {
-            rb.velocity = pushBack;
+            rb.velocity = (gameManager.instance.enemyAimPoint.transform.position - transform.position) * gameManager.instance.playerScript.magnetPullStrength;
         }
     }
 
@@ -63,9 +62,8 @@ public class cogPickup : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void PushbackSet(Vector3 _pushBack)
+    public void PushbackSet()
     {
-        pushBack = _pushBack;
         beingPulled = true;
     }
 }

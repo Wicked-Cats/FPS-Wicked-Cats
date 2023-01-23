@@ -161,7 +161,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
         isPathed = true;
         NavMeshPath path = new NavMeshPath();
         NavMeshHit hit;
-        NavMesh.SamplePosition(gameManager.instance.player.transform.position, out hit, 5f, 1);
+        NavMesh.SamplePosition(gameManager.instance.player.transform.position, out hit, 10f, 1);
         agent.CalculatePath(gameManager.instance.player.transform.position, path);
         agent.SetPath(path);
         yield return new WaitForSeconds(1f);

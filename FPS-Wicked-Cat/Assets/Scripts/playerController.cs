@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour
     [Range(1, 6)] [SerializeField] public int jumpsMax;
     public int HPOrig;
     [SerializeField] int pushBackTime;
-    [SerializeField] int magnetPullStrength;
+    public int magnetPullStrength;
 
     [Header("----- Gun Stats ----")]
     [SerializeField] List<gunObjects> gunList = new List<gunObjects>();
@@ -396,7 +396,7 @@ public class playerController : MonoBehaviour
         if (other.CompareTag("Item Drop"))
         {
             cogPickup temp = other.GetComponent<cogPickup>();
-            temp.PushbackSet((gameManager.instance.enemyAimPoint.transform.position - other.transform.position) * magnetPullStrength);
+            temp.PushbackSet();
         }
     }
 

@@ -216,7 +216,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.speedButtonText.text = "Speed + 1\n (-" + gameManager.instance.speedCost.ToString("F0") + " Components)";
         gameManager.instance.critDamageButtonText.text = "Crit Damage + 25%\n (-" + gameManager.instance.critDamageCost.ToString("F0") + " Components)";
         gameManager.instance.critChanceButtonText.text = "Crit Chance + 5%\n (-" + gameManager.instance.critChanceCost.ToString("F0") + " Components)";
-        gameManager.instance.magnetButtonText.text = "Pickup Range + 10%\n (-" + gameManager.instance.magnetCost.ToString("F0") + " Components)";
+        gameManager.instance.magnetButtonText.text = "Pickup Range + 20%\n (-" + gameManager.instance.magnetCost.ToString("F0") + " Components)";
         gameManager.instance.armorButtonText.text = "Armor + 10\n (-" + gameManager.instance.armorCost.ToString("F0") + " Componemts)";
         gameManager.instance.healthPackButtonText.text = "Heal 10% of HP\n (-" + gameManager.instance.healthPackCost.ToString("F0") + " Components)";
     }
@@ -249,6 +249,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.unPause();
         gameManager.instance.activeMenu = null;
+        gameManager.instance.timeTotal = gameManager.instance.timeCurrent;
         gameManager.instance.UIEnable();
     }
 
@@ -262,6 +263,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.mainMenu.SetActive(false);
         gameManager.instance.unPause();
         gameManager.instance.activeMenu = null;
+        gameManager.instance.timeTotal = gameManager.instance.timeCurrent;
         gameManager.instance.UIEnable();
     }
 
@@ -316,7 +318,7 @@ public class buttonFunctions : MonoBehaviour
             if (gameManager.instance.componentsCurrent >= gameManager.instance.magnetCost)
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.magnetCost;
-                gameManager.instance.magnetRange += (gameManager.instance.magnetRange / 10);
+                gameManager.instance.magnetRange += (gameManager.instance.magnetRange / 20);
                 gameManager.instance.magnetCost += 10;
                 gameManager.instance.playerScript.magnetRangeSet(gameManager.instance.magnetRange);
                 upgradesButttonsCheck();
@@ -366,7 +368,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.armorCost;
                 gameManager.instance.armor += 10;
-                gameManager.instance.armorCost += 4;
+                gameManager.instance.armorCost += 2;
                 gameManager.instance.playerScript.updateHPBar();
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
@@ -391,7 +393,7 @@ public class buttonFunctions : MonoBehaviour
                 }
 
                 gameManager.instance.playerScript.updateHPBar();
-                gameManager.instance.healthPackCost += 2;
+                gameManager.instance.healthPackCost += 5;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }

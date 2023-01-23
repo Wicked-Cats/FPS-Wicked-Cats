@@ -69,7 +69,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     private int damageIncreaseOffset;
     public int timeDamageIncrease;
-    private float timeTotal;
+    public float timeTotal;
 
 
     [Header("------ Upgrades Stuff ------")]
@@ -139,8 +139,6 @@ public class gameManager : MonoBehaviour
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
-    bool area1Open;
-    bool area2Open;
     bool miniBossSpawned;
     bool droneBossSpawned;
 
@@ -166,7 +164,6 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         timeScaleBase = Time.timeScale;
-        timeTotal = timeCurrent;
 
         diffTickTime = timeCurrent / (enemiesOptions.Length-1);
         spawnOffset = 0;
@@ -282,7 +279,7 @@ public class gameManager : MonoBehaviour
 
         if (!miniBossSpawned)
         {
-            if (area1Open || timeCurrent < (timeTotal - (timeTotal / 4)))
+            if (timeCurrent < timeTotal * 0.75f)
             {
                 StartCoroutine(spawnEnemies(1));
                 miniBossSpawned = true;
@@ -291,7 +288,7 @@ public class gameManager : MonoBehaviour
 
         if (!droneBossSpawned)
         {
-            if(area2Open || timeCurrent < (timeTotal - (timeTotal / 2)))
+            if(timeCurrent < (timeTotal / 2))
             {
                 StartCoroutine(spawnEnemies(2));
                 droneBossSpawned = true;

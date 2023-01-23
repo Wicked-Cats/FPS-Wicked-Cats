@@ -1939,8 +1939,8 @@ MonoBehaviour:
   armor: 0
   jumpsLimit: 2
   HPLimit: 250
-  damageLimit: 20
-  speedLimit: 20
+  damageLimit: 10
+  speedLimit: 10
   rangeUpLimit: 100
   critChanceLimit: 75
   critDamageLimit: 5
@@ -1981,6 +1981,7 @@ MonoBehaviour:
   timeCurrent: 300
   timerText: {fileID: 6238504839497357681}
   timeDamageIncrease: 0
+  timeTotal: 0
   upgradesComponentCurrent: {fileID: 2869389895284597361}
   respawnButt: {fileID: 2099446822}
   jumpButton: {fileID: 3055938117465048274}
@@ -2575,10 +2576,6 @@ PrefabInstance:
     - target: {fileID: 556090344882471826, guid: 41b1be2612462494184b3c50beb3dec7, type: 3}
       propertyPath: m_Name
       value: Upgrades
-      objectReference: {fileID: 0}
-    - target: {fileID: 556090344882471826, guid: 41b1be2612462494184b3c50beb3dec7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7226737900596424426, guid: 41b1be2612462494184b3c50beb3dec7, type: 3}
       propertyPath: m_Pivot.x
