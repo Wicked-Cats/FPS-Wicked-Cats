@@ -4042,6 +4042,10 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 2075264740971740688, guid: abc673929a147dd489074af71b3fd64d, type: 3}
+      propertyPath: isHighscore
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2890878303263569177, guid: abc673929a147dd489074af71b3fd64d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4416,6 +4420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19e10120f031f44db27fae672126783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entryContainer: {fileID: 0}
+  entryTemplate: {fileID: 0}
 --- !u!114 &8045297600534939181 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9871776490838794, guid: abc673929a147dd489074af71b3fd64d, type: 3}
