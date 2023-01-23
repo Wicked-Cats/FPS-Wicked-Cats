@@ -542,6 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rules: {fileID: 1599079422199075470}
+  isHighscore: 1
 --- !u!1 &3000906602792104932
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rules: {fileID: 7169250228118419045}
+  isHighscore: 0
 --- !u!82 &2557968119106950636
 AudioSource:
   m_ObjectHideFlags: 0
@@ -938,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rules: {fileID: 7947154690826914617}
+  isHighscore: 0
 --- !u!1 &3713675443075934753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1012,7 @@ MonoBehaviour:
     In this mode you will be tasked with surviving the
     onslaught of robots, in a longer time period. You will need to utilize the shop
     for longer progression. Weapons have been scattered around the map find them
-    to protect yourself. Your goal is to survive 30 minutes in this apocalypse good
+    to protect yourself. Your goal is to survive 30 mins in this apocalypse good
     luck soldier...You''ll need it.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f83d8bc2400fe584781cf1b7c5c6a631, type: 2}
@@ -1441,6 +1444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rules: {fileID: 3835615928258057366}
+  isHighscore: 0
 --- !u!82 &2557968118628611298
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1700,6 +1704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rules: {fileID: 5138697958936880944}
+  isHighscore: 0
 --- !u!82 &2557968120725587703
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3186,7 +3191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521983927393861647, guid: 0197beb218839ad4a89b66c1747666c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 245
+      value: 219
       objectReference: {fileID: 0}
     - target: {fileID: 6521983927393861647, guid: 0197beb218839ad4a89b66c1747666c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3245,7 +3250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2769563156396212554, guid: 07073dc3c89c283458ec58a70f82bb2a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2809002854135026183, guid: 07073dc3c89c283458ec58a70f82bb2a, type: 3}
       propertyPath: m_Pivot.x
