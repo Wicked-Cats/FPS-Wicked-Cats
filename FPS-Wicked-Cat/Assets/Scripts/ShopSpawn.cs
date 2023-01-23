@@ -12,6 +12,7 @@ public class ShopSpawn : MonoBehaviour
     private int shopSpawnLocation;
     private GameObject instantiatedShopModel;
     private bool isSpawning = false;
+    int tick;
 
     private void Start()
     {
@@ -25,6 +26,10 @@ public class ShopSpawn : MonoBehaviour
         {
             isSpawning = true;
             StartCoroutine(spawn());
+        }
+        if (isSpawning)
+        {
+
         }
     }
 
@@ -42,7 +47,7 @@ public class ShopSpawn : MonoBehaviour
 
 
         // broadcast message
-        gameManager.instance.shopSpawnBroadcastParent.SetActive(true);
+        StartCoroutine(popUpWait());
 
 
         StartCoroutine(remove());
@@ -61,7 +66,6 @@ public class ShopSpawn : MonoBehaviour
 
 
         // remove broadcast message
-        gameManager.instance.shopSpawnBroadcastParent.SetActive(false);
 
 
         // update UI
@@ -70,5 +74,18 @@ public class ShopSpawn : MonoBehaviour
 
 
         isSpawning = false;
+    }
+
+    IEnumerator popUp()
+    {
+        gameManager.instance.shopSpawnBroadcastParent.SetActive(true);
+        yield return new WaitForSeconds(15f);
+        gameManager.instance.shopSpawnBroadcastParent.SetActive(false);
+    }
+    
+    IEnumerator popUpWait()
+    {
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(popUp());
     }
 }
