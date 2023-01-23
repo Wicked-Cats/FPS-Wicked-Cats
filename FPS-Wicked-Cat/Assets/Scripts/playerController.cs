@@ -64,7 +64,7 @@ public class playerController : MonoBehaviour
     public float pS;
     bool turning;
     bool stepIsPlaying;
-    bool isSprinting;
+    public bool isSprinting;
     SphereCollider magnet;
 
     private void Start()
