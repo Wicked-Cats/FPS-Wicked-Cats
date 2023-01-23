@@ -61,7 +61,7 @@ public class playerController : MonoBehaviour
     private Vector3 playerVelocity;
     Vector3 move;
     Vector3 pushBack;
-    float pS;
+    public float pS;
     bool turning;
     bool stepIsPlaying;
     bool isSprinting;
