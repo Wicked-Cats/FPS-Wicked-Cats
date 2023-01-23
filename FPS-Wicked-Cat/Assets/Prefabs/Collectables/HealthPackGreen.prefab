@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cog: {fileID: 2671387097928927799}
   isHealthPack: 1
+  rb: {fileID: 0}
 --- !u!33 &2694074990634485699
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -237,7 +238,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.33671963
+  m_Radius: 0.49
   m_Height: 0.6734392
   m_Direction: 1
   m_Center: {x: 0.000003863126, y: 0.00000047683716, z: -0.00000011920929}
