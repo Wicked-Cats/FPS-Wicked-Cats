@@ -259,7 +259,7 @@ MonoBehaviour:
   jumpsMax: 1
   HPOrig: 0
   pushBackTime: 1
-  magnetPullStrength: 3
+  magnetPullStrength: 5
   gunList: []
   shootDamage: 10
   shootRate: 0.5
@@ -294,6 +294,8 @@ MonoBehaviour:
   shopEnterSFX: {fileID: 8300000, guid: 29df8e798230e44128d54040c4971b7f, type: 3}
   pistolMuzzleFlash: {fileID: 1958380744395098648}
   sniperMuzzleFlash: {fileID: 78572658}
+  pS: 0
+  isSprinting: 0
 --- !u!143 &6950623619115011093
 CharacterController:
   m_ObjectHideFlags: 0

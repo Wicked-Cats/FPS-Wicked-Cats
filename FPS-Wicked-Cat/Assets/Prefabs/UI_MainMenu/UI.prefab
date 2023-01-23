@@ -1939,16 +1939,16 @@ MonoBehaviour:
   enemyAimPoint: {fileID: 0}
   armor: 0
   jumpsLimit: 2
-  HPLimit: 250
-  damageLimit: 20
-  speedLimit: 20
-  rangeUpLimit: 100
-  critChanceLimit: 0
-  critDamageLimit: 0
-  critChance: 0
-  critDamageMulti: 0
-  magnetRange: 0
-  magnetLimit: 0
+  HPLimit: 200
+  damageLimit: 10
+  speedLimit: 8
+  rangeUpLimit: 10
+  critChanceLimit: 75
+  critDamageLimit: 5
+  critChance: 25
+  critDamageMulti: 1.5
+  magnetRange: 2
+  magnetLimit: 6
   optionsMenu: {fileID: 5709180140641398239}
   objectives: {fileID: 508640435}
   activeMenu: {fileID: 0}
@@ -2074,8 +2074,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopModel: {fileID: 4445777334428580553, guid: 15d7a6694752cf74b8632147c2c49dee, type: 3}
   shopSpawnLocations: []
-  shopSpawnFrequency: 5
-  shopDuration: 10
+  shopSpawnFrequency: 130
+  shopDuration: 120
 --- !u!1 &8831335662796023013
 GameObject:
   m_ObjectHideFlags: 0
