@@ -40,6 +40,7 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject upgradesMenu;
+    public GameObject nameEntry;
     public GameObject damageFlash;
     public Image playerHPBar;
     public Image playerHPBackground;
@@ -62,6 +63,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI healthPackButtonText;
     public TextMeshProUGUI armorText;
     public TextMeshProUGUI armorCurrent;
+    public GameObject highscoreTable;
+    public TMP_InputField nameEnrtyText;
 
 
 
@@ -131,6 +134,7 @@ public class gameManager : MonoBehaviour
 
 
     public int scoreTotal;
+    public int killcount;
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
@@ -143,6 +147,8 @@ public class gameManager : MonoBehaviour
     public GameObject forceFieldMaker;
     bool miniBossSpawned;
     bool droneBossSpawned;
+    private TableScores tableScores;
+    public string nameHighscore;
 
    
     
@@ -186,9 +192,8 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
 
         armor = 0;
-        
-        //entryTable = HighTable.GetComponent<HighScoreTable>();
-        ///*entryTable.HighScoreTableEntry()*/;
+
+        tableScores = highscoreTable.GetComponent<TableScores>();
 
     }
 
@@ -422,5 +427,17 @@ public class gameManager : MonoBehaviour
         forwardSlash.enabled = false;
         timerBackground.enabled = false;
        
+    }
+
+    public void SetHighScore()
+    {
+        scoreTotal += Mathf.FloorToInt(timeTotal - timeCurrent);
+
+        tableScores.AddHighScoreEntry(scoreTotal, nameHighscore, killcount, timeCurrent);
+    }
+
+    public void SetName(string _name)
+    {
+        nameHighscore = _name;
     }
 }

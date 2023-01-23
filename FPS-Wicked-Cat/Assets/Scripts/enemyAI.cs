@@ -180,6 +180,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 //score.AddScore(scoreValue);
 
                 gameManager.instance.scoreTotal += score;
+                gameManager.instance.killcount++;
 
                 // item drop
                 GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];

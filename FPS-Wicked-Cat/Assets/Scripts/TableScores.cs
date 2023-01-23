@@ -91,7 +91,7 @@ public class TableScores : MonoBehaviour
         entryTransform.Find("timeText").GetComponent<Text>().text = time;
     }
 
-    private void AddHighScoreEntry(int score, string name, int killed, float time)
+    public void AddHighScoreEntry(int score, string name, int killed, float time)
     {
         HighscoreEntry highscoreEntry = new HighscoreEntry { score = score, name = name, killed = killed, time = time};
 

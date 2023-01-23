@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class flyerTestScript : MonoBehaviour, IDamage
 {
-    private Score score;
-    private gameManager gameManager;
+
     [SerializeField] GameObject forceField;
     [SerializeField] bool forceFieldEngaged;
 
@@ -33,8 +32,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
     [SerializeField] float dissolveSpeed;
 
     [Header("----- Scoring System -----")]
-    public int scoreValue;
-    public int killCount;
+    [SerializeField] int score;
 
     bool isPathed;
     bool teleporting;
@@ -48,7 +46,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<MeshRenderer>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
+        score = (int)HPOrig;
     }
 
     void Update()
@@ -142,10 +140,10 @@ public class flyerTestScript : MonoBehaviour, IDamage
                 gameManager.instance.forceField = null;
                 gameManager.instance.forceFieldActive = false;
             }
-
+            gameManager.instance.scoreTotal += score;
+            gameManager.instance.killcount++;
             Instantiate(itemDrop, transform.position, transform.rotation);
-            score.UpdateEnemyKillCount();
-            score.AddScore(scoreValue);
+
             
 
             Destroy(gameObject);
