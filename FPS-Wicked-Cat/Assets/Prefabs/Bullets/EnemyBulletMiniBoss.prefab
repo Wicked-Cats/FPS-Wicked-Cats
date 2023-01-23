@@ -50,9 +50,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -5332225531961743399}
-  damage: 10
+  damage: 25
   speed: 15
   despawnTimer: 10
+  homing: 0
+  homingAccuracy: 0
+  explosion: {fileID: 0}
 --- !u!54 &-5332225531961743399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,7 +177,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.6
