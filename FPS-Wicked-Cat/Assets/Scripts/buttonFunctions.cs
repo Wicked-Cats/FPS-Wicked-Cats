@@ -42,7 +42,6 @@ public class buttonFunctions : MonoBehaviour
             //gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
-            score.UserDeathCount();
         }
     }
 
