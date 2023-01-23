@@ -2054,7 +2054,7 @@ MonoBehaviour:
   forceFieldActive: 0
   forceField: {fileID: 0}
   forceFieldMaker: {fileID: 0}
-  nameHighscore: 
+  tableScores: {fileID: 0}
 --- !u!114 &8560925604817705452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3102,7 +3102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8916295122013806077, guid: 3d39c95426133a343bd54b44a4cc4d3e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d39c95426133a343bd54b44a4cc4d3e, type: 3}
@@ -3211,10 +3211,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lose Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 8103266249926946871, guid: c73b4168c347f8743bac3b96aa43ec81, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c73b4168c347f8743bac3b96aa43ec81, type: 3}
 --- !u!1 &6836875137312996940 stripped
@@ -3256,6 +3252,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4262074351900611885}
     m_Modifications:
+    - target: {fileID: 2758598650272043115, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3956452490434040322, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3354,6 +3354,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6362961943814736003, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6855503338193196682, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8984381497692691118, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
