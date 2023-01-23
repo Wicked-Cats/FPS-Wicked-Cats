@@ -147,8 +147,8 @@ public class gameManager : MonoBehaviour
     public GameObject forceFieldMaker;
     bool miniBossSpawned;
     bool droneBossSpawned;
-    private TableScores tableScores;
-    public string nameHighscore;
+    public TableScores tableScores;
+    private string nameHighscore;
 
    
     
@@ -433,7 +433,7 @@ public class gameManager : MonoBehaviour
     {
         scoreTotal += Mathf.FloorToInt(timeTotal - timeCurrent);
 
-        tableScores.AddHighScoreEntry(scoreTotal, nameHighscore, killcount, timeCurrent);
+        tableScores.AddHighScoreEntry(scoreTotal, nameHighscore, killcount, timeTotal - timeCurrent);
     }
 
     public void SetName(string _name)
