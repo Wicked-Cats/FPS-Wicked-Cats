@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    bool playerInSphere = false;
+    public static bool playerInSphere = false;
     bool inMenu = false;
     GameObject[] menus;
     GameObject currentMenu;
