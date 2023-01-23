@@ -148,7 +148,7 @@ public class gameManager : MonoBehaviour
     bool miniBossSpawned;
     bool droneBossSpawned;
     private TableScores tableScores;
-    public string nameHighscore;
+    private string nameHighscore;
 
    
     

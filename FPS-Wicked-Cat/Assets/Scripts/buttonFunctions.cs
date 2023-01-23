@@ -412,4 +412,18 @@ public class buttonFunctions : MonoBehaviour
         
     }
 
+    public void OKName()
+    {
+        gameManager.instance.SetHighScore();
+        gameManager.instance.unPause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OpenHighName()
+    {
+        gameManager.instance.activeMenu.SetActive(false);
+        gameManager.instance.activeMenu = gameManager.instance.nameEntry;
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
 }

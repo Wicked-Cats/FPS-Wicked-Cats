@@ -21,16 +21,23 @@ public class TableScores : MonoBehaviour
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         HighScores highscores = JsonUtility.FromJson<HighScores>(jsonString);
 
-        for( int x = 0; x < highscores.highscoreEntryList.Count; x++)
+        for (int x = 0; x < highscores.highscoreEntryList.Count; x++)
         {
-            for(int i = x + 1; i < highscores.highscoreEntryList.Count; i++)
+            for (int i = x + 1; i < highscores.highscoreEntryList.Count; i++)
             {
-                if(highscores.highscoreEntryList[i].score > highscores.highscoreEntryList[x].score)
+                if (highscores.highscoreEntryList[i].score > highscores.highscoreEntryList[x].score)
                 {
                     HighscoreEntry temp = highscores.highscoreEntryList[x];
                     highscores.highscoreEntryList[x] = highscores.highscoreEntryList[i];
                     highscores.highscoreEntryList[i] = temp;
                 }
+            }
+        }
+        if (highscores.highscoreEntryList.Count > 10)
+        {
+            for (int toRemove = highscores.highscoreEntryList.Count - 10; toRemove > 0; toRemove--)
+            {
+                highscores.highscoreEntryList.RemoveRange(10, highscores.highscoreEntryList.Count - 1);
             }
         }
 
@@ -93,7 +100,7 @@ public class TableScores : MonoBehaviour
 
     public void AddHighScoreEntry(int score, string name, int killed, float time)
     {
-        HighscoreEntry highscoreEntry = new HighscoreEntry { score = score, name = name, killed = killed, time = time};
+        HighscoreEntry highscoreEntry = new HighscoreEntry { score = score, name = name, killed = killed, time = time };
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         HighScores highscores = JsonUtility.FromJson<HighScores>(jsonString);
