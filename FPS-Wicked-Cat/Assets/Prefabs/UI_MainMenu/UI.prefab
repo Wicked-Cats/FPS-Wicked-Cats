@@ -3249,21 +3249,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1926657566543757838}
     m_Modifications:
-    - target: {fileID: 4050273515725889356, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4914176266381380925, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
       propertyPath: m_Name
       value: Input_Name
       objectReference: {fileID: 0}
-    - target: {fileID: 5822558494163529395, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
-      propertyPath: m_fontSize
-      value: 41.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5822558494163529395, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
-      propertyPath: m_margin.w
-      value: 3.8065357
+    - target: {fileID: 4914176266381380925, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6362961943814736003, guid: d1c9b21f34729044c91ccb509c86b769, type: 3}
       propertyPath: m_Pivot.x
