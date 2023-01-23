@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class messageAppear : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject _rules;
+    [SerializeField] bool isHighscore;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,10 @@ public class messageAppear : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         _rules.SetActive(true);
+        if(isHighscore)
+        {
+            gameManager.instance.tableScores.SetUpTable();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

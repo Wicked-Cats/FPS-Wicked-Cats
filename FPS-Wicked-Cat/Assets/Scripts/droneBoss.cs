@@ -42,6 +42,10 @@ public class droneBoss : MonoBehaviour , IDamage
     [SerializeField] int emergencyTeleportInterval;
 
 
+    [Header("----- Scoring System -----")]
+    [SerializeField] int score;
+
+
     Vector3 playerDir;
     bool isTeleporting;
     bool teleportCycle;
@@ -57,7 +61,7 @@ public class droneBoss : MonoBehaviour , IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
-
+        score = HPOrig;
     }
 
     // Update is called once per frame
@@ -129,7 +133,8 @@ public class droneBoss : MonoBehaviour , IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-
+            gameManager.instance.scoreTotal += score;
+            gameManager.instance.killcount++;
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
@@ -147,6 +152,7 @@ public class droneBoss : MonoBehaviour , IDamage
                 }
             }
 
+            
             Destroy(gameObject);
         }
     }

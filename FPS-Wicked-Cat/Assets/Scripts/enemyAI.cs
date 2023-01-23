@@ -16,6 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Material dissolveMaterial;
     [SerializeField] GameObject body;
     [SerializeField] GameObject[] legs;
+    private CapsuleCollider[] hitCollider;
 
     [Header("-- Enemy Stats")]
     [SerializeField] float HP;
@@ -42,7 +43,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject fireVaccum;
     [SerializeField] float dissolveSpeed;
 
-
+    [Header("----- Scoring System -----")]
+    [SerializeField] int score;
 
 
     Vector3 playerDir;
@@ -58,6 +60,8 @@ public class enemyAI : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
+        score = (int)HPOrig;
+        hitCollider = GetComponents<CapsuleCollider>();
     }
 
     void Update()
@@ -172,6 +176,12 @@ public class enemyAI : MonoBehaviour, IDamage
                 StartCoroutine(death());
                 imDead = true;
 
+                //score.UpdateEnemyKillCount();
+                //score.AddScore(scoreValue);
+
+                gameManager.instance.scoreTotal += score;
+                gameManager.instance.killcount++;
+
                 // item drop
                 GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
                 cogPickup cog = drop.GetComponent<cogPickup>();
@@ -220,6 +230,10 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator death()
     {
+        for (int x = 0; x < hitCollider.Length; x++)
+        {
+            hitCollider[x].enabled = false;
+        }
         agent.SetDestination(transform.position);
         agent.isStopped = true;
         // creates fire vaccum

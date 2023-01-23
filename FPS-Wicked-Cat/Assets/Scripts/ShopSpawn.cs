@@ -31,8 +31,6 @@ public class ShopSpawn : MonoBehaviour
 
     IEnumerator spawn()
     {
-        // wait before spawning
-        yield return new WaitForSeconds(shopSpawnFrequency);
 
 
         // select random spawn location
@@ -48,6 +46,8 @@ public class ShopSpawn : MonoBehaviour
 
 
         StartCoroutine(remove());
+        // wait before spawning
+        yield return new WaitForSeconds(shopSpawnFrequency);
     }
 
     IEnumerator remove()
@@ -62,6 +62,11 @@ public class ShopSpawn : MonoBehaviour
 
         // remove broadcast message
         gameManager.instance.shopSpawnBroadcastParent.SetActive(false);
+
+
+        // update UI
+        Interaction.playerInSphere = false;
+        gameManager.instance.interactableTextParent.SetActive(false);
 
 
         isSpawning = false;

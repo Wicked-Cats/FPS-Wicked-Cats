@@ -9,8 +9,7 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    //[SerializeField] HighScoreTable entryTable;
-    //[SerializeField] GameObject HighTable;
+    
 
     [Header("------Player Components------")]
     public GameObject player;
@@ -40,11 +39,12 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject upgradesMenu;         
-    public GameObject damageFlash;          
+    public GameObject upgradesMenu;
+    public GameObject nameEntry;
+    public GameObject damageFlash;
     public Image playerHPBar;
-    public Image playerHPBackground;        
-    public TextMeshProUGUI playerHPCurrent; 
+    public Image playerHPBackground;
+    public TextMeshProUGUI playerHPCurrent;
     public TextMeshProUGUI playerHPMax;
     public TextMeshProUGUI forwardSlash;
     public TextMeshProUGUI componentsDisplay;
@@ -63,6 +63,10 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI healthPackButtonText;
     public TextMeshProUGUI armorText;
     public TextMeshProUGUI armorCurrent;
+    public GameObject highscoreTable;
+    public TMP_InputField nameEnrtyText;
+
+
 
     [Header("------ Timer ------")]
     public float timeCurrent;
@@ -97,7 +101,7 @@ public class gameManager : MonoBehaviour
     public int healthPackCost;
 
     [Header("------ Enemy Spawning ------")]
-    [Range(1, 100)] [SerializeField] float spawnTimer;
+    [Range(1, 100)][SerializeField] float spawnTimer;
     public GameObject[] enemiesOptions;
     [SerializeField] GameObject miniBoss;
     [SerializeField] GameObject droneBoss;
@@ -111,11 +115,7 @@ public class gameManager : MonoBehaviour
     public GameObject mainMenu;
     public bool isMain;
     public bool isOptionBtnMain = false;
-
-    [Header("----- High-Score Menu -----")]
-    public GameObject highScoreUI;
-    public bool isHighScoreBoard;
-    //public bool isOptionBtnHighScoreBoard = false;
+  
 
     [Header("----- Audio -----")]
     public Slider SFXSlider;
@@ -129,19 +129,29 @@ public class gameManager : MonoBehaviour
     public GameObject shopSpawnBroadcastParent;
     public TextMeshProUGUI shopSpawnBrodcast;
 
+
+
+
+
+    public int scoreTotal;
+    public int killcount;
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
     bool isSpawning;
     public int componentsCurrent;
     public int componentsTotal;
-    public bool objectivesSeen =false;
+    public bool objectivesSeen = false;
     public bool forceFieldActive;
     public GameObject forceField;
     public GameObject forceFieldMaker;
     bool miniBossSpawned;
     bool droneBossSpawned;
+    public TableScores tableScores;
+    private string nameHighscore;
 
+   
+    
 
     void Awake()
     {
@@ -165,7 +175,7 @@ public class gameManager : MonoBehaviour
 
         timeScaleBase = Time.timeScale;
 
-        diffTickTime = timeCurrent / (enemiesOptions.Length-1);
+        diffTickTime = timeCurrent / (enemiesOptions.Length - 1);
         spawnOffset = 0;
 
         //set and move player to spawn
@@ -182,9 +192,8 @@ public class gameManager : MonoBehaviour
         updateComponentsDisplay();
 
         armor = 0;
-        
-        //entryTable = HighTable.GetComponent<HighScoreTable>();
-        ///*entryTable.HighScoreTableEntry()*/;
+
+        tableScores = highscoreTable.GetComponent<TableScores>();
 
     }
 
@@ -200,7 +209,7 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        if(!isMain)
+        if (!isMain)
         {
             UIDisable();
             isPaused = !isPaused;
@@ -367,7 +376,7 @@ public class gameManager : MonoBehaviour
     {
         waitingToTick = true;
 
-        spawnOffset+= 1f;
+        spawnOffset += 1f;
         damageIncreaseOffset++;
         if (damageIncreaseOffset % 3 == 0)
         {
@@ -380,14 +389,14 @@ public class gameManager : MonoBehaviour
     public void updateComponentsDisplay()
     {
         componentsDisplay.text = "Components: " + componentsCurrent.ToString();
-    }
+    } 
 
     // turning ON UI 
     public void UIEnable()
     {
-        
+
         playerHPBar.enabled = true;
-        playerHPBackground.enabled= true;
+        playerHPBackground.enabled = true;
         playerHPMax.enabled = true;
         playerHPCurrent.enabled = true;
         armorCurrent.enabled = true;
@@ -398,6 +407,7 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = true;
         forwardSlash.enabled = true;
         timerBackground.enabled = true;
+        
         updateComponentsDisplay();
 
     }
@@ -416,5 +426,18 @@ public class gameManager : MonoBehaviour
         crosshair.enabled = false;
         forwardSlash.enabled = false;
         timerBackground.enabled = false;
+       
+    }
+
+    public void SetHighScore()
+    {
+        scoreTotal += Mathf.FloorToInt(timeTotal - timeCurrent);
+
+        tableScores.AddHighScoreEntry(scoreTotal, nameHighscore, killcount, timeTotal - timeCurrent);
+    }
+
+    public void SetName(string _name)
+    {
+        nameHighscore = _name;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    private Score score;
     bool openedFromMenu;
 
     public void resume()
@@ -16,8 +17,10 @@ public class buttonFunctions : MonoBehaviour
 
     public void restart()
     {
+
         gameManager.instance.unPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     public void quit()
@@ -39,6 +42,7 @@ public class buttonFunctions : MonoBehaviour
             //gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
+            score.UserDeathCount();
         }
     }
 
@@ -66,7 +70,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.damageCost;
                 gameManager.instance.playerScript.damage++;
-                gameManager.instance.damageCost += 2;
+                gameManager.instance.damageCost += 15;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -84,7 +88,7 @@ public class buttonFunctions : MonoBehaviour
                 gameManager.instance.playerScript.HPOrig += 5;
                 gameManager.instance.playerScript.HP += 5;
                 gameManager.instance.playerScript.updateHPBar();
-                gameManager.instance.HPCost += 2;
+                gameManager.instance.HPCost += 5;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -107,7 +111,7 @@ public class buttonFunctions : MonoBehaviour
                 {
                     gameManager.instance.playerScript.playerSpeed++;
                 }
-                gameManager.instance.speedCost += 2;
+                gameManager.instance.speedCost += 20;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -237,7 +241,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.rangeCost;
                 gameManager.instance.playerScript.rangeUp++;
-                gameManager.instance.rangeCost += 2;
+                gameManager.instance.rangeCost += 5;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -326,7 +330,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.magnetCost;
                 gameManager.instance.magnetRange += (gameManager.instance.magnetRange / 20);
-                gameManager.instance.magnetCost += 10;
+                gameManager.instance.magnetCost += 20;
                 gameManager.instance.playerScript.magnetRangeSet(gameManager.instance.magnetRange);
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
@@ -343,7 +347,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.critChanceCost;
                 gameManager.instance.critChance += 5;
-                gameManager.instance.critChanceCost += 5;
+                gameManager.instance.critChanceCost += 15;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -359,7 +363,7 @@ public class buttonFunctions : MonoBehaviour
             {
                 gameManager.instance.componentsCurrent -= gameManager.instance.critDamageCost;
                 gameManager.instance.critDamageMulti += 0.25f;
-                gameManager.instance.critDamageCost += 5;
+                gameManager.instance.critDamageCost += 15;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
@@ -400,12 +404,28 @@ public class buttonFunctions : MonoBehaviour
                 }
 
                 gameManager.instance.playerScript.updateHPBar();
-                gameManager.instance.healthPackCost += 5;
+                gameManager.instance.healthPackCost += 10;
                 upgradesButttonsCheck();
                 gameManager.instance.updateComponentsDisplay();
             }
         }
         
+    }
+
+    public void OKName()
+    {
+        gameManager.instance.SetHighScore();
+        gameManager.instance.activeMenu.SetActive(false);
+        gameManager.instance.activeMenu = gameManager.instance.lastMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void OpenHighName()
+    {
+        gameManager.instance.activeMenu.SetActive(false);
+        gameManager.instance.lastMenu = gameManager.instance.activeMenu;
+        gameManager.instance.activeMenu = gameManager.instance.nameEntry;
+        gameManager.instance.activeMenu.SetActive(true);
     }
 
 }

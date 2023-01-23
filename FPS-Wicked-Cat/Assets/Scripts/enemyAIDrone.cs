@@ -38,6 +38,10 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [Header("-- Effects --")]
     [SerializeField] float dissolveSpeed;
 
+    [Header("----- Scoring System -----")]
+    [SerializeField] int score;
+
+
 
     Vector3 playerDir;
     float stopDistOrig;
@@ -53,6 +57,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<MeshRenderer>();
+        score = (int)HPOrig;
     }
 
     // Update is called once per frame
@@ -132,7 +137,8 @@ public class enemyAIDrone : MonoBehaviour, IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-
+            gameManager.instance.scoreTotal += score;
+            gameManager.instance.killcount++;
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
@@ -149,6 +155,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
+
 
             Destroy(gameObject);
         }
