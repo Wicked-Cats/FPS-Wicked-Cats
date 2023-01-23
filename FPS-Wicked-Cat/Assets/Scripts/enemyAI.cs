@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
+    private Score score;
+    private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] SkinnedMeshRenderer meshRenderer1;
@@ -42,6 +44,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject fireVaccum;
     [SerializeField] float dissolveSpeed;
 
+    [Header("----- Scoring System -----")]
+    public int scoreValue;
+    public int killCount;
 
 
 
@@ -58,6 +63,7 @@ public class enemyAI : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrig = model.material.color;
         meshRenderer1 = body.GetComponent<SkinnedMeshRenderer>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
     }
 
     void Update()
@@ -171,6 +177,9 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 StartCoroutine(death());
                 imDead = true;
+
+                score.UpdateEnemyKillCount();
+                score.AddScore(scoreValue);
 
                 // item drop
                 GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];

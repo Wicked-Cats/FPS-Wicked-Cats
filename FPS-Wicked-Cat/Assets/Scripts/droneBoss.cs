@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class droneBoss : MonoBehaviour , IDamage
 {
+    private Score score;
+    private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -42,6 +44,11 @@ public class droneBoss : MonoBehaviour , IDamage
     [SerializeField] int emergencyTeleportInterval;
 
 
+    [Header("----- Scoring System -----")]
+    public int scoreValue;
+    
+
+
     Vector3 playerDir;
     bool isTeleporting;
     bool teleportCycle;
@@ -57,6 +64,7 @@ public class droneBoss : MonoBehaviour , IDamage
     {
         HPOrig = HP;
         colorOrig = model.material.color;
+        gameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
 
     }
 
@@ -129,7 +137,7 @@ public class droneBoss : MonoBehaviour , IDamage
         //check if enemy has died
         if (HP <= 0)
         {
-
+            
             // item drop
             GameObject drop = itemDrop[Random.Range(0, itemDrop.Length - 1)];
             cogPickup cog = drop.GetComponent<cogPickup>();
@@ -146,7 +154,10 @@ public class droneBoss : MonoBehaviour , IDamage
                     Instantiate(drop, item.position, transform.rotation);
                 }
             }
+            score.UpdateEnemyKillCount();
+            score.AddScore(scoreValue);
 
+            
             Destroy(gameObject);
         }
     }
