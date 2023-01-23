@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
-    private Score score;
     bool openedFromMenu;
 
     public void resume()
@@ -42,7 +41,6 @@ public class buttonFunctions : MonoBehaviour
             //gameManager.instance.playerScript.SetPlayerPos();
             gameManager.instance.updateComponentsDisplay();
             gameManager.instance.playerScript.updateHPBar();
-            score.UserDeathCount();
         }
     }
 
