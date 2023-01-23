@@ -64,6 +64,11 @@ public class ShopSpawn : MonoBehaviour
         gameManager.instance.shopSpawnBroadcastParent.SetActive(false);
 
 
+        // update UI
+        Interaction.playerInSphere = false;
+        gameManager.instance.interactableTextParent.SetActive(false);
+
+
         isSpawning = false;
     }
 }
