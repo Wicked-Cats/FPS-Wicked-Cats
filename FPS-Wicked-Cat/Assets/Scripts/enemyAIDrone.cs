@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class enemyAIDrone : MonoBehaviour, IDamage
 {
-    private Score score;
-    private gameManager gameManager;
     [Header("-- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -41,8 +39,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
     [SerializeField] float dissolveSpeed;
 
     [Header("----- Scoring System -----")]
-    public int scoreValue;
-    public int killCount;
+    [SerializeField] int score;
 
 
 

@@ -126,11 +126,11 @@ public class gameManager : MonoBehaviour
     public GameObject shopSpawnBroadcastParent;
     public TextMeshProUGUI shopSpawnBrodcast;
 
-   
 
 
 
 
+    public int scoreTotal;
     public bool isPaused;
     float timeScaleBase;
     public GameObject playerSpawnPos;
