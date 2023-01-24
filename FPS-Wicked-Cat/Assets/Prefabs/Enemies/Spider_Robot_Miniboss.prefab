@@ -2843,7 +2843,7 @@ Transform:
   m_GameObject: {fileID: 1559438208038063677}
   m_LocalRotation: {x: 0, y: 0.998744, z: 0, w: 0.050104998}
   m_LocalPosition: {x: -38.142, y: 0, z: 455.44}
-  m_LocalScale: {x: 2.3081, y: 2.3081, z: 2.3081}
+  m_LocalScale: {x: 1.0916908, y: 1.0916908, z: 1.0916908}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7769375333005407360}
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   explosion: {fileID: 3372761020627971056, guid: baa9cf5c63287a04ca735116f52a3a77, type: 3}
   fireVaccum: {fileID: 999388949060202778, guid: 44a91380231a76446913dc9645dfb0d2, type: 3}
   dissolveSpeed: 0.5
-  scoreValue: 100
+  score: 0
 --- !u!95 &1509712743460926799
 Animator:
   serializedVersion: 4
