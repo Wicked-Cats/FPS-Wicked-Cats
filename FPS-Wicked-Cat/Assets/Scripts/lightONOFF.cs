@@ -14,7 +14,7 @@ public class lightONOFF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((gameManager.instance.player.transform.position - this.transform.position).magnitude > 20)
+        if((gameManager.instance.player.transform.position - this.transform.position).magnitude > 50)
         {
             light.enabled = false;
         }
