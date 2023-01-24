@@ -2009,7 +2009,7 @@ MonoBehaviour:
   critDamageCost: 5
   armorCost: 5
   healthPackCost: 10
-  spawnTimer: 5
+  spawnTimer: 3
   enemiesOptions:
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
@@ -4238,7 +4238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074266786113850648, guid: e3cabffc01d69984881559d2d6514520, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1113791334124540176, guid: e3cabffc01d69984881559d2d6514520, type: 3}
       propertyPath: m_SizeDelta.x

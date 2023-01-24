@@ -105,6 +105,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
                 if (zDif < 3 && zDif > -3)
                 {
                     forceFieldEngaged = true;
+                    agent.isStopped = true;
                     gameManager.instance.forceFieldActive = true;
                     gameManager.instance.forceFieldMaker = this.gameObject;
                     Vector3 forceSpawnPos = this.transform.position;
