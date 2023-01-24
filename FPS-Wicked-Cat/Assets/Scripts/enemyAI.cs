@@ -128,8 +128,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
         RaycastHit see;
 
-        Debug.DrawRay(headPos.position, playerDir);
-
         if (Physics.Raycast(headPos.position, playerDir, out see))
         {
             if (see.collider.CompareTag("Player") && angleToPlayer <= lineOfSight)
