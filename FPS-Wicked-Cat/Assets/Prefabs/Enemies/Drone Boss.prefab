@@ -1303,7 +1303,7 @@ MonoBehaviour:
   teleportInterval: 10
   dissolveSpeed: 3
   emergencyTeleportInterval: 180
-  scoreValue: 300
+  score: 0
 --- !u!95 &95950840671610858
 Animator:
   serializedVersion: 4
@@ -1356,8 +1356,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 0
-  m_Height: 4.5
-  m_BaseOffset: 2.5
+  m_Height: 3.5
+  m_BaseOffset: 1.25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &564924281773048055
