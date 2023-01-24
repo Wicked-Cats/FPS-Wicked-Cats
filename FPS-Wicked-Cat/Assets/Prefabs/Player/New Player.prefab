@@ -723,6 +723,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8059378969484494757, guid: e0cd4b63445726445ad63445def1955e, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
     - target: {fileID: 9137451835186974169, guid: e0cd4b63445726445ad63445def1955e, type: 3}
       propertyPath: m_Name
       value: PistolMuzzleFlash
@@ -1105,6 +1109,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 718580905286881748}
     m_Modifications:
+    - target: {fileID: 8731667174143014953, guid: 21eaf242e6499bd43a8a10fdcf832c9e, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8731667174195764040, guid: 21eaf242e6499bd43a8a10fdcf832c9e, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
     - target: {fileID: 8731667174394848932, guid: 21eaf242e6499bd43a8a10fdcf832c9e, type: 3}
       propertyPath: m_Name
       value: SniperMuzzleFlash
