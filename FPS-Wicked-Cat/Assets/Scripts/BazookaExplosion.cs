@@ -14,6 +14,7 @@ public class BazookaExplosion : explosion
     {
         StartCoroutine(damage());
         Destroy(gameObject);
+
     }
 
     private new void OnTriggerStay(Collider other)
@@ -39,5 +40,6 @@ public class BazookaExplosion : explosion
         Instantiate(hitEffect, transform.position, transform.rotation);
         yield return new WaitForSeconds(1);
         
+
     }
 }
