@@ -109,6 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477548}
+  - component: {fileID: 3612529675480890741}
   - component: {fileID: 10886990}
   m_Layer: 0
   m_Name: Point light
@@ -132,6 +133,18 @@ Transform:
   m_Father: {fileID: 463376}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3612529675480890741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087f0adf8590d0645b3c6132f4cbe568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &10886990
 Light:
   m_ObjectHideFlags: 0
@@ -181,7 +194,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1025
   m_RenderingLayerMask: 1
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
