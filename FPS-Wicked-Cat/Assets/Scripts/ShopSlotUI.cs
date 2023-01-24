@@ -24,21 +24,19 @@ public class ShopSlotUI : MonoBehaviour
         _itemName.text = "";
         _itemCost.text = "";
 
-        _addItemToCartButton?.onClick.AddListener(AddItemToCart);
-        _removeItemFromCartButton?.onClick.AddListener(RemoveItemFromCart);
+        //_addItemToCartButton?.onClick.AddListener(AddItemToCart);
+        //_removeItemFromCartButton?.onClick.AddListener(RemoveItemFromCart);
 
         ParentDisplay.transform.parent.GetComponentInParent<ShopKeeperDisplay>();
     }
 
-    private void RemoveItemFromCart()
-    {
-        Debug.Log("Removing item from cart");
-    }
+    //private void RemoveItemFromCart()
+    //{
+    //}
 
-    private void AddItemToCart()
-    {
-        Debug.Log("Adding item to cart");
-    }
+    //private void AddItemToCart()
+    //{
+    //}
 
 
     public void SetSprite(Image sprite)
