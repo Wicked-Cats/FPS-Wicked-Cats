@@ -1942,7 +1942,7 @@ MonoBehaviour:
   jumpsLimit: 2
   HPLimit: 200
   damageLimit: 10
-  speedLimit: 8
+  speedLimit: 6
   rangeUpLimit: 10
   critChanceLimit: 75
   critDamageLimit: 5
@@ -2009,7 +2009,7 @@ MonoBehaviour:
   critDamageCost: 5
   armorCost: 5
   healthPackCost: 10
-  spawnTimer: 3
+  spawnTimer: 5
   enemiesOptions:
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}
   - {fileID: 8824145509658991786, guid: a4a8ad090e84afc4a8d6fcbafca22f50, type: 3}

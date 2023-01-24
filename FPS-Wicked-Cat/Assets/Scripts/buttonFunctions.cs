@@ -145,7 +145,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void upgradesButttonsCheck()
     {
-        if (gameManager.instance.componentsCurrent < gameManager.instance.damageCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.damageCost || gameManager.instance.playerScript.damage >= gameManager.instance.damageLimit)
         {
             gameManager.instance.dmgButton.interactable = false;
         }
@@ -153,7 +153,7 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.dmgButton.interactable = true;
         }
-        if (gameManager.instance.componentsCurrent < gameManager.instance.rangeCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.rangeCost || gameManager.instance.playerScript.rangeUp >= gameManager.instance.rangeUpLimit)
         {
             gameManager.instance.rangeButton.interactable = false;
         }
@@ -161,7 +161,7 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.rangeButton.interactable = true;
         }
-        if (gameManager.instance.componentsCurrent < gameManager.instance.HPCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.HPCost || gameManager.instance.playerScript.HPOrig >= gameManager.instance.HPLimit)
         {
             gameManager.instance.HPButton.interactable = false;
         }
@@ -169,7 +169,7 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.HPButton.interactable = true;
         }
-        if (gameManager.instance.componentsCurrent < gameManager.instance.speedCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.speedCost || gameManager.instance.playerScript. playerSpeed >= gameManager.instance.speedLimit)
         {
             gameManager.instance.speedButton.interactable = false;
         }
@@ -177,7 +177,7 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.speedButton.interactable = true;
         }
-        if (gameManager.instance.componentsCurrent < gameManager.instance.critDamageCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.critDamageCost || gameManager.instance.critDamageMulti >= gameManager.instance.critDamageLimit)
         {
             gameManager.instance.critDamageButton.interactable = false;
         }
@@ -185,7 +185,7 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.critDamageButton.interactable = true;
         }
-        if (gameManager.instance.componentsCurrent < gameManager.instance.critChanceCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.critChanceCost || gameManager.instance.critChance >= gameManager.instance.critChanceLimit)
         {
             gameManager.instance.critChanceButton.interactable = false;
         }
@@ -193,7 +193,7 @@ public class buttonFunctions : MonoBehaviour
         {
             gameManager.instance.critChanceButton.interactable = true;
         }
-        if (gameManager.instance.componentsCurrent < gameManager.instance.magnetCost)
+        if (gameManager.instance.componentsCurrent < gameManager.instance.magnetCost || gameManager.instance.magnetRange >= gameManager.instance.magnetLimit)
         {
             gameManager.instance.magnetButton.interactable = false;
         }
