@@ -25,7 +25,21 @@ public class TableScores : MonoBehaviour
         //AddHighScoreEntry(1000, "AAA");
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
-        HighScores highscores = JsonUtility.FromJson<HighScores>(jsonString);
+        HighScores highscores;
+        if (jsonString == "")
+        {
+            highscores = new HighScores
+            {
+                highscoreEntryList = new List<HighscoreEntry>
+                { new HighscoreEntry { score = 0, name = "AAA", killed = 0, time = 0f }
+                }
+            };
+        }
+        else
+        {
+            highscores = JsonUtility.FromJson<HighScores>(jsonString);
+        }
+
 
         for (int x = 0; x < highscores.highscoreEntryList.Count; x++)
         {
