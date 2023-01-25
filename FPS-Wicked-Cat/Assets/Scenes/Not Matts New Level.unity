@@ -1604,24 +1604,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb4b38db67a56dc469a2c2aafcc36add, type: 3}
---- !u!1 &71770909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 788790274554786998, guid: 492e528382b33394c97c95527f832212, type: 3}
-  m_PrefabInstance: {fileID: 383842913}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &71770916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71770909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 0
 --- !u!1001 &73114287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10957,11 +10939,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8307495980511382194, guid: 492e528382b33394c97c95527f832212, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -278.06
+      value: -277.41
       objectReference: {fileID: 0}
     - target: {fileID: 8307495980511382194, guid: 492e528382b33394c97c95527f832212, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.12
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 8307495980511382194, guid: 492e528382b33394c97c95527f832212, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17747,10 +17729,6 @@ PrefabInstance:
     - target: {fileID: 1028237229487466581, guid: 4696dada4dc1f1543996bc41d97a1c81, type: 3}
       propertyPath: m_Name
       value: Gun Pickup - Pistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 1028237229487466581, guid: 4696dada4dc1f1543996bc41d97a1c81, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4696dada4dc1f1543996bc41d97a1c81, type: 3}
