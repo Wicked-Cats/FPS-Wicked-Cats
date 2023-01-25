@@ -14,18 +14,16 @@ public class optionsMenu : MonoBehaviour
     [Header("--- Silders ---")]
     public Slider slider;
 
-    [Header("--- Volume ---")]
-    public float defaultVol = 0.5f;
 
     public void SetVolume(float volume)
     {
-       audioMixer.SetFloat(mixerName, Mathf.Log10(volume) * 20f);
+        audioMixer.SetFloat(mixerName, Mathf.Log10(volume) * 20f);
+        
     }
 
     public void ApplyBtn()
     {
         PlayerPrefs.SetFloat(mixerName, slider.value);
-        slider.value = PlayerPrefs.GetFloat(mixerName);
         PlayerPrefs.Save();
     }
 

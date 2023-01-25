@@ -162,6 +162,7 @@ public class gameManager : MonoBehaviour
         {
             BGMSlider.value = PlayerPrefs.GetFloat("BGM");
             SFXSlider.value = PlayerPrefs.GetFloat("SFX");
+
         }
         else
         {
