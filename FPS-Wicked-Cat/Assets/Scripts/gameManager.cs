@@ -158,7 +158,7 @@ public class gameManager : MonoBehaviour
         instance = this;
 
         // Audio Saved from previous game
-        if (PlayerPrefs.HasKey("BGM") || PlayerPrefs.HasKey("SFX"))
+        if (PlayerPrefs.HasKey("BGM") && PlayerPrefs.HasKey("SFX"))
         {
             BGMSlider.value = PlayerPrefs.GetFloat("BGM");
             SFXSlider.value = PlayerPrefs.GetFloat("SFX");
