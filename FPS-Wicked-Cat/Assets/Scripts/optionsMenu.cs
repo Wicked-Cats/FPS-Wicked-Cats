@@ -32,5 +32,8 @@ public class optionsMenu : MonoBehaviour
         slider.value = PlayerPrefs.GetFloat(mixerName);
     }
 
-
+    public void OnApplicationQuit()
+    {
+        PlayerPrefs.Save();
+    }
 }
