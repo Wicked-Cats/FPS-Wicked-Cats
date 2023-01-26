@@ -18880,10 +18880,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 2536875057821754193, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_text
-      value: Main Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 4262074351900611885, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -18968,13 +18964,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8879296222503643392, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 9154903762500099521, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 9154903762500099521, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9121162943614510846, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
-      propertyPath: spawnTimer
-      value: 3
+    - target: {fileID: 9154903762500099521, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154903762500099521, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18bd462061fdfd479bdc724238ed1b3, type: 3}
