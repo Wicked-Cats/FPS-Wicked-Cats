@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5b5b63f0b2a8ec84f9b82dbf6c339164, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2142,14 +2142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9664604, g: 0.9292453, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 07747adb0b83c9644832d2d3b41f2142, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b5b63f0b2a8ec84f9b82dbf6c339164, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3810,7 +3810,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1687156637484494728, guid: 264607ddb6ec0974a8faa443d549ef58, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2740847029980857666, guid: 264607ddb6ec0974a8faa443d549ef58, type: 3}
       propertyPath: m_Name
@@ -3906,15 +3906,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4782024501978250311, guid: 264607ddb6ec0974a8faa443d549ef58, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7997701561309194303, guid: 264607ddb6ec0974a8faa443d549ef58, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8671633828592551176, guid: 264607ddb6ec0974a8faa443d549ef58, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 264607ddb6ec0974a8faa443d549ef58, type: 3}
@@ -4125,6 +4125,10 @@ PrefabInstance:
     - target: {fileID: 6783535358103280867, guid: abc673929a147dd489074af71b3fd64d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946941705221715096, guid: abc673929a147dd489074af71b3fd64d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc673929a147dd489074af71b3fd64d, type: 3}

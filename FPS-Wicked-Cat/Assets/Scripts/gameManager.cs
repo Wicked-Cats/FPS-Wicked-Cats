@@ -158,10 +158,11 @@ public class gameManager : MonoBehaviour
         instance = this;
 
         // Audio Saved from previous game
-        if (PlayerPrefs.HasKey("BGM") || PlayerPrefs.HasKey("SFX"))
+        if (PlayerPrefs.HasKey("BGM") && PlayerPrefs.HasKey("SFX"))
         {
             BGMSlider.value = PlayerPrefs.GetFloat("BGM");
             SFXSlider.value = PlayerPrefs.GetFloat("SFX");
+
         }
         else
         {
@@ -338,10 +339,17 @@ public class gameManager : MonoBehaviour
             enemyToSpawn = droneBoss;
         }
 
-        int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
+        //int possibleLocation = Random.Range(0, navMeshTri.vertices.Length);
+
+        int xChange = Random.Range(-30, 30);
+        int zChange = Random.Range(-30, 30);
+
+        Vector3 targetPos = new Vector3(gameManager.instance.player.transform.position.x + xChange,
+            gameManager.instance.player.transform.position.y,
+            gameManager.instance.player.transform.position.z + zChange);
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(navMeshTri.vertices[possibleLocation], out hit, 2f, 1))
+        if (NavMesh.SamplePosition(targetPos, out hit, 30f, -1))
         {
             Instantiate(enemyToSpawn, hit.position, this.transform.rotation);
         }
