@@ -27,6 +27,7 @@ public class flyerTestScript : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject itemDrop;
+    [SerializeField] GameObject explosion;
 
     [Header("-- Effects --")]
     [SerializeField] float dissolveSpeed;
@@ -144,8 +145,9 @@ public class flyerTestScript : MonoBehaviour, IDamage
             gameManager.instance.scoreTotal += score;
             gameManager.instance.killcount++;
             Instantiate(itemDrop, transform.position, transform.rotation);
+            Instantiate(explosion, transform.position, transform.rotation);
 
-            
+
 
             Destroy(gameObject);
         }
