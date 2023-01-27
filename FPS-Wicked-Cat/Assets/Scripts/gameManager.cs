@@ -151,7 +151,7 @@ public class gameManager : MonoBehaviour
     bool droneBossSpawned;
     public TableScores tableScores;
     private string nameHighscore;
-
+    bool startSpawn;
    
     
 
@@ -283,6 +283,10 @@ public class gameManager : MonoBehaviour
         {
             isPaused = !isPaused;
             unPause();
+        }
+        if(timeTotal - timeCurrent >= 5 && !startSpawn)
+        {
+            startSpawn = true;
         }
 
         if (!isSpawning)
