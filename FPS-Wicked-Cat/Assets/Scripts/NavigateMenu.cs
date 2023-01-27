@@ -180,6 +180,14 @@ public class NavigateMenu : MonoBehaviour
                 {
                     optionBtnArr[1].onClick.Invoke();
                 }
+                //else if (selectableArr[selection].name == "BGM Slider")
+                //{
+                //    SoundControls();
+                //}
+                //else if (selectableArr[selection].name == "SFX Slider")
+                //{
+                //    SoundControls();
+                //}
             }
 
         }
@@ -256,20 +264,18 @@ public class NavigateMenu : MonoBehaviour
             Orig = currImage.color;
             currImage.color = Color.gray;
         }
-        else if (selectableArr[selection].name == "SFX Slider")
-        {
-            currImage = highlightBtnArr[selection].gameObject.GetComponent<Image>();
-            Orig = currImage.color;
-            currImage.color = Color.gray;
-            SoundControls();
-        }
-        else if (selectableArr[selection].name == "BGM Slider")
-        {
-            currImage = highlightBtnArr[selection].gameObject.GetComponent<Image>();
-            Orig = currImage.color;
-            currImage.color = Color.gray;
-            SoundControls();
-        }
+        //else if (selectableArr[selection].name == "SFX Slider")
+        //{
+        //    currImage = highlightBtnArr[selection].gameObject.GetComponent<Image>();
+        //    Orig = currImage.color;
+        //    currImage.color = Color.gray;        
+        //}
+        //else if (selectableArr[selection].name == "BGM Slider")
+        //{
+        //    currImage = highlightBtnArr[selection].gameObject.GetComponent<Image>();
+        //    Orig = currImage.color;
+        //    currImage.color = Color.gray;
+        //}
         else if (selectableArr[selection].name == "Apply_Changes")
         {
             currImage = highlightBtnArr[selection].GetComponent<Image>();
