@@ -34,6 +34,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
 
     [Header("-- Item Drops --")]
     [SerializeField] GameObject[] itemDrop;
+    [SerializeField] GameObject explosion;
 
     [Header("-- Effects --")]
     [SerializeField] float dissolveSpeed;
@@ -101,7 +102,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
             StartCoroutine(path());
         }
 
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        playerDir = gameManager.instance.enemyAimPoint.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
         RaycastHit see;
@@ -154,6 +155,7 @@ public class enemyAIDrone : MonoBehaviour, IDamage
                     item.position = new Vector3(item.position.x + Random.Range(-0.75f, 0.75f), item.position.y, item.position.z - Random.Range(-0.75f, 0.75f));
                     Instantiate(drop, item.position, transform.rotation);
                 }
+                Instantiate(explosion, transform.position, transform.rotation);
             }
 
 

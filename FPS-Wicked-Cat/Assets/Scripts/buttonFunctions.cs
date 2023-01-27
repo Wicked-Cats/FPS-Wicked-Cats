@@ -416,6 +416,8 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.lastMenu;
         gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.highSaveWin.interactable = false;
+        gameManager.instance.highSaveLose.interactable = false;
     }
 
     public void OpenHighName()
