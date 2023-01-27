@@ -171,8 +171,9 @@ MonoBehaviour:
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
   - {fileID: 4571488684264405923, guid: f6d8c736859dc33498c3fb089c7d0fcc, type: 3}
+  explosion: {fileID: 3372761020627971056, guid: baa9cf5c63287a04ca735116f52a3a77, type: 3}
   dissolveSpeed: 0.5
-  scoreValue: 100
+  score: 0
 --- !u!195 &3779632975521905378
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -193,7 +194,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 12.5
   m_BaseOffset: 11
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 9
   m_ObstacleAvoidanceType: 4
 --- !u!33 &3779632975520774207
 MeshFilter:

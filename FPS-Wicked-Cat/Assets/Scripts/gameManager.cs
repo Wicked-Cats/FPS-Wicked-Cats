@@ -65,6 +65,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI armorCurrent;
     public GameObject highscoreTable;
     public TMP_InputField nameEnrtyText;
+    public Button highSaveWin;
+    public Button highSaveLose;
 
 
 
@@ -149,7 +151,7 @@ public class gameManager : MonoBehaviour
     bool droneBossSpawned;
     public TableScores tableScores;
     private string nameHighscore;
-
+    bool startSpawn;
    
     
 
@@ -248,6 +250,7 @@ public class gameManager : MonoBehaviour
                 pause();
                 componentsTotal = 0;
                 componentsCurrent = 0;
+                highSaveWin.interactable = true;
             }
 
             timerUpdate(timeCurrent);
@@ -280,6 +283,10 @@ public class gameManager : MonoBehaviour
         {
             isPaused = !isPaused;
             unPause();
+        }
+        if(timeTotal - timeCurrent >= 5 && !startSpawn)
+        {
+            startSpawn = true;
         }
 
         if (!isSpawning)
