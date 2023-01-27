@@ -65,6 +65,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI armorCurrent;
     public GameObject highscoreTable;
     public TMP_InputField nameEnrtyText;
+    public Button highSaveWin;
+    public Button highSaveLose;
 
 
 
@@ -248,6 +250,7 @@ public class gameManager : MonoBehaviour
                 pause();
                 componentsTotal = 0;
                 componentsCurrent = 0;
+                highSaveWin.interactable = true;
             }
 
             timerUpdate(timeCurrent);
