@@ -286,7 +286,7 @@ public class gameManager : MonoBehaviour
         }
         if(timeTotal - timeCurrent >= 5 && !startSpawn)
         {
-            startSpawn;
+            startSpawn = true;
         }
 
         if (!isSpawning)
