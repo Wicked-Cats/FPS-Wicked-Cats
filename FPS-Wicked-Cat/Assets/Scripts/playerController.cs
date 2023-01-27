@@ -328,6 +328,7 @@ public class playerController : MonoBehaviour
             else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun == 0)
             {
                 selectedGun = gunList.Count - 1;
+                ChangeGun();
             }
             else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
             {
