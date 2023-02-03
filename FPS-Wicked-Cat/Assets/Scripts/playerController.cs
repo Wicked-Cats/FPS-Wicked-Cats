@@ -238,6 +238,7 @@ public class playerController : MonoBehaviour
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
             gameManager.instance.respawnButtonText.text = "Respawn (-" + (gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease) + " Components";
             gameManager.instance.activeMenu.SetActive(true);
+            gameManager.instance.highSaveLose.interactable = true;
             if (gameManager.instance.componentsCurrent < gameManager.instance.respawnCost + gameManager.instance.timeDamageIncrease)
             {
                 gameManager.instance.respawnButt.interactable = false;
@@ -319,7 +320,17 @@ public class playerController : MonoBehaviour
 
         if (gunList.Count > 0)
         {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+            if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun == gunList.Count -1)
+            {
+                selectedGun = 0;
+                ChangeGun();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun == 0)
+            {
+                selectedGun = gunList.Count - 1;
+                ChangeGun();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
             {
                 selectedGun++;
                 ChangeGun();

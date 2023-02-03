@@ -13,6 +13,7 @@ public class cogPickup : MonoBehaviour
     private void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        
     }
     private void Update()
     {
@@ -65,5 +66,11 @@ public class cogPickup : MonoBehaviour
     public void PushbackSet()
     {
         beingPulled = true;
+    }
+
+    IEnumerator despawn()
+    {
+        yield return new WaitForSeconds(45f);
+        Destroy(gameObject);
     }
 }
